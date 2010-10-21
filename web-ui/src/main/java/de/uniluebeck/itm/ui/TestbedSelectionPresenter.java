@@ -27,8 +27,11 @@ import java.util.List;
 
 import com.vaadin.data.Property;
 import com.vaadin.data.Property.ValueChangeEvent;
+import com.vaadin.data.util.BeanItemContainer;
+import com.vaadin.ui.Button;
 import com.vaadin.ui.Button.ClickEvent;
 import com.vaadin.ui.Button.ClickListener;
+import com.vaadin.ui.ListSelect;
 import com.vaadin.ui.LoginForm;
 import com.vaadin.ui.LoginForm.LoginEvent;
 import com.vaadin.ui.VerticalLayout;
@@ -44,7 +47,7 @@ import de.uniluebeck.itm.services.SessionManagementAdapter;
 /**
  * @author Soenke Nommensen
  */
-public final class TestbedSelectionController implements Controller {
+public final class TestbedSelectionPresenter implements Presenter {
 
     private static final List<TestbedConfiguration> TESTBEDS = new ArrayList<TestbedConfiguration>();
     private final TestbedSelectionView view = new TestbedSelectionView();
@@ -63,7 +66,7 @@ public final class TestbedSelectionController implements Controller {
         TESTBEDS.add(testbedConfiguration);
     }
 
-    public TestbedSelectionController() {
+    public TestbedSelectionPresenter() {
         view.getConnectButton().addListener(new ClickListener() {
 
             public void buttonClick(ClickEvent event) {
@@ -93,7 +96,7 @@ public final class TestbedSelectionController implements Controller {
         });
 
         for (TestbedConfiguration testbedConfiguration : TESTBEDS) {
-            view.addTestBed(testbedConfiguration);
+            view.addTestbedConfiguration(testbedConfiguration);
         }
 
         view.getConnectButton().setEnabled(false);
@@ -102,7 +105,7 @@ public final class TestbedSelectionController implements Controller {
 
     private void onConnectButtonClick() {
         view.getLoginWindow().setCaption("Login to " + currentTestbedConfiguration.getName());
-        view.setShowLoginWindow(true);
+        view.showLoginWindow(true);
     }
 
     private void connectToTestBed(String username, String password) {
@@ -116,7 +119,7 @@ public final class TestbedSelectionController implements Controller {
         }
 
         if (exceptions.isEmpty()) {
-            view.setShowLoginWindow(false);
+            view.showLoginWindow(false);
             UiUtil.showNotification(UiUtil.createNotificationCenteredTop(
                     "Authentication successful", "User: \"" + username
                     + "\" authenticated for: \"" + currentTestbedConfiguration.getName() + "\"",
@@ -157,9 +160,9 @@ public final class TestbedSelectionController implements Controller {
     }
 
     /**
-     * @return Reference to the view
+     * @return Reference to the getDisplay
      */
-    public VerticalLayout view() {
+    public VerticalLayout getDisplay() {
         return view;
     }
 
@@ -171,5 +174,28 @@ public final class TestbedSelectionController implements Controller {
         SNAAServiceAdapter snaaServiceAdapter = new SNAAServiceAdapter(currentTestbedConfiguration.getSnaaEndpointUrl());
         snaaServiceAdapter.addAuthenticationTriple(username, urn, password);
         snaaServiceAdapter.authenticate();
+    }
+
+    public interface Display {
+
+        public void addTestbedConfiguration(TestbedConfiguration testbedConfiguration);
+
+        public Button getReloadButton();
+
+        public void setDeviceContainer(BeanItemContainer<?> container);
+
+        public ListSelect getTestbedConfigurationSelect();
+
+        public void clearTestbedInfoTable();
+
+        public Button getConnectButton();
+
+        public Window getLoginWindow();
+
+        public void showLoginWindow(boolean visible);
+
+        public void setDetailsText(String details);
+
+        public LoginForm getLoginForm();
     }
 }

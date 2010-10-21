@@ -25,7 +25,7 @@ package de.uniluebeck.itm.ui;
 /**
  * @author Soenke Nommensen
  */
-class ToolbarController implements Controller {
+class ToolbarController implements Presenter {
 
     private ToolbarView view;
 
@@ -33,7 +33,7 @@ class ToolbarController implements Controller {
         view = new ToolbarView();
     }
 
-    public ToolbarView view() {
+    public ToolbarView getDisplay() {
         return view;
     }
 }

@@ -26,7 +26,7 @@ import com.vaadin.Application;
 import com.vaadin.terminal.gwt.server.WebApplicationContext;
 import com.vaadin.ui.Window;
 import de.uniluebeck.itm.common.UiUtil;
-import de.uniluebeck.itm.ui.Controller;
+import de.uniluebeck.itm.ui.Presenter;
 import de.uniluebeck.itm.ui.UiController;
 import javax.servlet.http.HttpSession;
 //import org.vaadin.mvp.eventbus.EventBusManager;
@@ -38,22 +38,13 @@ import javax.servlet.http.HttpSession;
  */
 public class WebUiApp extends Application {
 
-//    /** Per application (session) event bus manager */
-//    private EventBusManager ebm = new EventBusManager();
-//    /** Per application presenter factory */
-//    private PresenterFactory presenterFactory;
-//    // -------------------------------------------
-    private final Controller uiController = new UiController();
+    private final Presenter uiController = new UiController();
 
     @Override
     public void init() {
-        setMainWindow((Window) uiController.view());
+        setMainWindow((Window) uiController.getDisplay());
         UiUtil.setMainWindow(getMainWindow());
 
         HttpSession httpSession = ((WebApplicationContext) getContext()).getHttpSession();
     }
-
-//    public IPresenterFactory getPresenterFactory() {
-//        return this.presenterFactory;
-//    }
 }

@@ -30,6 +30,6 @@ import java.io.Serializable;
 /**
  * @author Soenke Nommensen
  */
-public interface Controller extends Serializable {
-    public AbstractComponent view();
+public interface Presenter extends Serializable {
+    public AbstractComponent getDisplay();
 }

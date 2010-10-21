@@ -25,7 +25,7 @@ package de.uniluebeck.itm.ui;
 /**
  * @author Soenke Nommensen
  */
-public class TabController implements Controller {
+public class TabController implements Presenter {
     
     private TabView view;
 
@@ -33,7 +33,7 @@ public class TabController implements Controller {
         view = new TabView();
     }
 
-    public TabView view() {
+    public TabView getDisplay() {
         return view;
     }
 }

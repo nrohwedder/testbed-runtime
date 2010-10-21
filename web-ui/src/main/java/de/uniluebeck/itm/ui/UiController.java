@@ -25,25 +25,25 @@ package de.uniluebeck.itm.ui;
 /**
  * @author Soenke Nommensen
  */
-public class UiController implements Controller {
+public class UiController implements Presenter {
 
-    private final Controller toolbarController = new ToolbarController();
-    private final Controller tabController = new TabController();
-    private final Controller testbedSelectionController = new TestbedSelectionController();
-    private final Controller reservationController = new ReservationController();
-    private final Controller xmlController = new XmlController();
+    private final Presenter toolbarController = new ToolbarController();
+    private final Presenter tabController = new TabController();
+    private final Presenter testbedSelectionController = new TestbedSelectionPresenter();
+    private final Presenter reservationController = new ReservationController();
+    private final Presenter xmlController = new XmlController();
     private final UiView view;
 
     public UiController() {
         view = new UiView(
-                toolbarController.view(),
-                tabController.view(),
-                testbedSelectionController.view(),
-                reservationController.view(),
-                xmlController.view());
+                toolbarController.getDisplay(),
+                tabController.getDisplay(),
+                testbedSelectionController.getDisplay(),
+                reservationController.getDisplay(),
+                xmlController.getDisplay());
     }
 
-    public UiView view() {
+    public UiView getDisplay() {
         return view;
     }
 }

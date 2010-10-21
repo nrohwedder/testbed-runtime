@@ -45,7 +45,7 @@ import java.util.Set;
 /**
  * @author Soenke Nommensen
  */
-public class ReservationController implements Controller {
+public class ReservationController implements Presenter {
 
     private final ReservationView view;
     private final Set<Object> markedRows = new HashSet<Object>();
@@ -66,25 +66,25 @@ public class ReservationController implements Controller {
     public ReservationController() {
         view = new ReservationView();
 //
-//        view.tblNetwork.setContainerDataSource(initEmptyNodeUrnContainer());
-//        view.tblNetwork.setDragMode(Table.TableDragMode.MULTIROW);
-//        view.tblNetwork.setDropHandler(createTableDropHandler());
-//        view.tblNetwork.addListener(createTableValueChangeListener());
+//        getDisplay.tblNetwork.setContainerDataSource(initEmptyNodeUrnContainer());
+//        getDisplay.tblNetwork.setDragMode(Table.TableDragMode.MULTIROW);
+//        getDisplay.tblNetwork.setDropHandler(createTableDropHandler());
+//        getDisplay.tblNetwork.addListener(createTableValueChangeListener());
 //
-//        view.tblReservation.setContainerDataSource(
+//        getDisplay.tblReservation.setContainerDataSource(
 //                initEmptyNodeUrnContainer());
-//        view.tblReservation.setDragMode(Table.TableDragMode.MULTIROW);
-//        view.tblReservation.setDropHandler(createTableDropHandler());
-//        view.tblReservation.addListener(createTableValueChangeListener());
+//        getDisplay.tblReservation.setDragMode(Table.TableDragMode.MULTIROW);
+//        getDisplay.tblReservation.setDropHandler(createTableDropHandler());
+//        getDisplay.tblReservation.addListener(createTableValueChangeListener());
 //
-//        view.btnReload.addListener(createReloadButtonListener());
-//        view.btnClearAll.addListener(createClearAllButtonListener());
+//        getDisplay.btnReload.addListener(createReloadButtonListener());
+//        getDisplay.btnClearAll.addListener(createClearAllButtonListener());
     }
 
     /**
-     * @return Reference to the view
+     * @return Reference to the getDisplay
      */
-    public ReservationView view() {
+    public ReservationView getDisplay() {
         return view;
     }
 
@@ -96,7 +96,7 @@ public class ReservationController implements Controller {
 //                NodeUrnContainer container;
 //                try {
 //                    container = sessionManagementAdapter.getNetworkAsContainer();
-//                    view.tblNetwork.setContainerDataSource(container);
+//                    getDisplay.tblNetwork.setContainerDataSource(container);
 //                } catch (InstantiationException ex) {
 //                    UiUtil.showNotification(
 //                            UiUtil.createNotificationCenteredTop(
@@ -116,7 +116,7 @@ public class ReservationController implements Controller {
 //        return new Button.ClickListener() {
 //
 //            public void buttonClick(ClickEvent event) {
-//                view.tblReservation.getContainerDataSource().removeAllItems();
+//                getDisplay.tblReservation.getContainerDataSource().removeAllItems();
 //            }
 //        };
 //    }

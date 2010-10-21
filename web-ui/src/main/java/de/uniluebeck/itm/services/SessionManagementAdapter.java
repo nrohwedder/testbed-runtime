@@ -23,6 +23,7 @@
 package de.uniluebeck.itm.services;
 
 import de.itm.uniluebeck.tr.wiseml.WiseMLHelper;
+import de.uniluebeck.itm.common.XmlFormatter;
 import de.uniluebeck.itm.model.NodeUrn;
 import de.uniluebeck.itm.model.NodeUrnContainer;
 import eu.wisebed.testbed.api.wsn.WSNServiceHelper;
@@ -75,6 +76,6 @@ public class SessionManagementAdapter {
     }
 
     public String getNetworkAsString() throws InstantiationException, IllegalAccessException {
-        return sessionManagement.getNetwork();
+        return new XmlFormatter().format(sessionManagement.getNetwork());
     }
 }

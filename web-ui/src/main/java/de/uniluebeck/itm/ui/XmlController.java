@@ -7,23 +7,21 @@ package de.uniluebeck.itm.ui;
 
 import com.vaadin.ui.AbstractComponent;
 import de.uniluebeck.itm.common.UiUtil;
-import de.uniluebeck.itm.common.XmlFormatter;
 import de.uniluebeck.itm.services.SessionManagementAdapter;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 
 /**
  *
  * @author soenke
  */
-public class XmlController implements Controller {
+public class XmlController implements Presenter {
 
     final XmlView view;
 
     public XmlController() {
         view = new XmlView();
 
-        SessionManagementAdapter sessionManagementAdapter = new SessionManagementAdapter("http://wisebed.itm.uni-luebeck.de:8888/sessions?wsdl");
+        SessionManagementAdapter sessionManagementAdapter =
+                new SessionManagementAdapter("http://wisebed.itm.uni-luebeck.de:8888/sessions?wsdl");
         String text = "";
         try {
             text = sessionManagementAdapter.getNetworkAsString();
@@ -33,10 +31,10 @@ public class XmlController implements Controller {
             UiUtil.showExceptionNotification(ex);
         }
 
-        setText(new XmlFormatter().format(text));
+        setText(text);
     }
 
-    public AbstractComponent view() {
+    public AbstractComponent getDisplay() {
         return view;
     }
 

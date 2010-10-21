@@ -2,7 +2,6 @@
  * To change this template, choose Tools | Templates
  * and open the template in the editor.
  */
-
 package de.uniluebeck.itm.common;
 
 import com.sun.org.apache.xml.internal.serialize.OutputFormat;
@@ -22,7 +21,7 @@ import java.io.Writer;
 /**
  * Pretty-prints xml, supplied as a string.
  * <p/>
- * eg.
+ * e.g.
  * <code>
  * String formattedXml = new XmlFormatter().format("<tag><nested>hello</nested></tag>");
  * </code>
@@ -64,5 +63,4 @@ public class XmlFormatter {
             throw new RuntimeException(e);
         }
     }
-
 }

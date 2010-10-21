@@ -32,7 +32,7 @@ import de.uniluebeck.itm.ui.components.UiLoginForm;
 /**
  * @author Soenke Nommensen
  */
-public class TestbedSelectionView extends VerticalLayout {
+public class TestbedSelectionView extends VerticalLayout implements TestbedSelectionPresenter.Display {
 
     private static final String RELOAD_BUTTON_LABEL = "Reload";
     private static final String TESTBED_SELECTION_LABEL = "Testbed Selection";
@@ -128,7 +128,7 @@ public class TestbedSelectionView extends VerticalLayout {
         panelLayout.setComponentAlignment(frmLogin, Alignment.MIDDLE_CENTER);
     }
 
-    public void addTestBed(TestbedConfiguration testbedConfiguration) {
+    public void addTestbedConfiguration(TestbedConfiguration testbedConfiguration) {
         lstTestbedConfigurations.addItem(testbedConfiguration);
     }
 
@@ -144,7 +144,7 @@ public class TestbedSelectionView extends VerticalLayout {
         return lstTestbedConfigurations;
     }
 
-    public void clear() {
+    public void clearTestbedInfoTable() {
         tblTestbedInfo.removeAllItems();
     }
 
@@ -156,7 +156,7 @@ public class TestbedSelectionView extends VerticalLayout {
         return wdwLogin;
     }
 
-    public void setShowLoginWindow(boolean visible) {
+    public void showLoginWindow(boolean visible) {
         if (visible) {
             getWindow().addWindow(wdwLogin);
             wdwLogin.center();
@@ -170,7 +170,7 @@ public class TestbedSelectionView extends VerticalLayout {
         pnlDetails.addComponent(new Label(details));
     }
 
-    LoginForm getLoginForm() {
+    public LoginForm getLoginForm() {
         return frmLogin;
     }
 }
