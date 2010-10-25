@@ -26,23 +26,20 @@ import com.vaadin.Application;
 import com.vaadin.terminal.gwt.server.WebApplicationContext;
 import com.vaadin.ui.Window;
 import de.uniluebeck.itm.common.UiUtil;
-import de.uniluebeck.itm.ui.Presenter;
-import de.uniluebeck.itm.ui.UiPresenter;
+import de.uniluebeck.itm.ui.presenter.Presenter;
+import de.uniluebeck.itm.ui.presenter.UiPresenter;
 import javax.servlet.http.HttpSession;
-//import org.vaadin.mvp.eventbus.EventBusManager;
-//import org.vaadin.mvp.presenter.IPresenterFactory;
-//import org.vaadin.mvp.presenter.PresenterFactory;
 
 /**
  * @author Soenke Nommensen
  */
 public class WebUiApp extends Application {
 
-    private final Presenter uiController = new UiPresenter();
+    private final Presenter uiPresenter = new UiPresenter();
 
     @Override
     public void init() {
-        setMainWindow((Window) uiController.getDisplay());
+        setMainWindow((Window) uiPresenter.getDisplay().asComponent());
         UiUtil.setMainWindow(getMainWindow());
 
         HttpSession httpSession = ((WebApplicationContext) getContext()).getHttpSession();
