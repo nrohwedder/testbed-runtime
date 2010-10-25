@@ -20,16 +20,21 @@
  * LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY   *
  * OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.                                *
  **********************************************************************************************************************/
-
 package de.uniluebeck.itm.ui;
 
 import com.vaadin.ui.AbstractComponent;
-
 import java.io.Serializable;
 
 /**
  * @author Soenke Nommensen
  */
 public interface Presenter extends Serializable {
-    public AbstractComponent getDisplay();
+
+    public Display getDisplay();
+
+    public void bind();
+
+    public interface Display {
+        AbstractComponent asWidget();
+    }
 }

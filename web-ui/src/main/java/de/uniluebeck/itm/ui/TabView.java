@@ -22,14 +22,19 @@
  **********************************************************************************************************************/
 package de.uniluebeck.itm.ui;
 
+import com.vaadin.ui.AbstractComponent;
 import com.vaadin.ui.TabSheet;
 
 /**
  * @author Soenke Nommensen
  */
-public class TabView extends TabSheet {
+public class TabView extends TabSheet implements TabPresenter.Display {
 
     public TabView() {
         setSizeFull();
+    }
+
+    public TabView asWidget() {
+        return this;
     }
 }

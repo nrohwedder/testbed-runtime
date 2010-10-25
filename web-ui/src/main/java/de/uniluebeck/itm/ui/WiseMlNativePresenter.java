@@ -2,24 +2,23 @@
  * To change this template, choose Tools | Templates
  * and open the template in the editor.
  */
-
 package de.uniluebeck.itm.ui;
 
-import com.vaadin.ui.AbstractComponent;
 import de.uniluebeck.itm.common.UiUtil;
 import de.uniluebeck.itm.services.SessionManagementAdapter;
 
 /**
  *
- * @author soenke
+ * @author Soenke Nommensen
  */
-public class XmlController implements Presenter {
+public class WiseMlNativePresenter implements Presenter {
 
-    final XmlView view;
+    private final Display display;
 
-    public XmlController() {
-        view = new XmlView();
+    public WiseMlNativePresenter() {
+        display = new WiseMlNativeView();
 
+        // Quick hack!
         SessionManagementAdapter sessionManagementAdapter =
                 new SessionManagementAdapter("http://wisebed.itm.uni-luebeck.de:8888/sessions?wsdl");
         String text = "";
@@ -31,15 +30,18 @@ public class XmlController implements Presenter {
             UiUtil.showExceptionNotification(ex);
         }
 
-        setText(text);
+        display.setText(text);
     }
 
-    public AbstractComponent getDisplay() {
-        return view;
+    public Display getDisplay() {
+        return display;
     }
 
-    public static void setText(String text) {
-        XmlView.setText(text);
+    public void bind() {
     }
 
+    public interface Display extends Presenter.Display {
+
+        public void setText(String text);
+    }
 }

@@ -25,15 +25,22 @@ package de.uniluebeck.itm.ui;
 /**
  * @author Soenke Nommensen
  */
-public class TabController implements Presenter {
-    
-    private TabView view;
+class ToolbarPresenter implements Presenter {
 
-    public TabController() {
-        view = new TabView();
+    private Display display;
+
+    public ToolbarPresenter() {
+        display = new ToolbarView();
+        bind();
     }
 
-    public TabView getDisplay() {
-        return view;
+    public Display getDisplay() {
+        return display;
+    }
+
+    public final void bind() {
+    }
+
+    public interface Display extends Presenter.Display {
     }
 }

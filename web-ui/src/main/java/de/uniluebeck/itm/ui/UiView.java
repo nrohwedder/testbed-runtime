@@ -32,18 +32,18 @@ import com.vaadin.ui.themes.Reindeer;
 /**
  * @author Soenke Nommensen
  */
-public class UiView extends Window {
+public class UiView extends Window implements UiPresenter.Display {
 
     private static final String APPLICATION_NAME = "WISEBED Experimentation Facility";
-    private static final String AUTHENTICATION_TAB_LABEL = "Testbeds";
+    private static final String TESTBED_SELECTION_TAB_LABEL = "Testbed Selection";
     private static final String RESERVATION_TAB_LABEL = "Reservation";
     private static final String EXPERIMENTATION_TAB_LABEL = "Experimentation";
     private static final String ADMINISTRATION_TAB_LABEL = "Administration";
-    final VerticalLayout screen;
-    final HorizontalLayout toolbar;
-    final TabView tabs;
-    final VerticalLayout authentication;
-    final HorizontalLayout reservation;
+    private final VerticalLayout screen;
+    private final HorizontalLayout toolbar;
+    private final TabView tabView;
+    private final VerticalLayout testbedSelectionView;
+    private final HorizontalLayout reservationView;
 
     public UiView(AbstractComponent toolbar, AbstractComponent tabs,
             AbstractComponent authentication, AbstractComponent reservation, AbstractComponent xml) {
@@ -59,18 +59,38 @@ public class UiView extends Window {
 
         /* Init sub-views */
         this.toolbar = (HorizontalLayout) toolbar;
-        this.tabs = (TabView) tabs;
-        this.authentication = (VerticalLayout) authentication;
-        this.reservation = (HorizontalLayout) reservation;
+        this.tabView = (TabView) tabs;
+        this.testbedSelectionView = (VerticalLayout) authentication;
+        this.reservationView = (HorizontalLayout) reservation;
 
-        this.tabs.addTab(this.authentication, AUTHENTICATION_TAB_LABEL, null);
-        this.tabs.addTab(this.reservation, RESERVATION_TAB_LABEL, null);
-        this.tabs.addTab(new Label(EXPERIMENTATION_TAB_LABEL), EXPERIMENTATION_TAB_LABEL, null);
-        this.tabs.addTab(new Label(ADMINISTRATION_TAB_LABEL), ADMINISTRATION_TAB_LABEL, null);
-        this.tabs.addTab(xml, "WiseML Native", null);
+        this.tabView.addTab(this.testbedSelectionView, TESTBED_SELECTION_TAB_LABEL, null);
+        this.tabView.addTab(this.reservationView, RESERVATION_TAB_LABEL, null);
+        this.tabView.addTab(new Label(EXPERIMENTATION_TAB_LABEL), EXPERIMENTATION_TAB_LABEL, null);
+        this.tabView.addTab(new Label(ADMINISTRATION_TAB_LABEL), ADMINISTRATION_TAB_LABEL, null);
+        this.tabView.addTab(xml, "WiseML Native", null);
 
         screen.addComponent(this.toolbar);
-        screen.addComponent(this.tabs);
-        screen.setExpandRatio(this.tabs, 1);
+        screen.addComponent(this.tabView);
+        screen.setExpandRatio(this.tabView, 1);
+    }
+
+    public Window asWidget() {
+        return this;
+    }
+
+    public HorizontalLayout getToolbar() {
+        return toolbar;
+    }
+
+    public TabView getTabView() {
+        return tabView;
+    }
+
+    public VerticalLayout getTestbedSelectionView() {
+        return testbedSelectionView;
+    }
+
+    public HorizontalLayout getReservationView() {
+        return reservationView;
     }
 }

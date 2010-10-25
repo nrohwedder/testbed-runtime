@@ -22,18 +22,46 @@
  **********************************************************************************************************************/
 package de.uniluebeck.itm.ui;
 
+import com.vaadin.ui.HorizontalLayout;
+import com.vaadin.ui.VerticalLayout;
+import com.vaadin.ui.Window;
+
 /**
  * @author Soenke Nommensen
  */
-class ToolbarController implements Presenter {
+public class UiPresenter implements Presenter {
 
-    private ToolbarView view;
+    private final Presenter toolbarPresenter = new ToolbarPresenter();
+    private final Presenter tabPresenter = new TabPresenter();
+    private final Presenter testbedSelectionPresenter = new TestbedSelectionPresenter();
+    private final Presenter reservationController = new ReservationPresenter();
+    private final Presenter xmlController = new WiseMlNativePresenter();
+    private final Display display;
 
-    public ToolbarController() {
-        view = new ToolbarView();
+    public UiPresenter() {
+        display = new UiView(
+                toolbarPresenter.getDisplay().asWidget(),
+                tabPresenter.getDisplay().asWidget(),
+                testbedSelectionPresenter.getDisplay().asWidget(),
+                reservationController.getDisplay().asWidget(),
+                xmlController.getDisplay().asWidget());
     }
 
-    public ToolbarView getDisplay() {
-        return view;
+    public Display getDisplay() {
+        return display;
+    }
+
+    public void bind() {
+    }
+
+    public interface Display extends Presenter.Display {
+
+        public HorizontalLayout getToolbar();
+
+        public TabView getTabView();
+
+        public VerticalLayout getTestbedSelectionView();
+
+        public HorizontalLayout getReservationView();
     }
 }

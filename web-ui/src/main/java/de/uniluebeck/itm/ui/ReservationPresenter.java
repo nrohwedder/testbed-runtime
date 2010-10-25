@@ -1,5 +1,5 @@
 /**********************************************************************************************************************
- * Copyright (c) 2010, Institute of Telematics, University of Luebeck                                                  *
+ * Copyright (c) 2010, Institute of Telematics, University of Luebeck                                                 *
  * All rights reserved.                                                                                               *
  *                                                                                                                    *
  * Redistribution and use in source and binary forms, with or without modification, are permitted provided that the   *
@@ -9,7 +9,7 @@
  *   disclaimer.                                                                                                      *
  * - Redistributions in binary form must reproduce the above copyright notice, this list of conditions and the        *
  *   following disclaimer in the documentation and/or other materials provided with the distribution.                 *
- * - Neither the name of the University of Luebeck nor the names of its contributors may be used to endorse or promote *
+ * - Neither the name of the University of Luebeck nor the names of its contributors may be used to endorse or promote*
  *   products derived from this software without specific prior written permission.                                   *
  *                                                                                                                    *
  * THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS" AND ANY EXPRESS OR IMPLIED WARRANTIES, *
@@ -22,28 +22,41 @@
  **********************************************************************************************************************/
 package de.uniluebeck.itm.ui;
 
+import de.uniluebeck.itm.model.TestbedConfiguration;
+
+
 /**
  * @author Soenke Nommensen
  */
-public class UiController implements Presenter {
+public class ReservationPresenter implements Presenter {
 
-    private final Presenter toolbarController = new ToolbarController();
-    private final Presenter tabController = new TabController();
-    private final Presenter testbedSelectionController = new TestbedSelectionPresenter();
-    private final Presenter reservationController = new ReservationController();
-    private final Presenter xmlController = new XmlController();
-    private final UiView view;
+    private final Display display;
+    private static String rsEndpointUrl = null;
 
-    public UiController() {
-        view = new UiView(
-                toolbarController.getDisplay(),
-                tabController.getDisplay(),
-                testbedSelectionController.getDisplay(),
-                reservationController.getDisplay(),
-                xmlController.getDisplay());
+    static {
+        TestbedConfiguration testbedConfiguration = new TestbedConfiguration(
+                "WISEBED UZL Tested",
+                "http://testbedurl.eu",
+                "WISEBED Testbed in Lübeck, Germany.",
+                "http://wisebed.itm.uni-luebeck.de:8890/snaa?wsdl",
+                "",
+                "http://wisebed.itm.uni-luebeck.de:8888/sessions?wsdl",
+                false);
+        rsEndpointUrl = testbedConfiguration.getRsEndpointUrl();
     }
 
-    public UiView getDisplay() {
-        return view;
+    public ReservationPresenter() {
+        display = new ReservationView();
+        bind();
+    }
+
+    public final void bind() {
+    }
+
+    public Display getDisplay() {
+        return display;
+    }
+
+    public interface Display extends Presenter.Display {
     }
 }

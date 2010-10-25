@@ -28,7 +28,7 @@ import com.vaadin.ui.themes.Reindeer;
 /**
  * @author Soenke Nommensen
  */
-public class ReservationView extends HorizontalLayout {
+public class ReservationView extends HorizontalLayout implements ReservationPresenter.Display {
 
     private static final String RELOAD_BUTTON_TEXT = "Reload";
     private static final String RESERVE_BUTTON_TEXT = "Reserve";
@@ -104,5 +104,9 @@ public class ReservationView extends HorizontalLayout {
 
         addComponent(left);
         addComponent(right);
+    }
+
+    public AbstractComponent asWidget() {
+        return this;
     }
 }

@@ -29,7 +29,7 @@ import com.vaadin.ui.themes.Reindeer;
 /**
  * @author Soenke Nommensen
  */
-public class ToolbarView extends HorizontalLayout {
+public class ToolbarView extends HorizontalLayout implements ToolbarPresenter.Display {
 
     public ToolbarView() {
         setSizeUndefined();
@@ -40,5 +40,9 @@ public class ToolbarView extends HorizontalLayout {
         lblWelcome.addStyleName(Reindeer.LABEL_H1);
 
         addComponent(lblWelcome);
+    }
+
+    public ToolbarView asWidget() {
+        return this;
     }
 }

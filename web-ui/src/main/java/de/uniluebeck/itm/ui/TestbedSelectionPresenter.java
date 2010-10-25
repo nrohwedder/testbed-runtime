@@ -34,7 +34,6 @@ import com.vaadin.ui.Button.ClickListener;
 import com.vaadin.ui.ListSelect;
 import com.vaadin.ui.LoginForm;
 import com.vaadin.ui.LoginForm.LoginEvent;
-import com.vaadin.ui.VerticalLayout;
 import com.vaadin.ui.Window;
 
 import de.uniluebeck.itm.common.UiUtil;
@@ -50,12 +49,12 @@ import de.uniluebeck.itm.services.SessionManagementAdapter;
 public final class TestbedSelectionPresenter implements Presenter {
 
     private static final List<TestbedConfiguration> TESTBEDS = new ArrayList<TestbedConfiguration>();
-    private final TestbedSelectionView view = new TestbedSelectionView();
+    private final Display display;
     private TestbedConfiguration currentTestbedConfiguration = null;
 
     static {
         TestbedConfiguration testbedConfiguration = new TestbedConfiguration(
-                "WISEBED UZL Tested",
+                "WISEBED UZL Testbed",
                 "http://testbedurl.eu",
                 "WISEBED Testbed in Lübeck, Germany.",
                 "http://wisebed.itm.uni-luebeck.de:8890/snaa?wsdl",
@@ -67,20 +66,33 @@ public final class TestbedSelectionPresenter implements Presenter {
     }
 
     public TestbedSelectionPresenter() {
-        view.getConnectButton().addListener(new ClickListener() {
+        display = new TestbedSelectionView();
+
+        for (TestbedConfiguration testbedConfiguration : TESTBEDS) {
+            display.addTestbedConfiguration(testbedConfiguration);
+        }
+
+        display.getConnectButton().setEnabled(false);
+        display.getReloadButton().setEnabled(false);
+
+        bind();
+    }
+
+    public final void bind() {
+        display.getConnectButton().addListener(new ClickListener() {
 
             public void buttonClick(ClickEvent event) {
                 onConnectButtonClick();
             }
         });
-        view.getTestbedConfigurationSelect().addListener(new Property.ValueChangeListener() {
+        display.getTestbedConfigurationSelect().addListener(new Property.ValueChangeListener() {
 
             public void valueChange(ValueChangeEvent event) {
                 TestbedConfiguration testbedConfiguration = (TestbedConfiguration) event.getProperty().getValue();
                 onSelectTestbedConfiguration(testbedConfiguration);
             }
         });
-        view.getReloadButton().addListener(new ClickListener() {
+        display.getReloadButton().addListener(new ClickListener() {
 
             public void buttonClick(ClickEvent event) {
                 if (currentTestbedConfiguration != null) {
@@ -88,24 +100,17 @@ public final class TestbedSelectionPresenter implements Presenter {
                 }
             }
         });
-        view.getLoginForm().addListener(new LoginForm.LoginListener() {
+        display.getLoginForm().addListener(new LoginForm.LoginListener() {
 
             public void onLogin(LoginEvent event) {
                 connectToTestBed(event.getLoginParameter("username"), event.getLoginParameter("password"));
             }
         });
-
-        for (TestbedConfiguration testbedConfiguration : TESTBEDS) {
-            view.addTestbedConfiguration(testbedConfiguration);
-        }
-
-        view.getConnectButton().setEnabled(false);
-        view.getReloadButton().setEnabled(false);
     }
 
     private void onConnectButtonClick() {
-        view.getLoginWindow().setCaption("Login to " + currentTestbedConfiguration.getName());
-        view.showLoginWindow(true);
+        display.getLoginWindow().setCaption("Login to " + currentTestbedConfiguration.getName());
+        display.showLoginWindow(true);
     }
 
     private void connectToTestBed(String username, String password) {
@@ -119,7 +124,7 @@ public final class TestbedSelectionPresenter implements Presenter {
         }
 
         if (exceptions.isEmpty()) {
-            view.showLoginWindow(false);
+            display.showLoginWindow(false);
             UiUtil.showNotification(UiUtil.createNotificationCenteredTop(
                     "Authentication successful", "User: \"" + username
                     + "\" authenticated for: \"" + currentTestbedConfiguration.getName() + "\"",
@@ -140,30 +145,27 @@ public final class TestbedSelectionPresenter implements Presenter {
 
         String details = testbedConfiguration.getDescription();
 
-        view.setDetailsText(details);
-        view.getConnectButton().setEnabled(currentTestbedConfiguration != null);
+        display.setDetailsText(details);
+        display.getConnectButton().setEnabled(currentTestbedConfiguration != null);
         onLoadNetwork(testbedConfiguration.getSessionmanagementEndointUrl());
     }
 
     private void onLoadNetwork(String url) {
-        view.getReloadButton().setEnabled(false);
+        display.getReloadButton().setEnabled(false);
         SessionManagementAdapter sessionManagementAdapter = new SessionManagementAdapter(url);
         try {
             NodeUrnContainer container = sessionManagementAdapter.getNetworkAsContainer();
-            view.setDeviceContainer(container);
+            display.setDeviceContainer(container);
         } catch (InstantiationException ex) {
             UiUtil.showExceptionNotification(ex);
         } catch (IllegalAccessException ex) {
             UiUtil.showExceptionNotification(ex);
         }
-        view.getReloadButton().setEnabled(true);
+        display.getReloadButton().setEnabled(true);
     }
 
-    /**
-     * @return Reference to the getDisplay
-     */
-    public VerticalLayout getDisplay() {
-        return view;
+    public Display getDisplay() {
+        return display;
     }
 
     /**
@@ -176,7 +178,7 @@ public final class TestbedSelectionPresenter implements Presenter {
         snaaServiceAdapter.authenticate();
     }
 
-    public interface Display {
+    public interface Display extends Presenter.Display {
 
         public void addTestbedConfiguration(TestbedConfiguration testbedConfiguration);
 

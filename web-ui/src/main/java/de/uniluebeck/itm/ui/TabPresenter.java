@@ -20,31 +20,25 @@
  * LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY   *
  * OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.                                *
  **********************************************************************************************************************/
-package de.uniluebeck.itm;
-
-import com.vaadin.Application;
-import com.vaadin.terminal.gwt.server.WebApplicationContext;
-import com.vaadin.ui.Window;
-import de.uniluebeck.itm.common.UiUtil;
-import de.uniluebeck.itm.ui.Presenter;
-import de.uniluebeck.itm.ui.UiPresenter;
-import javax.servlet.http.HttpSession;
-//import org.vaadin.mvp.eventbus.EventBusManager;
-//import org.vaadin.mvp.presenter.IPresenterFactory;
-//import org.vaadin.mvp.presenter.PresenterFactory;
+package de.uniluebeck.itm.ui;
 
 /**
  * @author Soenke Nommensen
  */
-public class WebUiApp extends Application {
+public class TabPresenter implements Presenter {
+    
+    private Display display;
 
-    private final Presenter uiController = new UiPresenter();
+    public TabPresenter() {
+        display = new TabView();
+        bind();
+    }
 
-    @Override
-    public void init() {
-        setMainWindow((Window) uiController.getDisplay());
-        UiUtil.setMainWindow(getMainWindow());
+    public final void bind() {
 
-        HttpSession httpSession = ((WebApplicationContext) getContext()).getHttpSession();
+    }
+
+    public Display getDisplay() {
+        return display;
     }
 }

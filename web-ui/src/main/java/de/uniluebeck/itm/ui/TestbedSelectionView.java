@@ -119,8 +119,8 @@ public class TestbedSelectionView extends VerticalLayout implements TestbedSelec
 
     private void initLoginWindow(Window window) {
         window.setModal(true);
-        window.setWidth(345, UNITS_PIXELS);
-        window.setHeight(190, UNITS_PIXELS);
+        window.setWidth(355, UNITS_PIXELS);
+        window.setHeight(250, UNITS_PIXELS);
 
         VerticalLayout panelLayout = (VerticalLayout) wdwLogin.getContent();
 
@@ -172,5 +172,9 @@ public class TestbedSelectionView extends VerticalLayout implements TestbedSelec
 
     public LoginForm getLoginForm() {
         return frmLogin;
+    }
+
+    public TestbedSelectionView asWidget() {
+        return this;
     }
 }
