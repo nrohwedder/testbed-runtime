@@ -10,13 +10,12 @@ public class PresenterChangedEvent extends VaadinEvent<PresenterChangedHandler> 
         return TYPE;
     }
 
-    public static void fire( EventBus eventBus, Presenter presenter ) {
-        eventBus.fireEvent( new PresenterChangedEvent( presenter ) );
+    public static void fire(EventBus eventBus, Presenter presenter) {
+        eventBus.fireEvent(new PresenterChangedEvent(presenter));
     }
-
     private final Presenter presenter;
 
-    public PresenterChangedEvent( Presenter presenter ) {
+    public PresenterChangedEvent(Presenter presenter) {
         this.presenter = presenter;
     }
 
@@ -25,8 +24,8 @@ public class PresenterChangedEvent extends VaadinEvent<PresenterChangedHandler> 
     }
 
     @Override
-    protected void dispatch( PresenterChangedHandler handler ) {
-        handler.onPresenterChanged( this );
+    protected void dispatch(PresenterChangedHandler handler) {
+        handler.onPresenterChanged(this);
     }
 
     @Override

@@ -26,8 +26,8 @@ public class PresenterRevealedEvent extends VaadinEvent<PresenterRevealedHandler
      * @param eventBus  The event bus.
      * @param presenter The presenter.
      */
-    public static void fire( EventBus eventBus, Presenter presenter ) {
-        fire( eventBus, presenter, true );
+    public static void fire(EventBus eventBus, Presenter presenter) {
+        fire(eventBus, presenter, true);
     }
 
     /**
@@ -37,12 +37,10 @@ public class PresenterRevealedEvent extends VaadinEvent<PresenterRevealedHandler
      * @param presenter  The presenter.
      * @param originator If <code>true</code>, this presenter was the originator for the request.
      */
-    public static void fire( EventBus eventBus, Presenter presenter, boolean originator ) {
-        eventBus.fireEvent( new PresenterRevealedEvent( presenter, originator ) );
+    public static void fire(EventBus eventBus, Presenter presenter, boolean originator) {
+        eventBus.fireEvent(new PresenterRevealedEvent(presenter, originator));
     }
-
     private final Presenter presenter;
-
     private boolean originator;
 
     /**
@@ -50,8 +48,8 @@ public class PresenterRevealedEvent extends VaadinEvent<PresenterRevealedHandler
      *
      * @param presenter The presenter.
      */
-    public PresenterRevealedEvent( Presenter presenter ) {
-        this( presenter, true );
+    public PresenterRevealedEvent(Presenter presenter) {
+        this(presenter, true);
     }
 
     /**
@@ -62,7 +60,7 @@ public class PresenterRevealedEvent extends VaadinEvent<PresenterRevealedHandler
      * @param originator If <code>true</code>, the presenter is the originator of
      *                   the revelation chain.
      */
-    public PresenterRevealedEvent( Presenter presenter, boolean originator ) {
+    public PresenterRevealedEvent(Presenter presenter, boolean originator) {
         this.presenter = presenter;
         this.originator = originator;
     }
@@ -83,13 +81,12 @@ public class PresenterRevealedEvent extends VaadinEvent<PresenterRevealedHandler
     }
 
     @Override
-    protected void dispatch( PresenterRevealedHandler handler ) {
-        handler.onPresenterRevealed( this );
+    protected void dispatch(PresenterRevealedHandler handler) {
+        handler.onPresenterRevealed(this);
     }
 
     @Override
     public VaadinEvent.Type<PresenterRevealedHandler> getAssociatedType() {
         return getType();
     }
-
 }

@@ -24,10 +24,24 @@ package de.uniluebeck.itm;
 
 import com.vaadin.Application;
 import com.vaadin.terminal.gwt.server.WebApplicationContext;
+import com.vaadin.ui.AbstractComponent;
 import com.vaadin.ui.Window;
 import de.uniluebeck.itm.common.UiUtil;
+import de.uniluebeck.itm.events.DefaultEventBus;
+import de.uniluebeck.itm.events.EventBus;
 import de.uniluebeck.itm.ui.presenter.Presenter;
-import de.uniluebeck.itm.ui.presenter.UiPresenter;
+import de.uniluebeck.itm.ui.presenter.ReservationPresenter;
+import de.uniluebeck.itm.ui.presenter.TabPresenter;
+import de.uniluebeck.itm.ui.presenter.TestbedSelectionPresenter;
+import de.uniluebeck.itm.ui.presenter.ToolbarPresenter;
+import de.uniluebeck.itm.ui.presenter.MainPresenter;
+import de.uniluebeck.itm.ui.presenter.WiseMlNativePresenter;
+import de.uniluebeck.itm.ui.view.MainView;
+import de.uniluebeck.itm.ui.view.ReservationView;
+import de.uniluebeck.itm.ui.view.TabView;
+import de.uniluebeck.itm.ui.view.TestbedSelectionView;
+import de.uniluebeck.itm.ui.view.ToolbarView;
+import de.uniluebeck.itm.ui.view.WiseMlNativeView;
 import javax.servlet.http.HttpSession;
 
 /**
@@ -35,13 +49,64 @@ import javax.servlet.http.HttpSession;
  */
 public class WebUiApp extends Application {
 
-    private final Presenter uiPresenter = new UiPresenter();
+    /*
+     * The one and only event-bus per application instance.
+     */
+    private final EventBus eventBus = new DefaultEventBus();
+
+    /*
+     * Toolbar
+     */
+    private final ToolbarPresenter.Display toolbarView = new ToolbarView();
+    private final Presenter toolbarPresenter = new ToolbarPresenter(toolbarView, eventBus);
+
+    /*
+     * Tabs
+     */
+    private final TabPresenter.Display tabView = new TabView();
+    private final Presenter tabPresenter = new TabPresenter(tabView, eventBus);
+
+    /*
+     * Testbed Selection tab
+     */
+    private final TestbedSelectionPresenter.Display testbedSelectionView = new TestbedSelectionView();
+    private final Presenter testbedSelectionPresenter = new TestbedSelectionPresenter(testbedSelectionView, eventBus);
+
+    /*
+     * Reservation tab
+     */
+    private final ReservationPresenter.Display reservationView = new ReservationView();
+    private final ReservationPresenter reservationPresenter = new ReservationPresenter(reservationView, eventBus);
+
+    /*
+     * WiseML Native tab
+     */
+    private final WiseMlNativePresenter.Display wiseMlNativeView = new WiseMlNativeView();
+    private final Presenter wiseMlNativePresenter = new WiseMlNativePresenter(wiseMlNativeView, eventBus);
+
+    /*
+     * Main view
+     */
+    private final MainPresenter.Display mainView = new MainView(
+            toolbarView.asComponent(),
+            tabView.asComponent(),
+            testbedSelectionView.asComponent(),
+            reservationView.asComponent(),
+            wiseMlNativeView.asComponent());
+    private final MainPresenter mainPresenter = new MainPresenter(mainView, eventBus);
 
     @Override
     public void init() {
-        setMainWindow((Window) uiPresenter.getDisplay().asComponent());
+        toolbarPresenter.bind();
+        tabPresenter.bind();
+        testbedSelectionPresenter.bind();
+        reservationPresenter.bind();
+        wiseMlNativePresenter.bind();
+        mainPresenter.bind();
+
+        setMainWindow((Window) mainPresenter.getDisplay().asComponent());
         UiUtil.setMainWindow(getMainWindow());
 
-        HttpSession httpSession = ((WebApplicationContext) getContext()).getHttpSession();
+//        HttpSession httpSession = ((WebApplicationContext) getContext()).getHttpSession();
     }
 }

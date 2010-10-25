@@ -22,31 +22,30 @@
  **********************************************************************************************************************/
 package de.uniluebeck.itm.ui.presenter;
 
-import de.uniluebeck.itm.ui.view.TabView;
-import de.uniluebeck.itm.ui.presenter.Presenter;
-import de.uniluebeck.itm.ui.presenter.WidgetDisplay;
+import de.uniluebeck.itm.events.EventBus;
 
 /**
  * @author Soenke Nommensen
  */
-public class TabPresenter implements Presenter {
-    
-    private Display display;
+public class TabPresenter extends BasicPresenter<TabPresenter.Display> {
 
-    public TabPresenter() {
-        display = new TabView();
-        bind();
+    public TabPresenter(TabPresenter.Display display, EventBus eventBus) {
+        super(display, eventBus);
     }
 
-    public final void bind() {
-
+    @Override
+    protected void onBind() {
     }
 
-    public WidgetDisplay getDisplay() {
-        return display;
+    @Override
+    protected void onUnbind() {
     }
 
-    public interface Display extends WidgetDisplay {
+    @Override
+    protected void onRevealDisplay() {
+    }
+
+    public interface Display extends Presenter.Display {
 
     }
 }

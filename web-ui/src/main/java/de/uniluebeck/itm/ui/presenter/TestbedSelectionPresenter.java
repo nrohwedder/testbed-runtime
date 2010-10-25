@@ -22,7 +22,6 @@
  **********************************************************************************************************************/
 package de.uniluebeck.itm.ui.presenter;
 
-import de.uniluebeck.itm.ui.presenter.Presenter;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -38,20 +37,19 @@ import com.vaadin.ui.LoginForm.LoginEvent;
 import com.vaadin.ui.Window;
 
 import de.uniluebeck.itm.common.UiUtil;
+import de.uniluebeck.itm.events.EventBus;
 import de.uniluebeck.itm.exception.AuthenticationException;
 import de.uniluebeck.itm.model.NodeUrnContainer;
 import de.uniluebeck.itm.model.TestbedConfiguration;
 import de.uniluebeck.itm.services.SNAAServiceAdapter;
 import de.uniluebeck.itm.services.SessionManagementAdapter;
-import de.uniluebeck.itm.ui.view.TestbedSelectionView;
 
 /**
  * @author Soenke Nommensen
  */
-public final class TestbedSelectionPresenter implements Presenter {
+public final class TestbedSelectionPresenter extends BasicPresenter<TestbedSelectionPresenter.Display> {
 
     private static final List<TestbedConfiguration> TESTBEDS = new ArrayList<TestbedConfiguration>();
-    private final Display display;
     private TestbedConfiguration currentTestbedConfiguration = null;
 
     static {
@@ -67,8 +65,8 @@ public final class TestbedSelectionPresenter implements Presenter {
         TESTBEDS.add(testbedConfiguration);
     }
 
-    public TestbedSelectionPresenter() {
-        display = new TestbedSelectionView();
+    public TestbedSelectionPresenter(TestbedSelectionPresenter.Display display, EventBus eventBus) {
+        super(display, eventBus);
 
         for (TestbedConfiguration testbedConfiguration : TESTBEDS) {
             display.addTestbedConfiguration(testbedConfiguration);
@@ -76,38 +74,6 @@ public final class TestbedSelectionPresenter implements Presenter {
 
         display.getConnectButton().setEnabled(false);
         display.getReloadButton().setEnabled(false);
-
-        bind();
-    }
-
-    public final void bind() {
-        display.getConnectButton().addListener(new ClickListener() {
-
-            public void buttonClick(ClickEvent event) {
-                onConnectButtonClick();
-            }
-        });
-        display.getTestbedConfigurationSelect().addListener(new Property.ValueChangeListener() {
-
-            public void valueChange(ValueChangeEvent event) {
-                TestbedConfiguration testbedConfiguration = (TestbedConfiguration) event.getProperty().getValue();
-                onSelectTestbedConfiguration(testbedConfiguration);
-            }
-        });
-        display.getReloadButton().addListener(new ClickListener() {
-
-            public void buttonClick(ClickEvent event) {
-                if (currentTestbedConfiguration != null) {
-                    onLoadNetwork(currentTestbedConfiguration.getSessionmanagementEndointUrl());
-                }
-            }
-        });
-        display.getLoginForm().addListener(new LoginForm.LoginListener() {
-
-            public void onLogin(LoginEvent event) {
-                connectToTestBed(event.getLoginParameter("username"), event.getLoginParameter("password"));
-            }
-        });
     }
 
     private void onConnectButtonClick() {
@@ -166,10 +132,6 @@ public final class TestbedSelectionPresenter implements Presenter {
         display.getReloadButton().setEnabled(true);
     }
 
-    public Display getDisplay() {
-        return display;
-    }
-
     /**
      * Starts authentication utilizing the SNAAServiceAdapter.
      * @throws AuthenticationException
@@ -178,6 +140,45 @@ public final class TestbedSelectionPresenter implements Presenter {
         SNAAServiceAdapter snaaServiceAdapter = new SNAAServiceAdapter(currentTestbedConfiguration.getSnaaEndpointUrl());
         snaaServiceAdapter.addAuthenticationTriple(username, urn, password);
         snaaServiceAdapter.authenticate();
+    }
+
+    @Override
+    protected void onBind() {
+        display.getConnectButton().addListener(new ClickListener() {
+
+            public void buttonClick(ClickEvent event) {
+                onConnectButtonClick();
+            }
+        });
+        display.getTestbedConfigurationSelect().addListener(new Property.ValueChangeListener() {
+
+            public void valueChange(ValueChangeEvent event) {
+                TestbedConfiguration testbedConfiguration = (TestbedConfiguration) event.getProperty().getValue();
+                onSelectTestbedConfiguration(testbedConfiguration);
+            }
+        });
+        display.getReloadButton().addListener(new ClickListener() {
+
+            public void buttonClick(ClickEvent event) {
+                if (currentTestbedConfiguration != null) {
+                    onLoadNetwork(currentTestbedConfiguration.getSessionmanagementEndointUrl());
+                }
+            }
+        });
+        display.getLoginForm().addListener(new LoginForm.LoginListener() {
+
+            public void onLogin(LoginEvent event) {
+                connectToTestBed(event.getLoginParameter("username"), event.getLoginParameter("password"));
+            }
+        });
+    }
+
+    @Override
+    protected void onUnbind() {
+    }
+
+    @Override
+    protected void onRevealDisplay() {
     }
 
     public interface Display extends Presenter.Display {

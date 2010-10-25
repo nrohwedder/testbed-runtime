@@ -2,7 +2,6 @@
  * To change this template, choose Tools | Templates
  * and open the template in the editor.
  */
-
 package de.uniluebeck.itm.ui.presenter;
 
 import de.uniluebeck.itm.events.HandlerRegistration;
@@ -21,23 +20,20 @@ public abstract class BasicPresenter<D extends Presenter.Display> implements Pre
      * The display for the presenter.
      */
     protected final D display;
-
     /**
      * The {@link EventBus} for the application.
      */
     protected final EventBus eventBus;
-
     private List<HandlerRegistration> handlerRegistrations = new java.util.ArrayList<HandlerRegistration>();
-
     private boolean bound = false;
 
-    public BasicPresenter( D display, EventBus eventBus ) {
+    public BasicPresenter(D display, EventBus eventBus) {
         this.display = display;
         this.eventBus = eventBus;
     }
 
     public void bind() {
-        if ( !bound ) {
+        if (!bound) {
             onBind();
             bound = true;
         }
@@ -50,15 +46,15 @@ public abstract class BasicPresenter<D extends Presenter.Display> implements Pre
      *
      * @param handlerRegistration The registration.
      */
-    protected void registerHandler( HandlerRegistration handlerRegistration ) {
-        handlerRegistrations.add( handlerRegistration );
+    protected void registerHandler(HandlerRegistration handlerRegistration) {
+        handlerRegistrations.add(handlerRegistration);
     }
 
     public void unbind() {
-        if ( bound ) {
+        if (bound) {
             bound = false;
 
-            for ( HandlerRegistration reg : handlerRegistrations ) {
+            for (HandlerRegistration reg : handlerRegistrations) {
                 reg.removeHandler();
             }
             handlerRegistrations.clear();
@@ -105,7 +101,7 @@ public abstract class BasicPresenter<D extends Presenter.Display> implements Pre
      * Call this method any time the presenter's state has been modified.
      */
     protected void firePresenterChangedEvent() {
-        PresenterChangedEvent.fire( eventBus, this );
+        PresenterChangedEvent.fire(eventBus, this);
     }
 
     /**
@@ -116,8 +112,8 @@ public abstract class BasicPresenter<D extends Presenter.Display> implements Pre
      * @param originator If set to true, this specifies that this presenter
      *                   was the originator of the 'revelation' request.
      */
-    protected void firePresenterRevealedEvent( boolean originator ) {
-        PresenterRevealedEvent.fire( eventBus, this, originator );
+    protected void firePresenterRevealedEvent(boolean originator) {
+        PresenterRevealedEvent.fire(eventBus, this, originator);
     }
 
     /**
@@ -127,13 +123,11 @@ public abstract class BasicPresenter<D extends Presenter.Display> implements Pre
      */
     public void revealDisplay() {
         onRevealDisplay();
-        firePresenterRevealedEvent( true );
+        firePresenterRevealedEvent(true);
     }
 
     /**
      * Called before firing a {@link net.customware.gwt.presenter.client.PresenterRevealedEvent}.
      */
     protected abstract void onRevealDisplay();
-
 }
-

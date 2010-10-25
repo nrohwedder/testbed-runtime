@@ -20,52 +20,85 @@
  * LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY   *
  * OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.                                *
  **********************************************************************************************************************/
-package de.uniluebeck.itm.ui.presenter;
+package de.uniluebeck.itm.ui.view;
 
-import de.uniluebeck.itm.ui.presenter.Presenter;
+import de.uniluebeck.itm.ui.presenter.MainPresenter;
+import com.vaadin.ui.AbstractComponent;
 import com.vaadin.ui.HorizontalLayout;
+import com.vaadin.ui.Label;
 import com.vaadin.ui.VerticalLayout;
 import com.vaadin.ui.Window;
-import de.uniluebeck.itm.ui.view.TabView;
-import de.uniluebeck.itm.ui.view.UiView;
+import com.vaadin.ui.themes.Reindeer;
 
 /**
  * @author Soenke Nommensen
  */
-public class UiPresenter implements Presenter {
+public class MainView extends Window implements MainPresenter.Display {
 
-    private final Presenter toolbarPresenter = new ToolbarPresenter();
-    private final Presenter tabPresenter = new TabPresenter();
-    private final Presenter testbedSelectionPresenter = new TestbedSelectionPresenter();
-    private final Presenter reservationPresenter = new ReservationPresenter();
-    private final Presenter wiseMlNativePresenter = new WiseMlNativePresenter();
-    private final Display display;
+    private static final String APPLICATION_NAME = "WISEBED Experimentation Facility";
+    private static final String TESTBED_SELECTION_TAB_LABEL = "Testbed Selection";
+    private static final String RESERVATION_TAB_LABEL = "Reservation";
+    private static final String EXPERIMENTATION_TAB_LABEL = "Experimentation";
+    private static final String ADMINISTRATION_TAB_LABEL = "Administration";
+    private final VerticalLayout screen;
+    private final ToolbarView toolbarView;
+    private final TabView tabView;
+    private final TestbedSelectionView testbedSelectionView;
+    private final ReservationView reservationView;
+    private final WiseMlNativeView wiseMlNativeView;
 
-    public UiPresenter() {
-        display = new UiView(
-                toolbarPresenter.getDisplay().asComponent(),
-                tabPresenter.getDisplay().asComponent(),
-                testbedSelectionPresenter.getDisplay().asComponent(),
-                reservationPresenter.getDisplay().asComponent(),
-                wiseMlNativePresenter.getDisplay().asComponent());
+    public MainView(AbstractComponent toolbar, AbstractComponent tabs,
+            AbstractComponent testbedSelection, AbstractComponent reservation,
+            AbstractComponent wiseMlNative) {
+        super(APPLICATION_NAME);
+
+        screen = new VerticalLayout();
+        screen.setSizeFull();
+        screen.setSpacing(true);
+        screen.setMargin(true);
+        screen.addStyleName(Reindeer.LAYOUT_BLUE);
+
+        setContent(screen);
+
+        /* Init sub-views */
+        this.toolbarView = (ToolbarView) toolbar;
+        this.tabView = (TabView) tabs;
+        this.testbedSelectionView = (TestbedSelectionView) testbedSelection;
+        this.reservationView = (ReservationView) reservation;
+        this.wiseMlNativeView = (WiseMlNativeView) wiseMlNative;
+
+        tabView.addTab(testbedSelectionView, TESTBED_SELECTION_TAB_LABEL, null);
+        tabView.addTab(reservationView, RESERVATION_TAB_LABEL, null);
+        tabView.addTab(new Label(EXPERIMENTATION_TAB_LABEL), EXPERIMENTATION_TAB_LABEL, null);
+        tabView.addTab(new Label(ADMINISTRATION_TAB_LABEL), ADMINISTRATION_TAB_LABEL, null);
+        tabView.addTab(wiseMlNativeView, "WiseML Native", null);
+
+        screen.addComponent(toolbarView);
+        screen.addComponent(tabView);
+        screen.setExpandRatio(tabView, 1);
     }
 
-    public Display getDisplay() {
-        return display;
+    public Window asComponent() {
+        return this;
     }
 
-    public void bind() {
-        
+    public ToolbarView getToolbarView() {
+        return toolbarView;
     }
 
-    public interface Display extends Presenter.Display {
+    public TabView getTabView() {
+        return tabView;
+    }
 
-        public HorizontalLayout getToolbar();
+    public TestbedSelectionView getTestbedSelectionView() {
+        return testbedSelectionView;
+    }
 
-        public TabView getTabView();
+    public ReservationView getReservationView() {
+        return reservationView;
+    }
 
-        public VerticalLayout getTestbedSelectionView();
-
-        public HorizontalLayout getReservationView();
+    public WiseMlNativeView getWiseMlNativeView() {
+        return wiseMlNativeView;
     }
 }

@@ -22,25 +22,28 @@
  **********************************************************************************************************************/
 package de.uniluebeck.itm.ui.presenter;
 
+import de.uniluebeck.itm.events.EventBus;
 import de.uniluebeck.itm.ui.view.ToolbarView;
 
 /**
  * @author Soenke Nommensen
  */
-public class ToolbarPresenter implements Presenter {
+public class ToolbarPresenter extends BasicPresenter<ToolbarPresenter.Display> {
 
-    private Display display;
-
-    public ToolbarPresenter() {
-        display = new ToolbarView();
+    public ToolbarPresenter(Display display, EventBus eventBus) {
+        super(display, eventBus);
     }
 
-    public Display getDisplay() {
-        return display;
+    @Override
+    protected void onBind() {
     }
 
-    public void bind() {
-        throw new UnsupportedOperationException("Not supported yet.");
+    @Override
+    protected void onUnbind() {
+    }
+
+    @Override
+    protected void onRevealDisplay() {
     }
 
     public interface Display extends Presenter.Display {

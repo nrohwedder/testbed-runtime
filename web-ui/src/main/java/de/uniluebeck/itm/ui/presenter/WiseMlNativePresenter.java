@@ -4,21 +4,18 @@
  */
 package de.uniluebeck.itm.ui.presenter;
 
-import de.uniluebeck.itm.ui.presenter.Presenter;
 import de.uniluebeck.itm.common.UiUtil;
+import de.uniluebeck.itm.events.EventBus;
 import de.uniluebeck.itm.services.SessionManagementAdapter;
-import de.uniluebeck.itm.ui.view.WiseMlNativeView;
 
 /**
  *
  * @author Soenke Nommensen
  */
-public class WiseMlNativePresenter implements Presenter {
+public class WiseMlNativePresenter extends BasicPresenter<WiseMlNativePresenter.Display> {
 
-    private final Display display;
-
-    public WiseMlNativePresenter() {
-        display = new WiseMlNativeView();
+    public WiseMlNativePresenter(WiseMlNativePresenter.Display display, EventBus eventBus) {
+        super(display, eventBus);
 
         // Quick hack!
         SessionManagementAdapter sessionManagementAdapter =
@@ -35,11 +32,16 @@ public class WiseMlNativePresenter implements Presenter {
         display.setText(text);
     }
 
-    public Display getDisplay() {
-        return display;
+    @Override
+    protected void onBind() {
     }
 
-    public void bind() {
+    @Override
+    protected void onUnbind() {
+    }
+
+    @Override
+    protected void onRevealDisplay() {
     }
 
     public interface Display extends Presenter.Display {

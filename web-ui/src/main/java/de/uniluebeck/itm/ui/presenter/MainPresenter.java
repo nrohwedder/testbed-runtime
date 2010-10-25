@@ -20,78 +20,42 @@
  * LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY   *
  * OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.                                *
  **********************************************************************************************************************/
-package de.uniluebeck.itm.ui.view;
+package de.uniluebeck.itm.ui.presenter;
 
-import de.uniluebeck.itm.ui.presenter.UiPresenter;
-import com.vaadin.ui.AbstractComponent;
 import com.vaadin.ui.HorizontalLayout;
-import com.vaadin.ui.Label;
 import com.vaadin.ui.VerticalLayout;
-import com.vaadin.ui.Window;
-import com.vaadin.ui.themes.Reindeer;
+import de.uniluebeck.itm.events.EventBus;
+import de.uniluebeck.itm.ui.view.TabView;
 
 /**
  * @author Soenke Nommensen
  */
-public class UiView extends Window implements UiPresenter.Display {
+public class MainPresenter extends BasicPresenter<MainPresenter.Display> {
 
-    private static final String APPLICATION_NAME = "WISEBED Experimentation Facility";
-    private static final String TESTBED_SELECTION_TAB_LABEL = "Testbed Selection";
-    private static final String RESERVATION_TAB_LABEL = "Reservation";
-    private static final String EXPERIMENTATION_TAB_LABEL = "Experimentation";
-    private static final String ADMINISTRATION_TAB_LABEL = "Administration";
-    private final VerticalLayout screen;
-    private final HorizontalLayout toolbar;
-    private final TabView tabView;
-    private final VerticalLayout testbedSelectionView;
-    private final HorizontalLayout reservationView;
-
-    public UiView(AbstractComponent toolbar, AbstractComponent tabs,
-            AbstractComponent authentication, AbstractComponent reservation, AbstractComponent xml) {
-        super(APPLICATION_NAME);
-
-        screen = new VerticalLayout();
-        screen.setSizeFull();
-        screen.setSpacing(true);
-        screen.setMargin(true);
-        screen.addStyleName(Reindeer.LAYOUT_BLUE);
-
-        setContent(screen);
-
-        /* Init sub-views */
-        this.toolbar = (HorizontalLayout) toolbar;
-        this.tabView = (TabView) tabs;
-        this.testbedSelectionView = (VerticalLayout) authentication;
-        this.reservationView = (HorizontalLayout) reservation;
-
-        this.tabView.addTab(this.testbedSelectionView, TESTBED_SELECTION_TAB_LABEL, null);
-        this.tabView.addTab(this.reservationView, RESERVATION_TAB_LABEL, null);
-        this.tabView.addTab(new Label(EXPERIMENTATION_TAB_LABEL), EXPERIMENTATION_TAB_LABEL, null);
-        this.tabView.addTab(new Label(ADMINISTRATION_TAB_LABEL), ADMINISTRATION_TAB_LABEL, null);
-        this.tabView.addTab(xml, "WiseML Native", null);
-
-        screen.addComponent(this.toolbar);
-        screen.addComponent(this.tabView);
-        screen.setExpandRatio(this.tabView, 1);
+    public MainPresenter(MainPresenter.Display display, EventBus eventBus) {
+        super(display, eventBus);
     }
 
-    public Window asComponent() {
-        return this;
+    @Override
+    protected void onBind() {
     }
 
-    public HorizontalLayout getToolbar() {
-        return toolbar;
+    @Override
+    protected void onUnbind() {
     }
 
-    public TabView getTabView() {
-        return tabView;
+    @Override
+    protected void onRevealDisplay() {
     }
 
-    public VerticalLayout getTestbedSelectionView() {
-        return testbedSelectionView;
-    }
+    public interface Display extends Presenter.Display {
 
-    public HorizontalLayout getReservationView() {
-        return reservationView;
+        public HorizontalLayout getToolbarView();
+
+        public TabView getTabView();
+
+        public VerticalLayout getTestbedSelectionView();
+
+        public HorizontalLayout getReservationView();
     }
 }

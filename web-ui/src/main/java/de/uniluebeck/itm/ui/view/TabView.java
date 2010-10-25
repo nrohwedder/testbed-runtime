@@ -35,7 +35,7 @@ public class TabView extends TabSheet implements TabPresenter.Display {
         setSizeFull();
     }
 
-    public TabView asWidget() {
+    public AbstractComponent asComponent() {
         return this;
     }
 }

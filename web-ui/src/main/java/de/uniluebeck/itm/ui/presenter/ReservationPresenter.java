@@ -22,6 +22,7 @@
  **********************************************************************************************************************/
 package de.uniluebeck.itm.ui.presenter;
 
+import de.uniluebeck.itm.events.EventBus;
 import de.uniluebeck.itm.model.TestbedConfiguration;
 import de.uniluebeck.itm.ui.view.ReservationView;
 import de.uniluebeck.itm.ui.presenter.ReservationPresenter.Display;
@@ -30,9 +31,8 @@ import de.uniluebeck.itm.ui.presenter.ReservationPresenter.Display;
 /**
  * @author Soenke Nommensen
  */
-public class ReservationPresenter extends BasicPresenter<Display> {
+public class ReservationPresenter extends BasicPresenter<ReservationPresenter.Display> {
 
-    private final Display display = new ReservationView();
     private static String rsEndpointUrl = null;
 
     static {
@@ -47,22 +47,22 @@ public class ReservationPresenter extends BasicPresenter<Display> {
         rsEndpointUrl = testbedConfiguration.getRsEndpointUrl();
     }
 
+    public ReservationPresenter(ReservationPresenter.Display display, EventBus eventBus) {
+        super(display, eventBus);
+    }
+
     @Override
     protected void onBind() {
-        throw new UnsupportedOperationException("Not supported yet.");
     }
 
     @Override
     protected void onUnbind() {
-        throw new UnsupportedOperationException("Not supported yet.");
     }
 
     @Override
     protected void onRevealDisplay() {
-        throw new UnsupportedOperationException("Not supported yet.");
     }
 
-    public interface Display extends Presenter.Display {
-        
+    public interface Display extends Presenter.Display {   
     }
 }
