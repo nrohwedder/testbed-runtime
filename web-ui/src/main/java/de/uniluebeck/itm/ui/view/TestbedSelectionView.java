@@ -81,7 +81,6 @@ public class TestbedSelectionView extends VerticalLayout implements TestbedSelec
         lblTestbedInfo.addStyleName(Reindeer.LABEL_H2);
         innerLayout.addComponent(lblTestbedInfo);
 
-        tblTestbedInfo.setSizeFull();
         tblTestbedInfo.setContainerDataSource(new BeanItemContainer<NodeUrn>(NodeUrn.class));
         tblTestbedInfo.setNullSelectionAllowed(false);
         innerLayout.addComponent(tblTestbedInfo);

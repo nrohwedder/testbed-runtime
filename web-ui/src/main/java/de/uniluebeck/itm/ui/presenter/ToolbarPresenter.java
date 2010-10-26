@@ -23,7 +23,6 @@
 package de.uniluebeck.itm.ui.presenter;
 
 import de.uniluebeck.itm.events.EventBus;
-import de.uniluebeck.itm.ui.view.ToolbarView;
 
 /**
  * @author Soenke Nommensen
