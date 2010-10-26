@@ -9,7 +9,7 @@ import de.uniluebeck.itm.ui.presenter.Presenter;
  * presenters and wants needs to reveal itself when a child presenter is
  * revealed.
  *
- * @author David Peterson
+ * @author David Peterson (adapted from gwt-presenter)
  */
 public class PresenterRevealedEvent extends VaadinEvent<PresenterRevealedHandler> {
 

@@ -2,7 +2,6 @@
  * To change this template, choose Tools | Templates
  * and open the template in the editor.
  */
-
 package de.uniluebeck.itm.events;
 
 /**
@@ -14,13 +13,14 @@ package de.uniluebeck.itm.events;
  * @author David Peterson, adapted by Soenke Nommensen
  */
 public interface EventBus {
-    <H extends java.lang.reflect.InvocationHandler> HandlerRegistration addHandler( VaadinEvent.Type<H> type, H handler );
 
-    void fireEvent( VaadinEvent event );
+    <H extends java.lang.reflect.InvocationHandler> HandlerRegistration addHandler(VaadinEvent.Type<H> type, H handler);
 
-    <H extends java.lang.reflect.InvocationHandler> H getHandler( VaadinEvent.Type<H> type, int index );
+    void fireEvent(VaadinEvent<?> event);
 
-    int getHandlerCount( VaadinEvent.Type<?> type );
+    <H extends java.lang.reflect.InvocationHandler> H getHandler(VaadinEvent.Type<H> type, int index);
 
-    boolean isEventHandled( VaadinEvent.Type<?> e );
+    int getHandlerCount(VaadinEvent.Type<?> type);
+
+    boolean isEventHandled(VaadinEvent.Type<?> e);
 }
