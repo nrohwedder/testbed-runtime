@@ -3,13 +3,14 @@
     <parent>
         <groupId>de.uniluebeck.itm</groupId>
         <artifactId>webui</artifactId>
-        <version>${project.version}</version>
+        <version>0.5.4-SNAPSHOT</version>
     </parent>
     <modelVersion>4.0.0</modelVersion>
     <groupId>de.uniluebeck.itm.webui</groupId>
     <artifactId>client</artifactId>
     <packaging>war</packaging>
-    <version>${project.version}</version>
+    <version>0.5.4-SNAPSHOT</version>
+    <name>TR :: Web UI Client </name>
     <properties>
         <!--  tell the compiler we can use 1.5 -->
         <maven.compiler.source>1.5</maven.compiler.source>

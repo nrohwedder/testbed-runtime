@@ -10,7 +10,7 @@
     <groupId>de.uniluebeck.itm</groupId>
     <artifactId>webui</artifactId>
     <packaging>pom</packaging>
-    <version>${project.version}</version>
+    <version>0.5.4-SNAPSHOT</version>
     <name>TR :: Web UI</name>
     <repositories>
         <repository>
@@ -28,7 +28,7 @@
         <gwt.version>2.1</gwt.version>
     </properties>
     <dependencyManagement>
-        <dependencies>
+        <!--dependencies>
             <dependency>
                 <groupId>de.uniluebeck.itm.webui</groupId>
                 <artifactId>client</artifactId>
@@ -44,7 +44,7 @@
                 <artifactId>server</artifactId>
                 <version>${project.version}</version>
             </dependency>
-        </dependencies>
+        </dependencies-->
     </dependencyManagement>
     <dependencies>
         <!-- test -->

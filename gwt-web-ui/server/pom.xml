@@ -3,16 +3,23 @@
     <parent>
         <groupId>de.uniluebeck.itm</groupId>
         <artifactId>webui</artifactId>
-        <version>1.0-SNAPSHOT</version>
+        <version>0.5.4-SNAPSHOT</version>
     </parent>
     <modelVersion>4.0.0</modelVersion>    
     <groupId>de.uniluebeck.itm.webui</groupId>
     <artifactId>server</artifactId>
-    <version>1.0</version>
+    <version>0.5.4-SNAPSHOT</version>
+    <name>TR :: Web UI Server</name>
+    <properties>
+        <!--  tell the compiler we can use 1.5 -->
+        <maven.compiler.source>1.6</maven.compiler.source>
+        <maven.compiler.target>1.6</maven.compiler.target>
+    </properties>    
     <dependencies>
         <dependency>
             <groupId>de.uniluebeck.itm.webui</groupId>
             <artifactId>webui-api</artifactId>
+            <version>${project.version}</version>
         </dependency>
         <!--  GWT dependencies (from central repo) -->
         <dependency>
@@ -42,9 +49,10 @@
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-compiler-plugin</artifactId>
+                <version>2.0.2</version>
                 <configuration>
-                    <source>1.6</source>
-                    <target>1.6</target>
+                    <source>${maven.compiler.source}</source>
+                    <target>${maven.compiler.target}</target>
                 </configuration>
             </plugin>
         </plugins>
