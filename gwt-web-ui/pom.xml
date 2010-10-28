@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
+    <parent>
+        <groupId>de.uniluebeck.itm</groupId>
+        <artifactId>tr</artifactId>
+        <version>0.5.4-SNAPSHOT</version>
+        <relativePath>../</relativePath>
+    </parent>
+    <modelVersion>4.0.0</modelVersion>
+    <groupId>de.uniluebeck.itm</groupId>
+    <artifactId>webui</artifactId>
+    <packaging>pom</packaging>
+    <version>${project.version}</version>
+    <name>TR :: Web UI</name>
+    <repositories>
+        <repository>
+            <id>gwt-dev-release</id>
+            <url>https://oss.sonatype.org/content/repositories/google-snapshots/</url>
+        </repository>
+    </repositories>
+    <pluginRepositories>
+        <pluginRepository>
+            <id>gwt-dev-release</id>
+            <url>http://google-web-toolkit.googlecode.com/svn/2.1.0/gwt/maven/</url>
+        </pluginRepository>
+    </pluginRepositories>
+    <properties>
+        <gwt.version>2.1</gwt.version>
+    </properties>
+    <dependencyManagement>
+        <dependencies>
+            <dependency>
+                <groupId>de.uniluebeck.itm.webui</groupId>
+                <artifactId>client</artifactId>
+                <version>${project.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>de.uniluebeck.itm.webui</groupId>
+                <artifactId>api</artifactId>
+                <version>${project.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>de.uniluebeck.itm.webui</groupId>
+                <artifactId>server</artifactId>
+                <version>${project.version}</version>
+            </dependency>
+        </dependencies>
+    </dependencyManagement>
+    <dependencies>
+        <!-- test -->
+        <dependency>
+            <groupId>junit</groupId>
+            <artifactId>junit</artifactId>
+            <version>4.7</version>
+            <scope>test</scope>
+        </dependency>
+    </dependencies>
+    <modules>
+        <module>client</module>
+        <module>api</module>
+        <module>server</module>
+    </modules>
+</project>
