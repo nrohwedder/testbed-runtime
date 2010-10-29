@@ -1,50 +1,44 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
     <parent>
         <groupId>de.uniluebeck.itm</groupId>
         <artifactId>webui</artifactId>
         <version>0.5.4-SNAPSHOT</version>
     </parent>
-    <modelVersion>4.0.0</modelVersion>    
+    <modelVersion>4.0.0</modelVersion>
     <groupId>de.uniluebeck.itm.webui</groupId>
     <artifactId>server</artifactId>
     <version>0.5.4-SNAPSHOT</version>
     <name>TR :: Web UI Server</name>
+    <packaging>war</packaging>
     <properties>
-        <!--  tell the compiler we can use 1.5 -->
+	<!-- tell the compiler we can use 1.5 -->
         <maven.compiler.source>1.6</maven.compiler.source>
         <maven.compiler.target>1.6</maven.compiler.target>
-    </properties>    
+    </properties>
     <dependencies>
         <dependency>
             <groupId>de.uniluebeck.itm.webui</groupId>
-            <artifactId>webui-api</artifactId>
-            <version>${project.version}</version>
+            <artifactId>api</artifactId>
         </dependency>
-        <!--  GWT dependencies (from central repo) -->
+        <dependency>
+            <groupId>de.uniluebeck.itm.webui</groupId>
+            <artifactId>shared</artifactId>
+        </dependency>
+	<!-- GWT dependencies (from central repo) -->
         <dependency>
             <groupId>com.google.gwt</groupId>
             <artifactId>gwt-servlet</artifactId>
-            <version>${gwt.version}.0</version>
             <scope>runtime</scope>
         </dependency>
         <dependency>
             <groupId>com.google.gwt</groupId>
             <artifactId>gwt-user</artifactId>
-            <version>${gwt.version}-SNAPSHOT</version>
             <scope>provided</scope>
         </dependency>
     </dependencies>
     <build>
-        <!--  Include SOURCE in output artifact for GWT (GWT libraries must include source) -->
-        <resources>
-            <resource>
-                <directory>src/main/java</directory>
-            </resource>
-            <resource>
-                <directory>src/main/resources</directory>
-            </resource>
-        </resources>
         <plugins>
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
@@ -56,6 +50,19 @@
                 </configuration>
             </plugin>
         </plugins>
-        <finalName>maven-googlewebtoolkit2-sample-server</finalName>
+	<!-- Include SOURCE in output artifact for GWT (GWT libraries must include
+	source) -->
+        <resources>
+            <resource>
+                <directory>src/main/java</directory>
+                <includes>
+                    <include>**/*.java</include>
+                    <include>**/*.gwt.xml</include>
+                </includes>
+            </resource>
+            <resource>
+                <directory>src/main/resources</directory>
+            </resource>
+        </resources>
     </build>
 </project>

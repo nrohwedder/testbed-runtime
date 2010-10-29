@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
-<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
     <parent>
         <groupId>de.uniluebeck.itm</groupId>
         <artifactId>webui</artifactId>
@@ -8,26 +9,24 @@
     <modelVersion>4.0.0</modelVersion>
     <groupId>de.uniluebeck.itm.webui</groupId>
     <artifactId>api</artifactId>
-    <packaging>jar</packaging>
     <version>0.5.4-SNAPSHOT</version>
     <name>TR :: Web UI API</name>
+    <packaging>jar</packaging>
     <properties>
-        <!--  tell the compiler we can use 1.5 -->
+	<!-- tell the compiler we can use 1.5 -->
         <maven.compiler.source>1.5</maven.compiler.source>
         <maven.compiler.target>1.5</maven.compiler.target>
     </properties>
     <dependencies>
-        <!--  GWT dependencies (from central repo) -->
+	<!-- GWT dependencies (from central repo) -->
         <dependency>
             <groupId>com.google.gwt</groupId>
             <artifactId>gwt-servlet</artifactId>
-            <version>${gwt.version}.0</version>
             <scope>runtime</scope>
         </dependency>
         <dependency>
             <groupId>com.google.gwt</groupId>
             <artifactId>gwt-user</artifactId>
-            <version>${gwt.version}-SNAPSHOT</version>
             <scope>provided</scope>
         </dependency>
     </dependencies>
@@ -43,5 +42,19 @@
                 </configuration>
             </plugin>
         </plugins>
+	<!-- Include SOURCE in output artifact for GWT (GWT libraries must include
+	source) -->
+        <resources>
+            <resource>
+                <directory>src/main/java</directory>
+                <includes>
+                    <include>**/*.java</include>
+                    <include>**/*.gwt.xml</include>
+                </includes>
+            </resource>
+            <resource>
+                <directory>src/main/resources</directory>
+            </resource>
+        </resources>
     </build>
 </project>
