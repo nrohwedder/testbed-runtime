@@ -13,7 +13,6 @@
     <name>TR :: Web UI Server</name>
     <packaging>war</packaging>
     <properties>
-	<!-- tell the compiler we can use 1.5 -->
         <maven.compiler.source>1.6</maven.compiler.source>
         <maven.compiler.target>1.6</maven.compiler.target>
     </properties>
@@ -26,7 +25,6 @@
             <groupId>de.uniluebeck.itm.webui</groupId>
             <artifactId>shared</artifactId>
         </dependency>
-	<!-- GWT dependencies (from central repo) -->
         <dependency>
             <groupId>com.google.gwt</groupId>
             <artifactId>gwt-servlet</artifactId>
@@ -43,7 +41,6 @@
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-compiler-plugin</artifactId>
-                <version>2.3.2</version>
                 <configuration>
                     <source>${maven.compiler.source}</source>
                     <target>${maven.compiler.target}</target>
@@ -59,9 +56,6 @@
                     <include>**/*.java</include>
                     <include>**/*.gwt.xml</include>
                 </includes>
-            </resource>
-            <resource>
-                <directory>src/main/resources</directory>
             </resource>
         </resources>
     </build>
