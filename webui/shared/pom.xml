@@ -7,7 +7,7 @@
         <version>0.5.4-SNAPSHOT</version>
     </parent>
     <modelVersion>4.0.0</modelVersion>
-    <groupId>de.uniluebeck.itm.webui</groupId>
+    <groupId>de.uniluebeck.itm.tr.webui</groupId>
     <artifactId>shared</artifactId>
     <packaging>jar</packaging>
     <version>0.5.4-SNAPSHOT</version>

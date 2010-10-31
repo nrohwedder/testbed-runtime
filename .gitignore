@@ -16,4 +16,4 @@ nb-configuration.xml
 .project
 *.gwt.rpc
 *.class
-gwt-web-ui/client/war/WEB-INF/lib/*.jar
+webui/client/war/WEB-INF/lib/*.jar

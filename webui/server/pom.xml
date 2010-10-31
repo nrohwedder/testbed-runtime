@@ -7,7 +7,7 @@
         <version>0.5.4-SNAPSHOT</version>
     </parent>
     <modelVersion>4.0.0</modelVersion>
-    <groupId>de.uniluebeck.itm.webui</groupId>
+    <groupId>de.uniluebeck.itm.tr.webui</groupId>
     <artifactId>server</artifactId>
     <version>0.5.4-SNAPSHOT</version>
     <name>TR :: Web UI Server</name>
@@ -18,11 +18,11 @@
     </properties>
     <dependencies>
         <dependency>
-            <groupId>de.uniluebeck.itm.webui</groupId>
+            <groupId>de.uniluebeck.itm.tr.webui</groupId>
             <artifactId>api</artifactId>
         </dependency>
         <dependency>
-            <groupId>de.uniluebeck.itm.webui</groupId>
+            <groupId>de.uniluebeck.itm.tr.webui</groupId>
             <artifactId>shared</artifactId>
         </dependency>
         <dependency>
