@@ -75,6 +75,7 @@
         <module>wisebed-cmdline-client</module>
         <module>wiseml</module>
         <module>wiseml-merger</module>
+        <module>webui</module>
 
     </modules>
 
@@ -269,6 +270,11 @@
                 <artifactId>tr.wisebed-cmdline-client</artifactId>
                 <version>${project.version}</version>
             </dependency>
+            <dependency>
+                <groupId>de.uniluebeck.itm</groupId>
+                <artifactId>tr.webui</artifactId>
+                <version>${project.version}</version>
+            </dependency>            
             <dependency>
                 <groupId>junit</groupId>
                 <artifactId>junit</artifactId>
