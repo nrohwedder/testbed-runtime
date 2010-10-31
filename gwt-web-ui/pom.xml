@@ -8,7 +8,7 @@
     </parent>
     <modelVersion>4.0.0</modelVersion>
     <groupId>de.uniluebeck.itm</groupId>
-    <artifactId>webui</artifactId>
+    <artifactId>tr.webui</artifactId>
     <packaging>pom</packaging>
     <version>0.5.4-SNAPSHOT</version>
     <name>TR :: Web UI</name>

@@ -3,7 +3,7 @@
 	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
     <parent>
         <groupId>de.uniluebeck.itm</groupId>
-        <artifactId>webui</artifactId>
+        <artifactId>tr.webui</artifactId>
         <version>0.5.4-SNAPSHOT</version>
     </parent>
     <modelVersion>4.0.0</modelVersion>
@@ -11,7 +11,7 @@
     <artifactId>server</artifactId>
     <version>0.5.4-SNAPSHOT</version>
     <name>TR :: Web UI Server</name>
-    <packaging>war</packaging>
+    <packaging>jar</packaging>
     <properties>
         <maven.compiler.source>1.6</maven.compiler.source>
         <maven.compiler.target>1.6</maven.compiler.target>
