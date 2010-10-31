@@ -17,7 +17,6 @@
 	</welcome-file-list>
 	
 	<listener>
-		<listener-class>de.uniluebeck.itm.webui.server.WebUiGuiceServletContextListener
-		</listener-class>
+		<listener-class>de.uniluebeck.itm.webui.server.WebUiGuiceServletContextListener</listener-class>
 	</listener>
 </web-app>
