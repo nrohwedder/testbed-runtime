@@ -17,6 +17,7 @@
 package de.uniluebeck.itm.webui.server;
 
 import com.google.inject.servlet.ServletModule;
+
 import com.gwtplatform.dispatch.server.DispatchServiceImpl;
 import com.gwtplatform.dispatch.shared.ActionImpl;
 
@@ -25,9 +26,10 @@ import com.gwtplatform.dispatch.shared.ActionImpl;
  */
 public class DispatchServletModule extends ServletModule {
 
-	@Override
-	public void configureServlets() {
-		serve("/webui/" + ActionImpl.DEFAULT_SERVICE_NAME).with(
-				DispatchServiceImpl.class);
-	}
+  @Override
+  public void configureServlets() {
+    serve("/webui/" + ActionImpl.DEFAULT_SERVICE_NAME).with(
+        DispatchServiceImpl.class);
+  }
+
 }

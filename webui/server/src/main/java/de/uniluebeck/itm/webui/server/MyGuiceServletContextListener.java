@@ -25,9 +25,8 @@ import com.google.inject.servlet.GuiceServletContextListener;
  */
 public class MyGuiceServletContextListener extends GuiceServletContextListener {
 
-	@Override
-	protected Injector getInjector() {
-		return Guice.createInjector(new ServerModule(),
-				new DispatchServletModule());
-	}
+  @Override
+  protected Injector getInjector() {
+    return Guice.createInjector(new ServerModule(), new DispatchServletModule());
+  }
 }

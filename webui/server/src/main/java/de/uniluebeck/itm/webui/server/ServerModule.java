@@ -22,13 +22,13 @@ import de.uniluebeck.itm.webui.shared.SendTextToServer;
 
 /**
  * Module which binds the handlers and configurations.
- * 
+
  * @author Philippe Beaudoin
  */
 public class ServerModule extends HandlerModule {
 
-	@Override
-	protected void configureHandlers() {
-		bindHandler(SendTextToServer.class, SendTextToServerHandler.class);
-	}
+  @Override
+  protected void configureHandlers() {
+    bindHandler(SendTextToServer.class, SendTextToServerHandler.class);
+  }
 }
