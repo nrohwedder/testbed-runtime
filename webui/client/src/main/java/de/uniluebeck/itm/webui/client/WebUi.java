@@ -6,7 +6,7 @@ import com.gwtplatform.mvp.client.DelayedBindRegistry;
 
 public class WebUi implements EntryPoint {
 
-	public final MyGinjector ginjector = GWT.create(MyGinjector.class);
+	public final WebUiGinjector ginjector = GWT.create(WebUiGinjector.class);
 
     /**
      * This is the entry point method.

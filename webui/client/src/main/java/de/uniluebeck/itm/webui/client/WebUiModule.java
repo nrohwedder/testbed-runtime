@@ -30,12 +30,12 @@ import com.gwtplatform.mvp.client.proxy.TokenFormatter;
 /**
  * @author Philippe Beaudoin
  */
-public class MyModule extends AbstractPresenterModule {
+public class WebUiModule extends AbstractPresenterModule {
 
   @Override
   protected void configure() {
     bind(EventBus.class).to(DefaultEventBus.class).in(Singleton.class);
-    bind(PlaceManager.class).to(MyPlaceManager.class).in(Singleton.class);
+    bind(PlaceManager.class).to(WebUiPlaceManager.class).in(Singleton.class);
     bind(TokenFormatter.class).to(ParameterTokenFormatter.class).in(
         Singleton.class);
     bind(RootPresenter.class).asEagerSingleton();

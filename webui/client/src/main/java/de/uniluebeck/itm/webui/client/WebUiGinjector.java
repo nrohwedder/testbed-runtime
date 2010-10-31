@@ -28,8 +28,8 @@ import com.gwtplatform.mvp.client.proxy.ProxyFailureHandler;
 /**
  * @author Philippe Beaudoin
  */
-@GinModules({ DispatchAsyncModule.class, MyModule.class })
-public interface MyGinjector extends Ginjector {
+@GinModules({ DispatchAsyncModule.class, WebUiModule.class })
+public interface WebUiGinjector extends Ginjector {
 	EventBus getEventBus();
 
 	Provider<MainPagePresenter> getMainPagePresenter();

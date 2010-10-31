@@ -30,5 +30,5 @@
 	<define-configuration-property name="gin.ginjector"
 		is-multi-valued="false" />
 	<set-configuration-property name="gin.ginjector"
-		value="de.uniluebeck.itm.webui.client.MyGinjector" />
+		value="de.uniluebeck.itm.webui.client.WebUiGinjector" />
 </module>

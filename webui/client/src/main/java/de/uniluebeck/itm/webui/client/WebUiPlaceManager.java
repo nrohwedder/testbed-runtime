@@ -14,19 +14,27 @@
  * the License.
  */
 
-package de.uniluebeck.itm.webui.server;
+package de.uniluebeck.itm.webui.client;
 
-import com.google.inject.Guice;
-import com.google.inject.Injector;
-import com.google.inject.servlet.GuiceServletContextListener;
+import com.google.inject.Inject;
+import com.gwtplatform.mvp.client.EventBus;
+import com.gwtplatform.mvp.client.proxy.PlaceManagerImpl;
+import com.gwtplatform.mvp.client.proxy.PlaceRequest;
+import com.gwtplatform.mvp.client.proxy.TokenFormatter;
 
 /**
  * @author Philippe Beaudoin
  */
-public class MyGuiceServletContextListener extends GuiceServletContextListener {
+public class WebUiPlaceManager extends PlaceManagerImpl {
+
+  @Inject
+  public WebUiPlaceManager(EventBus eventBus, TokenFormatter tokenFormatter) {
+    super(eventBus, tokenFormatter);
+  }
 
   @Override
-  protected Injector getInjector() {
-    return Guice.createInjector(new ServerModule(), new DispatchServletModule());
+  public void revealDefaultPlace() {
+    revealPlace(new PlaceRequest(MainPagePresenter.nameToken));
   }
+
 }
