@@ -2,13 +2,11 @@ package de.uniluebeck.itm.webui.client;
 
 import com.google.gwt.activity.shared.ActivityManager;
 import com.google.gwt.activity.shared.ActivityMapper;
-import com.google.gwt.core.client.GWT;
 import com.google.gwt.event.shared.EventBus;
 import com.google.gwt.event.shared.SimpleEventBus;
 import com.google.gwt.inject.client.AbstractGinModule;
 import com.google.gwt.place.shared.PlaceController;
 import com.google.gwt.place.shared.PlaceHistoryHandler;
-import com.google.gwt.place.shared.PlaceHistoryMapper;
 import com.google.inject.Provides;
 import com.google.inject.Singleton;
 
@@ -47,7 +45,7 @@ public class WebUiClientModule extends AbstractGinModule {
 	
 	@Singleton
 	@Provides
-	PlaceHistoryHandler providePlaceHistoryHandler(PlaceHistoryMapper mapper, PlaceController placeController, EventBus eventBus) {
+	PlaceHistoryHandler providePlaceHistoryHandler(AppPlaceHistoryMapper mapper, PlaceController placeController, EventBus eventBus) {
 		PlaceHistoryHandler historyHandler = new PlaceHistoryHandler(mapper);
 		historyHandler.register(placeController, eventBus, new HelloPlace("World!"));
 		return historyHandler;
@@ -57,10 +55,5 @@ public class WebUiClientModule extends AbstractGinModule {
 	@Provides
 	PlaceController providePlaceController(EventBus eventBus) {
 		return new PlaceController(eventBus);
-	}
-	
-	@Provides
-	PlaceHistoryMapper providePlaceHistoryMapper() {
-		return GWT.create(AppPlaceHistoryMapper.class);
 	}
 }
