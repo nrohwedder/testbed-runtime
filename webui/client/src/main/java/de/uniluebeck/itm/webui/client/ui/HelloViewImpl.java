@@ -9,6 +9,8 @@ import com.google.gwt.uibinder.client.UiHandler;
 import com.google.gwt.user.client.ui.Anchor;
 import com.google.gwt.user.client.ui.Composite;
 import com.google.gwt.user.client.ui.Widget;
+import com.google.inject.Inject;
+
 import de.uniluebeck.itm.webui.client.place.GoodbyePlace;
 
 public class HelloViewImpl extends Composite implements HelloView {
@@ -24,6 +26,7 @@ public class HelloViewImpl extends Composite implements HelloView {
     private Presenter listener;
     private String name;
 
+    @Inject
     public HelloViewImpl() {
         initWidget(uiBinder.createAndBindUi(this));
     }

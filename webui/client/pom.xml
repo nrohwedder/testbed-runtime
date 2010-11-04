@@ -40,6 +40,11 @@
             <artifactId>gwt-user</artifactId>
             <scope>provided</scope>
         </dependency>
+        <dependency>
+			<groupId>com.googlecode.gwt.inject</groupId>
+			<artifactId>gin</artifactId>
+			<version>1.0</version>
+        </dependency>
     </dependencies>
     <build>
         <outputDirectory>${basedir}/war/WEB-INF/classes</outputDirectory>

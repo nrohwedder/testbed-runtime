@@ -14,14 +14,10 @@
     <inherits name="com.google.gwt.activity.Activity"/>
     <inherits name="com.google.gwt.place.Place"/>
     <inherits name="de.uniluebeck.itm.webui.WebUiShared" />
+    <inherits name="com.google.gwt.inject.Inject"/>
     
     <!-- Specify the app entry point class.                         -->
     <entry-point class="de.uniluebeck.itm.webui.client.WebUi" />
-    
-    <!-- Use ClientFactoryImpl by default -->
-    <replace-with class="de.uniluebeck.itm.webui.client.ClientFactoryImpl">
-        <when-type-is class="de.uniluebeck.itm.webui.client.ClientFactory"/>
-    </replace-with>
     
     <!-- Specify the paths for translatable code                    -->
     <source path="client"/>

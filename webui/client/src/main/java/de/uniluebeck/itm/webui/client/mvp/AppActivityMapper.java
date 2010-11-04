@@ -3,15 +3,17 @@ package de.uniluebeck.itm.webui.client.mvp;
 import com.google.gwt.activity.shared.Activity;
 import com.google.gwt.activity.shared.ActivityMapper;
 import com.google.gwt.place.shared.Place;
+import com.google.inject.Inject;
+
+import de.uniluebeck.itm.webui.client.WebUiGinjector;
 import de.uniluebeck.itm.webui.client.activity.GoodbyeActivity;
 import de.uniluebeck.itm.webui.client.activity.HelloActivity;
 import de.uniluebeck.itm.webui.client.place.GoodbyePlace;
 import de.uniluebeck.itm.webui.client.place.HelloPlace;
-import de.uniluebeck.itm.webui.client.ClientFactory;
 
 public class AppActivityMapper implements ActivityMapper {
-
-    private ClientFactory clientFactory;
+	
+    private WebUiGinjector injector;
 
     /**
      * AppActivityMapper associates each Place with its corresponding
@@ -20,9 +22,10 @@ public class AppActivityMapper implements ActivityMapper {
      * @param clientFactory
      *            Factory to be passed to activities
      */
-    public AppActivityMapper(ClientFactory clientFactory) {
+    @Inject
+    public AppActivityMapper(WebUiGinjector injector) {
         super();
-        this.clientFactory = clientFactory;
+        this.injector = injector;
     }
 
     /**
@@ -33,9 +36,9 @@ public class AppActivityMapper implements ActivityMapper {
     public Activity getActivity(Place place) {
         // This is begging for GIN
         if (place instanceof HelloPlace) {
-            return new HelloActivity((HelloPlace) place, clientFactory);
+            return new HelloActivity((HelloPlace) place, injector);
         } else if (place instanceof GoodbyePlace) {
-            return new GoodbyeActivity((GoodbyePlace) place, clientFactory);
+            return new GoodbyeActivity((GoodbyePlace) place, injector);
         }
 
         return null;
