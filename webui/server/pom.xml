@@ -36,21 +36,17 @@
             <scope>runtime</scope>
         </dependency>
         <dependency>
-        	<groupId>com.gwtplatform</groupId>
-			<artifactId>gwtp</artifactId>
+            <groupId>com.google.inject</groupId>
+            <artifactId>guice</artifactId>
         </dependency>
-       	<dependency>
-			<groupId>com.google.inject</groupId> 
-			<artifactId>guice</artifactId> 
-		</dependency>
-		<dependency>
-			<groupId>com.google.inject.extensions</groupId>
-			<artifactId>guice-servlet</artifactId> 
-		</dependency>
-		<dependency>
-			<groupId>javax.servlet</groupId> 
-			<artifactId>servlet-api</artifactId> 
-		</dependency>
+        <dependency>
+            <groupId>com.google.inject.extensions</groupId>
+            <artifactId>guice-servlet</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>javax.servlet</groupId>
+            <artifactId>servlet-api</artifactId>
+        </dependency>
     </dependencies>
     <build>
         <plugins>

@@ -13,7 +13,6 @@
  * License for the specific language governing permissions and limitations under
  * the License.
  */
-
 package de.uniluebeck.itm.webui.shared;
 
 /**
@@ -38,21 +37,21 @@ package de.uniluebeck.itm.webui.shared;
  */
 public class FieldVerifier {
 
-  /**
-   * Verifies that the specified name is valid for our service.
-   * 
-   * In this example, we only require that the name is at least four characters.
-   * In your application, you can use more complex checks to ensure that
-   * usernames, passwords, email addresses, URLs, and other fields have the
-   * proper syntax.
-   * 
-   * @param name the name to validate
-   * @return true if valid, false if invalid
-   */
-  public static boolean isValidName(String name) {
-    if (name == null) {
-      return false;
+    /**
+     * Verifies that the specified name is valid for our service.
+     *
+     * In this example, we only require that the name is at least four characters.
+     * In your application, you can use more complex checks to ensure that
+     * usernames, passwords, email addresses, URLs, and other fields have the
+     * proper syntax.
+     *
+     * @param name the name to validate
+     * @return true if valid, false if invalid
+     */
+    public static boolean isValidName(String name) {
+        if (name == null) {
+            return false;
+        }
+        return name.length() > 3;
     }
-    return name.length() > 3;
-  }
 }

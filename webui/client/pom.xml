@@ -40,21 +40,6 @@
             <artifactId>gwt-user</artifactId>
             <scope>provided</scope>
         </dependency>
-        <dependency>
-			<groupId>com.google.inject</groupId> 
-			<artifactId>guice</artifactId> 
-		</dependency>
-        <dependency>
-        	<groupId>com.gwtplatform</groupId>
-			<artifactId>gwtp</artifactId>
-        </dependency>
-        <dependency>
-			<groupId>com.googlecode.gwt.inject</groupId>
-			<artifactId>gin</artifactId>
-			<version>r137</version>
-			<scope>system</scope>
-			<systemPath>${basedir}/war/WEB-INF/lib/gin-r137.jar</systemPath>
-		</dependency>
     </dependencies>
     <build>
         <outputDirectory>${basedir}/war/WEB-INF/classes</outputDirectory>
@@ -68,49 +53,18 @@
                             <module>de.uniluebeck.itm.webui.Webui</module>
                         </configuration>
                         <goals>
-                            <!-- <goal>compile</goal> -->
+                            <goal>compile</goal>
                             <goal>generateAsync</goal>
                         </goals>
                     </execution>
                 </executions>
                 <configuration>
-                    <runTarget>de.uniluebeck.itm.webui.WebUi/WebUi.html</runTarget>
+                    <runTarget>WebUi.html</runTarget>
                     <output>${basedir}/war</output>
                     <webXml>${basedir}/war/WEB-INF/web.xml</webXml>
                     <hostedWebapp>${basedir}/war</hostedWebapp>
                 </configuration>
             </plugin>
-            <!--plugin>
-                <groupId>org.apache.maven.plugins</groupId>
-                <artifactId>maven-war-plugin</artifactId>
-                <version>2.1-beta-1</version>
-                <configuration>
-                    <webXml>target/web.xml</webXml>
-                    <warSourceExcludes>.gwt-tmp/**</warSourceExcludes>
-                </configuration>
-            </plugin-->
-            <!--plugin>
-                <groupId>org.apache.maven.plugins</groupId>
-                <artifactId>maven-war-plugin</artifactId>
-                <configuration>
-                    <warSourceDirectory>${basedir}/war</warSourceDirectory>
-                    <warSourceIncludes></warSourceIncludes>
-                    <warSourceExcludes>**</warSourceExcludes>
-                    <webappDirectory>${basedir}/war</webappDirectory>
-                    <webXml>${basedir}/war/WEB-INF/web.xml</webXml>
-                </configuration>
-            </plugin-->
-            <!-- If you want to use the target/web.xml file mergewebxml produces,
-            tell the war plugin to use it. Also, exclude what you want from the final
-            artifact here. -->
-            <!--plugin>
-                <groupId>org.apache.maven.plugins</groupId>
-                <artifactId>maven-war-plugin</artifactId>
-                <configuration>
-                    <webXml>target/web.xml</webXml>
-                    <warSourceExcludes>.gwt-tmp/**</warSourceExcludes>
-                </configuration>
-            </plugin-->
             <plugin>
                 <artifactId>maven-war-plugin</artifactId>
                 <configuration>
