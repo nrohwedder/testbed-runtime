@@ -43,7 +43,6 @@
         <dependency>
 			<groupId>com.googlecode.gwt.inject</groupId>
 			<artifactId>gin</artifactId>
-			<version>1.0</version>
         </dependency>
     </dependencies>
     <build>

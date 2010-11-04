@@ -4,6 +4,7 @@ import com.google.gwt.activity.shared.AbstractActivity;
 import com.google.gwt.event.shared.EventBus;
 import com.google.gwt.place.shared.Place;
 import com.google.gwt.user.client.ui.AcceptsOneWidget;
+import com.google.inject.Inject;
 
 import de.uniluebeck.itm.webui.client.WebUiGinjector;
 import de.uniluebeck.itm.webui.client.place.HelloPlace;
@@ -13,13 +14,18 @@ public class HelloActivity extends AbstractActivity implements HelloView.Present
     // Used to obtain views, eventBus, placeController
     // Alternatively, could be injected via GIN
 
-    private WebUiGinjector injector;
+    private final WebUiGinjector injector;
     // Name that will be appended to "Hello,"
     private String name;
 
-    public HelloActivity(HelloPlace place, WebUiGinjector injector) {
-        this.name = place.getHelloName();
+    @Inject
+    public HelloActivity(WebUiGinjector injector) {
         this.injector = injector;
+    }
+    
+    public HelloActivity withPlace(HelloPlace place) {
+    	this.name = place.getHelloName();
+    	return this;
     }
 
     /**

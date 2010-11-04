@@ -12,6 +12,8 @@ import com.google.gwt.place.shared.PlaceHistoryMapper;
 import com.google.inject.Provides;
 import com.google.inject.Singleton;
 
+import de.uniluebeck.itm.webui.client.activity.GoodbyeActivity;
+import de.uniluebeck.itm.webui.client.activity.HelloActivity;
 import de.uniluebeck.itm.webui.client.mvp.AppActivityMapper;
 import de.uniluebeck.itm.webui.client.mvp.AppPlaceHistoryMapper;
 import de.uniluebeck.itm.webui.client.place.HelloPlace;
@@ -27,6 +29,8 @@ public class WebUiClientModule extends AbstractGinModule {
 		bind(ActivityMapper.class).to(AppActivityMapper.class);
 		bind(HelloView.class).to(HelloViewImpl.class).in(Singleton.class);
 		bind(GoodbyeView.class).to(GoodbyeViewImpl.class).in(Singleton.class);
+		bind(HelloActivity.class);
+		bind(GoodbyeActivity.class);
 	}
 
 	@Singleton

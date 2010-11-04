@@ -10,7 +10,7 @@ import com.google.gwt.user.client.ui.SimplePanel;
  */
 public class WebUi implements EntryPoint {
 
-    private SimplePanel appWidget = new SimplePanel();
+    private final SimplePanel appWidget = new SimplePanel();
     
     private final WebUiGinjector injector = GWT.create(WebUiGinjector.class);
 

@@ -6,8 +6,6 @@ import com.google.gwt.place.shared.Place;
 import com.google.inject.Inject;
 
 import de.uniluebeck.itm.webui.client.WebUiGinjector;
-import de.uniluebeck.itm.webui.client.activity.GoodbyeActivity;
-import de.uniluebeck.itm.webui.client.activity.HelloActivity;
 import de.uniluebeck.itm.webui.client.place.GoodbyePlace;
 import de.uniluebeck.itm.webui.client.place.HelloPlace;
 
@@ -35,12 +33,12 @@ public class AppActivityMapper implements ActivityMapper {
     @Override
     public Activity getActivity(Place place) {
         // This is begging for GIN
+    	Activity activity = null;
         if (place instanceof HelloPlace) {
-            return new HelloActivity((HelloPlace) place, injector);
+        	activity = injector.getHelloActivity().withPlace((HelloPlace) place);
         } else if (place instanceof GoodbyePlace) {
-            return new GoodbyeActivity((GoodbyePlace) place, injector);
+            activity = injector.getGoodbyeActivity().withPlace((GoodbyePlace) place);
         }
-
-        return null;
+        return activity;
     }
 }
