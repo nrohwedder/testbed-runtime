@@ -7,7 +7,7 @@ import com.google.inject.Inject;
 
 import de.uniluebeck.itm.webui.client.WebUiGinjector;
 import de.uniluebeck.itm.webui.client.place.GoodbyePlace;
-import de.uniluebeck.itm.webui.client.place.HelloPlace;
+import de.uniluebeck.itm.webui.client.place.LoginPlace;
 
 public class AppActivityMapper implements ActivityMapper {
 	
@@ -34,8 +34,8 @@ public class AppActivityMapper implements ActivityMapper {
     public Activity getActivity(Place place) {
         // This is begging for GIN
     	Activity activity = null;
-        if (place instanceof HelloPlace) {
-        	activity = injector.getHelloActivity().withPlace((HelloPlace) place);
+        if (place instanceof LoginPlace) {
+        	activity = injector.getHelloActivity().withPlace((LoginPlace) place);
         } else if (place instanceof GoodbyePlace) {
             activity = injector.getGoodbyeActivity().withPlace((GoodbyePlace) place);
         }

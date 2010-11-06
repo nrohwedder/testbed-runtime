@@ -8,9 +8,9 @@ import com.google.gwt.place.shared.PlaceController;
 import com.google.gwt.place.shared.PlaceHistoryHandler;
 
 import de.uniluebeck.itm.webui.client.activity.GoodbyeActivity;
-import de.uniluebeck.itm.webui.client.activity.HelloActivity;
+import de.uniluebeck.itm.webui.client.activity.LoginActivity;
 import de.uniluebeck.itm.webui.client.ui.GoodbyeView;
-import de.uniluebeck.itm.webui.client.ui.HelloView;
+import de.uniluebeck.itm.webui.client.ui.LoginView;
 
 @GinModules(WebUiClientModule.class)
 public interface WebUiGinjector extends Ginjector {
@@ -18,9 +18,9 @@ public interface WebUiGinjector extends Ginjector {
 
     PlaceController getPlaceController();
 
-    HelloView getHelloView();
+    LoginView getLoginView();
 
-    HelloActivity getHelloActivity();
+    LoginActivity getHelloActivity();
     
     GoodbyeView getGoodbyeView();
     

@@ -18,7 +18,15 @@
         <maven.compiler.target>1.5</maven.compiler.target>
     </properties>
     <dependencies>
-	<!-- GWT dependencies (from central repo) -->
+    	<dependency>
+    		<groupId>de.uniluebeck.itm.tr.webui</groupId>
+    		<artifactId>shared</artifactId>
+    	</dependency>
+    	<dependency>
+    		<groupId>de.uniluebeck.itm.tr.webui</groupId>
+    		<artifactId>api</artifactId>
+    	</dependency>
+		<!-- GWT dependencies (from central repo) -->
         <dependency>
             <groupId>com.google.gwt</groupId>
             <artifactId>gwt-servlet</artifactId>

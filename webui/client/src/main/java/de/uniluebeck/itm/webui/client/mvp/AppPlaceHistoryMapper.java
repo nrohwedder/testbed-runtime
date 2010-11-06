@@ -3,7 +3,7 @@ package de.uniluebeck.itm.webui.client.mvp;
 import com.google.gwt.place.shared.PlaceHistoryMapper;
 import com.google.gwt.place.shared.WithTokenizers;
 import de.uniluebeck.itm.webui.client.place.GoodbyePlace;
-import de.uniluebeck.itm.webui.client.place.HelloPlace;
+import de.uniluebeck.itm.webui.client.place.LoginPlace;
 
 /**
  * PlaceHistoryMapper interface is used to attach all places which the
@@ -11,6 +11,6 @@ import de.uniluebeck.itm.webui.client.place.HelloPlace;
  * annotation or by extending PlaceHistoryMapperWithFactory and creating a
  * separate TokenizerFactory.
  */
-@WithTokenizers({HelloPlace.Tokenizer.class, GoodbyePlace.Tokenizer.class})
+@WithTokenizers({LoginPlace.Tokenizer.class, GoodbyePlace.Tokenizer.class})
 public interface AppPlaceHistoryMapper extends PlaceHistoryMapper {
 }

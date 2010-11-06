@@ -16,11 +16,13 @@
     <inherits name="de.uniluebeck.itm.webui.WebUiShared" />
     <inherits name="com.google.gwt.inject.Inject"/>
     
+    <!-- Other WebUi Projects -->
+    <inherits name="de.uniluebeck.itm.webui.WebUiShared"/>
+    <inherits name="de.uniluebeck.itm.webui.WebUiApi"/>
+    
     <!-- Specify the app entry point class.                         -->
     <entry-point class="de.uniluebeck.itm.webui.client.WebUi" />
     
     <!-- Specify the paths for translatable code                    -->
     <source path="client"/>
-    <source path="api"/>
-    <source path="shared"/>
 </module>

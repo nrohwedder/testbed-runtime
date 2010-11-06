@@ -3,11 +3,11 @@ package de.uniluebeck.itm.webui.client.place;
 import com.google.gwt.place.shared.Place;
 import com.google.gwt.place.shared.PlaceTokenizer;
 
-public class HelloPlace extends Place {
+public class LoginPlace extends Place {
 
     private String helloName;
 
-    public HelloPlace(String token) {
+    public LoginPlace(String token) {
         this.helloName = token;
     }
 
@@ -15,16 +15,16 @@ public class HelloPlace extends Place {
         return helloName;
     }
 
-    public static class Tokenizer implements PlaceTokenizer<HelloPlace> {
+    public static class Tokenizer implements PlaceTokenizer<LoginPlace> {
 
         @Override
-        public String getToken(HelloPlace place) {
+        public String getToken(LoginPlace place) {
             return place.getHelloName();
         }
 
         @Override
-        public HelloPlace getPlace(String token) {
-            return new HelloPlace(token);
+        public LoginPlace getPlace(String token) {
+            return new LoginPlace(token);
         }
     }
 }
