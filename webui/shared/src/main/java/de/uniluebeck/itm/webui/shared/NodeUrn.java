@@ -39,6 +39,10 @@ public class NodeUrn implements Serializable {
     private String testbed;
     private String node;
 
+    public NodeUrn() {
+		
+	}
+    
     public NodeUrn(String prefix, String project, String testbed, String node) {
         this.prefix = prefix;
         this.project = project;

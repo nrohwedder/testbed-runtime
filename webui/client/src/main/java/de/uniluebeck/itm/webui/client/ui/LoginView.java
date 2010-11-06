@@ -4,6 +4,7 @@ import java.util.List;
 
 import com.google.gwt.user.client.ui.HasText;
 import com.google.gwt.user.client.ui.IsWidget;
+import com.google.gwt.view.client.SelectionModel;
 
 import de.uniluebeck.itm.webui.shared.NodeUrn;
 import de.uniluebeck.itm.webui.shared.TestbedConfiguration;
@@ -23,6 +24,8 @@ public interface LoginView extends IsWidget {
 	void setNodeUrns(List<NodeUrn> nodes);
 	
     void setPresenter(Presenter listener);
+    
+    void setTestbedConfigurationSelectionModel(SelectionModel<TestbedConfiguration> selectionModel);
 
     public interface Presenter {
 

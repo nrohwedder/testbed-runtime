@@ -10,12 +10,11 @@ import java.io.Reader;
 import java.util.ArrayList;
 import java.util.List;
 
-import com.google.inject.Singleton;
 import com.thoughtworks.xstream.XStream;
 
 import de.uniluebeck.itm.webui.shared.TestbedConfiguration;
 
-@Singleton
+
 public class XmlFileTestbedConfigurationService implements TestbedConfigurationService {
 
 	private final XStream xstream;

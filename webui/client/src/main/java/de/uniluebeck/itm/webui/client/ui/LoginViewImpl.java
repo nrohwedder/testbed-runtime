@@ -20,6 +20,7 @@ import com.google.gwt.user.client.ui.HasText;
 import com.google.gwt.user.client.ui.Label;
 import com.google.gwt.user.client.ui.SplitLayoutPanel;
 import com.google.gwt.user.client.ui.Widget;
+import com.google.gwt.view.client.SelectionModel;
 import com.google.inject.Inject;
 
 import de.uniluebeck.itm.webui.shared.NodeUrn;
@@ -142,5 +143,10 @@ public class LoginViewImpl extends Composite implements LoginView {
 	public void setNodeUrns(List<NodeUrn> nodes) {
 		nodeUrnTable.setRowCount(nodes.size());
 		nodeUrnTable.setRowData(0, nodes);
+	}
+
+	@Override
+	public void setTestbedConfigurationSelectionModel(SelectionModel<TestbedConfiguration> selectionModel) {
+		configurationList.setSelectionModel(selectionModel);
 	}
 }

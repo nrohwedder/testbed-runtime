@@ -6,23 +6,29 @@ import com.google.gwt.activity.shared.AbstractActivity;
 import com.google.gwt.event.shared.EventBus;
 import com.google.gwt.user.client.rpc.AsyncCallback;
 import com.google.gwt.user.client.ui.AcceptsOneWidget;
+import com.google.gwt.view.client.SelectionChangeEvent;
+import com.google.gwt.view.client.SelectionChangeEvent.Handler;
+import com.google.gwt.view.client.SingleSelectionModel;
 import com.google.inject.Inject;
 
 import de.uniluebeck.itm.webui.api.TestbedServiceAsync;
 import de.uniluebeck.itm.webui.client.WebUiGinjector;
 import de.uniluebeck.itm.webui.client.place.LoginPlace;
 import de.uniluebeck.itm.webui.client.ui.LoginView;
+import de.uniluebeck.itm.webui.shared.NodeUrn;
 import de.uniluebeck.itm.webui.shared.TestbedConfiguration;
 
 public class LoginActivity extends AbstractActivity implements LoginView.Presenter {
-    // Used to obtain views, eventBus, placeController
-    // Alternatively, could be injected via GIN
 
     private final WebUiGinjector injector;
 
     private final TestbedServiceAsync service;
     
     private LoginView loginView;
+    
+    private SingleSelectionModel<TestbedConfiguration> testbedConfigurationSelectionModel;
+    
+    private TestbedConfiguration currentTestbedConfiguration;
     
     @Inject
     public LoginActivity(WebUiGinjector injector, TestbedServiceAsync service) {
@@ -33,6 +39,18 @@ public class LoginActivity extends AbstractActivity implements LoginView.Present
     public LoginActivity withPlace(LoginPlace place) {
     	return this;
     }
+    
+    private void bind() {
+    	testbedConfigurationSelectionModel.addSelectionChangeHandler(new Handler() {
+			@Override
+			public void onSelectionChange(SelectionChangeEvent event) {
+				currentTestbedConfiguration = testbedConfigurationSelectionModel.getSelectedObject();
+				System.out.println(currentTestbedConfiguration.getName());
+				loginView.getDescriptionField().setText(currentTestbedConfiguration.getDescription());
+				loadNodeUrns(currentTestbedConfiguration);
+			}
+		});
+    }
 
     /**
      * Invoked by the ActivityManager to start a new Activity
@@ -41,8 +59,11 @@ public class LoginActivity extends AbstractActivity implements LoginView.Present
     public void start(AcceptsOneWidget containerWidget, EventBus eventBus) {
         loginView = injector.getLoginView();
         loginView.setPresenter(this);
-        containerWidget.setWidget(loginView.asWidget());
+        testbedConfigurationSelectionModel = new SingleSelectionModel<TestbedConfiguration>();
+        loginView.setTestbedConfigurationSelectionModel(testbedConfigurationSelectionModel);
         
+        bind();
+        containerWidget.setWidget(loginView.asWidget());
         loadTestbedConfigurations();
     }
     
@@ -59,6 +80,20 @@ public class LoginActivity extends AbstractActivity implements LoginView.Present
 			}
 		});
     }
+    
+    private void loadNodeUrns(TestbedConfiguration configuration) {
+    	service.getNetwork(configuration.getSessionmanagementEndointUrl(), new AsyncCallback<List<NodeUrn>>() {
+    		@Override
+    		public void onSuccess(List<NodeUrn> nodes) {
+    			loginView.setNodeUrns(nodes);
+    		}
+    		
+    		@Override
+    		public void onFailure(Throwable throwable) {
+    			throwable.printStackTrace();
+    		}
+		});
+    }
 
     /**
      * Ask user before stopping this activity
@@ -70,7 +105,9 @@ public class LoginActivity extends AbstractActivity implements LoginView.Present
 
 	@Override
 	public void reload() {
-		
+		if (currentTestbedConfiguration != null) {
+			loadNodeUrns(currentTestbedConfiguration);
+		}
 	}
 
 	@Override

@@ -51,6 +51,22 @@
 		    <groupId>com.thoughtworks.xstream</groupId>
 		    <artifactId>xstream</artifactId>
 		</dependency>
+		
+		<dependency>
+            <groupId>de.uniluebeck.itm</groupId>
+            <artifactId>tr.snaa-api</artifactId>
+            <type>jar</type>
+        </dependency>
+        <dependency>
+            <groupId>de.uniluebeck.itm</groupId>
+            <artifactId>tr.wsn-api</artifactId>
+            <type>jar</type>
+        </dependency>
+        <dependency>
+            <groupId>de.uniluebeck.itm</groupId>
+            <artifactId>tr.wiseml</artifactId>
+            <type>jar</type>
+        </dependency>
     </dependencies>
     <build>
         <plugins>
