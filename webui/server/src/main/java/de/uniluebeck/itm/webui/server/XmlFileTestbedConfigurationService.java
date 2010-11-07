@@ -22,7 +22,7 @@ public class XmlFileTestbedConfigurationService implements TestbedConfigurationS
 	private final Reader reader;
 	
 	public XmlFileTestbedConfigurationService() throws FileNotFoundException {
-		this("WEB-INF/testbed-configurations.xml");
+		this("src/main/webapp/WEB-INF/testbed-configurations.xml");
 	}
 	
 	public XmlFileTestbedConfigurationService(String path) throws FileNotFoundException {		

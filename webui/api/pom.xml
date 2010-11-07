@@ -22,10 +22,6 @@
     		<groupId>de.uniluebeck.itm.tr.webui</groupId>
     		<artifactId>shared</artifactId>
     	</dependency>
-    	<dependency>
-    		<groupId>de.uniluebeck.itm.tr.webui</groupId>
-    		<artifactId>api</artifactId>
-    	</dependency>
 		<!-- GWT dependencies (from central repo) -->
         <dependency>
             <groupId>com.google.gwt</groupId>

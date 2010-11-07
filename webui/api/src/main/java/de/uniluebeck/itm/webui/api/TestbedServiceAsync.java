@@ -11,4 +11,6 @@ public interface TestbedServiceAsync {
 	void getTestbedConfigurations(AsyncCallback<List<TestbedConfiguration>> callback);
 
 	void getNetwork(String urn, AsyncCallback<List<NodeUrn>> callback);
+	
+	void authenticate(String endpointUrl, String urn, String username, String password, AsyncCallback<Void> callback);
 }

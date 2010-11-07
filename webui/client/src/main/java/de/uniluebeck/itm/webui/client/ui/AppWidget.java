@@ -21,8 +21,8 @@ public class AppWidget extends DockLayoutPanel implements AcceptsOneWidget {
 		setWidth("100%");
 		setHeight("100%");
 		
-		panel.setWidth("100%");
-		panel.setHeight("100%");
+		panel.setWidth("99%");
+		panel.setHeight("99%");
 		panel.setStyleName("default-border");
 		
 		tabBar.setWidth("100%");

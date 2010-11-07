@@ -1,6 +1,7 @@
 package de.uniluebeck.itm.webui.server;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 import com.google.gwt.user.server.rpc.RemoteServiceServlet;
@@ -12,6 +13,13 @@ import de.itm.uniluebeck.tr.wiseml.WiseMLHelper;
 import de.uniluebeck.itm.webui.api.TestbedService;
 import de.uniluebeck.itm.webui.shared.NodeUrn;
 import de.uniluebeck.itm.webui.shared.TestbedConfiguration;
+import de.uniluebeck.itm.webui.shared.exception.AuthenticationException;
+import eu.wisebed.testbed.api.snaa.helpers.SNAAServiceHelper;
+import eu.wisebed.testbed.api.snaa.v1.AuthenticationExceptionException;
+import eu.wisebed.testbed.api.snaa.v1.AuthenticationTriple;
+import eu.wisebed.testbed.api.snaa.v1.SNAA;
+import eu.wisebed.testbed.api.snaa.v1.SNAAExceptionException;
+import eu.wisebed.testbed.api.snaa.v1.SecretAuthenticationKey;
 import eu.wisebed.testbed.api.wsn.WSNServiceHelper;
 import eu.wisebed.testbed.api.wsn.v211.SessionManagement;
 
@@ -48,4 +56,19 @@ public class TestbedServiceImpl extends RemoteServiceServlet implements TestbedS
         return list;
 	}
 
+	@Override
+	public void authenticate(String endpointUrl, String urn, String username, String password) throws AuthenticationException {
+		SNAA snaaService = SNAAServiceHelper.getSNAAService(endpointUrl);
+        AuthenticationTriple authenticationTriple = new AuthenticationTriple();
+        authenticationTriple.setUsername(username);
+        authenticationTriple.setUrnPrefix(urn);
+        authenticationTriple.setPassword(password);
+        try {
+        	snaaService.authenticate(Arrays.asList(authenticationTriple));
+        } catch (AuthenticationExceptionException ex) {
+            throw new AuthenticationException("Authentication failed", ex);
+        } catch (SNAAExceptionException ex) {
+            throw new AuthenticationException("Authentication failed due to an error", ex);
+        }
+	}
 }
