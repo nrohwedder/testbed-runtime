@@ -19,7 +19,6 @@ import eu.wisebed.testbed.api.snaa.v1.AuthenticationExceptionException;
 import eu.wisebed.testbed.api.snaa.v1.AuthenticationTriple;
 import eu.wisebed.testbed.api.snaa.v1.SNAA;
 import eu.wisebed.testbed.api.snaa.v1.SNAAExceptionException;
-import eu.wisebed.testbed.api.snaa.v1.SecretAuthenticationKey;
 import eu.wisebed.testbed.api.wsn.WSNServiceHelper;
 import eu.wisebed.testbed.api.wsn.v211.SessionManagement;
 

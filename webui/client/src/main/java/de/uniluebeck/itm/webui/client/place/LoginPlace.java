@@ -5,21 +5,21 @@ import com.google.gwt.place.shared.PlaceTokenizer;
 
 public class LoginPlace extends Place {
 
-    private String helloName;
+    private String name;
 
     public LoginPlace(String token) {
-        this.helloName = token;
+        this.name = token;
     }
 
-    public String getHelloName() {
-        return helloName;
+    public String getLoginName() {
+        return name;
     }
 
     public static class Tokenizer implements PlaceTokenizer<LoginPlace> {
 
         @Override
         public String getToken(LoginPlace place) {
-            return place.getHelloName();
+            return place.getLoginName();
         }
 
         @Override

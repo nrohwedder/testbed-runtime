@@ -8,7 +8,7 @@ import com.google.inject.Inject;
 import de.uniluebeck.itm.webui.client.WebUiGinjector;
 import de.uniluebeck.itm.webui.client.place.LoginPlace;
 
-public class AppActivityMapper implements ActivityMapper {
+public class ContentActivityMapper implements ActivityMapper {
 	
     private WebUiGinjector injector;
 
@@ -20,7 +20,7 @@ public class AppActivityMapper implements ActivityMapper {
      *            Factory to be passed to activities
      */
     @Inject
-    public AppActivityMapper(WebUiGinjector injector) {
+    public ContentActivityMapper(WebUiGinjector injector) {
         super();
         this.injector = injector;
     }
@@ -34,7 +34,7 @@ public class AppActivityMapper implements ActivityMapper {
         // This is begging for GIN
     	Activity activity = null;
         if (place instanceof LoginPlace) {
-        	activity = injector.getHelloActivity();
+        	activity = injector.getLoginActivity();
         }
         return activity;
     }

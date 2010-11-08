@@ -1,0 +1,7 @@
+.default-border {
+	border: 5px #92c1f0 solid;
+}
+
+.error {
+	font: #FF0000 bold;
+}
