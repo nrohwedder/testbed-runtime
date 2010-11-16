@@ -12,20 +12,9 @@
     <packaging>pom</packaging>
     <version>0.5.4-SNAPSHOT</version>
     <name>TR :: Web UI</name>
-    <repositories>
-        <repository>
-            <id>gwt-dev-release</id>
-            <url>https://oss.sonatype.org/content/repositories/google-snapshots/</url>
-        </repository>
-    </repositories>
-    <pluginRepositories>
-        <pluginRepository>
-            <id>gwt-dev-release</id>
-            <url>http://google-web-toolkit.googlecode.com/svn/2.1.0/gwt/maven/</url>
-        </pluginRepository>
-    </pluginRepositories>
+
     <properties>
-        <gwt.version>2.1</gwt.version>
+        <gwt.version>2.1.0</gwt.version>
     </properties>
     <dependencyManagement>
         <dependencies>
@@ -53,13 +42,13 @@
             <dependency>
                 <groupId>com.google.gwt</groupId>
                 <artifactId>gwt-servlet</artifactId>
-                <version>${gwt.version}.0</version>
+                <version>${gwt.version}</version>
                 <scope>runtime</scope>
             </dependency>
             <dependency>
                 <groupId>com.google.gwt</groupId>
                 <artifactId>gwt-user</artifactId>
-                <version>${gwt.version}-SNAPSHOT</version>
+                <version>${gwt.version}</version>
                 <scope>provided</scope>
             </dependency>
             <dependency>

@@ -4,6 +4,20 @@
     "http://java.sun.com/dtd/web-app_2_3.dtd">
 
 <web-app>
+	<filter>
+		<filter-name>guiceFilter</filter-name>
+		<filter-class>com.google.inject.servlet.GuiceFilter</filter-class>
+	</filter>
+
+	<filter-mapping>
+		<filter-name>guiceFilter</filter-name>
+		<url-pattern>/*</url-pattern>
+	</filter-mapping>
+
+	<listener>
+		<listener-class>de.uniluebeck.itm.webui.server.WebUiGuiceServletConfig</listener-class>
+	</listener>
+
 	<!-- Default page to serve -->
 	<welcome-file-list>
 		<welcome-file>WebUi.html</welcome-file>
