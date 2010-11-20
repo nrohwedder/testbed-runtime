@@ -6,8 +6,11 @@ import com.google.gwt.place.shared.Place;
 import com.google.inject.Inject;
 
 import de.uniluebeck.itm.webui.client.WebUiGinjector;
+import de.uniluebeck.itm.webui.client.place.AdministrationPlace;
+import de.uniluebeck.itm.webui.client.place.ExperimentationPlace;
 import de.uniluebeck.itm.webui.client.place.LoginPlace;
 import de.uniluebeck.itm.webui.client.place.ReservationPlace;
+import de.uniluebeck.itm.webui.client.place.WiseMLNativePlace;
 
 public class ContentActivityMapper implements ActivityMapper {
 	
@@ -38,6 +41,12 @@ public class ContentActivityMapper implements ActivityMapper {
         	activity = injector.getLoginActivity();
         } else if (place instanceof ReservationPlace) {
         	activity = injector.getReservationActivity();
+        } else if (place instanceof ExperimentationPlace) {
+        	activity = injector.getExperimentationActivity();
+        } else if (place instanceof AdministrationPlace) {
+        	activity = injector.getAdministrationActivity();
+        } else if (place instanceof WiseMLNativePlace) {
+        	activity = injector.getWiseMLNativeActivity();
         }
         return activity;
     }

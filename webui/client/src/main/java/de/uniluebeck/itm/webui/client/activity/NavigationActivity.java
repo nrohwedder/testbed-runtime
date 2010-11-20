@@ -11,8 +11,11 @@ import com.google.gwt.user.client.ui.AcceptsOneWidget;
 import com.google.inject.Inject;
 
 import de.uniluebeck.itm.webui.client.WebUiGinjector;
+import de.uniluebeck.itm.webui.client.place.AdministrationPlace;
+import de.uniluebeck.itm.webui.client.place.ExperimentationPlace;
 import de.uniluebeck.itm.webui.client.place.LoginPlace;
 import de.uniluebeck.itm.webui.client.place.ReservationPlace;
+import de.uniluebeck.itm.webui.client.place.WiseMLNativePlace;
 import de.uniluebeck.itm.webui.client.ui.NavigationView;
 
 public class NavigationActivity extends AbstractActivity implements NavigationView.Presenter {
@@ -50,6 +53,9 @@ public class NavigationActivity extends AbstractActivity implements NavigationVi
 		
 		navigation.add(new Entry("Login", new LoginPlace()));
 		navigation.add(new Entry("Reservation", new ReservationPlace()));
+		navigation.add(new Entry("Experimentation", new ExperimentationPlace()));
+		navigation.add(new Entry("Administration", new AdministrationPlace()));
+		navigation.add(new Entry("WiseML Native", new WiseMLNativePlace()));
 	}
 	
 	@Override
