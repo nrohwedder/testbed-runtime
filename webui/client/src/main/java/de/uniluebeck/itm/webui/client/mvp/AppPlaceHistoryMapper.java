@@ -4,6 +4,7 @@ import com.google.gwt.place.shared.PlaceHistoryMapper;
 import com.google.gwt.place.shared.WithTokenizers;
 
 import de.uniluebeck.itm.webui.client.place.LoginPlace;
+import de.uniluebeck.itm.webui.client.place.ReservationPlace;
 
 /**
  * PlaceHistoryMapper interface is used to attach all places which the
@@ -11,6 +12,6 @@ import de.uniluebeck.itm.webui.client.place.LoginPlace;
  * annotation or by extending PlaceHistoryMapperWithFactory and creating a
  * separate TokenizerFactory.
  */
-@WithTokenizers({LoginPlace.Tokenizer.class})
+@WithTokenizers({LoginPlace.Tokenizer.class, ReservationPlace.Tokenizer.class})
 public interface AppPlaceHistoryMapper extends PlaceHistoryMapper {
 }

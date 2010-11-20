@@ -5,26 +5,19 @@ import com.google.gwt.place.shared.PlaceTokenizer;
 
 public class LoginPlace extends Place {
 
-    private String name;
-
-    public LoginPlace(String token) {
-        this.name = token;
-    }
-
-    public String getLoginName() {
-        return name;
+    public LoginPlace() {
     }
 
     public static class Tokenizer implements PlaceTokenizer<LoginPlace> {
 
         @Override
         public String getToken(LoginPlace place) {
-            return place.getLoginName();
+            return "";
         }
 
         @Override
         public LoginPlace getPlace(String token) {
-            return new LoginPlace(token);
+            return new LoginPlace();
         }
     }
 }

@@ -10,6 +10,7 @@ import com.google.inject.Singleton;
 
 import de.uniluebeck.itm.webui.client.activity.LoginActivity;
 import de.uniluebeck.itm.webui.client.activity.NavigationActivity;
+import de.uniluebeck.itm.webui.client.activity.ReservationActivity;
 import de.uniluebeck.itm.webui.client.mvp.AppPlaceHistoryMapper;
 import de.uniluebeck.itm.webui.client.mvp.ContentActivityManager;
 import de.uniluebeck.itm.webui.client.mvp.ContentActivityMapper;
@@ -21,17 +22,21 @@ import de.uniluebeck.itm.webui.client.ui.LoginView;
 import de.uniluebeck.itm.webui.client.ui.LoginViewImpl;
 import de.uniluebeck.itm.webui.client.ui.NavigationView;
 import de.uniluebeck.itm.webui.client.ui.NavigationViewImpl;
+import de.uniluebeck.itm.webui.client.ui.ReservationView;
+import de.uniluebeck.itm.webui.client.ui.ReservationViewImpl;
 
 public class WebUiClientModule extends AbstractGinModule {
 
 	@Override
-	protected void configure() {
+	protected void configure() {		
 		bind(ContentActivityMapper.class);
 		bind(AppWidget.class).to(AppWidgetImpl.class).in(Singleton.class);
 		bind(NavigationView.class).to(NavigationViewImpl.class).in(Singleton.class);
 		bind(LoginView.class).to(LoginViewImpl.class).in(Singleton.class);
+		bind(ReservationView.class).to(ReservationViewImpl.class).in(Singleton.class);
 		bind(LoginActivity.class);
 		bind(NavigationActivity.class);
+		bind(ReservationActivity.class);
 		bind(ContentActivityManager.class).in(Singleton.class);
 		bind(NavigationActivityManager.class).in(Singleton.class);
 	}
@@ -46,7 +51,7 @@ public class WebUiClientModule extends AbstractGinModule {
 	@Provides
 	PlaceHistoryHandler providePlaceHistoryHandler(AppPlaceHistoryMapper mapper, PlaceController placeController, EventBus eventBus) {
 		PlaceHistoryHandler historyHandler = new PlaceHistoryHandler(mapper);
-		historyHandler.register(placeController, eventBus, new LoginPlace("World!"));
+		historyHandler.register(placeController, eventBus, new LoginPlace());
 		return historyHandler;
 	}
 	

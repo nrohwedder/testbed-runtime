@@ -7,6 +7,7 @@ import com.google.inject.Inject;
 
 import de.uniluebeck.itm.webui.client.WebUiGinjector;
 import de.uniluebeck.itm.webui.client.place.LoginPlace;
+import de.uniluebeck.itm.webui.client.place.ReservationPlace;
 
 public class ContentActivityMapper implements ActivityMapper {
 	
@@ -35,6 +36,8 @@ public class ContentActivityMapper implements ActivityMapper {
     	Activity activity = null;
         if (place instanceof LoginPlace) {
         	activity = injector.getLoginActivity();
+        } else if (place instanceof ReservationPlace) {
+        	activity = injector.getReservationActivity();
         }
         return activity;
     }
