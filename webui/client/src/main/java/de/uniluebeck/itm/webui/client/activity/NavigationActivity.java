@@ -54,25 +54,32 @@ public class NavigationActivity extends AbstractActivity implements NavigationVi
 	
 	@Override
 	public void start(AcceptsOneWidget container, EventBus eventBus) {
+		GWT.log("Start navigation activity");
 		navigationView = injector.getNavigationView();
 		navigationView.setPresenter(this);
 		
 		initTabs();
+		updateSelection();
 		
 		container.setWidget(navigationView);
 	}
 	
 	private void initTabs() {
-		int i = 0;
 		for (Entry entry : navigation) {
 			navigationView.add(entry.getName());
+		}
+	}
+	
+	public void updateSelection() {
+		if (place == null) {
+			navigationView.select(0);
+		}
+		int i = 0;
+		for (Entry entry : navigation) {
 			if (place != null && place.getClass().equals(entry.getPlace().getClass())) {
 				navigationView.select(i);
 			}
 			i++;
-		}
-		if (place == null) {
-			navigationView.select(0);
 		}
 	}
 	
@@ -85,5 +92,8 @@ public class NavigationActivity extends AbstractActivity implements NavigationVi
 
 	public void setPlace(Place place) {
 		this.place = place;
+		if (navigationView != null) {
+			updateSelection();
+		}
 	}
 }
