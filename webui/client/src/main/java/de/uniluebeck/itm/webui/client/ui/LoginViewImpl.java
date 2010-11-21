@@ -9,6 +9,7 @@ import com.google.gwt.event.dom.client.ClickEvent;
 import com.google.gwt.event.dom.client.ClickHandler;
 import com.google.gwt.safehtml.shared.SafeHtmlBuilder;
 import com.google.gwt.uibinder.client.UiBinder;
+import com.google.gwt.uibinder.client.UiFactory;
 import com.google.gwt.uibinder.client.UiField;
 import com.google.gwt.uibinder.client.UiHandler;
 import com.google.gwt.user.cellview.client.CellList;
@@ -17,8 +18,8 @@ import com.google.gwt.user.cellview.client.TextColumn;
 import com.google.gwt.user.client.ui.Button;
 import com.google.gwt.user.client.ui.Composite;
 import com.google.gwt.user.client.ui.DialogBox;
+import com.google.gwt.user.client.ui.DockLayoutPanel;
 import com.google.gwt.user.client.ui.FlexTable;
-import com.google.gwt.user.client.ui.FlowPanel;
 import com.google.gwt.user.client.ui.HasEnabled;
 import com.google.gwt.user.client.ui.HasHorizontalAlignment;
 import com.google.gwt.user.client.ui.HasText;
@@ -134,16 +135,16 @@ public class LoginViewImpl extends Composite implements LoginView {
     private static LoginViewImplUiBinder uiBinder = GWT.create(LoginViewImplUiBinder.class);
     
     @UiField
-    SplitLayoutPanel layout;    
+    DockLayoutPanel layout;    
     
     @UiField
     SplitLayoutPanel innerlayout;
     
     @UiField
-    FlowPanel configurationListPanel;
+    CellList<TestbedConfiguration> configurationList;
     
     @UiField
-    FlowPanel nodeUrnTablePanel;
+    CellTable<NodeUrn> nodeUrnTable;
     
     @UiField
     Label description;
@@ -156,10 +157,6 @@ public class LoginViewImpl extends Composite implements LoginView {
     
     private LoginDialog loginDialog = new LoginDialog();
     
-    private CellList<TestbedConfiguration> configurationList;
-    
-    private CellTable<NodeUrn> nodeUrnTable;
-    
     private Presenter presenter;
 
     @Inject
@@ -169,16 +166,6 @@ public class LoginViewImpl extends Composite implements LoginView {
         layout.setWidth("100%");
         layout.setHeight("100%");
         
-        final Cell<TestbedConfiguration> cell = new AbstractCell<TestbedConfiguration>() {
-			@Override
-			public void render(TestbedConfiguration configuration, Object paramObject, SafeHtmlBuilder sb) {
-				sb.appendEscaped(configuration.getName());
-			}
-        };
-        configurationList = new CellList<TestbedConfiguration>(cell);
-        configurationListPanel.add(configurationList);
-        
-        nodeUrnTable = new CellTable<NodeUrn>();
         nodeUrnTable.setWidth("100%");
         
         final TextColumn<NodeUrn> prefixColumn = new TextColumn<NodeUrn>() {
@@ -212,8 +199,17 @@ public class LoginViewImpl extends Composite implements LoginView {
         	}
 		};
 		nodeUrnTable.addColumn(nodeColumn, "Node");
-        
-        nodeUrnTablePanel.add(nodeUrnTable);
+    }
+    
+    @UiFactory
+    public CellList<TestbedConfiguration> createTestbedConfigurationCellList() {
+        final Cell<TestbedConfiguration> cell = new AbstractCell<TestbedConfiguration>() {
+			@Override
+			public void render(TestbedConfiguration configuration, Object paramObject, SafeHtmlBuilder sb) {
+				sb.appendEscaped(configuration.getName());
+			}
+        };
+        return new CellList<TestbedConfiguration>(cell);
     }
     
     @UiHandler("reloadButton")

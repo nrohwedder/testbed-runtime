@@ -4,6 +4,8 @@ import java.util.Iterator;
 import java.util.List;
 
 import com.google.gwt.activity.shared.AbstractActivity;
+import com.google.gwt.core.client.Scheduler;
+import com.google.gwt.core.client.Scheduler.ScheduledCommand;
 import com.google.gwt.event.shared.EventBus;
 import com.google.gwt.user.client.rpc.AsyncCallback;
 import com.google.gwt.user.client.ui.AcceptsOneWidget;
@@ -64,7 +66,7 @@ public class LoginActivity extends AbstractActivity implements LoginView.Present
     }
     
     private void loadTestbedConfigurations() {
-    	service.getTestbedConfigurations(new AsyncCallback<List<TestbedConfiguration>>() {
+    	final AsyncCallback<List<TestbedConfiguration>> callback = new AsyncCallback<List<TestbedConfiguration>>() {
 			@Override
 			public void onSuccess(List<TestbedConfiguration> configurations) {
 				loginView.setConfigurations(configurations);
@@ -73,6 +75,12 @@ public class LoginActivity extends AbstractActivity implements LoginView.Present
 			@Override
 			public void onFailure(Throwable throwable) {
 				throwable.printStackTrace();
+			}
+		};
+		Scheduler.get().scheduleDeferred(new ScheduledCommand() {
+			@Override
+			public void execute() {
+				service.getTestbedConfigurations(callback);
 			}
 		});
     }
