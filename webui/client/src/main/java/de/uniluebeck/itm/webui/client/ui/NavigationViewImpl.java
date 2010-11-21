@@ -44,6 +44,6 @@ public class NavigationViewImpl extends Composite implements NavigationView {
 	
 	@Override
 	public void select(Integer index) {
-		navigationBar.selectTab(index);
+		navigationBar.selectTab(index, false);
 	}
 }
