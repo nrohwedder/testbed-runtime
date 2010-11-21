@@ -29,9 +29,14 @@
 		.description {
 			padding: 7px;
 		}
+		
+		.fullLayout {
+			width:100%;
+			height:100%;
+		}
 	</ui:style>
 
-	<g:DockLayoutPanel ui:field="layout">
+	<g:DockLayoutPanel styleName="{style.fullLayout}">
 		<g:center>
 			<g:SplitLayoutPanel>
 				<g:center>
@@ -41,7 +46,7 @@
 					</g:FlowPanel>
 				</g:center>
 				<g:west size="250">
-					<g:SplitLayoutPanel ui:field="innerlayout">
+					<g:SplitLayoutPanel>
 						<g:north size="400">
 							<g:FlowPanel>
 								<g:Label styleName="{style.caption}">Testbed Configurations</g:Label>

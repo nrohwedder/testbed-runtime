@@ -51,7 +51,7 @@ public class NavigationActivity extends AbstractActivity implements NavigationVi
 	public NavigationActivity(WebUiGinjector injector) {
 		this.injector = injector;
 		
-		navigation.add(new Entry("Login", new LoginPlace()));
+		navigation.add(new Entry("Login", new LoginPlace(null)));
 		navigation.add(new Entry("Reservation", new ReservationPlace()));
 		navigation.add(new Entry("Experimentation", new ExperimentationPlace()));
 		navigation.add(new Entry("Administration", new AdministrationPlace()));

@@ -18,7 +18,6 @@ import com.google.gwt.user.cellview.client.TextColumn;
 import com.google.gwt.user.client.ui.Button;
 import com.google.gwt.user.client.ui.Composite;
 import com.google.gwt.user.client.ui.DialogBox;
-import com.google.gwt.user.client.ui.DockLayoutPanel;
 import com.google.gwt.user.client.ui.FlexTable;
 import com.google.gwt.user.client.ui.HasEnabled;
 import com.google.gwt.user.client.ui.HasHorizontalAlignment;
@@ -26,7 +25,6 @@ import com.google.gwt.user.client.ui.HasText;
 import com.google.gwt.user.client.ui.HorizontalPanel;
 import com.google.gwt.user.client.ui.Label;
 import com.google.gwt.user.client.ui.PasswordTextBox;
-import com.google.gwt.user.client.ui.SplitLayoutPanel;
 import com.google.gwt.user.client.ui.TextBox;
 import com.google.gwt.user.client.ui.VerticalPanel;
 import com.google.gwt.user.client.ui.Widget;
@@ -135,12 +133,6 @@ public class LoginViewImpl extends Composite implements LoginView {
     private static LoginViewImplUiBinder uiBinder = GWT.create(LoginViewImplUiBinder.class);
     
     @UiField
-    DockLayoutPanel layout;    
-    
-    @UiField
-    SplitLayoutPanel innerlayout;
-    
-    @UiField
     CellList<TestbedConfiguration> configurationList;
     
     @UiField
@@ -162,9 +154,6 @@ public class LoginViewImpl extends Composite implements LoginView {
     @Inject
     public LoginViewImpl() {
         initWidget(uiBinder.createAndBindUi(this));
-        
-        layout.setWidth("100%");
-        layout.setHeight("100%");
         
         nodeUrnTable.setWidth("100%");
         

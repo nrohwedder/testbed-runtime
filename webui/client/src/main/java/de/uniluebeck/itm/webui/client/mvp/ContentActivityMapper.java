@@ -6,6 +6,7 @@ import com.google.gwt.place.shared.Place;
 import com.google.inject.Inject;
 
 import de.uniluebeck.itm.webui.client.WebUiGinjector;
+import de.uniluebeck.itm.webui.client.activity.LoginActivity;
 import de.uniluebeck.itm.webui.client.place.AdministrationPlace;
 import de.uniluebeck.itm.webui.client.place.ExperimentationPlace;
 import de.uniluebeck.itm.webui.client.place.LoginPlace;
@@ -36,18 +37,23 @@ public class ContentActivityMapper implements ActivityMapper {
     @Override
     public Activity getActivity(Place place) {
         // This is begging for GIN
-    	Activity activity = null;
         if (place instanceof LoginPlace) {
-        	activity = injector.getLoginActivity();
-        } else if (place instanceof ReservationPlace) {
-        	activity = injector.getReservationActivity();
-        } else if (place instanceof ExperimentationPlace) {
-        	activity = injector.getExperimentationActivity();
-        } else if (place instanceof AdministrationPlace) {
-        	activity = injector.getAdministrationActivity();
-        } else if (place instanceof WiseMLNativePlace) {
-        	activity = injector.getWiseMLNativeActivity();
+        	LoginActivity activity = injector.getLoginActivity();
+        	activity.setPlace((LoginPlace) place);
+        	return activity;
         }
-        return activity;
+        if (place instanceof ReservationPlace) {
+        	return injector.getReservationActivity();
+        }
+        if (place instanceof ExperimentationPlace) {
+        	return injector.getExperimentationActivity();
+        }
+        if (place instanceof AdministrationPlace) {
+        	return injector.getAdministrationActivity();
+        }
+        if (place instanceof WiseMLNativePlace) {
+        	return injector.getWiseMLNativeActivity();
+        }
+        return null;
     }
 }
