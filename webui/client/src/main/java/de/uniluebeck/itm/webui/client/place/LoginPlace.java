@@ -5,24 +5,32 @@ import com.google.gwt.place.shared.PlaceTokenizer;
 
 public class LoginPlace extends Place {
 
-    private String name;
-
-    public LoginPlace(String token) {
-        this.name = token;
+	private Integer selection;
+	
+	public LoginPlace() {
+		this.selection = null;
+	}
+	
+    public LoginPlace(Integer selection) {
+    	this.selection = selection;
     }
-
-    public String getLoginName() {
-        return name;
+    
+    public void setSelection(Integer selection) {
+    	this.selection = selection;
+    }
+    
+    public Integer getSelection() {
+    	return selection;
     }
 
     public static class Tokenizer implements PlaceTokenizer<LoginPlace> {
 
         public String getToken(LoginPlace place) {
-            return place.getLoginName();
+            return place.getSelection() != null ? String.valueOf(place.getSelection()) : "";
         }
 
         public LoginPlace getPlace(String token) {
-            return new LoginPlace(token);
+            return new LoginPlace(token.equals("") ? null : Integer.parseInt(token));
         }
     }
 }

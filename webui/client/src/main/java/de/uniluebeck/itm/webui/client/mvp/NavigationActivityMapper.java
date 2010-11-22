@@ -5,18 +5,19 @@ import com.google.gwt.activity.shared.ActivityMapper;
 import com.google.gwt.place.shared.Place;
 import com.google.inject.Inject;
 
-import de.uniluebeck.itm.webui.client.WebUiGinjector;
+import de.uniluebeck.itm.webui.client.activity.NavigationActivity;
 
 public class NavigationActivityMapper implements ActivityMapper {
 	
-	private final WebUiGinjector injector;
+	private final NavigationActivity activity;
 	
 	@Inject
-	public NavigationActivityMapper(WebUiGinjector injector) {
-		this.injector = injector;
+	public NavigationActivityMapper(NavigationActivity activity) {
+		this.activity = activity;
 	}
 
 	public Activity getActivity(Place place) {
-		return injector.getNavigationActivity();
+		activity.setPlace(place);
+		return activity;
 	}
 }
