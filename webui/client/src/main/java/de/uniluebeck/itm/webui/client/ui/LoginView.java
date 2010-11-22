@@ -1,14 +1,13 @@
 package de.uniluebeck.itm.webui.client.ui;
 
-import java.util.List;
-
 import com.google.gwt.user.client.ui.HasEnabled;
 import com.google.gwt.user.client.ui.HasText;
 import com.google.gwt.user.client.ui.IsWidget;
 import com.google.gwt.view.client.SelectionModel;
-
 import de.uniluebeck.itm.webui.shared.NodeUrn;
 import de.uniluebeck.itm.webui.shared.TestbedConfiguration;
+
+import java.util.List;
 
 public interface LoginView extends IsWidget {
 

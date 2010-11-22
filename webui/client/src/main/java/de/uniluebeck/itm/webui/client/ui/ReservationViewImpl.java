@@ -9,15 +9,15 @@ public class ReservationViewImpl extends Composite implements ReservationView {
 
     interface ReservationViewImplUiBinder extends UiBinder<Widget, ReservationViewImpl> {
     }
-    
-    private static ReservationViewImplUiBinder uiBinder = GWT.create(ReservationViewImplUiBinder.class);
-	
-	public ReservationViewImpl() {
-		initWidget(uiBinder.createAndBindUi(this));
-	}
 
-	public void setPresenter(Presenter presenter) {
-		
-	}
+    private static ReservationViewImplUiBinder uiBinder = GWT.create(ReservationViewImplUiBinder.class);
+
+    public ReservationViewImpl() {
+        initWidget(uiBinder.createAndBindUi(this));
+    }
+
+    public void setPresenter(Presenter presenter) {
+
+    }
 
 }

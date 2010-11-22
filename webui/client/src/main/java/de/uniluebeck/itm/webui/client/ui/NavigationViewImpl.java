@@ -13,34 +13,34 @@ public class NavigationViewImpl extends Composite implements NavigationView {
 
     interface NavigationViewImplUiBinder extends UiBinder<Widget, NavigationViewImpl> {
     }
-    
+
     private static NavigationViewImplUiBinder uiBinder = GWT.create(NavigationViewImplUiBinder.class);
-	
+
     @UiField
     TabBar navigationBar;
-    
-	private Presenter presenter;
-	
-	public NavigationViewImpl() {
-		initWidget(uiBinder.createAndBindUi(this));
-		
-		navigationBar.setWidth("100%");		
-	}
-	
-	@UiHandler("navigationBar")
-	public void handleSelection(SelectionEvent<Integer> event) {
-		presenter.selected(event.getSelectedItem());
-	}
 
-	public void setPresenter(Presenter presenter) {
-		this.presenter = presenter;
-	}
+    private Presenter presenter;
 
-	public void add(String name) {
-		navigationBar.addTab(name);		
-	}
+    public NavigationViewImpl() {
+        initWidget(uiBinder.createAndBindUi(this));
 
-	public void select(Integer index) {
-		navigationBar.selectTab(index, false);
-	}
+        navigationBar.setWidth("100%");
+    }
+
+    @UiHandler("navigationBar")
+    public void handleSelection(SelectionEvent<Integer> event) {
+        presenter.selected(event.getSelectedItem());
+    }
+
+    public void setPresenter(Presenter presenter) {
+        this.presenter = presenter;
+    }
+
+    public void add(String name) {
+        navigationBar.addTab(name);
+    }
+
+    public void select(Integer index) {
+        navigationBar.selectTab(index, false);
+    }
 }

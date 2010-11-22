@@ -6,8 +6,8 @@ import com.google.inject.Inject;
 
 public class NavigationActivityManager extends ActivityManager {
 
-	@Inject
-	public NavigationActivityManager(NavigationActivityMapper mapper, EventBus eventBus) {
-		super(mapper, eventBus);
-	}
+    @Inject
+    public NavigationActivityManager(NavigationActivityMapper mapper, EventBus eventBus) {
+        super(mapper, eventBus);
+    }
 }

@@ -30,15 +30,15 @@ import java.io.Serializable;
 public class AuthenticationException extends Exception implements Serializable {
 
     /**
-	 * 
-	 */
-	private static final long serialVersionUID = 932806176360713676L;
+     *
+     */
+    private static final long serialVersionUID = 932806176360713676L;
 
-	public AuthenticationException() {
-		super();
-	}
-	
-	public AuthenticationException(String msg) {
+    public AuthenticationException() {
+        super();
+    }
+
+    public AuthenticationException(String msg) {
         super(msg);
     }
 

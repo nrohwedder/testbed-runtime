@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
     <parent>
         <groupId>de.uniluebeck.itm</groupId>
         <artifactId>tr.webui</artifactId>
@@ -13,16 +13,16 @@
     <name>TR :: Web UI API</name>
     <packaging>jar</packaging>
     <properties>
-	<!-- tell the compiler we can use 1.5 -->
+        <!-- tell the compiler we can use 1.5 -->
         <maven.compiler.source>1.5</maven.compiler.source>
         <maven.compiler.target>1.5</maven.compiler.target>
     </properties>
     <dependencies>
-    	<dependency>
-    		<groupId>de.uniluebeck.itm.tr.webui</groupId>
-    		<artifactId>shared</artifactId>
-    	</dependency>
-		<!-- GWT dependencies (from central repo) -->
+        <dependency>
+            <groupId>de.uniluebeck.itm.tr.webui</groupId>
+            <artifactId>shared</artifactId>
+        </dependency>
+        <!-- GWT dependencies (from central repo) -->
         <dependency>
             <groupId>com.google.gwt</groupId>
             <artifactId>gwt-servlet</artifactId>
@@ -45,8 +45,8 @@
                 </configuration>
             </plugin>
         </plugins>
-	<!-- Include SOURCE in output artifact for GWT (GWT libraries must include
-	source) -->
+        <!-- Include SOURCE in output artifact for GWT (GWT libraries must include
+      source) -->
         <resources>
             <resource>
                 <directory>src/main/java</directory>
