@@ -15,11 +15,11 @@ public class ExperimentationActivity extends AbstractActivity implements Present
     private ExperimentationView view;
 
     @Inject
-    public ExperimentationActivity(WebUiGinjector injector) {
+    public ExperimentationActivity(final WebUiGinjector injector) {
         this.injector = injector;
     }
 
-    public void start(AcceptsOneWidget panel, EventBus eventBus) {
+    public void start(final AcceptsOneWidget panel, final EventBus eventBus) {
         view = injector.getExperimentationView();
         view.setPresenter(this);
 

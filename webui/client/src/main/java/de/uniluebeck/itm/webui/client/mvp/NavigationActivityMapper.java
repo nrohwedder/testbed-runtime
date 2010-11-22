@@ -11,11 +11,11 @@ public class NavigationActivityMapper implements ActivityMapper {
     private final NavigationActivity activity;
 
     @Inject
-    public NavigationActivityMapper(NavigationActivity activity) {
+    public NavigationActivityMapper(final NavigationActivity activity) {
         this.activity = activity;
     }
 
-    public Activity getActivity(Place place) {
+    public Activity getActivity(final Place place) {
         activity.setPlace(place);
         return activity;
     }

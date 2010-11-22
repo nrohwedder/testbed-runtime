@@ -17,7 +17,7 @@ public class ExperimentationViewImpl extends Composite implements Experimentatio
         initWidget(uiBinder.createAndBindUi(this));
     }
 
-    public void setPresenter(Presenter presenter) {
+    public void setPresenter(final Presenter presenter) {
 
     }
 }

@@ -7,11 +7,11 @@ public class AdministrationPlace extends Place {
 
     public static class Tokenizer implements PlaceTokenizer<AdministrationPlace> {
 
-        public String getToken(AdministrationPlace place) {
+        public String getToken(final AdministrationPlace place) {
             return "";
         }
 
-        public AdministrationPlace getPlace(String token) {
+        public AdministrationPlace getPlace(final String token) {
             return new AdministrationPlace();
         }
     }

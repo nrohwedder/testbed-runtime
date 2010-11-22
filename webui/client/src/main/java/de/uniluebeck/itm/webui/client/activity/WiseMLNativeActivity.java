@@ -15,11 +15,11 @@ public class WiseMLNativeActivity extends AbstractActivity implements Presenter 
     private WiseMLNativeView view;
 
     @Inject
-    public WiseMLNativeActivity(WebUiGinjector injector) {
+    public WiseMLNativeActivity(final WebUiGinjector injector) {
         this.injector = injector;
     }
 
-    public void start(AcceptsOneWidget panel, EventBus eventBus) {
+    public void start(final AcceptsOneWidget panel, final EventBus eventBus) {
         view = injector.getWiseMLNativeView();
         view.setPresenter(this);
 

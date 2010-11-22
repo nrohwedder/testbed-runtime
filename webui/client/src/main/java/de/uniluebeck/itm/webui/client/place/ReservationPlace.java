@@ -10,11 +10,11 @@ public class ReservationPlace extends Place {
 
     public static class Tokenizer implements PlaceTokenizer<ReservationPlace> {
 
-        public String getToken(ReservationPlace place) {
+        public String getToken(final ReservationPlace place) {
             return "";
         }
 
-        public ReservationPlace getPlace(String token) {
+        public ReservationPlace getPlace(final String token) {
             return new ReservationPlace();
         }
     }

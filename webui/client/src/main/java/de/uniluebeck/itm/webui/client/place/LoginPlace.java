@@ -11,11 +11,11 @@ public class LoginPlace extends Place {
         this.selection = null;
     }
 
-    public LoginPlace(Integer selection) {
+    public LoginPlace(final Integer selection) {
         this.selection = selection;
     }
 
-    public void setSelection(Integer selection) {
+    public void setSelection(final Integer selection) {
         this.selection = selection;
     }
 
@@ -25,12 +25,12 @@ public class LoginPlace extends Place {
 
     public static class Tokenizer implements PlaceTokenizer<LoginPlace> {
 
-        public String getToken(LoginPlace place) {
+        public String getToken(final LoginPlace place) {
             return place.getSelection() != null ? String.valueOf(place.getSelection()) : "";
         }
 
-        public LoginPlace getPlace(String token) {
-            return new LoginPlace(token.equals("") ? null : Integer.parseInt(token));
+        public LoginPlace getPlace(final String token) {
+            return new LoginPlace("".equals(token) ? null : Integer.parseInt(token));
         }
     }
 }

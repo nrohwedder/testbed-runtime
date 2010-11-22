@@ -28,19 +28,19 @@ public class NavigationViewImpl extends Composite implements NavigationView {
     }
 
     @UiHandler("navigationBar")
-    public void handleSelection(SelectionEvent<Integer> event) {
+    public void handleSelection(final SelectionEvent<Integer> event) {
         presenter.selected(event.getSelectedItem());
     }
 
-    public void setPresenter(Presenter presenter) {
+    public void setPresenter(final Presenter presenter) {
         this.presenter = presenter;
     }
 
-    public void add(String name) {
+    public void add(final String name) {
         navigationBar.addTab(name);
     }
 
-    public void select(Integer index) {
+    public void select(final Integer index) {
         navigationBar.selectTab(index, false);
     }
 }

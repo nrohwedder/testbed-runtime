@@ -6,7 +6,11 @@ import com.google.gwt.place.shared.Place;
 import com.google.inject.Inject;
 import de.uniluebeck.itm.webui.client.WebUiGinjector;
 import de.uniluebeck.itm.webui.client.activity.LoginActivity;
-import de.uniluebeck.itm.webui.client.place.*;
+import de.uniluebeck.itm.webui.client.place.AdministrationPlace;
+import de.uniluebeck.itm.webui.client.place.ExperimentationPlace;
+import de.uniluebeck.itm.webui.client.place.LoginPlace;
+import de.uniluebeck.itm.webui.client.place.ReservationPlace;
+import de.uniluebeck.itm.webui.client.place.WiseMLNativePlace;
 
 public class ContentActivityMapper implements ActivityMapper {
 
@@ -19,7 +23,7 @@ public class ContentActivityMapper implements ActivityMapper {
      * @param injector GIN injector to be passed to activities
      */
     @Inject
-    public ContentActivityMapper(WebUiGinjector injector) {
+    public ContentActivityMapper(final WebUiGinjector injector) {
         super();
         this.injector = injector;
     }
@@ -27,24 +31,25 @@ public class ContentActivityMapper implements ActivityMapper {
     /**
      * Map each Place to its corresponding Activity.
      */
-    public Activity getActivity(Place place) {
+    public Activity getActivity(final Place place) {
+        Activity mappedActivity = null;
         if (place instanceof LoginPlace) {
-            LoginActivity activity = injector.getLoginActivity();
+            final LoginActivity activity = injector.getLoginActivity();
             activity.setPlace((LoginPlace) place);
-            return activity;
+            mappedActivity = activity;
         }
         if (place instanceof ReservationPlace) {
-            return injector.getReservationActivity();
+            mappedActivity = injector.getReservationActivity();
         }
         if (place instanceof ExperimentationPlace) {
-            return injector.getExperimentationActivity();
+            mappedActivity = injector.getExperimentationActivity();
         }
         if (place instanceof AdministrationPlace) {
-            return injector.getAdministrationActivity();
+            mappedActivity = injector.getAdministrationActivity();
         }
         if (place instanceof WiseMLNativePlace) {
-            return injector.getWiseMLNativeActivity();
+            mappedActivity = injector.getWiseMLNativeActivity();
         }
-        return null;
+        return mappedActivity;
     }
 }

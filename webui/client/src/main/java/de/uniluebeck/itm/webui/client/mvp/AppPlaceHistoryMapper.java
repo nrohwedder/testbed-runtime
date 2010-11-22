@@ -2,7 +2,11 @@ package de.uniluebeck.itm.webui.client.mvp;
 
 import com.google.gwt.place.shared.PlaceHistoryMapper;
 import com.google.gwt.place.shared.WithTokenizers;
-import de.uniluebeck.itm.webui.client.place.*;
+import de.uniluebeck.itm.webui.client.place.AdministrationPlace;
+import de.uniluebeck.itm.webui.client.place.ExperimentationPlace;
+import de.uniluebeck.itm.webui.client.place.LoginPlace;
+import de.uniluebeck.itm.webui.client.place.ReservationPlace;
+import de.uniluebeck.itm.webui.client.place.WiseMLNativePlace;
 
 /**
  * PlaceHistoryMapper interface is used to attach all places which the

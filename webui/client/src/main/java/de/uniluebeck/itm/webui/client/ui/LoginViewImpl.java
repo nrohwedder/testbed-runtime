@@ -13,7 +13,19 @@ import com.google.gwt.uibinder.client.UiHandler;
 import com.google.gwt.user.cellview.client.CellList;
 import com.google.gwt.user.cellview.client.CellTable;
 import com.google.gwt.user.cellview.client.TextColumn;
-import com.google.gwt.user.client.ui.*;
+import com.google.gwt.user.client.ui.Button;
+import com.google.gwt.user.client.ui.Composite;
+import com.google.gwt.user.client.ui.DialogBox;
+import com.google.gwt.user.client.ui.FlexTable;
+import com.google.gwt.user.client.ui.HasEnabled;
+import com.google.gwt.user.client.ui.HasHorizontalAlignment;
+import com.google.gwt.user.client.ui.HasText;
+import com.google.gwt.user.client.ui.HorizontalPanel;
+import com.google.gwt.user.client.ui.Label;
+import com.google.gwt.user.client.ui.PasswordTextBox;
+import com.google.gwt.user.client.ui.TextBox;
+import com.google.gwt.user.client.ui.VerticalPanel;
+import com.google.gwt.user.client.ui.Widget;
 import com.google.gwt.view.client.SelectionModel;
 import com.google.inject.Inject;
 import de.uniluebeck.itm.webui.shared.NodeUrn;
@@ -24,6 +36,8 @@ import java.util.List;
 public class LoginViewImpl extends Composite implements LoginView {
 
     public class LoginDialog extends DialogBox {
+
+        private final static int SPACING = 5;
 
         private final TextBox usernameTextBox = new TextBox();
 
@@ -56,7 +70,7 @@ public class LoginViewImpl extends Composite implements LoginView {
             cancelButton.setWidth("50px");
 
             final HorizontalPanel buttonPanel = new HorizontalPanel();
-            buttonPanel.setSpacing(5);
+            buttonPanel.setSpacing(SPACING);
             buttonPanel.add(submitButton);
             buttonPanel.add(cancelButton);
 
@@ -71,18 +85,18 @@ public class LoginViewImpl extends Composite implements LoginView {
 
         private void bind() {
             submitButton.addClickHandler(new ClickHandler() {
-                public void onClick(ClickEvent paramClickEvent) {
+                public void onClick(final ClickEvent paramClickEvent) {
                     presenter.submit();
                 }
             });
             cancelButton.addClickHandler(new ClickHandler() {
-                public void onClick(ClickEvent paramClickEvent) {
+                public void onClick(final ClickEvent paramClickEvent) {
                     presenter.hideLoginDialog();
                 }
             });
         }
 
-        public void setPresenter(Presenter presenter) {
+        public void setPresenter(final Presenter presenter) {
             this.presenter = presenter;
             bind();
         }

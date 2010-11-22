@@ -15,11 +15,11 @@ public class ReservationActivity extends AbstractActivity implements Presenter {
     private ReservationView view;
 
     @Inject
-    public ReservationActivity(WebUiGinjector injector) {
+    public ReservationActivity(final WebUiGinjector injector) {
         this.injector = injector;
     }
 
-    public void start(AcceptsOneWidget panel, EventBus eventBus) {
+    public void start(final AcceptsOneWidget panel, final EventBus eventBus) {
         view = injector.getReservationView();
         view.setPresenter(this);
         panel.setWidget(view);

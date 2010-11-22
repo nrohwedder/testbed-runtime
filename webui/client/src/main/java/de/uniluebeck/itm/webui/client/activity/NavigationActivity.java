@@ -7,7 +7,11 @@ import com.google.gwt.place.shared.Place;
 import com.google.gwt.user.client.ui.AcceptsOneWidget;
 import com.google.inject.Inject;
 import de.uniluebeck.itm.webui.client.WebUiGinjector;
-import de.uniluebeck.itm.webui.client.place.*;
+import de.uniluebeck.itm.webui.client.place.AdministrationPlace;
+import de.uniluebeck.itm.webui.client.place.ExperimentationPlace;
+import de.uniluebeck.itm.webui.client.place.LoginPlace;
+import de.uniluebeck.itm.webui.client.place.ReservationPlace;
+import de.uniluebeck.itm.webui.client.place.WiseMLNativePlace;
 import de.uniluebeck.itm.webui.client.ui.NavigationView;
 
 import java.util.ArrayList;
@@ -20,7 +24,7 @@ public class NavigationActivity extends AbstractActivity implements NavigationVi
 
         private String name;
 
-        public Entry(String name, Place place) {
+        public Entry(final String name, final Place place) {
             this.name = name;
             this.place = place;
         }
@@ -43,7 +47,7 @@ public class NavigationActivity extends AbstractActivity implements NavigationVi
     private Place place;
 
     @Inject
-    public NavigationActivity(WebUiGinjector injector) {
+    public NavigationActivity(final WebUiGinjector injector) {
         this.injector = injector;
 
         navigation.add(new Entry("Login", new LoginPlace(null)));
@@ -53,7 +57,7 @@ public class NavigationActivity extends AbstractActivity implements NavigationVi
         navigation.add(new Entry("WiseML Native", new WiseMLNativePlace()));
     }
 
-    public void start(AcceptsOneWidget container, EventBus eventBus) {
+    public void start(final AcceptsOneWidget container, final EventBus eventBus) {
         GWT.log("Start navigation activity");
         navigationView = injector.getNavigationView();
         navigationView.setPresenter(this);
@@ -83,13 +87,13 @@ public class NavigationActivity extends AbstractActivity implements NavigationVi
         }
     }
 
-    public void selected(Integer index) {
-        Entry entry = navigation.get(index);
+    public void selected(final Integer index) {
+        final Entry entry = navigation.get(index);
         GWT.log("Go to place: " + entry.getName());
         injector.getPlaceController().goTo(entry.getPlace());
     }
 
-    public void setPlace(Place place) {
+    public void setPlace(final Place place) {
         this.place = place;
         if (navigationView != null) {
             updateSelection();
