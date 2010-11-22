@@ -36,20 +36,20 @@ public class LoginActivity extends AbstractActivity implements LoginView.Present
     private LoginPlace place;
 
     @Inject
-    public LoginActivity(WebUiGinjector injector, TestbedServiceAsync service) {
+    public LoginActivity(final WebUiGinjector injector, final TestbedServiceAsync service) {
         this.injector = injector;
         this.service = service;
     }
 
-    public void setPlace(LoginPlace place) {
+    public void setPlace(final LoginPlace place) {
         this.place = place;
     }
 
     private void bind() {
         testbedConfigurationSelectionModel.addSelectionChangeHandler(new Handler() {
-            public void onSelectionChange(SelectionChangeEvent event) {
-                TestbedConfiguration configuration = testbedConfigurationSelectionModel.getSelectedObject();
-                Integer index = configurations.indexOf(configuration);
+            public void onSelectionChange(final SelectionChangeEvent event) {
+                final TestbedConfiguration configuration = testbedConfigurationSelectionModel.getSelectedObject();
+                final Integer index = configurations.indexOf(configuration);
                 if (!place.getSelection().equals(index)) {
                     injector.getPlaceController().goTo(new LoginPlace(index));
                 }
@@ -60,7 +60,7 @@ public class LoginActivity extends AbstractActivity implements LoginView.Present
     /**
      * Invoked by the ActivityManager to start a new Activity
      */
-    public void start(AcceptsOneWidget containerWidget, EventBus eventBus) {
+    public void start(final AcceptsOneWidget containerWidget, final EventBus eventBus) {
         view = injector.getLoginView();
         view.setPresenter(this);
         view.getLoginEnabled().setEnabled(false);
@@ -75,13 +75,13 @@ public class LoginActivity extends AbstractActivity implements LoginView.Present
 
     private void loadTestbedConfigurations() {
         final AsyncCallback<List<TestbedConfiguration>> callback = new AsyncCallback<List<TestbedConfiguration>>() {
-            public void onSuccess(List<TestbedConfiguration> configurations) {
+            public void onSuccess(final List<TestbedConfiguration> configurations) {
                 LoginActivity.this.configurations = configurations;
                 view.setConfigurations(configurations);
                 loadSelection();
             }
 
-            public void onFailure(Throwable throwable) {
+            public void onFailure(final Throwable throwable) {
                 throwable.printStackTrace();
             }
         };
@@ -93,9 +93,9 @@ public class LoginActivity extends AbstractActivity implements LoginView.Present
     }
 
     private void loadSelection() {
-        Integer selection = place.getSelection();
+        final Integer selection = place.getSelection();
         GWT.log("Selection: " + selection);
-        boolean isSelected = selection != null;
+        final boolean isSelected = selection != null;
         if (isSelected) {
             view.getLoginEnabled().setEnabled(isSelected);
             view.getDescriptionText().setText(configurations.get(selection).getDescription());
@@ -106,15 +106,15 @@ public class LoginActivity extends AbstractActivity implements LoginView.Present
         }
     }
 
-    private void loadNodeUrns(TestbedConfiguration configuration) {
+    private void loadNodeUrns(final TestbedConfiguration configuration) {
         view.getReloadEnabled().setEnabled(false);
         service.getNetwork(configuration.getSessionmanagementEndointUrl(), new AsyncCallback<List<NodeUrn>>() {
-            public void onSuccess(List<NodeUrn> nodes) {
+            public void onSuccess(final List<NodeUrn> nodes) {
                 view.setNodeUrns(nodes);
                 view.getReloadEnabled().setEnabled(true);
             }
 
-            public void onFailure(Throwable throwable) {
+            public void onFailure(final Throwable throwable) {
                 throwable.printStackTrace();
                 view.getReloadEnabled().setEnabled(true);
             }
@@ -149,7 +149,7 @@ public class LoginActivity extends AbstractActivity implements LoginView.Present
 
             private boolean error = false;
 
-            public void onSuccess(Void result) {
+            public void onSuccess(final Void result) {
                 if (iterator.hasNext()) {
                     urn = iterator.next();
                     service.authenticate(endpointUrl, urn, username, password, this);
@@ -162,9 +162,9 @@ public class LoginActivity extends AbstractActivity implements LoginView.Present
                 }
             }
 
-            public void onFailure(Throwable e) {
+            public void onFailure(final Throwable throwable) {
                 error = true;
-                view.addError(urn + " " + e.getMessage());
+                view.addError(urn + " " + throwable.getMessage());
                 onSuccess(null);
             }
         };
