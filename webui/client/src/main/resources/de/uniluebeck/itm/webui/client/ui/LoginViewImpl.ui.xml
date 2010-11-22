@@ -3,85 +3,6 @@
              xmlns:g="urn:import:com.google.gwt.user.client.ui"
              xmlns:c="urn:import:com.google.gwt.user.cellview.client">
 
-<<<<<<< HEAD
-	<ui:style>
-		.buttonPanel {
-			width: 100%;
-			background-color: #d0e4f6;
-		}
-		
-		.buttonTable {
-			margin-left: auto;
-			margin-right: 0px;
-			padding: 2px;
-		}
-		
-		.button {
-			width: 150px;
-		}
-		
-		.caption {
-			background: #e3e8f3 url(images/hborder.png) repeat-x 0px -2003px;
-			padding: 4px 4px 4px 8px;
-			cursor: default;
-			border-bottom: 1px solid #bbbbbb;
-		}
-		
-		.description {
-			padding: 7px;
-		}
-		
-		.fullLayout {
-			width:100%;
-			height:100%;
-		}
-	</ui:style>
-
-	<g:DockLayoutPanel styleName="{style.fullLayout}">
-		<g:center>
-			<g:SplitLayoutPanel>
-				<g:center>
-					<g:FlowPanel>
-						<g:Label styleName="{style.caption}">Testbed Network Information</g:Label>
-						<c:CellTable ui:field="nodeUrnTable" />
-					</g:FlowPanel>
-				</g:center>
-				<g:west size="250">
-					<g:SplitLayoutPanel>
-						<g:north size="400">
-							<g:FlowPanel>
-								<g:Label styleName="{style.caption}">Testbed Configurations</g:Label>
-								<c:CellList ui:field="configurationList" />
-							</g:FlowPanel>
-						</g:north>
-						<g:center>
-							<g:FlowPanel>
-								<g:Label styleName="{style.caption}">Testbed Description</g:Label>
-								<g:ScrollPanel>
-									<g:Label ui:field="description" styleName="{style.description}"></g:Label>
-								</g:ScrollPanel>
-							</g:FlowPanel>
-						</g:center>
-					</g:SplitLayoutPanel>
-				</g:west>
-			</g:SplitLayoutPanel>
-		</g:center>
-		<g:south size="35">
-			<g:HTMLPanel styleName="{style.buttonPanel}">
-				<table class="{style.buttonTable}">
-					<tr>
-						<td>
-							<g:Button ui:field="reloadButton" addStyleNames="{style.button}">Reload Network</g:Button>
-						</td>
-						<td>
-							<g:Button ui:field="loginButton" addStyleNames="{style.button}">Connect to Testbed...</g:Button>
-						</td>
-					</tr>
-				</table>
-			</g:HTMLPanel>
-		</g:south>
-	</g:DockLayoutPanel>
-=======
     <ui:style>
         .buttonPanel {
         width: 100%;
@@ -159,5 +80,4 @@
             </g:HTMLPanel>
         </g:south>
     </g:DockLayoutPanel>
->>>>>>> 4caf38bfda84f24434432af60b32149bd83bc2b9
 </ui:UiBinder>

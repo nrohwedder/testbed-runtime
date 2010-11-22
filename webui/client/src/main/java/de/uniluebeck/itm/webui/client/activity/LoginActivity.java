@@ -21,172 +21,171 @@ import de.uniluebeck.itm.webui.shared.TestbedConfiguration;
 import java.util.Iterator;
 import java.util.List;
 
-public class LoginActivity extends AbstractActivity implements
-		LoginView.Presenter {
+public class LoginActivity extends AbstractActivity implements LoginView.Presenter {
 
-	private final WebUiGinjector injector;
+    private final WebUiGinjector injector;
 
-	private final TestbedServiceAsync service;
+    private final TestbedServiceAsync service;
 
-	private LoginView view;
+    private LoginView view;
 
-	private SingleSelectionModel<TestbedConfiguration> configurationSelectionModel;
+    private SingleSelectionModel<TestbedConfiguration> configurationSelectionModel;
 
-	private List<TestbedConfiguration> configurations;
+    private List<TestbedConfiguration> configurations;
 
-	private LoginPlace place;
+    private LoginPlace place;
 
-	@Inject
-	public LoginActivity(WebUiGinjector injector, TestbedServiceAsync service) {
-		this.injector = injector;
-		this.service = service;
-	}
+    @Inject
+    public LoginActivity(WebUiGinjector injector, TestbedServiceAsync service) {
+        this.injector = injector;
+        this.service = service;
+    }
 
-	public void setPlace(LoginPlace place) {
-		this.place = place;
-	}
+    public void setPlace(LoginPlace place) {
+        this.place = place;
+    }
 
-	public TestbedConfiguration getSelectedConfiguration() {
-		Integer selection = place.getSelection();
-		return selection != null ? configurations.get(selection) : null;
-	}
+    public TestbedConfiguration getSelectedConfiguration() {
+        Integer selection = place.getSelection();
+        return selection != null ? configurations.get(selection) : null;
+    }
 
-	private void bind() {
-		configurationSelectionModel.addSelectionChangeHandler(new Handler() {
-			public void onSelectionChange(SelectionChangeEvent event) {
-				onConfigurationSelectionChange(event);
-			}
-		});
-	}
+    private void bind() {
+        configurationSelectionModel.addSelectionChangeHandler(new Handler() {
+            public void onSelectionChange(SelectionChangeEvent event) {
+                onConfigurationSelectionChange(event);
+            }
+        });
+    }
 
-	private void onConfigurationSelectionChange(SelectionChangeEvent event) {
-		TestbedConfiguration configuration = configurationSelectionModel
-				.getSelectedObject();
-		Integer index = configurations.indexOf(configuration);
-		if (!index.equals(place.getSelection())) {
-			injector.getPlaceController().goTo(new LoginPlace(index));
-		}
-	}
+    private void onConfigurationSelectionChange(SelectionChangeEvent event) {
+        TestbedConfiguration configuration = configurationSelectionModel
+                .getSelectedObject();
+        Integer index = configurations.indexOf(configuration);
+        if (!index.equals(place.getSelection())) {
+            injector.getPlaceController().goTo(new LoginPlace(index));
+        }
+    }
 
-	/**
-	 * Invoked by the ActivityManager to start a new Activity
-	 */
-	public void start(AcceptsOneWidget containerWidget, EventBus eventBus) {
-		view = injector.getLoginView();
-		view.setPresenter(this);
-		view.getLoginEnabled().setEnabled(false);
-		view.getReloadEnabled().setEnabled(false);
+    /**
+     * Invoked by the ActivityManager to start a new Activity
+     */
+    public void start(AcceptsOneWidget containerWidget, EventBus eventBus) {
+        view = injector.getLoginView();
+        view.setPresenter(this);
+        view.getLoginEnabled().setEnabled(false);
+        view.getReloadEnabled().setEnabled(false);
 
-		// Init selection model
-		configurationSelectionModel = new SingleSelectionModel<TestbedConfiguration>();
-		view.setTestbedConfigurationSelectionModel(configurationSelectionModel);
+        // Init selection model
+        configurationSelectionModel = new SingleSelectionModel<TestbedConfiguration>();
+        view.setTestbedConfigurationSelectionModel(configurationSelectionModel);
 
-		bind();
-		containerWidget.setWidget(view.asWidget());
-		loadTestbedConfigurations();
-	}
+        bind();
+        containerWidget.setWidget(view.asWidget());
+        loadTestbedConfigurations();
+    }
 
-	private void loadTestbedConfigurations() {
-		final AsyncCallback<List<TestbedConfiguration>> callback = new AsyncCallback<List<TestbedConfiguration>>() {
-			public void onSuccess(List<TestbedConfiguration> result) {
-				configurations = result;
-				view.setConfigurations(result);
-				loadConfigurationSelectionFromPlace();
-			}
+    private void loadTestbedConfigurations() {
+        final AsyncCallback<List<TestbedConfiguration>> callback = new AsyncCallback<List<TestbedConfiguration>>() {
+            public void onSuccess(List<TestbedConfiguration> result) {
+                configurations = result;
+                view.setConfigurations(result);
+                loadConfigurationSelectionFromPlace();
+            }
 
-			public void onFailure(Throwable throwable) {
-				throwable.printStackTrace();
-			}
-		};
-		Scheduler.get().scheduleDeferred(new ScheduledCommand() {
-			public void execute() {
-				service.getTestbedConfigurations(callback);
-			}
-		});
-	}
+            public void onFailure(Throwable throwable) {
+                throwable.printStackTrace();
+            }
+        };
+        Scheduler.get().scheduleDeferred(new ScheduledCommand() {
+            public void execute() {
+                service.getTestbedConfigurations(callback);
+            }
+        });
+    }
 
-	private void loadConfigurationSelectionFromPlace() {
-		final Integer selection = place.getSelection();
-		GWT.log("Selection: " + selection);
-		if (selection != null) {
-			TestbedConfiguration configuration = getSelectedConfiguration();
-			if (configurations.size() > selection) {
-				configurationSelectionModel.setSelected(configuration, true);
-			}
-			view.getDescriptionText().setText(configuration.getDescription());
-			view.getLoginEnabled().setEnabled(true);
-			loadNetwork(configuration);
-		}
-	}
+    private void loadConfigurationSelectionFromPlace() {
+        final Integer selection = place.getSelection();
+        GWT.log("Selection: " + selection);
+        if (selection != null) {
+            TestbedConfiguration configuration = getSelectedConfiguration();
+            if (configurations.size() > selection) {
+                configurationSelectionModel.setSelected(configuration, true);
+            }
+            view.getDescriptionText().setText(configuration.getDescription());
+            view.getLoginEnabled().setEnabled(true);
+            loadNetwork(configuration);
+        }
+    }
 
-	private void loadNetwork(TestbedConfiguration configuration) {
-		view.getReloadEnabled().setEnabled(false);
-		AsyncCallback<List<NodeUrn>> callback = new AsyncCallback<List<NodeUrn>>() {
-			public void onSuccess(List<NodeUrn> nodes) {
-				view.setNodeUrns(nodes);
-				view.getReloadEnabled().setEnabled(true);
-			}
+    private void loadNetwork(TestbedConfiguration configuration) {
+        view.getReloadEnabled().setEnabled(false);
+        AsyncCallback<List<NodeUrn>> callback = new AsyncCallback<List<NodeUrn>>() {
+            public void onSuccess(List<NodeUrn> nodes) {
+                view.setNodeUrns(nodes);
+                view.getReloadEnabled().setEnabled(true);
+            }
 
-			public void onFailure(Throwable throwable) {
-				throwable.printStackTrace();
-				view.getReloadEnabled().setEnabled(true);
-			}
-		};
-		service.getNetwork(configuration.getSessionmanagementEndointUrl(),
-				callback);
-	}
+            public void onFailure(Throwable throwable) {
+                throwable.printStackTrace();
+                view.getReloadEnabled().setEnabled(true);
+            }
+        };
+        service.getNetwork(configuration.getSessionmanagementEndointUrl(),
+                callback);
+    }
 
-	public void reload() {
-		loadNetwork(getSelectedConfiguration());
-	}
+    public void reload() {
+        loadNetwork(getSelectedConfiguration());
+    }
 
-	public void showLoginDialog() {
-		view.showLoginDialog("Login to " + getSelectedConfiguration().getName());
-	}
+    public void showLoginDialog() {
+        view.showLoginDialog("Login to " + getSelectedConfiguration().getName());
+    }
 
-	public void hideLoginDialog() {
-		view.hideLoginDialog();
-	}
+    public void hideLoginDialog() {
+        view.hideLoginDialog();
+    }
 
-	// TODO: Review this code.
-	public void submit() {
-		view.getUsernameEnabled().setEnabled(false);
-		view.getPasswordEnabled().setEnabled(false);
+    // TODO: Review this code.
+    public void submit() {
+        view.getUsernameEnabled().setEnabled(false);
+        view.getPasswordEnabled().setEnabled(false);
 
-		final String endpointUrl = configurations.get(place.getSelection())
-				.getSnaaEndpointUrl();
-		final String username = view.getUsernameText().getText();
-		final String password = view.getPasswordText().getText();
+        final String endpointUrl = configurations.get(place.getSelection())
+                .getSnaaEndpointUrl();
+        final String username = view.getUsernameText().getText();
+        final String password = view.getPasswordText().getText();
 
-		final Iterator<String> iterator = configurations
-				.get(place.getSelection()).getUrnPrefixList().iterator();
+        final Iterator<String> iterator = configurations
+                .get(place.getSelection()).getUrnPrefixList().iterator();
 
-		final AsyncCallback<Void> callback = new AsyncCallback<Void>() {
+        final AsyncCallback<Void> callback = new AsyncCallback<Void>() {
 
-			private String urn;
+            private String urn;
 
-			private boolean error = false;
+            private boolean error = false;
 
-			public void onSuccess(Void result) {
-				if (iterator.hasNext()) {
-					urn = iterator.next();
-					service.authenticate(endpointUrl, urn, username, password,
-							this);
-				} else {
-					if (!error) {
-						view.hideLoginDialog();
-					}
-					view.getUsernameEnabled().setEnabled(true);
-					view.getPasswordEnabled().setEnabled(true);
-				}
-			}
+            public void onSuccess(Void result) {
+                if (iterator.hasNext()) {
+                    urn = iterator.next();
+                    service.authenticate(endpointUrl, urn, username, password,
+                            this);
+                } else {
+                    if (!error) {
+                        view.hideLoginDialog();
+                    }
+                    view.getUsernameEnabled().setEnabled(true);
+                    view.getPasswordEnabled().setEnabled(true);
+                }
+            }
 
-			public void onFailure(Throwable e) {
-				error = true;
-				view.addError(urn + " " + e.getMessage());
-				onSuccess(null);
-			}
-		};
-		callback.onSuccess(null);
-	}
+            public void onFailure(Throwable e) {
+                error = true;
+                view.addError(urn + " " + e.getMessage());
+                onSuccess(null);
+            }
+        };
+        callback.onSuccess(null);
+    }
 }
