@@ -30,7 +30,7 @@ public class LoginActivity extends AbstractActivity implements LoginView.Present
     
     private LoginView view;
     
-    private SingleSelectionModel<TestbedConfiguration> testbedConfigurationSelectionModel;
+    private SingleSelectionModel<TestbedConfiguration> configurationSelectionModel;
     
     private List<TestbedConfiguration> configurations;
     
@@ -46,16 +46,25 @@ public class LoginActivity extends AbstractActivity implements LoginView.Present
     	this.place = place;
     }
     
+    public TestbedConfiguration getSelectedConfiguration() {
+    	Integer selection = place.getSelection();
+    	return selection != null ? configurations.get(selection) : null;
+    }
+    
     private void bind() {
-    	testbedConfigurationSelectionModel.addSelectionChangeHandler(new Handler() {
+    	configurationSelectionModel.addSelectionChangeHandler(new Handler() {
 			public void onSelectionChange(SelectionChangeEvent event) {
-				TestbedConfiguration configuration = testbedConfigurationSelectionModel.getSelectedObject();
-				Integer index = configurations.indexOf(configuration);
-				if (place.getSelection() != index) { // TODO: use equals-method?
-					injector.getPlaceController().goTo(new LoginPlace(index));
-				}
+				onConfigurationSelectionChange(event);
 			}
 		});
+    }
+    
+    private void onConfigurationSelectionChange(SelectionChangeEvent event) {
+    	TestbedConfiguration configuration = configurationSelectionModel.getSelectedObject();
+		Integer index = configurations.indexOf(configuration);
+		if (!index.equals(place.getSelection())) {
+			injector.getPlaceController().goTo(new LoginPlace(index));
+		}
     }
 
     /**
@@ -66,8 +75,10 @@ public class LoginActivity extends AbstractActivity implements LoginView.Present
         view.setPresenter(this);
         view.getLoginEnabled().setEnabled(false);
         view.getReloadEnabled().setEnabled(false);
-        testbedConfigurationSelectionModel = new SingleSelectionModel<TestbedConfiguration>();
-        view.setTestbedConfigurationSelectionModel(testbedConfigurationSelectionModel);
+        
+        // Init selection model
+        configurationSelectionModel = new SingleSelectionModel<TestbedConfiguration>();
+        view.setTestbedConfigurationSelectionModel(configurationSelectionModel);
         
         bind();
         containerWidget.setWidget(view.asWidget());
@@ -76,10 +87,10 @@ public class LoginActivity extends AbstractActivity implements LoginView.Present
     
     private void loadTestbedConfigurations() {
     	final AsyncCallback<List<TestbedConfiguration>> callback = new AsyncCallback<List<TestbedConfiguration>>() {
-			public void onSuccess(List<TestbedConfiguration> configurations) {
-				LoginActivity.this.configurations = configurations;
-				view.setConfigurations(configurations);
-				loadSelection();
+			public void onSuccess(List<TestbedConfiguration> result) {
+				configurations = result;
+				view.setConfigurations(result);
+				loadConfigurationSelectionFromPlace();
 			}
 
 			public void onFailure(Throwable throwable) {
@@ -93,22 +104,23 @@ public class LoginActivity extends AbstractActivity implements LoginView.Present
 		});
     }
     
-    private void loadSelection() {
-		Integer selection = place.getSelection();
+    private void loadConfigurationSelectionFromPlace() {
+		final Integer selection = place.getSelection();
 		GWT.log("Selection: " + selection);
 		if (selection != null) {
-			view.getLoginEnabled().setEnabled(selection != null); // TODO: condition is always true!
-			view.getDescriptionText().setText(configurations.get(selection).getDescription());
+			TestbedConfiguration configuration = getSelectedConfiguration();
 			if (configurations.size() > selection) {
-				testbedConfigurationSelectionModel.setSelected(configurations.get(selection), true);
+				configurationSelectionModel.setSelected(configuration, true);
 			}
-			loadNodeUrns(configurations.get(selection));
+			view.getDescriptionText().setText(configuration.getDescription());
+			view.getLoginEnabled().setEnabled(true);
+			loadNetwork(configuration);
 		}
     }
     
-    private void loadNodeUrns(TestbedConfiguration configuration) {
+    private void loadNetwork(TestbedConfiguration configuration) {
     	view.getReloadEnabled().setEnabled(false);
-    	service.getNetwork(configuration.getSessionmanagementEndointUrl(), new AsyncCallback<List<NodeUrn>>() {
+    	AsyncCallback<List<NodeUrn>> callback = new AsyncCallback<List<NodeUrn>>() {
     		public void onSuccess(List<NodeUrn> nodes) {
     			view.setNodeUrns(nodes);
     			view.getReloadEnabled().setEnabled(true);
@@ -118,21 +130,23 @@ public class LoginActivity extends AbstractActivity implements LoginView.Present
     			throwable.printStackTrace();
     			view.getReloadEnabled().setEnabled(true);
     		}
-		});
+		};
+		service.getNetwork(configuration.getSessionmanagementEndointUrl(), callback);
     }
 
 	public void reload() {
-		loadNodeUrns(configurations.get(place.getSelection()));
+		loadNetwork(getSelectedConfiguration());
 	}
 
 	public void showLoginDialog() {
-		view.showLoginDialog("Login to " + configurations.get(place.getSelection()).getName());
+		view.showLoginDialog("Login to " + getSelectedConfiguration().getName());
 	}
 
 	public void hideLoginDialog() {
 		view.hideLoginDialog();
 	}
 
+	// TODO: Review this code.
 	public void submit() {
 		view.getUsernameEnabled().setEnabled(false);
 		view.getPasswordEnabled().setEnabled(false);

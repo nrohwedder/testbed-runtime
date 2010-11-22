@@ -24,7 +24,7 @@ public class NavigationViewImpl extends Composite implements NavigationView {
 	public NavigationViewImpl() {
 		initWidget(uiBinder.createAndBindUi(this));
 		
-		navigationBar.setWidth("100%");		
+		navigationBar.setWidth("100%");
 	}
 	
 	@UiHandler("navigationBar")
