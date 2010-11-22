@@ -1,10 +1,10 @@
 package de.uniluebeck.itm.webui.server;
 
-import java.util.List;
-
 import de.uniluebeck.itm.webui.shared.TestbedConfiguration;
+
+import java.util.List;
 
 public interface TestbedConfigurationService {
 
-	List<TestbedConfiguration> getConfigurations();
+    List<TestbedConfiguration> getConfigurations();
 }

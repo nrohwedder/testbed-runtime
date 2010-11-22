@@ -7,18 +7,18 @@ import com.google.gwt.user.client.ui.Widget;
 
 public class WiseMLNativeViewImpl extends Composite implements WiseMLNativeView {
 
-	private static WiseMLNativeViewImplUiBinder uiBinder = GWT.create(WiseMLNativeViewImplUiBinder.class);
+    private static WiseMLNativeViewImplUiBinder uiBinder = GWT.create(WiseMLNativeViewImplUiBinder.class);
 
-	interface WiseMLNativeViewImplUiBinder extends
-			UiBinder<Widget, WiseMLNativeViewImpl> {
-	}
+    interface WiseMLNativeViewImplUiBinder extends
+            UiBinder<Widget, WiseMLNativeViewImpl> {
+    }
 
-	public WiseMLNativeViewImpl() {
-		initWidget(uiBinder.createAndBindUi(this));
-	}
+    public WiseMLNativeViewImpl() {
+        initWidget(uiBinder.createAndBindUi(this));
+    }
 
-	public void setPresenter(Presenter presenter) {
-		
-	}
+    public void setPresenter(Presenter presenter) {
+
+    }
 
 }

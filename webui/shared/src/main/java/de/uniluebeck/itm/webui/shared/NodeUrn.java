@@ -30,19 +30,19 @@ import java.io.Serializable;
 public class NodeUrn implements Serializable {
 
     /**
-	 * 
-	 */
-	private static final long serialVersionUID = 3167192570607985799L;
-	
-	private String prefix;
+     *
+     */
+    private static final long serialVersionUID = 3167192570607985799L;
+
+    private String prefix;
     private String project;
     private String testbed;
     private String node;
 
     public NodeUrn() {
-		
-	}
-    
+
+    }
+
     public NodeUrn(String prefix, String project, String testbed, String node) {
         this.prefix = prefix;
         this.project = project;

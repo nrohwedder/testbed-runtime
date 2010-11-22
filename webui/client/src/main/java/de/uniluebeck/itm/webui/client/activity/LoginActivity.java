@@ -1,8 +1,5 @@
 package de.uniluebeck.itm.webui.client.activity;
 
-import java.util.Iterator;
-import java.util.List;
-
 import com.google.gwt.activity.shared.AbstractActivity;
 import com.google.gwt.core.client.GWT;
 import com.google.gwt.core.client.Scheduler;
@@ -14,7 +11,6 @@ import com.google.gwt.view.client.SelectionChangeEvent;
 import com.google.gwt.view.client.SelectionChangeEvent.Handler;
 import com.google.gwt.view.client.SingleSelectionModel;
 import com.google.inject.Inject;
-
 import de.uniluebeck.itm.webui.api.TestbedServiceAsync;
 import de.uniluebeck.itm.webui.client.WebUiGinjector;
 import de.uniluebeck.itm.webui.client.place.LoginPlace;
@@ -22,71 +18,76 @@ import de.uniluebeck.itm.webui.client.ui.LoginView;
 import de.uniluebeck.itm.webui.shared.NodeUrn;
 import de.uniluebeck.itm.webui.shared.TestbedConfiguration;
 
-public class LoginActivity extends AbstractActivity implements LoginView.Presenter {
+import java.util.Iterator;
+import java.util.List;
 
-    private final WebUiGinjector injector;
+public class LoginActivity extends AbstractActivity implements
+		LoginView.Presenter {
 
-    private final TestbedServiceAsync service;
-    
-    private LoginView view;
-    
-    private SingleSelectionModel<TestbedConfiguration> configurationSelectionModel;
-    
-    private List<TestbedConfiguration> configurations;
-    
-    private LoginPlace place;
-    
-    @Inject
-    public LoginActivity(WebUiGinjector injector, TestbedServiceAsync service) {
-        this.injector = injector;
-        this.service = service;
-    }
-    
-    public void setPlace(LoginPlace place) {
-    	this.place = place;
-    }
-    
-    public TestbedConfiguration getSelectedConfiguration() {
-    	Integer selection = place.getSelection();
-    	return selection != null ? configurations.get(selection) : null;
-    }
-    
-    private void bind() {
-    	configurationSelectionModel.addSelectionChangeHandler(new Handler() {
+	private final WebUiGinjector injector;
+
+	private final TestbedServiceAsync service;
+
+	private LoginView view;
+
+	private SingleSelectionModel<TestbedConfiguration> configurationSelectionModel;
+
+	private List<TestbedConfiguration> configurations;
+
+	private LoginPlace place;
+
+	@Inject
+	public LoginActivity(WebUiGinjector injector, TestbedServiceAsync service) {
+		this.injector = injector;
+		this.service = service;
+	}
+
+	public void setPlace(LoginPlace place) {
+		this.place = place;
+	}
+
+	public TestbedConfiguration getSelectedConfiguration() {
+		Integer selection = place.getSelection();
+		return selection != null ? configurations.get(selection) : null;
+	}
+
+	private void bind() {
+		configurationSelectionModel.addSelectionChangeHandler(new Handler() {
 			public void onSelectionChange(SelectionChangeEvent event) {
 				onConfigurationSelectionChange(event);
 			}
 		});
-    }
-    
-    private void onConfigurationSelectionChange(SelectionChangeEvent event) {
-    	TestbedConfiguration configuration = configurationSelectionModel.getSelectedObject();
+	}
+
+	private void onConfigurationSelectionChange(SelectionChangeEvent event) {
+		TestbedConfiguration configuration = configurationSelectionModel
+				.getSelectedObject();
 		Integer index = configurations.indexOf(configuration);
 		if (!index.equals(place.getSelection())) {
 			injector.getPlaceController().goTo(new LoginPlace(index));
 		}
-    }
+	}
 
-    /**
-     * Invoked by the ActivityManager to start a new Activity
-     */
-    public void start(AcceptsOneWidget containerWidget, EventBus eventBus) {    	
-        view = injector.getLoginView();
-        view.setPresenter(this);
-        view.getLoginEnabled().setEnabled(false);
-        view.getReloadEnabled().setEnabled(false);
-        
-        // Init selection model
-        configurationSelectionModel = new SingleSelectionModel<TestbedConfiguration>();
-        view.setTestbedConfigurationSelectionModel(configurationSelectionModel);
-        
-        bind();
-        containerWidget.setWidget(view.asWidget());
-        loadTestbedConfigurations();
-    }
-    
-    private void loadTestbedConfigurations() {
-    	final AsyncCallback<List<TestbedConfiguration>> callback = new AsyncCallback<List<TestbedConfiguration>>() {
+	/**
+	 * Invoked by the ActivityManager to start a new Activity
+	 */
+	public void start(AcceptsOneWidget containerWidget, EventBus eventBus) {
+		view = injector.getLoginView();
+		view.setPresenter(this);
+		view.getLoginEnabled().setEnabled(false);
+		view.getReloadEnabled().setEnabled(false);
+
+		// Init selection model
+		configurationSelectionModel = new SingleSelectionModel<TestbedConfiguration>();
+		view.setTestbedConfigurationSelectionModel(configurationSelectionModel);
+
+		bind();
+		containerWidget.setWidget(view.asWidget());
+		loadTestbedConfigurations();
+	}
+
+	private void loadTestbedConfigurations() {
+		final AsyncCallback<List<TestbedConfiguration>> callback = new AsyncCallback<List<TestbedConfiguration>>() {
 			public void onSuccess(List<TestbedConfiguration> result) {
 				configurations = result;
 				view.setConfigurations(result);
@@ -102,9 +103,9 @@ public class LoginActivity extends AbstractActivity implements LoginView.Present
 				service.getTestbedConfigurations(callback);
 			}
 		});
-    }
-    
-    private void loadConfigurationSelectionFromPlace() {
+	}
+
+	private void loadConfigurationSelectionFromPlace() {
 		final Integer selection = place.getSelection();
 		GWT.log("Selection: " + selection);
 		if (selection != null) {
@@ -116,23 +117,24 @@ public class LoginActivity extends AbstractActivity implements LoginView.Present
 			view.getLoginEnabled().setEnabled(true);
 			loadNetwork(configuration);
 		}
-    }
-    
-    private void loadNetwork(TestbedConfiguration configuration) {
-    	view.getReloadEnabled().setEnabled(false);
-    	AsyncCallback<List<NodeUrn>> callback = new AsyncCallback<List<NodeUrn>>() {
-    		public void onSuccess(List<NodeUrn> nodes) {
-    			view.setNodeUrns(nodes);
-    			view.getReloadEnabled().setEnabled(true);
-    		}
+	}
 
-    		public void onFailure(Throwable throwable) {
-    			throwable.printStackTrace();
-    			view.getReloadEnabled().setEnabled(true);
-    		}
+	private void loadNetwork(TestbedConfiguration configuration) {
+		view.getReloadEnabled().setEnabled(false);
+		AsyncCallback<List<NodeUrn>> callback = new AsyncCallback<List<NodeUrn>>() {
+			public void onSuccess(List<NodeUrn> nodes) {
+				view.setNodeUrns(nodes);
+				view.getReloadEnabled().setEnabled(true);
+			}
+
+			public void onFailure(Throwable throwable) {
+				throwable.printStackTrace();
+				view.getReloadEnabled().setEnabled(true);
+			}
 		};
-		service.getNetwork(configuration.getSessionmanagementEndointUrl(), callback);
-    }
+		service.getNetwork(configuration.getSessionmanagementEndointUrl(),
+				callback);
+	}
 
 	public void reload() {
 		loadNetwork(getSelectedConfiguration());
@@ -150,23 +152,26 @@ public class LoginActivity extends AbstractActivity implements LoginView.Present
 	public void submit() {
 		view.getUsernameEnabled().setEnabled(false);
 		view.getPasswordEnabled().setEnabled(false);
-		
-		final String endpointUrl = configurations.get(place.getSelection()).getSnaaEndpointUrl();
+
+		final String endpointUrl = configurations.get(place.getSelection())
+				.getSnaaEndpointUrl();
 		final String username = view.getUsernameText().getText();
 		final String password = view.getPasswordText().getText();
-		
-		final Iterator<String> iterator = configurations.get(place.getSelection()).getUrnPrefixList().iterator();
-		
+
+		final Iterator<String> iterator = configurations
+				.get(place.getSelection()).getUrnPrefixList().iterator();
+
 		final AsyncCallback<Void> callback = new AsyncCallback<Void>() {
-			
+
 			private String urn;
-			
+
 			private boolean error = false;
 
 			public void onSuccess(Void result) {
 				if (iterator.hasNext()) {
 					urn = iterator.next();
-					service.authenticate(endpointUrl, urn, username, password, this);
+					service.authenticate(endpointUrl, urn, username, password,
+							this);
 				} else {
 					if (!error) {
 						view.hideLoginDialog();

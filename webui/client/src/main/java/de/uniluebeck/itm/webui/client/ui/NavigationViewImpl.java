@@ -13,9 +13,9 @@ public class NavigationViewImpl extends Composite implements NavigationView {
 
     interface NavigationViewImplUiBinder extends UiBinder<Widget, NavigationViewImpl> {
     }
-    
+
     private static NavigationViewImplUiBinder uiBinder = GWT.create(NavigationViewImplUiBinder.class);
-	
+
     @UiField
     TabBar navigationBar;
     

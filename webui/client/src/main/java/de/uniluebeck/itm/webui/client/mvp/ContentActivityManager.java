@@ -6,8 +6,8 @@ import com.google.inject.Inject;
 
 public class ContentActivityManager extends ActivityManager {
 
-	@Inject
-	public ContentActivityManager(ContentActivityMapper mapper, EventBus eventBus) {
-		super(mapper, eventBus);
-	}
+    @Inject
+    public ContentActivityManager(ContentActivityMapper mapper, EventBus eventBus) {
+        super(mapper, eventBus);
+    }
 }

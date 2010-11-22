@@ -4,7 +4,7 @@ import com.google.gwt.place.shared.Place;
 import com.google.gwt.place.shared.PlaceTokenizer;
 
 public class ReservationPlace extends Place {
-	
+
     public ReservationPlace() {
     }
 

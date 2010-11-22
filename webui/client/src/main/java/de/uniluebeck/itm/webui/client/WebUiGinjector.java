@@ -5,22 +5,10 @@ import com.google.gwt.inject.client.GinModules;
 import com.google.gwt.inject.client.Ginjector;
 import com.google.gwt.place.shared.PlaceController;
 import com.google.gwt.place.shared.PlaceHistoryHandler;
-
-import de.uniluebeck.itm.webui.client.activity.AdministrationActivity;
-import de.uniluebeck.itm.webui.client.activity.ExperimentationActivity;
-import de.uniluebeck.itm.webui.client.activity.LoginActivity;
-import de.uniluebeck.itm.webui.client.activity.NavigationActivity;
-import de.uniluebeck.itm.webui.client.activity.ReservationActivity;
-import de.uniluebeck.itm.webui.client.activity.WiseMLNativeActivity;
+import de.uniluebeck.itm.webui.client.activity.*;
 import de.uniluebeck.itm.webui.client.mvp.ContentActivityManager;
 import de.uniluebeck.itm.webui.client.mvp.NavigationActivityManager;
-import de.uniluebeck.itm.webui.client.ui.AdministrationView;
-import de.uniluebeck.itm.webui.client.ui.AppWidget;
-import de.uniluebeck.itm.webui.client.ui.ExperimentationView;
-import de.uniluebeck.itm.webui.client.ui.LoginView;
-import de.uniluebeck.itm.webui.client.ui.NavigationView;
-import de.uniluebeck.itm.webui.client.ui.ReservationView;
-import de.uniluebeck.itm.webui.client.ui.WiseMLNativeView;
+import de.uniluebeck.itm.webui.client.ui.*;
 
 @GinModules(WebUiClientModule.class)
 public interface WebUiGinjector extends Ginjector {
@@ -29,34 +17,34 @@ public interface WebUiGinjector extends Ginjector {
     PlaceController getPlaceController();
 
     LoginView getLoginView();
-    
+
     ReservationView getReservationView();
-    
+
     NavigationView getNavigationView();
-    
+
     AppWidget getAppWidget();
 
     LoginActivity getLoginActivity();
-    
+
     ReservationActivity getReservationActivity();
-    
+
     NavigationActivity getNavigationActivity();
-    
+
     NavigationActivityManager getNavigationActivityManager();
-    
+
     ContentActivityManager getContentActivityManager();
-    
+
     PlaceHistoryHandler getPlaceHistoryHandler();
 
-	ExperimentationView getExperimentationView();
+    ExperimentationView getExperimentationView();
 
-	AdministrationView getAdministrationView();
+    AdministrationView getAdministrationView();
 
-	WiseMLNativeView getWiseMLNativeView();
+    WiseMLNativeView getWiseMLNativeView();
 
-	ExperimentationActivity getExperimentationActivity();
+    ExperimentationActivity getExperimentationActivity();
 
-	AdministrationActivity getAdministrationActivity();
+    AdministrationActivity getAdministrationActivity();
 
-	WiseMLNativeActivity getWiseMLNativeActivity();
+    WiseMLNativeActivity getWiseMLNativeActivity();
 }

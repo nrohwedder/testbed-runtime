@@ -5,22 +5,22 @@ import com.google.gwt.place.shared.PlaceTokenizer;
 
 public class LoginPlace extends Place {
 
-	private Integer selection;
-	
-	public LoginPlace() {
-		this.selection = null;
-	}
-	
+    private Integer selection;
+
+    public LoginPlace() {
+        this.selection = null;
+    }
+
     public LoginPlace(Integer selection) {
-    	this.selection = selection;
+        this.selection = selection;
     }
-    
+
     public void setSelection(Integer selection) {
-    	this.selection = selection;
+        this.selection = selection;
     }
-    
+
     public Integer getSelection() {
-    	return selection;
+        return selection;
     }
 
     public static class Tokenizer implements PlaceTokenizer<LoginPlace> {

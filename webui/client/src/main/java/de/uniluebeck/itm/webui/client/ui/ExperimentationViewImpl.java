@@ -7,17 +7,17 @@ import com.google.gwt.user.client.ui.Widget;
 
 public class ExperimentationViewImpl extends Composite implements ExperimentationView {
 
-	private static ExperimentationViewImplUiBinder uiBinder = GWT.create(ExperimentationViewImplUiBinder.class);
+    private static ExperimentationViewImplUiBinder uiBinder = GWT.create(ExperimentationViewImplUiBinder.class);
 
-	interface ExperimentationViewImplUiBinder extends
-			UiBinder<Widget, ExperimentationViewImpl> {
-	}
+    interface ExperimentationViewImplUiBinder extends
+            UiBinder<Widget, ExperimentationViewImpl> {
+    }
 
-	public ExperimentationViewImpl() {
-		initWidget(uiBinder.createAndBindUi(this));
-	}
+    public ExperimentationViewImpl() {
+        initWidget(uiBinder.createAndBindUi(this));
+    }
 
-	public void setPresenter(Presenter presenter) {
-		
-	}
+    public void setPresenter(Presenter presenter) {
+
+    }
 }
