@@ -13,7 +13,6 @@
     <!-- Other module inherits                                      -->
     <inherits name="com.google.gwt.activity.Activity"/>
     <inherits name="com.google.gwt.place.Place"/>
-    <inherits name="de.uniluebeck.itm.webui.WebUiShared" />
     <inherits name="com.google.gwt.inject.Inject"/>
     
     <!-- Other WebUi Projects -->

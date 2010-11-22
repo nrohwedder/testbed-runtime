@@ -25,6 +25,7 @@ public class WebUi implements EntryPoint {
         injector.getContentActivityManager().setDisplay(appWidget.getContentPanel());
 
         RootPanel.get().add(appWidget.asWidget());
+        
         // Goes to place represented on URL or default place
         injector.getPlaceHistoryHandler().handleCurrentHistory();
     }

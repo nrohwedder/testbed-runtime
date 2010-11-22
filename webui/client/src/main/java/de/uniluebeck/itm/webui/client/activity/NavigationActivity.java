@@ -18,8 +18,7 @@ public class NavigationActivity extends AbstractActivity implements NavigationVi
 	public NavigationActivity(WebUiGinjector injector) {
 		this.injector = injector;
 	}
-	
-	@Override
+
 	public void start(AcceptsOneWidget container,
 			EventBus eventBus) {
 		navigationView = injector.getNavigationView();

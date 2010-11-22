@@ -12,36 +12,31 @@ public class AppWidgetImpl extends Composite implements AppWidget {
 
     interface AppWidgetUiBinder extends UiBinder<Widget, AppWidgetImpl> {
     }
-    
     private static AppWidgetUiBinder uiBinder = GWT.create(AppWidgetUiBinder.class);
-    
     @UiField
     SimplePanel navigationPanel;
-	
     @UiField
     SimplePanel contentPanel;
-    
-	public AppWidgetImpl() {
-		initWidget(uiBinder.createAndBindUi(this));
-		
-		setWidth("100%");
-		setHeight("100%");
-		
-		contentPanel.setStyleName("default-border");
-	}
-	
-	@Override
-	public AcceptsOneWidget getNavigationPanel() {
-		return navigationPanel;
-	}
-	
-	@Override
-	public AcceptsOneWidget getContentPanel() {
-		return contentPanel;
-	}
-	
-	@Override
-	public Widget asWidget() {
-		return this;
-	}
+
+    public AppWidgetImpl() {
+        initWidget(uiBinder.createAndBindUi(this));
+
+        setWidth("100%");
+        setHeight("100%");
+
+        contentPanel.setStyleName("default-border");
+    }
+
+    public AcceptsOneWidget getNavigationPanel() {
+        return navigationPanel;
+    }
+
+    public AcceptsOneWidget getContentPanel() {
+        return contentPanel;
+    }
+
+    @Override
+    public Widget asWidget() {
+        return this;
+    }
 }

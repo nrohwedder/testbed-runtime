@@ -25,24 +25,21 @@ import eu.wisebed.testbed.api.wsn.v211.SessionManagement;
 @Singleton
 public class TestbedServiceImpl extends RemoteServiceServlet implements TestbedService {
 
-	/**
-	 * 
-	 */
-	private static final long serialVersionUID = 5174874924600302509L;
-	
-	@Inject
-	private Injector injector;
-	
-	@Override
-	public List<TestbedConfiguration> getTestbedConfigurations() {
-		TestbedConfigurationService service = injector.getInstance(TestbedConfigurationService.class);
-		return service.getConfigurations();
-	}
+    private static final long serialVersionUID = 5174874924600302509L;
 
-	@Override
-	public List<NodeUrn> getNetwork(String url) {
-		final SessionManagement sessionManagement = WSNServiceHelper.getSessionManagementService(url);
-		final List<NodeUrn> list = new ArrayList<NodeUrn>();
+    @Inject
+    private Injector injector;
+
+    @Override
+    public List<TestbedConfiguration> getTestbedConfigurations() {
+        TestbedConfigurationService service = injector.getInstance(TestbedConfigurationService.class);
+        return service.getConfigurations();
+    }
+
+    @Override
+    public List<NodeUrn> getNetwork(String url) {
+        final SessionManagement sessionManagement = WSNServiceHelper.getSessionManagementService(url);
+        final List<NodeUrn> list = new ArrayList<NodeUrn>();
         final List<String> nodes = WiseMLHelper.getNodeUrns(sessionManagement.getNetwork());
 
         for (String s : nodes) {
@@ -53,21 +50,21 @@ public class TestbedServiceImpl extends RemoteServiceServlet implements TestbedS
         }
 
         return list;
-	}
+    }
 
-	@Override
-	public void authenticate(String endpointUrl, String urn, String username, String password) throws AuthenticationException {
-		SNAA snaaService = SNAAServiceHelper.getSNAAService(endpointUrl);
+    @Override
+    public void authenticate(String endpointUrl, String urn, String username, String password) throws AuthenticationException {
+        SNAA snaaService = SNAAServiceHelper.getSNAAService(endpointUrl);
         AuthenticationTriple authenticationTriple = new AuthenticationTriple();
         authenticationTriple.setUsername(username);
         authenticationTriple.setUrnPrefix(urn);
         authenticationTriple.setPassword(password);
         try {
-        	snaaService.authenticate(Arrays.asList(authenticationTriple));
+            snaaService.authenticate(Arrays.asList(authenticationTriple));
         } catch (AuthenticationExceptionException ex) {
             throw new AuthenticationException("Authentication failed", ex);
         } catch (SNAAExceptionException ex) {
             throw new AuthenticationException("Authentication failed due to an error", ex);
         }
-	}
+    }
 }

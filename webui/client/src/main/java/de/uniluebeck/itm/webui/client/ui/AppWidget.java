@@ -5,7 +5,7 @@ import com.google.gwt.user.client.ui.IsWidget;
 
 public interface AppWidget extends IsWidget {
 
-	AcceptsOneWidget getNavigationPanel();
-	
-	AcceptsOneWidget getContentPanel();
+    AcceptsOneWidget getNavigationPanel();
+
+    AcceptsOneWidget getContentPanel();
 }

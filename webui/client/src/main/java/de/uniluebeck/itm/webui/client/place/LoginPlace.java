@@ -17,12 +17,10 @@ public class LoginPlace extends Place {
 
     public static class Tokenizer implements PlaceTokenizer<LoginPlace> {
 
-        @Override
         public String getToken(LoginPlace place) {
             return place.getLoginName();
         }
 
-        @Override
         public LoginPlace getPlace(String token) {
             return new LoginPlace(token);
         }

@@ -2,7 +2,6 @@ package de.uniluebeck.itm.webui.client.mvp;
 
 import com.google.gwt.place.shared.PlaceHistoryMapper;
 import com.google.gwt.place.shared.WithTokenizers;
-
 import de.uniluebeck.itm.webui.client.place.LoginPlace;
 
 /**

@@ -15,8 +15,7 @@ public class NavigationActivityMapper implements ActivityMapper {
 	public NavigationActivityMapper(WebUiGinjector injector) {
 		this.injector = injector;
 	}
-	
-	@Override
+
 	public Activity getActivity(Place place) {
 		return injector.getNavigationActivity();
 	}

@@ -16,8 +16,7 @@ public class ContentActivityMapper implements ActivityMapper {
      * AppActivityMapper associates each Place with its corresponding
      * {@link Activity}
      *
-     * @param clientFactory
-     *            Factory to be passed to activities
+     * @param injector GIN injector for dependency injection
      */
     @Inject
     public ContentActivityMapper(WebUiGinjector injector) {
@@ -26,12 +25,9 @@ public class ContentActivityMapper implements ActivityMapper {
     }
 
     /**
-     * Map each Place to its corresponding Activity. This would be a great use
-     * for GIN.
+     * Map each Place to its corresponding Activity.
      */
-    @Override
     public Activity getActivity(Place place) {
-        // This is begging for GIN
     	Activity activity = null;
         if (place instanceof LoginPlace) {
         	activity = injector.getLoginActivity();
