@@ -78,11 +78,9 @@
     <build>
         <outputDirectory>${webappDirectory}/WEB-INF/classes</outputDirectory>
         <plugins>
-            <!-- GWT Maven Plugin -->
             <plugin>
                 <groupId>org.codehaus.mojo</groupId>
                 <artifactId>gwt-maven-plugin</artifactId>
-                <version>2.1.0</version>
                 <executions>
                     <execution>
                         <goals>
@@ -90,8 +88,6 @@
                         </goals>
                     </execution>
                 </executions>
-                <!-- Plugin configuration. There are many available options, see gwt-maven-plugin
-                        documentation at codehaus.org -->
                 <configuration>
                     <runTarget>WebUi.html</runTarget>
                     <hostedWebapp>${webappDirectory}</hostedWebapp>
@@ -102,7 +98,6 @@
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-war-plugin</artifactId>
-                <version>2.1</version>
                 <executions>
                     <execution>
                         <phase>compile</phase>

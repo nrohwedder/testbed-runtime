@@ -55,14 +55,12 @@ public class WebUiPlace extends Place {
 		
 		private String[] removeLast(String[] array) {
 			String[] result = new String[array.length - 1];
-			for (int i = 0; i < array.length - 1; i++) {
-				result[i] = array[i];
-			}
+                        System.arraycopy(array, 0, result, 0, array.length - 1);
 			return result;
 		}
 		
 		public String getToken(WebUiPlace place) {
-			StringBuffer buffer = new StringBuffer();
+			StringBuilder buffer = new StringBuilder();
 			for (Place entry : place.getPlaces()) {
 				buffer.append(mapper.getToken(entry)).append(SEPARATOR);
 			}

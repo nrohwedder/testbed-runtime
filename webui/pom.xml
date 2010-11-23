@@ -7,15 +7,18 @@
         <version>0.5.4-SNAPSHOT</version>
         <relativePath>../</relativePath>
     </parent>
+
     <modelVersion>4.0.0</modelVersion>
     <groupId>de.uniluebeck.itm</groupId>
     <artifactId>tr.webui</artifactId>
     <packaging>pom</packaging>
     <version>0.5.4-SNAPSHOT</version>
     <name>TR :: Web UI</name>
+
     <properties>
         <gwt.version>2.1.0</gwt.version>
     </properties>
+
     <dependencyManagement>
         <dependencies>
             <dependency>
@@ -78,14 +81,16 @@
             </dependency>
         </dependencies>
     </dependencyManagement>
-    <dependencies>
-        <!-- test -->
+
+    <!-- Test -->
+    <dependencies>        
         <dependency>
             <groupId>junit</groupId>
             <artifactId>junit</artifactId>
             <scope>test</scope>
         </dependency>
     </dependencies>
+
     <build>
         <pluginManagement>
             <plugins>
@@ -106,6 +111,7 @@
             </plugins>
         </pluginManagement>
     </build>
+
     <reporting>
         <plugins>
             <plugin>
@@ -118,6 +124,7 @@
             </plugin>
         </plugins>
     </reporting>
+    
     <modules>
         <module>api</module>
         <module>shared</module>

@@ -38,9 +38,9 @@
         <module name="SimplifyBooleanExpression" />
         <module name="SimplifyBooleanReturn" />
         <module name="StringLiteralEquality" />
-        <!--module name="NestedForDepth">
+        <module name="NestedForDepth">
             <property name="max" value="3" />
-        </module-->
+        </module>
         <module name="NestedIfDepth">
             <property name="max" value="3" />
         </module>
@@ -58,6 +58,6 @@
         <module name="ParameterAssignment" />
         <module name="DefaultComesLast"/>
         <module name="UnnecessaryParentheses" />
-        <!--module name="OneStatementPerLine" /-->
+        <module name="OneStatementPerLine"/>
     </module>
 </module>

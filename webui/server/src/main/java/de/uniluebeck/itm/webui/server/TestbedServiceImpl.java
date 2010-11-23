@@ -66,4 +66,14 @@ public class TestbedServiceImpl extends RemoteServiceServlet implements TestbedS
             throw new AuthenticationException("Authentication failed due to an error", ex);
         }
     }
+
+    public String getNetworkXml(String url) {
+        final SessionManagement sessionManagement = WSNServiceHelper.getSessionManagementService(url);
+
+        String xml = sessionManagement.getNetwork();
+
+        return xml;
+
+        // TODO: maybe use XStream to ...
+    }
 }

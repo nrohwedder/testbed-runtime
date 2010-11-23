@@ -121,7 +121,7 @@ public class LoginActivity extends AbstractActivity implements LoginView.Present
     private void loadNetwork(final TestbedConfiguration configuration) {
         view.getReloadEnabled().setEnabled(false);
         AsyncCallback<List<NodeUrn>> callback = new AsyncCallback<List<NodeUrn>>() {
-            public void onSuccess(List<NodeUrn> nodes) {
+            public void onSuccess(final List<NodeUrn> nodes) {
                 view.setNodeUrns(nodes);
                 view.getReloadEnabled().setEnabled(true);
             }
