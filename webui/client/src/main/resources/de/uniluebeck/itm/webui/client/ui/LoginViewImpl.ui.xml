@@ -16,7 +16,7 @@
         }
 
         .button {
-        width: 125px;
+        width: 150px;
         }
 
         .caption {
@@ -41,7 +41,7 @@
             <g:SplitLayoutPanel>
                 <g:center>
                     <g:FlowPanel>
-                        <g:Label styleName="{style.caption}">Testbed Node Information</g:Label>
+                        <g:Label styleName="{style.caption}">Testbed Network Information</g:Label>
                         <c:CellTable ui:field="nodeUrnTable"/>
                     </g:FlowPanel>
                 </g:center>
@@ -70,10 +70,10 @@
                 <table class="{style.buttonTable}">
                     <tr>
                         <td>
-                            <g:Button ui:field="reloadButton" addStyleNames="{style.button}">Reload</g:Button>
+                            <g:Button ui:field="reloadButton" addStyleNames="{style.button}">Reload Network</g:Button>
                         </td>
                         <td>
-                            <g:Button ui:field="loginButton" addStyleNames="{style.button}">Login...</g:Button>
+                            <g:Button ui:field="loginButton" addStyleNames="{style.button}">Connect to Testbed...</g:Button>
                         </td>
                     </tr>
                 </table>

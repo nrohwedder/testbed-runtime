@@ -1,5 +1,7 @@
 package de.uniluebeck.itm.webui.client.ui;
 
+import java.util.List;
+
 import com.google.gwt.cell.client.AbstractCell;
 import com.google.gwt.cell.client.Cell;
 import com.google.gwt.core.client.GWT;
@@ -13,13 +15,24 @@ import com.google.gwt.uibinder.client.UiHandler;
 import com.google.gwt.user.cellview.client.CellList;
 import com.google.gwt.user.cellview.client.CellTable;
 import com.google.gwt.user.cellview.client.TextColumn;
-import com.google.gwt.user.client.ui.*;
+import com.google.gwt.user.client.ui.Button;
+import com.google.gwt.user.client.ui.Composite;
+import com.google.gwt.user.client.ui.DialogBox;
+import com.google.gwt.user.client.ui.FlexTable;
+import com.google.gwt.user.client.ui.HasEnabled;
+import com.google.gwt.user.client.ui.HasHorizontalAlignment;
+import com.google.gwt.user.client.ui.HasText;
+import com.google.gwt.user.client.ui.HorizontalPanel;
+import com.google.gwt.user.client.ui.Label;
+import com.google.gwt.user.client.ui.PasswordTextBox;
+import com.google.gwt.user.client.ui.TextBox;
+import com.google.gwt.user.client.ui.VerticalPanel;
+import com.google.gwt.user.client.ui.Widget;
 import com.google.gwt.view.client.SelectionModel;
 import com.google.inject.Inject;
+
 import de.uniluebeck.itm.webui.shared.NodeUrn;
 import de.uniluebeck.itm.webui.shared.TestbedConfiguration;
-
-import java.util.List;
 
 public class LoginViewImpl extends Composite implements LoginView {
 
@@ -180,7 +193,9 @@ public class LoginViewImpl extends Composite implements LoginView {
         final Cell<TestbedConfiguration> cell = new AbstractCell<TestbedConfiguration>() {
             @Override
             public void render(TestbedConfiguration configuration, Object paramObject, SafeHtmlBuilder sb) {
+                sb.appendHtmlConstant("<div class=\"celllist-entry\">");
                 sb.appendEscaped(configuration.getName());
+                sb.appendHtmlConstant("</div>");
             }
         };
         return new CellList<TestbedConfiguration>(cell);
