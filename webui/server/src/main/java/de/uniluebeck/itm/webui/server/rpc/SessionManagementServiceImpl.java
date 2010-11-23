@@ -1,4 +1,4 @@
-package de.uniluebeck.itm.webui.server;
+package de.uniluebeck.itm.webui.server.rpc;
 
 import java.util.ArrayList;
 import java.util.List;
