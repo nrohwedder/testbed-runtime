@@ -11,7 +11,8 @@ import com.google.gwt.user.client.ui.Widget;
 
 public class NavigationViewImpl extends Composite implements NavigationView {
 
-    interface NavigationViewImplUiBinder extends UiBinder<Widget, NavigationViewImpl> {
+    interface NavigationViewImplUiBinder extends
+            UiBinder<Widget, NavigationViewImpl> {
     }
 
     private static NavigationViewImplUiBinder uiBinder = GWT.create(NavigationViewImplUiBinder.class);

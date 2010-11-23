@@ -78,9 +78,4 @@ public class TestbedConfiguration implements Serializable {
     public boolean isFederated() {
         return isFederated;
     }
-
-    @Override
-    public String toString() {
-        return getName();
-    }
 }

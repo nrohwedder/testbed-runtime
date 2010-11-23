@@ -1,0 +1,91 @@
+package de.uniluebeck.itm.webui.client.place;
+
+import java.util.Collection;
+import java.util.Map;
+import java.util.TreeMap;
+
+import com.google.gwt.core.client.GWT;
+import com.google.gwt.place.shared.Place;
+import com.google.gwt.place.shared.PlaceTokenizer;
+
+import de.uniluebeck.itm.webui.client.mvp.AppPlaceHistoryMapper;
+
+public class WebUiPlace extends Place {
+
+	private Map<String, Place> places = new TreeMap<String, Place>();
+
+	private String current;
+
+	public WebUiPlace() {
+
+	}
+
+	private WebUiPlace(Map<String, Place> places) {
+		this.places = places;
+	}
+
+	public Collection<Place> getPlaces() {
+		return places.values();
+	}
+
+	public Place get(Class<? extends Place> place) {
+		return places.get(place.getName());
+	}
+
+	public Place getCurrent() {
+		return places.get(current);
+	}
+
+	public void setCurrent(Place place) {
+		current = place.getClass().getName();
+		places.put(current, place);
+	}
+
+	public WebUiPlace update(Place place) {
+		places.put(place.getClass().getName(), place);
+		return new WebUiPlace(places);
+	}
+
+	public static class Tokenizer implements PlaceTokenizer<WebUiPlace> {
+
+		private static final String SEPARATOR = "&";
+
+		private final AppPlaceHistoryMapper mapper = GWT
+				.create(AppPlaceHistoryMapper.class);
+		
+		private String[] removeLast(String[] array) {
+			String[] result = new String[array.length - 1];
+			for (int i = 0; i < array.length - 1; i++) {
+				result[i] = array[i];
+			}
+			return result;
+		}
+		
+		public String getToken(WebUiPlace place) {
+			StringBuffer buffer = new StringBuffer();
+			for (Place entry : place.getPlaces()) {
+				buffer.append(mapper.getToken(entry)).append(SEPARATOR);
+			}
+			String current = place.getCurrent().getClass().getName();
+			buffer.append(current);
+			return buffer.toString();
+		}
+
+		public WebUiPlace getPlace(String token) {
+			WebUiPlace webUiPlace = new WebUiPlace();
+			String[] tokens = token.split(SEPARATOR);
+			if (tokens.length >= 2) {
+				String[] entries = removeLast(tokens);
+				String current = tokens[tokens.length - 1];
+				for (String entry : entries) {
+					Place place = mapper.getPlace(entry);
+					webUiPlace.update(place);
+					if (current.equals(place.getClass().getName())) {
+						webUiPlace.setCurrent(place);
+					}
+				}
+			}
+			return webUiPlace;
+		}
+	}
+}

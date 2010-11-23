@@ -1,5 +1,7 @@
 package de.uniluebeck.itm.webui.client.ui;
 
+import java.util.List;
+
 import com.google.gwt.cell.client.AbstractCell;
 import com.google.gwt.cell.client.Cell;
 import com.google.gwt.core.client.GWT;
@@ -28,10 +30,9 @@ import com.google.gwt.user.client.ui.VerticalPanel;
 import com.google.gwt.user.client.ui.Widget;
 import com.google.gwt.view.client.SelectionModel;
 import com.google.inject.Inject;
+
 import de.uniluebeck.itm.webui.shared.NodeUrn;
 import de.uniluebeck.itm.webui.shared.TestbedConfiguration;
-
-import java.util.List;
 
 public class LoginViewImpl extends Composite implements LoginView {
 
@@ -194,7 +195,9 @@ public class LoginViewImpl extends Composite implements LoginView {
         final Cell<TestbedConfiguration> cell = new AbstractCell<TestbedConfiguration>() {
             @Override
             public void render(TestbedConfiguration configuration, Object paramObject, SafeHtmlBuilder sb) {
+                sb.appendHtmlConstant("<div class=\"celllist-entry\">");
                 sb.appendEscaped(configuration.getName());
+                sb.appendHtmlConstant("</div>");
             }
         };
         return new CellList<TestbedConfiguration>(cell);
