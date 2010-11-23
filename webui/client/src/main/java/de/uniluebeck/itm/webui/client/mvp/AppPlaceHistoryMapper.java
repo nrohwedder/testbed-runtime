@@ -14,12 +14,8 @@ import de.uniluebeck.itm.webui.client.place.WiseMLNativePlace;
  * annotation or by extending PlaceHistoryMapperWithFactory and creating a
  * separate TokenizerFactory.
  */
-@WithTokenizers({
-        LoginPlace.Tokenizer.class,
-        ReservationPlace.Tokenizer.class,
+@WithTokenizers({ LoginPlace.Tokenizer.class, ReservationPlace.Tokenizer.class,
         ExperimentationPlace.Tokenizer.class,
-        AdministrationPlace.Tokenizer.class,
-        WiseMLNativePlace.Tokenizer.class
-})
+        AdministrationPlace.Tokenizer.class, WiseMLNativePlace.Tokenizer.class })
 public interface AppPlaceHistoryMapper extends PlaceHistoryMapper {
 }

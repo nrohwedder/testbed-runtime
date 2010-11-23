@@ -5,13 +5,14 @@ import com.google.gwt.place.shared.PlaceTokenizer;
 
 public class ExperimentationPlace extends Place {
 
-    public static class Tokenizer implements PlaceTokenizer<ExperimentationPlace> {
+    public static class Tokenizer implements
+            PlaceTokenizer<ExperimentationPlace> {
 
-        public String getToken(ExperimentationPlace place) {
+        public String getToken(final ExperimentationPlace place) {
             return "";
         }
 
-        public ExperimentationPlace getPlace(String token) {
+        public ExperimentationPlace getPlace(final String token) {
             return new ExperimentationPlace();
         }
     }

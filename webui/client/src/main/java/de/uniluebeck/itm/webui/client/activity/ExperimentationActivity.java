@@ -8,7 +8,8 @@ import de.uniluebeck.itm.webui.client.WebUiGinjector;
 import de.uniluebeck.itm.webui.client.ui.ExperimentationView;
 import de.uniluebeck.itm.webui.client.ui.ExperimentationView.Presenter;
 
-public class ExperimentationActivity extends AbstractActivity implements Presenter {
+public class ExperimentationActivity extends AbstractActivity implements
+        Presenter {
 
     private final WebUiGinjector injector;
 

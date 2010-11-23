@@ -19,8 +19,9 @@ public class ContentActivityMapper implements ActivityMapper {
     /**
      * AppActivityMapper associates each Place with its corresponding
      * {@link Activity}
-     *
-     * @param injector GIN injector to be passed to activities
+     * 
+     * @param injector
+     *            GIN injector to be passed to activities
      */
     @Inject
     public ContentActivityMapper(final WebUiGinjector injector) {

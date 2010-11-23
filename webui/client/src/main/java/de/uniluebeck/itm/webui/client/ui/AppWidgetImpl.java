@@ -13,7 +13,8 @@ public class AppWidgetImpl extends Composite implements AppWidget {
     interface AppWidgetUiBinder extends UiBinder<Widget, AppWidgetImpl> {
     }
 
-    private static AppWidgetUiBinder uiBinder = GWT.create(AppWidgetUiBinder.class);
+    private static AppWidgetUiBinder uiBinder = GWT
+            .create(AppWidgetUiBinder.class);
     @UiField
     SimplePanel navigationPanel;
     @UiField

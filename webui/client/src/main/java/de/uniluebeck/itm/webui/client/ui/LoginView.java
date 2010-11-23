@@ -33,7 +33,8 @@ public interface LoginView extends IsWidget {
 
     void setPresenter(Presenter listener);
 
-    void setTestbedConfigurationSelectionModel(SelectionModel<TestbedConfiguration> selectionModel);
+    void setTestbedConfigurationSelectionModel(
+            SelectionModel<TestbedConfiguration> selectionModel);
 
     void showLoginDialog(String title);
 

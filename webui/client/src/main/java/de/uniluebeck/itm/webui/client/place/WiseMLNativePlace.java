@@ -7,11 +7,11 @@ public class WiseMLNativePlace extends Place {
 
     public static class Tokenizer implements PlaceTokenizer<WiseMLNativePlace> {
 
-        public String getToken(WiseMLNativePlace place) {
+        public String getToken(final WiseMLNativePlace place) {
             return "";
         }
 
-        public WiseMLNativePlace getPlace(String token) {
+        public WiseMLNativePlace getPlace(final String token) {
             return new WiseMLNativePlace();
         }
     }

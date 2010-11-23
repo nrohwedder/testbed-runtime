@@ -17,7 +17,8 @@ import de.uniluebeck.itm.webui.client.ui.NavigationView;
 import java.util.ArrayList;
 import java.util.List;
 
-public class NavigationActivity extends AbstractActivity implements NavigationView.Presenter {
+public class NavigationActivity extends AbstractActivity implements
+        NavigationView.Presenter {
 
     private class Entry {
         private Place place;
@@ -52,7 +53,8 @@ public class NavigationActivity extends AbstractActivity implements NavigationVi
 
         navigation.add(new Entry("Login", new LoginPlace(null)));
         navigation.add(new Entry("Reservation", new ReservationPlace()));
-        navigation.add(new Entry("Experimentation", new ExperimentationPlace()));
+        navigation
+                .add(new Entry("Experimentation", new ExperimentationPlace()));
         navigation.add(new Entry("Administration", new AdministrationPlace()));
         navigation.add(new Entry("WiseML Native", new WiseMLNativePlace()));
     }
@@ -80,7 +82,8 @@ public class NavigationActivity extends AbstractActivity implements NavigationVi
         }
         int i = 0;
         for (Entry entry : navigation) {
-            if (place != null && place.getClass().equals(entry.getPlace().getClass())) {
+            if (place != null
+                    && place.getClass().equals(entry.getPlace().getClass())) {
                 navigationView.select(i);
             }
             i++;

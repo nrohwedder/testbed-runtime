@@ -7,16 +7,18 @@ import com.google.gwt.user.client.ui.Widget;
 
 public class ReservationViewImpl extends Composite implements ReservationView {
 
-    interface ReservationViewImplUiBinder extends UiBinder<Widget, ReservationViewImpl> {
+    interface ReservationViewImplUiBinder extends
+            UiBinder<Widget, ReservationViewImpl> {
     }
 
-    private static ReservationViewImplUiBinder uiBinder = GWT.create(ReservationViewImplUiBinder.class);
+    private static ReservationViewImplUiBinder uiBinder = GWT
+            .create(ReservationViewImplUiBinder.class);
 
     public ReservationViewImpl() {
         initWidget(uiBinder.createAndBindUi(this));
     }
 
-    public void setPresenter(Presenter presenter) {
+    public void setPresenter(final Presenter presenter) {
 
     }
 

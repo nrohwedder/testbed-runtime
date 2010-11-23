@@ -5,7 +5,8 @@ import com.google.gwt.place.shared.PlaceTokenizer;
 
 public class AdministrationPlace extends Place {
 
-    public static class Tokenizer implements PlaceTokenizer<AdministrationPlace> {
+    public static class Tokenizer implements
+            PlaceTokenizer<AdministrationPlace> {
 
         public String getToken(final AdministrationPlace place) {
             return "";

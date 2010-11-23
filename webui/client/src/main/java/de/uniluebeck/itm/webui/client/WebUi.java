@@ -18,10 +18,12 @@ public class WebUi implements EntryPoint {
     public void onModuleLoad() {
         final AppWidget appWidget = injector.getAppWidget();
 
-        injector.getNavigationActivityManager().setDisplay(appWidget.getNavigationPanel());
+        injector.getNavigationActivityManager().setDisplay(
+                appWidget.getNavigationPanel());
 
         // Start ActivityManager for the main widget with our ActivityMapper
-        injector.getContentActivityManager().setDisplay(appWidget.getContentPanel());
+        injector.getContentActivityManager().setDisplay(
+                appWidget.getContentPanel());
 
         RootPanel.get().add(appWidget.asWidget());
 

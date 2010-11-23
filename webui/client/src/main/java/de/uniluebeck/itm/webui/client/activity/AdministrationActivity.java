@@ -8,7 +8,8 @@ import de.uniluebeck.itm.webui.client.WebUiGinjector;
 import de.uniluebeck.itm.webui.client.ui.AdministrationView;
 import de.uniluebeck.itm.webui.client.ui.AdministrationView.Presenter;
 
-public class AdministrationActivity extends AbstractActivity implements Presenter {
+public class AdministrationActivity extends AbstractActivity implements
+        Presenter {
 
     private final WebUiGinjector injector;
 

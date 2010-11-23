@@ -76,7 +76,8 @@ public class LoginViewImpl extends Composite implements LoginView {
             buttonPanel.add(cancelButton);
 
             panel.add(buttonPanel);
-            panel.setCellHorizontalAlignment(buttonPanel, HasHorizontalAlignment.ALIGN_RIGHT);
+            panel.setCellHorizontalAlignment(buttonPanel,
+                    HasHorizontalAlignment.ALIGN_RIGHT);
 
             setWidget(panel);
             setModal(true);
@@ -118,7 +119,7 @@ public class LoginViewImpl extends Composite implements LoginView {
             return cancelButton;
         }
 
-        public void addError(String error) {
+        public void addError(final String error) {
             errorPanel.add(new Label(error));
         }
 
@@ -130,7 +131,8 @@ public class LoginViewImpl extends Composite implements LoginView {
     interface LoginViewImplUiBinder extends UiBinder<Widget, LoginViewImpl> {
     }
 
-    private static LoginViewImplUiBinder uiBinder = GWT.create(LoginViewImplUiBinder.class);
+    private static LoginViewImplUiBinder uiBinder = GWT
+            .create(LoginViewImplUiBinder.class);
 
     @UiField
     CellList<TestbedConfiguration> configurationList;
@@ -159,7 +161,7 @@ public class LoginViewImpl extends Composite implements LoginView {
 
         final TextColumn<NodeUrn> prefixColumn = new TextColumn<NodeUrn>() {
             @Override
-            public String getValue(NodeUrn node) {
+            public String getValue(final NodeUrn node) {
                 return node.getPrefix();
             }
         };
@@ -167,7 +169,7 @@ public class LoginViewImpl extends Composite implements LoginView {
 
         final TextColumn<NodeUrn> projectColumn = new TextColumn<NodeUrn>() {
             @Override
-            public String getValue(NodeUrn node) {
+            public String getValue(final NodeUrn node) {
                 return node.getProject();
             }
         };
@@ -175,7 +177,7 @@ public class LoginViewImpl extends Composite implements LoginView {
 
         final TextColumn<NodeUrn> testbedColumn = new TextColumn<NodeUrn>() {
             @Override
-            public String getValue(NodeUrn node) {
+            public String getValue(final NodeUrn node) {
                 return node.getTestbed();
             }
         };
@@ -183,7 +185,7 @@ public class LoginViewImpl extends Composite implements LoginView {
 
         final TextColumn<NodeUrn> nodeColumn = new TextColumn<NodeUrn>() {
             @Override
-            public String getValue(NodeUrn node) {
+            public String getValue(final NodeUrn node) {
                 return node.getNode();
             }
         };
@@ -194,7 +196,8 @@ public class LoginViewImpl extends Composite implements LoginView {
     public CellList<TestbedConfiguration> createTestbedConfigurationCellList() {
         final Cell<TestbedConfiguration> cell = new AbstractCell<TestbedConfiguration>() {
             @Override
-            public void render(TestbedConfiguration configuration, Object paramObject, SafeHtmlBuilder sb) {
+            public void render(final TestbedConfiguration configuration,
+                    final Object paramObject, final SafeHtmlBuilder sb) {
                 sb.appendHtmlConstant("<div class=\"celllist-entry\">");
                 sb.appendEscaped(configuration.getName());
                 sb.appendHtmlConstant("</div>");
@@ -204,21 +207,21 @@ public class LoginViewImpl extends Composite implements LoginView {
     }
 
     @UiHandler("reloadButton")
-    void handleReloadClick(ClickEvent event) {
+    public void handleReloadClick(final ClickEvent event) {
         presenter.reload();
     }
 
     @UiHandler("loginButton")
-    void handleLoginClick(ClickEvent event) {
+    public void handleLoginClick(final ClickEvent event) {
         presenter.showLoginDialog();
     }
 
-    public void setPresenter(Presenter presenter) {
+    public void setPresenter(final Presenter presenter) {
         this.presenter = presenter;
         loginDialog.setPresenter(presenter);
     }
 
-    public void setConfigurations(List<TestbedConfiguration> configurations) {
+    public void setConfigurations(final List<TestbedConfiguration> configurations) {
         configurationList.setRowCount(configurations.size());
         configurationList.setRowData(0, configurations);
     }
@@ -227,16 +230,17 @@ public class LoginViewImpl extends Composite implements LoginView {
         return description;
     }
 
-    public void setNodeUrns(List<NodeUrn> nodes) {
+    public void setNodeUrns(final List<NodeUrn> nodes) {
         nodeUrnTable.setRowCount(nodes.size());
         nodeUrnTable.setRowData(0, nodes);
     }
 
-    public void setTestbedConfigurationSelectionModel(SelectionModel<TestbedConfiguration> selectionModel) {
+    public void setTestbedConfigurationSelectionModel(
+            final SelectionModel<TestbedConfiguration> selectionModel) {
         configurationList.setSelectionModel(selectionModel);
     }
 
-    public void showLoginDialog(String title) {
+    public void showLoginDialog(final String title) {
         loginDialog.setText(title);
         loginDialog.show();
         loginDialog.center();
@@ -254,7 +258,7 @@ public class LoginViewImpl extends Composite implements LoginView {
         return loginDialog.getPasswordTextBox();
     }
 
-    public void addError(String error) {
+    public void addError(final String error) {
         loginDialog.addError(error);
     }
 

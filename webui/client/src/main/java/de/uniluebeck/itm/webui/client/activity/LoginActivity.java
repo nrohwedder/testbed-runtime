@@ -21,7 +21,8 @@ import de.uniluebeck.itm.webui.shared.TestbedConfiguration;
 import java.util.Iterator;
 import java.util.List;
 
-public class LoginActivity extends AbstractActivity implements LoginView.Presenter {
+public class LoginActivity extends AbstractActivity implements
+        LoginView.Presenter {
 
     private final WebUiGinjector injector;
 
@@ -36,7 +37,8 @@ public class LoginActivity extends AbstractActivity implements LoginView.Present
     private LoginPlace place;
 
     @Inject
-    public LoginActivity(final WebUiGinjector injector, final TestbedServiceAsync service) {
+    public LoginActivity(final WebUiGinjector injector,
+            final TestbedServiceAsync service) {
         this.injector = injector;
         this.service = service;
     }
@@ -52,7 +54,7 @@ public class LoginActivity extends AbstractActivity implements LoginView.Present
 
     private void bind() {
         configurationSelectionModel.addSelectionChangeHandler(new Handler() {
-            public void onSelectionChange(SelectionChangeEvent event) {
+            public void onSelectionChange(final SelectionChangeEvent event) {
                 onConfigurationSelectionChange(event);
             }
         });
@@ -70,7 +72,8 @@ public class LoginActivity extends AbstractActivity implements LoginView.Present
     /**
      * Invoked by the ActivityManager to start a new Activity
      */
-    public void start(final AcceptsOneWidget containerWidget, final EventBus eventBus) {
+    public void start(final AcceptsOneWidget containerWidget,
+            final EventBus eventBus) {
         view = injector.getLoginView();
         view.setPresenter(this);
         view.getLoginEnabled().setEnabled(false);
@@ -87,7 +90,7 @@ public class LoginActivity extends AbstractActivity implements LoginView.Present
 
     private void loadTestbedConfigurations() {
         final AsyncCallback<List<TestbedConfiguration>> callback = new AsyncCallback<List<TestbedConfiguration>>() {
-            public void onSuccess(List<TestbedConfiguration> result) {
+            public void onSuccess(final List<TestbedConfiguration> result) {
                 configurations = result;
                 view.setConfigurations(result);
                 loadConfigurationSelectionFromPlace();
@@ -108,7 +111,7 @@ public class LoginActivity extends AbstractActivity implements LoginView.Present
         final Integer selection = place.getSelection();
         GWT.log("Selection: " + selection);
         if (selection != null) {
-            TestbedConfiguration configuration = getSelectedConfiguration();
+            final TestbedConfiguration configuration = getSelectedConfiguration();
             if (configurations.size() > selection) {
                 configurationSelectionModel.setSelected(configuration, true);
             }
