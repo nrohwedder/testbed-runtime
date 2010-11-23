@@ -16,13 +16,14 @@ import com.google.gwt.view.client.SingleSelectionModel;
 import com.google.inject.Inject;
 
 import de.uniluebeck.itm.webui.api.SNAAServiceAsync;
-import de.uniluebeck.itm.webui.api.TestbedServiceAsync;
 import de.uniluebeck.itm.webui.api.SessionManagementServiceAsync;
+import de.uniluebeck.itm.webui.api.TestbedServiceAsync;
 import de.uniluebeck.itm.webui.client.WebUiGinjector;
 import de.uniluebeck.itm.webui.client.place.LoginPlace;
 import de.uniluebeck.itm.webui.client.ui.LoginView;
 import de.uniluebeck.itm.webui.shared.NodeUrn;
 import de.uniluebeck.itm.webui.shared.TestbedConfiguration;
+import de.uniluebeck.itm.webui.shared.wiseml.Wiseml;
 
 public class LoginActivity extends AbstractActivity implements
         LoginView.Presenter {
@@ -134,7 +135,7 @@ public class LoginActivity extends AbstractActivity implements
 
     private void loadNetwork(final TestbedConfiguration configuration) {
         view.getReloadEnabled().setEnabled(false);
-        AsyncCallback<List<NodeUrn>> callback = new AsyncCallback<List<NodeUrn>>() {
+        final AsyncCallback<List<NodeUrn>> callback = new AsyncCallback<List<NodeUrn>>() {
             public void onSuccess(final List<NodeUrn> nodes) {
                 view.setNodeUrns(nodes);
                 view.getReloadEnabled().setEnabled(true);
@@ -146,6 +147,17 @@ public class LoginActivity extends AbstractActivity implements
             }
         };
         sessionManagementService.getNetwork(configuration.getSessionmanagementEndointUrl(), callback);
+        final AsyncCallback<Wiseml> asyncCallback = new AsyncCallback<Wiseml>() {
+            public void onFailure(final Throwable caught) {
+                // TODO Auto-generated method stub
+                
+            }
+            
+            public void onSuccess(final Wiseml result) {
+                System.out.println(result.getSetup().getDescription());
+            }
+        };
+        sessionManagementService.getWiseml(configuration.getSessionmanagementEndointUrl(), asyncCallback);
     }
 
     public void reload() {

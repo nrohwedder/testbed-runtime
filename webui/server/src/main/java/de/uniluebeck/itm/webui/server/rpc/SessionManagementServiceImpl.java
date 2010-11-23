@@ -3,12 +3,16 @@ package de.uniluebeck.itm.webui.server.rpc;
 import java.util.ArrayList;
 import java.util.List;
 
+import org.dozer.Mapper;
+
 import com.google.gwt.user.server.rpc.RemoteServiceServlet;
+import com.google.inject.Inject;
 import com.google.inject.Singleton;
 
 import de.itm.uniluebeck.tr.wiseml.WiseMLHelper;
 import de.uniluebeck.itm.webui.api.SessionManagementService;
 import de.uniluebeck.itm.webui.shared.NodeUrn;
+import de.uniluebeck.itm.webui.shared.wiseml.Wiseml;
 import eu.wisebed.testbed.api.wsn.WSNServiceHelper;
 import eu.wisebed.testbed.api.wsn.v211.SessionManagement;
 
@@ -19,7 +23,14 @@ public class SessionManagementServiceImpl extends RemoteServiceServlet implement
      * 
      */
     private static final long serialVersionUID = 784455164992864141L;
+    
+    private final Mapper mapper;
 
+    @Inject
+    public SessionManagementServiceImpl(final Mapper mapper) {
+        this.mapper = mapper;
+    }
+    
     @Override
     public List<NodeUrn> getNetwork(final String url) {
         final SessionManagement sessionManagement = WSNServiceHelper.getSessionManagementService(url);
@@ -34,6 +45,13 @@ public class SessionManagementServiceImpl extends RemoteServiceServlet implement
         }
 
         return list;
+    }
+
+    @Override
+    public Wiseml getWiseml(final String url) {
+        final SessionManagement sessionManagement = WSNServiceHelper.getSessionManagementService(url);
+        final eu.wisebed.ns.wiseml._1.Wiseml wiseml = WiseMLHelper.deserialize(sessionManagement.getNetwork());
+        return mapper.map(wiseml, Wiseml.class);
     }
 
 }
