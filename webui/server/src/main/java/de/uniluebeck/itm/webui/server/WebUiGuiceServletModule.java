@@ -6,8 +6,8 @@ public class WebUiGuiceServletModule extends ServletModule {
 
     @Override
     protected void configureServlets() {
-        bind(TestbedConfigurationService.class).to(XmlFileTestbedConfigurationService.class);
-
-        serve("/webui/testbed.rpc").with(TestbedServiceImpl.class);
+        serve("/webui/testbed.rpc").with(XmlFileTestbedService.class);
+        serve("/webui/snaa.rpc").with(SNAAServiceImpl.class);
+        serve("/webui/sessionmanagement.rpc").with(SessionManagementServiceImpl.class);
     }
 }

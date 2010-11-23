@@ -1,5 +1,8 @@
 package de.uniluebeck.itm.webui.client.activity;
 
+import java.util.Iterator;
+import java.util.List;
+
 import com.google.gwt.activity.shared.AbstractActivity;
 import com.google.gwt.core.client.GWT;
 import com.google.gwt.core.client.Scheduler;
@@ -11,22 +14,26 @@ import com.google.gwt.view.client.SelectionChangeEvent;
 import com.google.gwt.view.client.SelectionChangeEvent.Handler;
 import com.google.gwt.view.client.SingleSelectionModel;
 import com.google.inject.Inject;
+
+import de.uniluebeck.itm.webui.api.SNAAServiceAsync;
 import de.uniluebeck.itm.webui.api.TestbedServiceAsync;
+import de.uniluebeck.itm.webui.api.SessionManagementServiceAsync;
 import de.uniluebeck.itm.webui.client.WebUiGinjector;
 import de.uniluebeck.itm.webui.client.place.LoginPlace;
 import de.uniluebeck.itm.webui.client.ui.LoginView;
 import de.uniluebeck.itm.webui.shared.NodeUrn;
 import de.uniluebeck.itm.webui.shared.TestbedConfiguration;
 
-import java.util.Iterator;
-import java.util.List;
-
 public class LoginActivity extends AbstractActivity implements
         LoginView.Presenter {
 
     private final WebUiGinjector injector;
 
-    private final TestbedServiceAsync service;
+    private final SNAAServiceAsync authenticationService;
+    
+    private final TestbedServiceAsync configurationService;
+    
+    private final SessionManagementServiceAsync sessionManagementService;
 
     private LoginView view;
 
@@ -38,9 +45,13 @@ public class LoginActivity extends AbstractActivity implements
 
     @Inject
     public LoginActivity(final WebUiGinjector injector,
-            final TestbedServiceAsync service) {
+            final TestbedServiceAsync configurationService,
+            final SNAAServiceAsync authenticationService,
+            final SessionManagementServiceAsync sessionManagementService) {
         this.injector = injector;
-        this.service = service;
+        this.configurationService = configurationService;
+        this.authenticationService = authenticationService;
+        this.sessionManagementService = sessionManagementService;
     }
 
     public void setPlace(final LoginPlace place) {
@@ -102,7 +113,7 @@ public class LoginActivity extends AbstractActivity implements
         };
         Scheduler.get().scheduleDeferred(new ScheduledCommand() {
             public void execute() {
-                service.getTestbedConfigurations(callback);
+                configurationService.getConfigurations(callback);
             }
         });
     }
@@ -134,8 +145,7 @@ public class LoginActivity extends AbstractActivity implements
                 view.getReloadEnabled().setEnabled(true);
             }
         };
-        service.getNetwork(configuration.getSessionmanagementEndointUrl(),
-                callback);
+        sessionManagementService.getNetwork(configuration.getSessionmanagementEndointUrl(), callback);
     }
 
     public void reload() {
@@ -172,7 +182,7 @@ public class LoginActivity extends AbstractActivity implements
             public void onSuccess(final Void result) {
                 if (iterator.hasNext()) {
                     urn = iterator.next();
-                    service.authenticate(endpointUrl, urn, username, password,
+                    authenticationService.authenticate(endpointUrl, urn, username, password,
                             this);
                 } else {
                     if (!error) {
