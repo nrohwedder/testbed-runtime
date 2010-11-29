@@ -31,8 +31,8 @@ import com.google.gwt.user.client.ui.Widget;
 import com.google.gwt.view.client.SelectionModel;
 import com.google.inject.Inject;
 
-import de.uniluebeck.itm.webui.shared.NodeUrn;
 import de.uniluebeck.itm.webui.shared.TestbedConfiguration;
+import de.uniluebeck.itm.webui.shared.wiseml.Node;
 
 public class LoginViewImpl extends Composite implements LoginView {
 
@@ -138,7 +138,7 @@ public class LoginViewImpl extends Composite implements LoginView {
     CellList<TestbedConfiguration> configurationList;
 
     @UiField
-    CellTable<NodeUrn> nodeUrnTable;
+    CellTable<Node> nodeTable;
 
     @UiField
     Label description;
@@ -157,39 +157,15 @@ public class LoginViewImpl extends Composite implements LoginView {
     public LoginViewImpl() {
         initWidget(uiBinder.createAndBindUi(this));
 
-        nodeUrnTable.setWidth("100%");
+        nodeTable.setWidth("100%");
 
-        final TextColumn<NodeUrn> prefixColumn = new TextColumn<NodeUrn>() {
+        final TextColumn<Node> prefixColumn = new TextColumn<Node>() {
             @Override
-            public String getValue(final NodeUrn node) {
-                return node.getPrefix();
+            public String getValue(final Node node) {
+                return node.getId();
             }
         };
-        nodeUrnTable.addColumn(prefixColumn, "Prefix");
-
-        final TextColumn<NodeUrn> projectColumn = new TextColumn<NodeUrn>() {
-            @Override
-            public String getValue(final NodeUrn node) {
-                return node.getProject();
-            }
-        };
-        nodeUrnTable.addColumn(projectColumn, "Project");
-
-        final TextColumn<NodeUrn> testbedColumn = new TextColumn<NodeUrn>() {
-            @Override
-            public String getValue(final NodeUrn node) {
-                return node.getTestbed();
-            }
-        };
-        nodeUrnTable.addColumn(testbedColumn, "Testbed");
-
-        final TextColumn<NodeUrn> nodeColumn = new TextColumn<NodeUrn>() {
-            @Override
-            public String getValue(final NodeUrn node) {
-                return node.getNode();
-            }
-        };
-        nodeUrnTable.addColumn(nodeColumn, "Node");
+        nodeTable.addColumn(prefixColumn, "ID");
     }
 
     @UiFactory
@@ -230,9 +206,10 @@ public class LoginViewImpl extends Composite implements LoginView {
         return description;
     }
 
-    public void setNodeUrns(final List<NodeUrn> nodes) {
-        nodeUrnTable.setRowCount(nodes.size());
-        nodeUrnTable.setRowData(0, nodes);
+    public void setNodes(final List<Node> nodes) {
+        nodeTable.setRowCount(nodes.size());
+        nodeTable.setPageSize(nodes.size());
+        nodeTable.setRowData(0, nodes);
     }
 
     public void setTestbedConfigurationSelectionModel(

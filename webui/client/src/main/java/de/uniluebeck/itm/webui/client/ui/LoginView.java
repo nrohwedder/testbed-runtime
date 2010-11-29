@@ -1,13 +1,14 @@
 package de.uniluebeck.itm.webui.client.ui;
 
+import java.util.List;
+
 import com.google.gwt.user.client.ui.HasEnabled;
 import com.google.gwt.user.client.ui.HasText;
 import com.google.gwt.user.client.ui.IsWidget;
 import com.google.gwt.view.client.SelectionModel;
-import de.uniluebeck.itm.webui.shared.NodeUrn;
-import de.uniluebeck.itm.webui.shared.TestbedConfiguration;
 
-import java.util.List;
+import de.uniluebeck.itm.webui.shared.TestbedConfiguration;
+import de.uniluebeck.itm.webui.shared.wiseml.Node;
 
 public interface LoginView extends IsWidget {
 
@@ -29,7 +30,7 @@ public interface LoginView extends IsWidget {
 
     void setConfigurations(List<TestbedConfiguration> configurations);
 
-    void setNodeUrns(List<NodeUrn> nodes);
+    void setNodes(List<Node> nodes);
 
     void setPresenter(Presenter listener);
 

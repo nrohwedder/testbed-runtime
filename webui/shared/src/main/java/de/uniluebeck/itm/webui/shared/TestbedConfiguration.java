@@ -18,8 +18,6 @@ public class TestbedConfiguration implements Serializable {
 
     private String testbedUrl;
 
-    private String description;
-
     private String snaaEndpointUrl;
 
     private String rsEndpointUrl;
@@ -34,12 +32,11 @@ public class TestbedConfiguration implements Serializable {
 
     }
 
-    public TestbedConfiguration(String name, String testbedUrl, String description,
-                                String snaaEndpointUrl, String rsEndpointUrl,
-                                String sessionmanagementEndointUrl, boolean isFederated) {
+    public TestbedConfiguration(final String name, final String testbedUrl,
+                                final String snaaEndpointUrl, final String rsEndpointUrl,
+                                final String sessionmanagementEndointUrl, final boolean isFederated) {
         this.name = name;
         this.testbedUrl = testbedUrl;
-        this.description = description;
         this.snaaEndpointUrl = snaaEndpointUrl;
         this.rsEndpointUrl = rsEndpointUrl;
         this.sessionmanagementEndointUrl = sessionmanagementEndointUrl;
@@ -53,10 +50,6 @@ public class TestbedConfiguration implements Serializable {
 
     public String getTestbedUrl() {
         return testbedUrl;
-    }
-
-    public String getDescription() {
-        return description;
     }
 
     public String getSnaaEndpointUrl() {

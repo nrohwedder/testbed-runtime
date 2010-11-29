@@ -17,13 +17,13 @@ public class Setup implements Serializable {
     
     private String description;
     
-    private List<Node> nodes;
+    private List<Node> node;
 
     public Coordinate getOrigin() {
         return origin;
     }
 
-    public void setOrigin(Coordinate origin) {
+    public void setOrigin(final Coordinate origin) {
         this.origin = origin;
     }
 
@@ -31,7 +31,7 @@ public class Setup implements Serializable {
         return coordinateType;
     }
 
-    public void setCoordinateType(String coordinateType) {
+    public void setCoordinateType(final String coordinateType) {
         this.coordinateType = coordinateType;
     }
 
@@ -39,16 +39,16 @@ public class Setup implements Serializable {
         return description;
     }
 
-    public void setDescription(String description) {
+    public void setDescription(final String description) {
         this.description = description;
     }
 
-    public List<Node> getNodes() {
-        return nodes;
+    public List<Node> getNode() {
+        return node;
     }
 
-    public void setNodes(List<Node> nodes) {
-        this.nodes = nodes;
+    public void setNode(final List<Node> nodes) {
+        this.node = nodes;
     }
 
 }

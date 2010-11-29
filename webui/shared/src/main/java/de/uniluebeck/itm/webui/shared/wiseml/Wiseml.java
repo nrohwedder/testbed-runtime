@@ -17,7 +17,7 @@ public class Wiseml implements Serializable {
         return version;
     }
 
-    public void setVersion(String version) {
+    public void setVersion(final String version) {
         this.version = version;
     }
 
@@ -25,7 +25,7 @@ public class Wiseml implements Serializable {
         return setup;
     }
 
-    public void setSetup(Setup setup) {
+    public void setSetup(final Setup setup) {
         this.setup = setup;
     }
 }

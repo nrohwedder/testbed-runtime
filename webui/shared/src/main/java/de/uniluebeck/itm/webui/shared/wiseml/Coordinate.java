@@ -18,31 +18,31 @@ public class Coordinate implements Serializable {
     public Double getX() {
         return x;
     }
-    public void setX(Double x) {
+    public void setX(final Double x) {
         this.x = x;
     }
     public Double getY() {
         return y;
     }
-    public void setY(Double y) {
+    public void setY(final Double y) {
         this.y = y;
     }
     public Double getZ() {
         return z;
     }
-    public void setZ(Double z) {
+    public void setZ(final Double z) {
         this.z = z;
     }
     public Double getPhi() {
         return phi;
     }
-    public void setPhi(Double phi) {
+    public void setPhi(final Double phi) {
         this.phi = phi;
     }
     public Double getTheta() {
         return theta;
     }
-    public void setTheta(Double theta) {
+    public void setTheta(final Double theta) {
         this.theta = theta;
     }
 }

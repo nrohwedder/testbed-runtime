@@ -38,11 +38,11 @@ public class AuthenticationException extends Exception implements Serializable {
         super();
     }
 
-    public AuthenticationException(String msg) {
+    public AuthenticationException(final String msg) {
         super(msg);
     }
 
-    public AuthenticationException(String msg, Throwable t) {
+    public AuthenticationException(final String msg, final Throwable t) {
         super(msg, t);
     }
 }

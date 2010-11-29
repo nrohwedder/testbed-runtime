@@ -21,8 +21,9 @@ import de.uniluebeck.itm.webui.api.TestbedServiceAsync;
 import de.uniluebeck.itm.webui.client.WebUiGinjector;
 import de.uniluebeck.itm.webui.client.place.LoginPlace;
 import de.uniluebeck.itm.webui.client.ui.LoginView;
-import de.uniluebeck.itm.webui.shared.NodeUrn;
 import de.uniluebeck.itm.webui.shared.TestbedConfiguration;
+import de.uniluebeck.itm.webui.shared.wiseml.Setup;
+import de.uniluebeck.itm.webui.shared.wiseml.Wiseml;
 
 public class LoginActivity extends AbstractActivity implements
         LoginView.Presenter {
@@ -126,30 +127,38 @@ public class LoginActivity extends AbstractActivity implements
             if (configurations.size() > selection) {
                 configurationSelectionModel.setSelected(configuration, true);
             }
-            view.getDescriptionText().setText(configuration.getDescription());
+            //view.getDescriptionText().setText(configuration.getDescription());
             view.getLoginEnabled().setEnabled(true);
-            loadNetwork(configuration);
+            loadWiseml(configuration);
         }
     }
-
-    private void loadNetwork(final TestbedConfiguration configuration) {
+    
+    private void loadWiseml(final TestbedConfiguration configuration) {
         view.getReloadEnabled().setEnabled(false);
-        final AsyncCallback<List<NodeUrn>> callback = new AsyncCallback<List<NodeUrn>>() {
-            public void onSuccess(final List<NodeUrn> nodes) {
-                view.setNodeUrns(nodes);
+        final AsyncCallback<Wiseml> callback = new AsyncCallback<Wiseml>() {
+            public void onSuccess(final Wiseml result) {
+                final Setup setup = result.getSetup();
+                view.getDescriptionText().setText(setup.getDescription());
+                view.setNodes(setup.getNode());
                 view.getReloadEnabled().setEnabled(true);
             }
-
-            public void onFailure(final Throwable throwable) {
-                throwable.printStackTrace();
+            
+            public void onFailure(final Throwable caught) {
                 view.getReloadEnabled().setEnabled(true);
             }
         };
-        sessionManagementService.getNetwork(configuration.getSessionmanagementEndointUrl(), callback);
+        final String url = configuration.getSessionmanagementEndointUrl();
+        Scheduler.get().scheduleDeferred(new ScheduledCommand() {
+            
+            public void execute() {
+                sessionManagementService.getWiseml(url, callback);
+            }
+        });
+        
     }
 
     public void reload() {
-        loadNetwork(getSelectedConfiguration());
+        loadWiseml(getSelectedConfiguration());
     }
 
     public void showLoginDialog() {
