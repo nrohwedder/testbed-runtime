@@ -13,11 +13,9 @@ import de.uniluebeck.itm.webui.client.mvp.AppPlaceHistoryMapper;
 public class WebUiPlace extends Place {
 
     private Map<String, Place> places = new TreeMap<String, Place>();
-
     private String current;
 
     public WebUiPlace() {
-
     }
 
     private WebUiPlace(final Map<String, Place> places) {
@@ -49,9 +47,7 @@ public class WebUiPlace extends Place {
     public static class Tokenizer implements PlaceTokenizer<WebUiPlace> {
 
         private static final String SEPARATOR = "&";
-
-        private final AppPlaceHistoryMapper mapper = GWT
-                .create(AppPlaceHistoryMapper.class);
+        private final AppPlaceHistoryMapper mapper = GWT.create(AppPlaceHistoryMapper.class);
 
         private String[] removeLast(final String[] array) {
             final String[] result = new String[array.length - 1];

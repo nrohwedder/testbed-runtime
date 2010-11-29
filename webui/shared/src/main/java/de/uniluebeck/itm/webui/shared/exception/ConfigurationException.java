@@ -24,19 +24,19 @@ package de.uniluebeck.itm.webui.shared.exception;
 
 import java.io.Serializable;
 
-public class AuthenticationException extends Exception implements Serializable {
+public class ConfigurationException extends Exception implements Serializable {
 
-    private static final long serialVersionUID = 932806176360713676L;
+    private static final long serialVersionUID = 932806176360713671L;
 
-    public AuthenticationException() {
+    public ConfigurationException() {
         super();
     }
 
-    public AuthenticationException(final String msg) {
+    public ConfigurationException(final String msg) {
         super(msg);
     }
 
-    public AuthenticationException(final String msg, final Throwable t) {
+    public ConfigurationException(final String msg, final Throwable t) {
         super(msg, t);
     }
 }

@@ -10,19 +10,17 @@ import de.uniluebeck.itm.webui.client.ui.ReservationView.Presenter;
 
 public class ReservationActivity extends AbstractActivity implements Presenter {
 
-    private final WebUiGinjector injector;
-
     private ReservationView view;
+    private EventBus eventBus;
 
     @Inject
-    public ReservationActivity(final WebUiGinjector injector) {
-        this.injector = injector;
+    public ReservationActivity(final ReservationView view, final EventBus eventBus) {
+        this.view = view;
+        this.eventBus = eventBus;
     }
 
     public void start(final AcceptsOneWidget panel, final EventBus eventBus) {
-        view = injector.getReservationView();
         view.setPresenter(this);
         panel.setWidget(view);
     }
-
 }

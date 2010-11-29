@@ -16,12 +16,13 @@ import com.thoughtworks.xstream.XStream;
 
 import de.uniluebeck.itm.webui.api.TestbedService;
 import de.uniluebeck.itm.webui.shared.TestbedConfiguration;
+import de.uniluebeck.itm.webui.shared.exception.ConfigurationException;
+
 
 @Singleton
 public class XmlFileTestbedService extends RemoteServiceServlet implements TestbedService {
 
     private static final long serialVersionUID = 5174874924600302509L;
-    
     private final String path;
 
     public XmlFileTestbedService() {
@@ -32,7 +33,8 @@ public class XmlFileTestbedService extends RemoteServiceServlet implements Testb
         this.path = path;
     }
 
-    public List<TestbedConfiguration> getConfigurations() {
+    @Override
+    public List<TestbedConfiguration> getConfigurations() throws ConfigurationException {
         final File file = new File(path);
         try {
             final Reader reader = new FileReader(file);
@@ -40,7 +42,7 @@ public class XmlFileTestbedService extends RemoteServiceServlet implements Testb
             xstream.alias("configuration", TestbedConfiguration.class);
             xstream.useAttributeFor(TestbedConfiguration.class, "isFederated");
             xstream.addImplicitCollection(TestbedConfiguration.class, "urnPrefixList", "urnPrefix", String.class);
-            
+
             final List<TestbedConfiguration> result = new ArrayList<TestbedConfiguration>();
             ObjectInputStream in;
             in = xstream.createObjectInputStream(reader);
@@ -51,17 +53,16 @@ public class XmlFileTestbedService extends RemoteServiceServlet implements Testb
                     result.add(bed);
                 } catch (final EOFException e) {
                     objects = false;
-                } 
+                }
             }
             in.close();
             return result;
         } catch (final FileNotFoundException e) {
-            e.printStackTrace();
+            throw new ConfigurationException(e.getMessage(), e);
         } catch (final IOException e) {
-            e.printStackTrace();
+            throw new ConfigurationException(e.getMessage(), e);
         } catch (final ClassNotFoundException e) {
-            e.printStackTrace();
+            throw new ConfigurationException(e.getMessage(), e);
         }
-        return null;
     }
 }
