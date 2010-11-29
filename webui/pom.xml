@@ -17,6 +17,7 @@
 
     <properties>
         <gwt.version>2.1.0</gwt.version>
+        <gwt.user.agent>safari,gecko1_8</gwt.user.agent>
     </properties>
 
     <dependencyManagement>

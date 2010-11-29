@@ -8,6 +8,7 @@ import com.google.gwt.core.client.GWT;
 import com.google.gwt.core.client.Scheduler;
 import com.google.gwt.core.client.Scheduler.ScheduledCommand;
 import com.google.gwt.event.shared.EventBus;
+import com.google.gwt.place.shared.PlaceController;
 import com.google.gwt.user.client.rpc.AsyncCallback;
 import com.google.gwt.user.client.ui.AcceptsOneWidget;
 import com.google.gwt.view.client.SelectionChangeEvent;
@@ -18,7 +19,6 @@ import com.google.inject.Inject;
 import de.uniluebeck.itm.webui.api.SNAAServiceAsync;
 import de.uniluebeck.itm.webui.api.SessionManagementServiceAsync;
 import de.uniluebeck.itm.webui.api.TestbedServiceAsync;
-import de.uniluebeck.itm.webui.client.WebUiGinjector;
 import de.uniluebeck.itm.webui.client.place.LoginPlace;
 import de.uniluebeck.itm.webui.client.ui.LoginView;
 import de.uniluebeck.itm.webui.shared.TestbedConfiguration;
@@ -28,28 +28,23 @@ import de.uniluebeck.itm.webui.shared.wiseml.Wiseml;
 public class LoginActivity extends AbstractActivity implements
         LoginView.Presenter {
 
-    private final WebUiGinjector injector;
-
     private final SNAAServiceAsync authenticationService;
-    
     private final TestbedServiceAsync configurationService;
-    
     private final SessionManagementServiceAsync sessionManagementService;
-
+    private PlaceController placeController;
     private LoginView view;
-
     private SingleSelectionModel<TestbedConfiguration> configurationSelectionModel;
-
     private List<TestbedConfiguration> configurations;
-
     private LoginPlace place;
 
     @Inject
-    public LoginActivity(final WebUiGinjector injector,
+    public LoginActivity(final LoginView view,
+            final PlaceController placeController,
             final TestbedServiceAsync configurationService,
             final SNAAServiceAsync authenticationService,
             final SessionManagementServiceAsync sessionManagementService) {
-        this.injector = injector;
+        this.view = view;
+        this.placeController = placeController;
         this.configurationService = configurationService;
         this.authenticationService = authenticationService;
         this.sessionManagementService = sessionManagementService;
@@ -66,6 +61,7 @@ public class LoginActivity extends AbstractActivity implements
 
     private void bind() {
         configurationSelectionModel.addSelectionChangeHandler(new Handler() {
+
             public void onSelectionChange(final SelectionChangeEvent event) {
                 onConfigurationSelectionChange(event);
             }
@@ -73,11 +69,10 @@ public class LoginActivity extends AbstractActivity implements
     }
 
     private void onConfigurationSelectionChange(final SelectionChangeEvent event) {
-        final TestbedConfiguration configuration = configurationSelectionModel
-                .getSelectedObject();
+        final TestbedConfiguration configuration = configurationSelectionModel.getSelectedObject();
         final Integer index = configurations.indexOf(configuration);
         if (!index.equals(place.getSelection())) {
-            injector.getPlaceController().goTo(new LoginPlace(index));
+            placeController.goTo(new LoginPlace(index));
         }
     }
 
@@ -86,7 +81,6 @@ public class LoginActivity extends AbstractActivity implements
      */
     public void start(final AcceptsOneWidget containerWidget,
             final EventBus eventBus) {
-        view = injector.getLoginView();
         view.setPresenter(this);
         view.getLoginEnabled().setEnabled(false);
         view.getReloadEnabled().setEnabled(false);
@@ -102,6 +96,7 @@ public class LoginActivity extends AbstractActivity implements
 
     private void loadTestbedConfigurations() {
         final AsyncCallback<List<TestbedConfiguration>> callback = new AsyncCallback<List<TestbedConfiguration>>() {
+
             public void onSuccess(final List<TestbedConfiguration> result) {
                 configurations = result;
                 view.setConfigurations(result);
@@ -109,10 +104,11 @@ public class LoginActivity extends AbstractActivity implements
             }
 
             public void onFailure(final Throwable throwable) {
-                throwable.printStackTrace();
+                view.addError(throwable.getMessage());
             }
         };
         Scheduler.get().scheduleDeferred(new ScheduledCommand() {
+
             public void execute() {
                 configurationService.getConfigurations(callback);
             }
@@ -132,29 +128,30 @@ public class LoginActivity extends AbstractActivity implements
             loadWiseml(configuration);
         }
     }
-    
+
     private void loadWiseml(final TestbedConfiguration configuration) {
         view.getReloadEnabled().setEnabled(false);
         final AsyncCallback<Wiseml> callback = new AsyncCallback<Wiseml>() {
+
             public void onSuccess(final Wiseml result) {
                 final Setup setup = result.getSetup();
                 view.getDescriptionText().setText(setup.getDescription());
                 view.setNodes(setup.getNode());
                 view.getReloadEnabled().setEnabled(true);
             }
-            
+
             public void onFailure(final Throwable caught) {
                 view.getReloadEnabled().setEnabled(true);
             }
         };
         final String url = configuration.getSessionmanagementEndointUrl();
         Scheduler.get().scheduleDeferred(new ScheduledCommand() {
-            
+
             public void execute() {
                 sessionManagementService.getWiseml(url, callback);
             }
         });
-        
+
     }
 
     public void reload() {
@@ -174,18 +171,15 @@ public class LoginActivity extends AbstractActivity implements
         view.getUsernameEnabled().setEnabled(false);
         view.getPasswordEnabled().setEnabled(false);
 
-        final String endpointUrl = configurations.get(place.getSelection())
-                .getSnaaEndpointUrl();
+        final String endpointUrl = configurations.get(place.getSelection()).getSnaaEndpointUrl();
         final String username = view.getUsernameText().getText();
         final String password = view.getPasswordText().getText();
 
-        final Iterator<String> iterator = configurations
-                .get(place.getSelection()).getUrnPrefixList().iterator();
+        final Iterator<String> iterator = configurations.get(place.getSelection()).getUrnPrefixList().iterator();
 
         final AsyncCallback<Void> callback = new AsyncCallback<Void>() {
 
             private String urn;
-
             private boolean error = false;
 
             public void onSuccess(final Void result) {

@@ -26,8 +26,7 @@ public class LoginPlace extends Place {
     public static class Tokenizer implements PlaceTokenizer<LoginPlace> {
 
         public String getToken(final LoginPlace place) {
-            return place.getSelection() != null ? String.valueOf(place
-                    .getSelection()) : "";
+            return place.getSelection() != null ? String.valueOf(place.getSelection()) : "";
         }
 
         public LoginPlace getPlace(final String token) {
