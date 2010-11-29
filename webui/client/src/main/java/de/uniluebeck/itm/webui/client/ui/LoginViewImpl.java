@@ -159,13 +159,29 @@ public class LoginViewImpl extends Composite implements LoginView {
 
         nodeTable.setWidth("100%");
 
-        final TextColumn<Node> prefixColumn = new TextColumn<Node>() {
+        final TextColumn<Node> idColumn = new TextColumn<Node>() {
             @Override
             public String getValue(final Node node) {
                 return node.getId();
             }
         };
-        nodeTable.addColumn(prefixColumn, "ID");
+        nodeTable.addColumn(idColumn, "ID");
+        
+        final TextColumn<Node> nodeTypeColumn = new TextColumn<Node>() {
+            @Override
+            public String getValue(Node node) {
+                return node.getNodeType();
+            }
+        };
+        nodeTable.addColumn(nodeTypeColumn, "Node-Type");
+        
+        final TextColumn<Node> descriptionColumn = new TextColumn<Node>() {
+            @Override
+            public String getValue(Node node) {
+                return node.getDescription();
+            }
+        };
+        nodeTable.addColumn(descriptionColumn, "Description");
     }
 
     @UiFactory
