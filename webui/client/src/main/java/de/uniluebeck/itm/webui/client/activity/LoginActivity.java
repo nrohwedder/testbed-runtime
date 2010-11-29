@@ -23,7 +23,6 @@ import de.uniluebeck.itm.webui.client.place.LoginPlace;
 import de.uniluebeck.itm.webui.client.ui.LoginView;
 import de.uniluebeck.itm.webui.shared.NodeUrn;
 import de.uniluebeck.itm.webui.shared.TestbedConfiguration;
-import de.uniluebeck.itm.webui.shared.wiseml.Wiseml;
 
 public class LoginActivity extends AbstractActivity implements
         LoginView.Presenter {
@@ -147,17 +146,6 @@ public class LoginActivity extends AbstractActivity implements
             }
         };
         sessionManagementService.getNetwork(configuration.getSessionmanagementEndointUrl(), callback);
-        final AsyncCallback<Wiseml> asyncCallback = new AsyncCallback<Wiseml>() {
-            public void onFailure(final Throwable caught) {
-                // TODO Auto-generated method stub
-                
-            }
-            
-            public void onSuccess(final Wiseml result) {
-                System.out.println(result.getSetup().getDescription());
-            }
-        };
-        sessionManagementService.getWiseml(configuration.getSessionmanagementEndointUrl(), asyncCallback);
     }
 
     public void reload() {
