@@ -4,14 +4,12 @@ import java.io.Serializable;
 
 public class Wiseml implements Serializable {
 
-    /**
-     * 
-     */
     private static final long serialVersionUID = 5604418503671696867L;
-
     private String version;
-    
     private Setup setup;
+
+    public Wiseml() {
+    }
 
     public String getVersion() {
         return version;

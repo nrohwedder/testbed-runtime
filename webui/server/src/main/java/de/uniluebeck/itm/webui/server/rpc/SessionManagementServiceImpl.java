@@ -15,11 +15,7 @@ import eu.wisebed.testbed.api.wsn.v211.SessionManagement;
 @Singleton
 public class SessionManagementServiceImpl extends RemoteServiceServlet implements SessionManagementService {
 
-    /**
-     * 
-     */
     private static final long serialVersionUID = 784455164992864141L;
-    
     private final Mapper mapper;
 
     @Inject
@@ -33,5 +29,4 @@ public class SessionManagementServiceImpl extends RemoteServiceServlet implement
         final eu.wisebed.ns.wiseml._1.Wiseml wiseml = WiseMLHelper.deserialize(sessionManagement.getNetwork());
         return mapper.map(wiseml, Wiseml.class);
     }
-
 }

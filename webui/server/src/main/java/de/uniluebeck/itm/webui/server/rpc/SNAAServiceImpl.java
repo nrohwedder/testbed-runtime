@@ -16,9 +16,6 @@ import eu.wisebed.testbed.api.snaa.v1.SNAAExceptionException;
 @Singleton
 public class SNAAServiceImpl extends RemoteServiceServlet implements SNAAService {
 
-    /**
-     * 
-     */
     private static final long serialVersionUID = -478318843648335352L;
 
     @Override
@@ -36,5 +33,4 @@ public class SNAAServiceImpl extends RemoteServiceServlet implements SNAAService
             throw new AuthenticationException("Authentication failed due to an error", e);
         }
     }
-
 }

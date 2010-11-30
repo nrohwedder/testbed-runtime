@@ -9,32 +9,21 @@ import java.util.List;
  */
 public class TestbedConfiguration implements Serializable {
 
-    /**
-     *
-     */
     private static final long serialVersionUID = 1721396665761010739L;
-
     private String name;
-
     private String testbedUrl;
-
     private String snaaEndpointUrl;
-
     private String rsEndpointUrl;
-
     private String sessionmanagementEndointUrl;
-
     private List<String> urnPrefixList;
-
     private boolean isFederated;
 
     public TestbedConfiguration() {
-
     }
 
     public TestbedConfiguration(final String name, final String testbedUrl,
-                                final String snaaEndpointUrl, final String rsEndpointUrl,
-                                final String sessionmanagementEndointUrl, final boolean isFederated) {
+            final String snaaEndpointUrl, final String rsEndpointUrl,
+            final String sessionmanagementEndointUrl, final boolean isFederated) {
         this.name = name;
         this.testbedUrl = testbedUrl;
         this.snaaEndpointUrl = snaaEndpointUrl;

@@ -3,21 +3,16 @@ package de.uniluebeck.itm.webui.shared.wiseml;
 import java.io.Serializable;
 import java.util.List;
 
-
 public class Setup implements Serializable {
 
-    /**
-     * 
-     */
     private static final long serialVersionUID = -298010549586832532L;
-    
     private Coordinate origin;
-    
     private String coordinateType;
-    
     private String description;
-    
     private List<Node> node;
+
+    public Setup() {
+    }
 
     public Coordinate getOrigin() {
         return origin;
@@ -50,5 +45,4 @@ public class Setup implements Serializable {
     public void setNode(final List<Node> nodes) {
         this.node = nodes;
     }
-
 }

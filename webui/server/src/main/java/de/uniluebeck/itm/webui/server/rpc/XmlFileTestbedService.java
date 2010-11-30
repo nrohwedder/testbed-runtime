@@ -18,7 +18,6 @@ import de.uniluebeck.itm.webui.api.TestbedService;
 import de.uniluebeck.itm.webui.shared.TestbedConfiguration;
 import de.uniluebeck.itm.webui.shared.exception.ConfigurationException;
 
-
 @Singleton
 public class XmlFileTestbedService extends RemoteServiceServlet implements TestbedService {
 

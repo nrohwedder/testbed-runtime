@@ -38,27 +38,18 @@ public class LoginViewImpl extends Composite implements LoginView {
 
     interface LoginViewImplUiBinder extends UiBinder<Widget, LoginViewImpl> {
     }
-
-    private static LoginViewImplUiBinder uiBinder = GWT
-            .create(LoginViewImplUiBinder.class);
-
+    private static LoginViewImplUiBinder uiBinder = GWT.create(LoginViewImplUiBinder.class);
     @UiField
     CellList<TestbedConfiguration> configurationList;
-
     @UiField
     CellTable<Node> nodeTable;
-
     @UiField
     Label description;
-
     @UiField
     Button loginButton;
-
     @UiField
     Button reloadButton;
-
     private LoginDialog loginDialog = new LoginDialog();
-
     private Presenter presenter;
 
     @Inject
@@ -68,6 +59,7 @@ public class LoginViewImpl extends Composite implements LoginView {
         nodeTable.setWidth("100%");
 
         final TextColumn<Node> idColumn = new TextColumn<Node>() {
+
             @Override
             public String getValue(final Node node) {
                 return node.getId();
@@ -76,6 +68,7 @@ public class LoginViewImpl extends Composite implements LoginView {
         nodeTable.addColumn(idColumn, "ID");
 
         final TextColumn<Node> nodeTypeColumn = new TextColumn<Node>() {
+
             @Override
             public String getValue(final Node node) {
                 return node.getNodeType();
@@ -84,6 +77,7 @@ public class LoginViewImpl extends Composite implements LoginView {
         nodeTable.addColumn(nodeTypeColumn, "Node-Type");
 
         final TextColumn<Node> descriptionColumn = new TextColumn<Node>() {
+
             @Override
             public String getValue(final Node node) {
                 return node.getDescription();
@@ -95,9 +89,10 @@ public class LoginViewImpl extends Composite implements LoginView {
     @UiFactory
     public CellList<TestbedConfiguration> createTestbedConfigurationCellList() {
         final Cell<TestbedConfiguration> cell = new AbstractCell<TestbedConfiguration>() {
+
             @Override
             public void render(final TestbedConfiguration configuration,
-                               final Object paramObject, final SafeHtmlBuilder sb) {
+                    final Object paramObject, final SafeHtmlBuilder sb) {
                 sb.appendHtmlConstant("<div class=\"celllist-entry\">");
                 sb.appendEscaped(configuration.getName());
                 sb.appendHtmlConstant("</div>");
@@ -168,7 +163,6 @@ public class LoginViewImpl extends Composite implements LoginView {
     }
 
     public void disableLoginForm() {
-
     }
 
     public HasEnabled getUsernameEnabled() {

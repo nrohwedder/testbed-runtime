@@ -5,24 +5,17 @@ import java.util.List;
 
 public class Node implements Serializable {
 
-    /**
-     * 
-     */
     private static final long serialVersionUID = -7074948156263912998L;
-
     private String id;
-
     private Coordinate position;
-    
     private Boolean gateway;
-    
     private String programDetails;
-    
     private String nodeType;
-    
     private String description;
-    
     private List<Capability> capability;
+
+    public Node() {
+    }
 
     public String getId() {
         return id;

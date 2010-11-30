@@ -77,7 +77,7 @@ public class LoginActivity extends AbstractActivity implements
     }
 
     /**
-     * Invoked by the ActivityManager to start a new Activity
+     * Invoked by the ActivityManager to start a new {@link com.google.gwt.shared.Activity}.
      */
     public void start(final AcceptsOneWidget containerWidget,
             final EventBus eventBus) {
