@@ -39,11 +39,17 @@ public class LoginViewImpl extends Composite implements LoginView {
     public class LoginDialog extends DialogBox {
 
         private final static int SPACING = 5;
+
         private final TextBox usernameTextBox = new TextBox();
+
         private final PasswordTextBox passwordTextBox = new PasswordTextBox();
+
         private final Button submitButton = new Button("Submit");
+
         private final Button cancelButton = new Button("Cancel");
+
         private final VerticalPanel errorPanel = new VerticalPanel();
+
         private Presenter presenter;
 
         public LoginDialog() {
@@ -81,13 +87,11 @@ public class LoginViewImpl extends Composite implements LoginView {
 
         private void bind() {
             submitButton.addClickHandler(new ClickHandler() {
-
                 public void onClick(final ClickEvent paramClickEvent) {
                     presenter.submit();
                 }
             });
             cancelButton.addClickHandler(new ClickHandler() {
-
                 public void onClick(final ClickEvent paramClickEvent) {
                     presenter.hideLoginDialog();
                 }
@@ -126,18 +130,27 @@ public class LoginViewImpl extends Composite implements LoginView {
 
     interface LoginViewImplUiBinder extends UiBinder<Widget, LoginViewImpl> {
     }
-    private static LoginViewImplUiBinder uiBinder = GWT.create(LoginViewImplUiBinder.class);
+
+    private static LoginViewImplUiBinder uiBinder = GWT
+            .create(LoginViewImplUiBinder.class);
+
     @UiField
     CellList<TestbedConfiguration> configurationList;
+
     @UiField
     CellTable<Node> nodeTable;
+
     @UiField
     Label description;
+
     @UiField
     Button loginButton;
+
     @UiField
     Button reloadButton;
+
     private LoginDialog loginDialog = new LoginDialog();
+
     private Presenter presenter;
 
     @Inject
@@ -146,23 +159,37 @@ public class LoginViewImpl extends Composite implements LoginView {
 
         nodeTable.setWidth("100%");
 
-        final TextColumn<Node> prefixColumn = new TextColumn<Node>() {
-
+        final TextColumn<Node> idColumn = new TextColumn<Node>() {
             @Override
             public String getValue(final Node node) {
                 return node.getId();
             }
         };
-        nodeTable.addColumn(prefixColumn, "ID");
+        nodeTable.addColumn(idColumn, "ID");
+
+        final TextColumn<Node> nodeTypeColumn = new TextColumn<Node>() {
+            @Override
+            public String getValue(final Node node) {
+                return node.getNodeType();
+            }
+        };
+        nodeTable.addColumn(nodeTypeColumn, "Node-Type");
+
+        final TextColumn<Node> descriptionColumn = new TextColumn<Node>() {
+            @Override
+            public String getValue(final Node node) {
+                return node.getDescription();
+            }
+        };
+        nodeTable.addColumn(descriptionColumn, "Description");
     }
 
     @UiFactory
     public CellList<TestbedConfiguration> createTestbedConfigurationCellList() {
         final Cell<TestbedConfiguration> cell = new AbstractCell<TestbedConfiguration>() {
-
             @Override
             public void render(final TestbedConfiguration configuration,
-                    final Object paramObject, final SafeHtmlBuilder sb) {
+                               final Object paramObject, final SafeHtmlBuilder sb) {
                 sb.appendHtmlConstant("<div class=\"celllist-entry\">");
                 sb.appendEscaped(configuration.getName());
                 sb.appendHtmlConstant("</div>");
@@ -233,6 +260,7 @@ public class LoginViewImpl extends Composite implements LoginView {
     }
 
     public void disableLoginForm() {
+
     }
 
     public HasEnabled getUsernameEnabled() {
