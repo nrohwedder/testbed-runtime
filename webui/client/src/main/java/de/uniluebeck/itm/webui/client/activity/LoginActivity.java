@@ -33,9 +33,9 @@ public class LoginActivity extends AbstractActivity implements
     private final SessionManagementServiceAsync sessionManagementService;
     private PlaceController placeController;
     private LoginView view;
+    private LoginPlace place;
     private SingleSelectionModel<TestbedConfiguration> configurationSelectionModel;
     private List<TestbedConfiguration> configurations;
-    private LoginPlace place;
 
     @Inject
     public LoginActivity(final LoginView view,

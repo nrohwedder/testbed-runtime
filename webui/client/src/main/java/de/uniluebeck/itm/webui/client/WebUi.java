@@ -3,7 +3,7 @@ package de.uniluebeck.itm.webui.client;
 import com.google.gwt.core.client.EntryPoint;
 import com.google.gwt.core.client.GWT;
 import com.google.gwt.user.client.ui.RootPanel;
-import de.uniluebeck.itm.webui.client.ui.AppWidget;
+import de.uniluebeck.itm.webui.client.ui.WebUiView;
 
 /**
  * Entry point classes define <code>onModuleLoad()</code>.
@@ -16,7 +16,7 @@ public class WebUi implements EntryPoint {
      * This is the entry point method.
      */
     public void onModuleLoad() {
-        final AppWidget appWidget = injector.getAppWidget();
+        final WebUiView appWidget = injector.getAppWidget();
 
         injector.getNavigationActivityManager().setDisplay(
                 appWidget.getNavigationPanel());

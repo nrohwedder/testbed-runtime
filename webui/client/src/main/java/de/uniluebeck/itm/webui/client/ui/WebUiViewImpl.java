@@ -8,19 +8,17 @@ import com.google.gwt.user.client.ui.Composite;
 import com.google.gwt.user.client.ui.SimplePanel;
 import com.google.gwt.user.client.ui.Widget;
 
-public class AppWidgetImpl extends Composite implements AppWidget {
+public class WebUiViewImpl extends Composite implements WebUiView {
 
-    interface AppWidgetUiBinder extends UiBinder<Widget, AppWidgetImpl> {
+    interface WebUiViewImplUiBinder extends UiBinder<Widget, WebUiViewImpl> {
     }
-
-    private static AppWidgetUiBinder uiBinder = GWT
-            .create(AppWidgetUiBinder.class);
+    private static WebUiViewImplUiBinder uiBinder = GWT.create(WebUiViewImplUiBinder.class);
     @UiField
     SimplePanel navigationPanel;
     @UiField
     SimplePanel contentPanel;
 
-    public AppWidgetImpl() {
+    public WebUiViewImpl() {
         initWidget(uiBinder.createAndBindUi(this));
 
         setWidth("100%");

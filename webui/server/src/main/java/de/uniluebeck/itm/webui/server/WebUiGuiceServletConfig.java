@@ -10,5 +10,4 @@ public class WebUiGuiceServletConfig extends GuiceServletContextListener {
     protected Injector getInjector() {
         return Guice.createInjector(new WebUiGuiceServletModule());
     }
-
 }

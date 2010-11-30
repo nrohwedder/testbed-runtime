@@ -14,15 +14,15 @@ import de.uniluebeck.itm.webui.client.activity.LoginActivity;
 import de.uniluebeck.itm.webui.client.activity.NavigationActivity;
 import de.uniluebeck.itm.webui.client.activity.ReservationActivity;
 import de.uniluebeck.itm.webui.client.activity.WiseMLNativeActivity;
-import de.uniluebeck.itm.webui.client.mvp.AppPlaceHistoryMapper;
+import de.uniluebeck.itm.webui.client.mvp.WebUiPlaceHistoryMapper;
 import de.uniluebeck.itm.webui.client.mvp.ContentActivityManager;
 import de.uniluebeck.itm.webui.client.mvp.ContentActivityMapper;
 import de.uniluebeck.itm.webui.client.mvp.NavigationActivityManager;
 import de.uniluebeck.itm.webui.client.place.LoginPlace;
 import de.uniluebeck.itm.webui.client.ui.AdministrationView;
 import de.uniluebeck.itm.webui.client.ui.AdministrationViewImpl;
-import de.uniluebeck.itm.webui.client.ui.AppWidget;
-import de.uniluebeck.itm.webui.client.ui.AppWidgetImpl;
+import de.uniluebeck.itm.webui.client.ui.WebUiView;
+import de.uniluebeck.itm.webui.client.ui.WebUiViewImpl;
 import de.uniluebeck.itm.webui.client.ui.ExperimentationView;
 import de.uniluebeck.itm.webui.client.ui.ExperimentationViewImpl;
 import de.uniluebeck.itm.webui.client.ui.LoginView;
@@ -43,7 +43,7 @@ public class WebUiClientModule extends AbstractGinModule {
         bind(NavigationActivityManager.class).in(Singleton.class);
 
         // View binding
-        bind(AppWidget.class).to(AppWidgetImpl.class).in(Singleton.class);
+        bind(WebUiView.class).to(WebUiViewImpl.class).in(Singleton.class);
         bind(NavigationView.class).to(NavigationViewImpl.class).in(
                 Singleton.class);
         bind(LoginView.class).to(LoginViewImpl.class).in(Singleton.class);
@@ -74,7 +74,7 @@ public class WebUiClientModule extends AbstractGinModule {
     @Singleton
     @Provides
     PlaceHistoryHandler providePlaceHistoryHandler(
-            final AppPlaceHistoryMapper mapper,
+            final WebUiPlaceHistoryMapper mapper,
             final PlaceController placeController, final EventBus eventBus) {
         final PlaceHistoryHandler historyHandler = new PlaceHistoryHandler(
                 mapper);

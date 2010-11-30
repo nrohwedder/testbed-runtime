@@ -15,7 +15,7 @@ import de.uniluebeck.itm.webui.client.activity.WiseMLNativeActivity;
 import de.uniluebeck.itm.webui.client.mvp.ContentActivityManager;
 import de.uniluebeck.itm.webui.client.mvp.NavigationActivityManager;
 import de.uniluebeck.itm.webui.client.ui.AdministrationView;
-import de.uniluebeck.itm.webui.client.ui.AppWidget;
+import de.uniluebeck.itm.webui.client.ui.WebUiView;
 import de.uniluebeck.itm.webui.client.ui.ExperimentationView;
 import de.uniluebeck.itm.webui.client.ui.LoginView;
 import de.uniluebeck.itm.webui.client.ui.NavigationView;
@@ -24,9 +24,13 @@ import de.uniluebeck.itm.webui.client.ui.WiseMLNativeView;
 
 @GinModules(WebUiClientModule.class)
 public interface WebUiGinjector extends Ginjector {
+
     EventBus getEventBus();
 
-    PlaceController getPlaceController();
+    /* 
+     * Views 
+     */
+    WebUiView getAppWidget();
 
     LoginView getLoginView();
 
@@ -34,7 +38,18 @@ public interface WebUiGinjector extends Ginjector {
 
     NavigationView getNavigationView();
 
-    AppWidget getAppWidget();
+    ExperimentationView getExperimentationView();
+
+    AdministrationView getAdministrationView();
+
+    WiseMLNativeView getWiseMLNativeView();
+
+    /* 
+     * Activities 
+     */
+    NavigationActivityManager getNavigationActivityManager();
+
+    ContentActivityManager getContentActivityManager();
 
     LoginActivity getLoginActivity();
 
@@ -42,21 +57,16 @@ public interface WebUiGinjector extends Ginjector {
 
     NavigationActivity getNavigationActivity();
 
-    NavigationActivityManager getNavigationActivityManager();
-
-    ContentActivityManager getContentActivityManager();
-
-    PlaceHistoryHandler getPlaceHistoryHandler();
-
-    ExperimentationView getExperimentationView();
-
-    AdministrationView getAdministrationView();
-
-    WiseMLNativeView getWiseMLNativeView();
-
     ExperimentationActivity getExperimentationActivity();
 
     AdministrationActivity getAdministrationActivity();
 
     WiseMLNativeActivity getWiseMLNativeActivity();
+
+    /*
+     * Places
+     */
+    PlaceHistoryHandler getPlaceHistoryHandler();
+
+    PlaceController getPlaceController();
 }

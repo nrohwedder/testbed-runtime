@@ -8,22 +8,17 @@ import de.uniluebeck.itm.webui.client.WebUiGinjector;
 import de.uniluebeck.itm.webui.client.ui.AdministrationView;
 import de.uniluebeck.itm.webui.client.ui.AdministrationView.Presenter;
 
-public class AdministrationActivity extends AbstractActivity implements
-        Presenter {
-
-    private final WebUiGinjector injector;
+public class AdministrationActivity extends AbstractActivity implements Presenter {
 
     private AdministrationView view;
 
     @Inject
-    public AdministrationActivity(final WebUiGinjector injector) {
-        this.injector = injector;
+    public AdministrationActivity(final AdministrationView view) {
+        this.view = view;
     }
 
     public void start(final AcceptsOneWidget panel, final EventBus eventBus) {
-        view = injector.getAdministrationView();
         view.setPresenter(this);
-
         panel.setWidget(view);
     }
 }

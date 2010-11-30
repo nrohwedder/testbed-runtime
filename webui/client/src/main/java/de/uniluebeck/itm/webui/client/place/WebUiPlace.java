@@ -8,7 +8,7 @@ import com.google.gwt.core.client.GWT;
 import com.google.gwt.place.shared.Place;
 import com.google.gwt.place.shared.PlaceTokenizer;
 
-import de.uniluebeck.itm.webui.client.mvp.AppPlaceHistoryMapper;
+import de.uniluebeck.itm.webui.client.mvp.WebUiPlaceHistoryMapper;
 
 public class WebUiPlace extends Place {
 
@@ -47,7 +47,7 @@ public class WebUiPlace extends Place {
     public static class Tokenizer implements PlaceTokenizer<WebUiPlace> {
 
         private static final String SEPARATOR = "&";
-        private final AppPlaceHistoryMapper mapper = GWT.create(AppPlaceHistoryMapper.class);
+        private final WebUiPlaceHistoryMapper mapper = GWT.create(WebUiPlaceHistoryMapper.class);
 
         private String[] removeLast(final String[] array) {
             final String[] result = new String[array.length - 1];
