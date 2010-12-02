@@ -15,17 +15,11 @@ import com.google.gwt.user.client.ui.VerticalPanel;
 public class LoginDialog extends DialogBox {
 
     private final static int SPACING = 5;
-
     private final TextBox usernameTextBox = new TextBox();
-
     private final PasswordTextBox passwordTextBox = new PasswordTextBox();
-
     private final Button submitButton = new Button("Login");
-
     private final Button cancelButton = new Button("Cancel");
-
     private final VerticalPanel errorPanel = new VerticalPanel();
-
     private LoginView.Presenter presenter;
 
     public LoginDialog() {
@@ -62,12 +56,14 @@ public class LoginDialog extends DialogBox {
     }
 
     private void bind() {
-        submitButton.addClickHandler(new ClickHandler() {
+        submitButton.addClickHandler(new ClickHandler()  {
+
             public void onClick(final ClickEvent paramClickEvent) {
                 presenter.submit();
             }
         });
-        cancelButton.addClickHandler(new ClickHandler() {
+        cancelButton.addClickHandler(new ClickHandler()  {
+
             public void onClick(final ClickEvent paramClickEvent) {
                 presenter.hideLoginDialog();
             }

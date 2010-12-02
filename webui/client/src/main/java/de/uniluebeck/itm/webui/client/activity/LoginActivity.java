@@ -18,7 +18,7 @@ import com.google.inject.Inject;
 
 import de.uniluebeck.itm.webui.api.SNAAServiceAsync;
 import de.uniluebeck.itm.webui.api.SessionManagementServiceAsync;
-import de.uniluebeck.itm.webui.api.TestbedServiceAsync;
+import de.uniluebeck.itm.webui.api.TestbedConfigurationServiceAsync;
 import de.uniluebeck.itm.webui.client.place.LoginPlace;
 import de.uniluebeck.itm.webui.client.ui.LoginView;
 import de.uniluebeck.itm.webui.shared.TestbedConfiguration;
@@ -29,7 +29,7 @@ public class LoginActivity extends AbstractActivity implements
         LoginView.Presenter {
 
     private final SNAAServiceAsync authenticationService;
-    private final TestbedServiceAsync configurationService;
+    private final TestbedConfigurationServiceAsync configurationService;
     private final SessionManagementServiceAsync sessionManagementService;
     private PlaceController placeController;
     private LoginView view;
@@ -40,7 +40,7 @@ public class LoginActivity extends AbstractActivity implements
     @Inject
     public LoginActivity(final LoginView view,
             final PlaceController placeController,
-            final TestbedServiceAsync configurationService,
+            final TestbedConfigurationServiceAsync configurationService,
             final SNAAServiceAsync authenticationService,
             final SessionManagementServiceAsync sessionManagementService) {
         this.view = view;
@@ -103,8 +103,9 @@ public class LoginActivity extends AbstractActivity implements
                 loadConfigurationSelectionFromPlace();
             }
 
-            public void onFailure(final Throwable throwable) {
-                view.addError(throwable.getMessage());
+            public void onFailure(final Throwable caught) {
+                view.addError(caught.getMessage());
+                GWT.log(caught.getMessage());
             }
         };
         Scheduler.get().scheduleDeferred(new ScheduledCommand() {
