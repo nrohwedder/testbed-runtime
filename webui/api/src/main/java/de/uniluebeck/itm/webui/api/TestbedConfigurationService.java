@@ -10,7 +10,7 @@ import de.uniluebeck.itm.webui.shared.exception.ConfigurationException;
 
 
 @RemoteServiceRelativePath("testbed.rpc")
-public interface TestbedService extends RemoteService {
+public interface TestbedConfigurationService extends RemoteService {
 
     List<TestbedConfiguration> getConfigurations() throws ConfigurationException;
 }
