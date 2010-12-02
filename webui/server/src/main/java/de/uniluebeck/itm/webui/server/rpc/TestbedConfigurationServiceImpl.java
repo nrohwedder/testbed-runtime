@@ -3,10 +3,8 @@ package de.uniluebeck.itm.webui.server.rpc;
 import java.io.EOFException;
 import java.io.File;
 import java.io.FileNotFoundException;
-import java.io.FileReader;
 import java.io.IOException;
 import java.io.ObjectInputStream;
-import java.io.Reader;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -14,29 +12,31 @@ import com.google.gwt.user.server.rpc.RemoteServiceServlet;
 import com.google.inject.Singleton;
 import com.thoughtworks.xstream.XStream;
 
-import de.uniluebeck.itm.webui.api.TestbedService;
+import de.uniluebeck.itm.webui.api.TestbedConfigurationService;
 import de.uniluebeck.itm.webui.shared.TestbedConfiguration;
 import de.uniluebeck.itm.webui.shared.exception.ConfigurationException;
+import java.io.InputStream;
 
 @Singleton
-public class XmlFileTestbedService extends RemoteServiceServlet implements TestbedService {
+public class TestbedConfigurationServiceImpl extends RemoteServiceServlet implements TestbedConfigurationService {
 
     private static final long serialVersionUID = 5174874924600302509L;
+    private static final String CONFIGURATION_FILE_LOCATION = "testbed-configurations.xml";
     private final String path;
 
-    public XmlFileTestbedService() {
-        this("src/main/webapp/WEB-INF/testbed-configurations.xml");
+    public TestbedConfigurationServiceImpl() {
+        this(CONFIGURATION_FILE_LOCATION);
     }
 
-    public XmlFileTestbedService(final String path) {
+    public TestbedConfigurationServiceImpl(final String path) {
         this.path = path;
     }
 
     @Override
     public List<TestbedConfiguration> getConfigurations() throws ConfigurationException {
-        final File file = new File(path);
         try {
-            final Reader reader = new FileReader(file);
+            final InputStream is =
+                    getClass().getClassLoader().getResourceAsStream(path);
             final XStream xstream = new XStream();
             xstream.alias("configuration", TestbedConfiguration.class);
             xstream.useAttributeFor(TestbedConfiguration.class, "isFederated");
@@ -44,19 +44,20 @@ public class XmlFileTestbedService extends RemoteServiceServlet implements Testb
 
             final List<TestbedConfiguration> result = new ArrayList<TestbedConfiguration>();
             ObjectInputStream in;
-            in = xstream.createObjectInputStream(reader);
-            boolean objects = true;
-            while (objects) {
+            in = xstream.createObjectInputStream(is);
+            boolean eof = false;
+            while (!eof) {
                 try {
                     final TestbedConfiguration bed = (TestbedConfiguration) in.readObject();
                     result.add(bed);
                 } catch (final EOFException e) {
-                    objects = false;
+                    eof = true;
                 }
             }
             in.close();
             return result;
         } catch (final FileNotFoundException e) {
+            System.err.println(e.getMessage());
             throw new ConfigurationException(e.getMessage(), e);
         } catch (final IOException e) {
             throw new ConfigurationException(e.getMessage(), e);
