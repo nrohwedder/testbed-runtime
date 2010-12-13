@@ -2,24 +2,25 @@ package de.uniluebeck.itm.webui.client.ui;
 
 import java.util.List;
 
-import com.google.gwt.maps.client.MapWidget;
 import com.google.gwt.user.client.ui.HasEnabled;
 import com.google.gwt.user.client.ui.HasText;
 import com.google.gwt.user.client.ui.IsWidget;
+import com.google.gwt.user.client.ui.UIObject;
 import com.google.gwt.view.client.SelectionModel;
 
 import de.uniluebeck.itm.webui.shared.TestbedConfiguration;
+import de.uniluebeck.itm.webui.shared.wiseml.Coordinate;
 import de.uniluebeck.itm.webui.shared.wiseml.Node;
 
 public interface LoginView extends IsWidget {
 
     HasText getDescriptionText();
+    
+    void setDescriptionCoordinate(Coordinate coordinate);
 
     HasText getUsernameText();
 
     HasText getPasswordText();
-    
-    MapWidget getMapWidget();
 
     HasEnabled getUsernameEnabled();
 

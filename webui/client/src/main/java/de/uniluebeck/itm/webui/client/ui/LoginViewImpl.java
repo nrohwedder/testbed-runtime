@@ -9,6 +9,8 @@ import com.google.gwt.event.dom.client.ClickEvent;
 import com.google.gwt.maps.client.MapWidget;
 import com.google.gwt.maps.client.Maps;
 import com.google.gwt.maps.client.control.SmallMapControl;
+import com.google.gwt.maps.client.geom.LatLng;
+import com.google.gwt.maps.client.overlay.Marker;
 import com.google.gwt.safehtml.shared.SafeHtmlBuilder;
 import com.google.gwt.uibinder.client.UiBinder;
 import com.google.gwt.uibinder.client.UiFactory;
@@ -28,6 +30,7 @@ import com.google.gwt.view.client.SelectionModel;
 import com.google.inject.Inject;
 
 import de.uniluebeck.itm.webui.shared.TestbedConfiguration;
+import de.uniluebeck.itm.webui.shared.wiseml.Coordinate;
 import de.uniluebeck.itm.webui.shared.wiseml.Node;
 
 public class LoginViewImpl extends Composite implements LoginView {
@@ -35,6 +38,8 @@ public class LoginViewImpl extends Composite implements LoginView {
     interface LoginViewImplUiBinder extends UiBinder<Widget, LoginViewImpl> {
     }
     private static LoginViewImplUiBinder uiBinder = GWT.create(LoginViewImplUiBinder.class);
+    
+    private static final int ZOOM_LEVEL = 8;
     @UiField
     CellList<TestbedConfiguration> configurationList;
     @UiField
@@ -50,6 +55,7 @@ public class LoginViewImpl extends Composite implements LoginView {
     private MapWidget mapWidget;
     private LoginDialog loginDialog = new LoginDialog();
     private Presenter presenter;
+    private Marker descriptionmMarker;
 
     @Inject
     public LoginViewImpl() {
@@ -135,6 +141,19 @@ public class LoginViewImpl extends Composite implements LoginView {
         configurationList.setRowCount(configurations.size());
         configurationList.setRowData(0, configurations);
     }
+    
+    public void setDescriptionCoordinate(final Coordinate coordinate) {
+        final double x = coordinate.getX();
+        final double y = coordinate.getY();
+        final LatLng center = LatLng.newInstance(x, y);
+        if (descriptionmMarker != null) {
+            mapWidget.removeOverlay(descriptionmMarker);
+        }
+        descriptionmMarker = new Marker(center);
+        mapWidget.addOverlay(descriptionmMarker);
+        mapWidget.setCenter(center);
+        mapWidget.setZoomLevel(ZOOM_LEVEL);
+    }
 
     public HasText getDescriptionText() {
         return description;
@@ -198,9 +217,5 @@ public class LoginViewImpl extends Composite implements LoginView {
 
     public HasEnabled getReloadEnabled() {
         return reloadButton;
-    }
-
-    public MapWidget getMapWidget() {
-        return mapWidget;
     }
 }

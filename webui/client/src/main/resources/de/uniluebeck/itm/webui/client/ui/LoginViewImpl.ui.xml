@@ -54,7 +54,7 @@
 													<g:SimplePanel ui:field="mapContainer"/>
 												</div>
 												<div>
-													<g:Label ui:field="description"></g:Label>
+													<g:Label ui:field="description">Please select a Testbed on the left side.</g:Label>
 												</div>
 											</div>
 										</g:HTMLPanel>

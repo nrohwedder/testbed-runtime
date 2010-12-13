@@ -1,9 +1,9 @@
 package de.uniluebeck.itm.webui.server.rpc;
 
 import java.io.EOFException;
-import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.IOException;
+import java.io.InputStream;
 import java.io.ObjectInputStream;
 import java.util.ArrayList;
 import java.util.List;
@@ -15,7 +15,6 @@ import com.thoughtworks.xstream.XStream;
 import de.uniluebeck.itm.webui.api.TestbedConfigurationService;
 import de.uniluebeck.itm.webui.shared.TestbedConfiguration;
 import de.uniluebeck.itm.webui.shared.exception.ConfigurationException;
-import java.io.InputStream;
 
 @Singleton
 public class TestbedConfigurationServiceImpl extends RemoteServiceServlet implements TestbedConfigurationService {
