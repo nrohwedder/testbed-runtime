@@ -73,6 +73,13 @@
             <groupId>com.googlecode.gwt.inject</groupId>
             <artifactId>gin</artifactId>
         </dependency>
+        <dependency>
+            <groupId>com.google.code</groupId>
+            <artifactId>gwt-maps</artifactId>
+            <version>1.1.0</version>
+            <scope>system</scope>
+            <systemPath>${basedir}/src/main/webapp/WEB-INF/lib/gwt-maps.jar</systemPath>
+        </dependency>
     </dependencies>
 
     <build>
@@ -91,6 +98,7 @@
                 <executions>
                     <execution>
                         <goals>
+                        	<goal>generateAsync</goal>
                             <goal>compile</goal>
                         </goals>
                     </execution>

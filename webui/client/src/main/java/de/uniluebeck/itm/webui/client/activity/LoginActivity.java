@@ -8,6 +8,10 @@ import com.google.gwt.core.client.GWT;
 import com.google.gwt.core.client.Scheduler;
 import com.google.gwt.core.client.Scheduler.ScheduledCommand;
 import com.google.gwt.event.shared.EventBus;
+import com.google.gwt.maps.client.InfoWindowContent;
+import com.google.gwt.maps.client.MapWidget;
+import com.google.gwt.maps.client.geom.LatLng;
+import com.google.gwt.maps.client.overlay.Marker;
 import com.google.gwt.place.shared.PlaceController;
 import com.google.gwt.user.client.rpc.AsyncCallback;
 import com.google.gwt.user.client.ui.AcceptsOneWidget;
@@ -22,6 +26,7 @@ import de.uniluebeck.itm.webui.api.TestbedConfigurationServiceAsync;
 import de.uniluebeck.itm.webui.client.place.LoginPlace;
 import de.uniluebeck.itm.webui.client.ui.LoginView;
 import de.uniluebeck.itm.webui.shared.TestbedConfiguration;
+import de.uniluebeck.itm.webui.shared.wiseml.Coordinate;
 import de.uniluebeck.itm.webui.shared.wiseml.Setup;
 import de.uniluebeck.itm.webui.shared.wiseml.Wiseml;
 
@@ -135,10 +140,7 @@ public class LoginActivity extends AbstractActivity implements
         final AsyncCallback<Wiseml> callback = new AsyncCallback<Wiseml>() {
 
             public void onSuccess(final Wiseml result) {
-                final Setup setup = result.getSetup();
-                view.getDescriptionText().setText(setup.getDescription());
-                view.setNodes(setup.getNode());
-                view.getReloadEnabled().setEnabled(true);
+                afterWisemlLoaded(result);
             }
 
             public void onFailure(final Throwable caught) {
@@ -153,6 +155,19 @@ public class LoginActivity extends AbstractActivity implements
             }
         });
 
+    }
+    
+    private void afterWisemlLoaded(final Wiseml wiseml) {
+        final Setup setup = wiseml.getSetup();
+        final Coordinate origin = setup.getOrigin();
+        final LatLng center = LatLng.newInstance(origin.getX(), origin.getY());
+        final MapWidget mapWidget = view.getMapWidget();
+        mapWidget.addOverlay(new Marker(center));
+        mapWidget.setCenter(center);
+        mapWidget.setZoomLevel(8);
+        view.getDescriptionText().setText(setup.getDescription());
+        view.setNodes(setup.getNode());
+        view.getReloadEnabled().setEnabled(true);
     }
 
     public void reload() {

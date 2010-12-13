@@ -1,6 +1,7 @@
 <!DOCTYPE ui:UiBinder SYSTEM "http://dl.google.com/gwt/DTD/xhtml.ent">
 <ui:UiBinder xmlns:ui="urn:ui:com.google.gwt.uibinder"
-	xmlns:g="urn:import:com.google.gwt.user.client.ui" xmlns:c="urn:import:com.google.gwt.user.cellview.client">
+	xmlns:g="urn:import:com.google.gwt.user.client.ui"
+	xmlns:c="urn:import:com.google.gwt.user.cellview.client">
 
 	<ui:style>
 		.buttonPanel {
@@ -47,7 +48,17 @@
 								</g:north>
 								<g:center>
 									<g:ScrollPanel styleName="{style.fullLayout}">
-										<g:Label ui:field="description" styleName="{style.description}"></g:Label>
+										<g:HTMLPanel>
+											<div style="padding:10px">
+												<div style="width:300px;height:250px;float:left;margin-right:7px;border:#d0e4f6 solid 2px;">
+													<g:SimplePanel ui:field="mapContainer"/>
+												</div>
+												<div>
+													<g:Label ui:field="description"></g:Label>
+												</div>
+											</div>
+										</g:HTMLPanel>
+										
 									</g:ScrollPanel>
 								</g:center>
 							</g:DockLayoutPanel>

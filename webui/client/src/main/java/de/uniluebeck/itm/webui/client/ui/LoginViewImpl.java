@@ -6,7 +6,9 @@ import com.google.gwt.cell.client.AbstractCell;
 import com.google.gwt.cell.client.Cell;
 import com.google.gwt.core.client.GWT;
 import com.google.gwt.event.dom.client.ClickEvent;
-import com.google.gwt.event.dom.client.ClickHandler;
+import com.google.gwt.maps.client.MapWidget;
+import com.google.gwt.maps.client.Maps;
+import com.google.gwt.maps.client.control.SmallMapControl;
 import com.google.gwt.safehtml.shared.SafeHtmlBuilder;
 import com.google.gwt.uibinder.client.UiBinder;
 import com.google.gwt.uibinder.client.UiFactory;
@@ -17,16 +19,10 @@ import com.google.gwt.user.cellview.client.CellTable;
 import com.google.gwt.user.cellview.client.TextColumn;
 import com.google.gwt.user.client.ui.Button;
 import com.google.gwt.user.client.ui.Composite;
-import com.google.gwt.user.client.ui.DialogBox;
-import com.google.gwt.user.client.ui.FlexTable;
 import com.google.gwt.user.client.ui.HasEnabled;
-import com.google.gwt.user.client.ui.HasHorizontalAlignment;
 import com.google.gwt.user.client.ui.HasText;
-import com.google.gwt.user.client.ui.HorizontalPanel;
 import com.google.gwt.user.client.ui.Label;
-import com.google.gwt.user.client.ui.PasswordTextBox;
-import com.google.gwt.user.client.ui.TextBox;
-import com.google.gwt.user.client.ui.VerticalPanel;
+import com.google.gwt.user.client.ui.SimplePanel;
 import com.google.gwt.user.client.ui.Widget;
 import com.google.gwt.view.client.SelectionModel;
 import com.google.inject.Inject;
@@ -49,6 +45,9 @@ public class LoginViewImpl extends Composite implements LoginView {
     Button loginButton;
     @UiField
     Button reloadButton;
+    @UiField
+    SimplePanel mapContainer;
+    private MapWidget mapWidget;
     private LoginDialog loginDialog = new LoginDialog();
     private Presenter presenter;
 
@@ -84,6 +83,8 @@ public class LoginViewImpl extends Composite implements LoginView {
             }
         };
         nodeTable.addColumn(descriptionColumn, "Description");
+        
+        initMap();
     }
 
     @UiFactory
@@ -99,6 +100,20 @@ public class LoginViewImpl extends Composite implements LoginView {
             }
         };
         return new CellList<TestbedConfiguration>(cell);
+    }
+    
+    private void initMap() {
+        mapContainer.setSize("300px", "250px");
+        Maps.loadMapsApi("", "2", false, new Runnable() {
+            public void run() {
+                mapWidget = new MapWidget();
+                mapWidget.setSize("300px", "250px");
+                mapWidget.setDoubleClickZoom(true);
+                mapWidget.setContinuousZoom(true);
+                mapWidget.addControl(new SmallMapControl());
+                mapContainer.add(mapWidget);
+            }
+        });
     }
 
     @UiHandler("reloadButton")
@@ -183,5 +198,9 @@ public class LoginViewImpl extends Composite implements LoginView {
 
     public HasEnabled getReloadEnabled() {
         return reloadButton;
+    }
+
+    public MapWidget getMapWidget() {
+        return mapWidget;
     }
 }

@@ -2,6 +2,7 @@ package de.uniluebeck.itm.webui.client.ui;
 
 import java.util.List;
 
+import com.google.gwt.maps.client.MapWidget;
 import com.google.gwt.user.client.ui.HasEnabled;
 import com.google.gwt.user.client.ui.HasText;
 import com.google.gwt.user.client.ui.IsWidget;
@@ -17,6 +18,8 @@ public interface LoginView extends IsWidget {
     HasText getUsernameText();
 
     HasText getPasswordText();
+    
+    MapWidget getMapWidget();
 
     HasEnabled getUsernameEnabled();
 
