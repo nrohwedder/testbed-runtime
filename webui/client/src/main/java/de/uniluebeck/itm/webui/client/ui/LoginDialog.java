@@ -1,7 +1,5 @@
 package de.uniluebeck.itm.webui.client.ui;
 
-import com.google.gwt.event.dom.client.ClickEvent;
-import com.google.gwt.event.dom.client.ClickHandler;
 import com.google.gwt.user.client.ui.Button;
 import com.google.gwt.user.client.ui.DialogBox;
 import com.google.gwt.user.client.ui.FlexTable;
@@ -20,7 +18,6 @@ public class LoginDialog extends DialogBox {
     private final Button submitButton = new Button("Login");
     private final Button cancelButton = new Button("Cancel");
     private final VerticalPanel errorPanel = new VerticalPanel();
-    private LoginView.Presenter presenter;
 
     public LoginDialog() {
         usernameTextBox.setWidth("200px");
@@ -53,26 +50,6 @@ public class LoginDialog extends DialogBox {
         setModal(true);
         setGlassEnabled(true);
         setAnimationEnabled(true);
-    }
-
-    private void bind() {
-        submitButton.addClickHandler(new ClickHandler()  {
-
-            public void onClick(final ClickEvent paramClickEvent) {
-                presenter.submit();
-            }
-        });
-        cancelButton.addClickHandler(new ClickHandler()  {
-
-            public void onClick(final ClickEvent paramClickEvent) {
-                presenter.hideLoginDialog();
-            }
-        });
-    }
-
-    public void setPresenter(final LoginView.Presenter presenter) {
-        this.presenter = presenter;
-        bind();
     }
 
     public TextBox getUsernameTextBox() {

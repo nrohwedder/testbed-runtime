@@ -1,0 +1,40 @@
+<!DOCTYPE ui:UiBinder SYSTEM "http://dl.google.com/gwt/DTD/xhtml.ent">
+<ui:UiBinder xmlns:ui="urn:ui:com.google.gwt.uibinder"
+	xmlns:g="urn:import:com.google.gwt.user.client.ui"
+	xmlns:my="urn:import:de.uniluebeck.itm.webui.client.ui.login">
+	<ui:style>
+		.button {
+			width:50px;
+		}
+		.textBox {
+			width:200px;
+		}
+	</ui:style>
+	<my:LoginDialogViewImpl>
+		<g:VerticalPanel ui:field="layoutPanel">
+			<g:HTMLPanel>
+				<table>
+					<tr>
+						<td>Username:</td>
+						<td>
+							<g:TextBox ui:field="username" styleName="{style.textBox}"/>
+						</td>
+					</tr>
+					<tr>
+						<td>Password:</td>
+						<td>
+							<g:PasswordTextBox ui:field="password" styleName="{style.textBox}"/>
+						</td>
+					</tr>
+				</table>
+			</g:HTMLPanel>
+			<g:SimplePanel>
+				<g:VerticalPanel ui:field="errorPanel"/>
+			</g:SimplePanel>
+			<g:HorizontalPanel ui:field="buttonPanel">
+				<g:Button ui:field="submit" addStyleNames="{style.button}">Submit</g:Button>
+				<g:Button ui:field="cancel" addStyleNames="{style.button}">Cancel</g:Button>
+			</g:HorizontalPanel>
+		</g:VerticalPanel>
+	</my:LoginDialogViewImpl>
+</ui:UiBinder> 
