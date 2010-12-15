@@ -4,7 +4,8 @@ import com.google.gwt.activity.shared.Activity;
 import com.google.gwt.activity.shared.ActivityMapper;
 import com.google.gwt.place.shared.Place;
 import com.google.inject.Inject;
-import de.uniluebeck.itm.webui.client.activity.NavigationActivity;
+
+import de.uniluebeck.itm.webui.client.navigation.NavigationActivity;
 
 public class NavigationActivityMapper implements ActivityMapper {
 

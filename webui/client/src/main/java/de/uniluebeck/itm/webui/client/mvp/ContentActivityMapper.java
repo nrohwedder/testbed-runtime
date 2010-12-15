@@ -5,7 +5,7 @@ import com.google.gwt.activity.shared.ActivityMapper;
 import com.google.gwt.place.shared.Place;
 import com.google.inject.Inject;
 import de.uniluebeck.itm.webui.client.WebUiGinjector;
-import de.uniluebeck.itm.webui.client.activity.LoginActivity;
+import de.uniluebeck.itm.webui.client.login.LoginActivity;
 import de.uniluebeck.itm.webui.client.place.AdministrationPlace;
 import de.uniluebeck.itm.webui.client.place.ExperimentationPlace;
 import de.uniluebeck.itm.webui.client.place.LoginPlace;
