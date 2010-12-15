@@ -1,32 +1,88 @@
 package de.uniluebeck.itm.webui.client.presenter.login;
 
-import java.util.Iterator;
-
 import com.google.gwt.event.shared.EventBus;
-import com.google.gwt.user.client.rpc.AsyncCallback;
+import com.google.gwt.view.client.ListDataProvider;
 import com.google.inject.Inject;
 
 import de.uniluebeck.itm.webui.api.SNAAServiceAsync;
 import de.uniluebeck.itm.webui.client.event.ConfigurationSelectedEvent;
 import de.uniluebeck.itm.webui.client.event.ConfigurationSelectedHandler;
-import de.uniluebeck.itm.webui.client.event.LoggedInEvent;
 import de.uniluebeck.itm.webui.client.event.ShowLoginDialogEvent;
 import de.uniluebeck.itm.webui.client.event.ShowLoginDialogHandler;
 import de.uniluebeck.itm.webui.client.place.LoginPlace;
+import de.uniluebeck.itm.webui.client.presenter.login.AuthenticationHelper.Callback;
 import de.uniluebeck.itm.webui.client.ui.login.LoginDialogView;
 import de.uniluebeck.itm.webui.client.ui.login.LoginDialogView.Presenter;
 import de.uniluebeck.itm.webui.shared.TestbedConfiguration;
-import de.uniluebeck.itm.webui.shared.wiseml.SecretAuthenticationKey;
 
 public class LoginDialogPresenter implements Presenter, ConfigurationSelectedHandler, ShowLoginDialogHandler {
 
+    public enum AuthenticationState {
+        NOT_AUTHENTICATED("Not authenticated"),
+        AUTHENTICATE("Authenticate..."),
+        SUCCESS("Successful"), 
+        FAILED("Failed due an error"),
+        CANCELED("Canceled"), 
+        SKIPPED("Skipped");
+        
+        private final String value;
+        
+        private AuthenticationState(final String value) {
+            this.value = value;
+        }
+        
+        @Override
+        public String toString() {
+            return value;
+        }
+    }
+    
+    public class UrnPrefixInfo {
+        
+        private final String urnPrefix;
+        
+        private AuthenticationState state;
+        
+        private boolean checked;
+        
+        public UrnPrefixInfo(final String urnPrefix) {
+            this.urnPrefix = urnPrefix;
+            state = AuthenticationState.NOT_AUTHENTICATED;
+            checked = true;
+        }
+        
+        public String getUrnPrefix() {
+            return urnPrefix;
+        }
+        
+        public AuthenticationState getState() {
+            return state;
+        }
+        
+        public void setState(final AuthenticationState state) {
+            this.state = state;
+        }
+        
+        public boolean isChecked() {
+            return checked;
+        }
+        
+        public void setChecked(final boolean checked) {
+            this.checked = checked;
+        }
+    }
+    
     private final EventBus eventBus;
     
     private final LoginDialogView view;
     
     private final SNAAServiceAsync authenticationService;
     
+    private final ListDataProvider<UrnPrefixInfo> dataProvider = new ListDataProvider<LoginDialogPresenter.UrnPrefixInfo>();
+    
     private TestbedConfiguration configuration;
+    
+    private AuthenticationHelper authenticationHelper;
 
     @Inject
     public LoginDialogPresenter(final EventBus eventBus, 
@@ -35,6 +91,8 @@ public class LoginDialogPresenter implements Presenter, ConfigurationSelectedHan
         this.eventBus = eventBus;
         this.view = view;
         this.authenticationService = authenticationService;
+        
+        dataProvider.addDataDisplay(view.getUrnPrefixList());
         
         bind();
     }
@@ -51,51 +109,50 @@ public class LoginDialogPresenter implements Presenter, ConfigurationSelectedHan
     public void submit() {
         view.getUsernameEnabled().setEnabled(false);
         view.getPasswordEnabled().setEnabled(false);
+        view.getSubmitEnabled().setEnabled(false);
 
         final String endpointUrl = configuration.getSnaaEndpointUrl();
         final String username = view.getUsernameText().getText();
         final String password = view.getPasswordText().getText();
 
-        final Iterator<String> iterator = configuration.getUrnPrefixList().iterator();
-
-        final AsyncCallback<SecretAuthenticationKey> callback = new AsyncCallback<SecretAuthenticationKey>() {
-
-            private String urn;
-            private boolean error = false;
-
-            public void onSuccess(final SecretAuthenticationKey result) {
-                if (iterator.hasNext()) {
-                    urn = iterator.next();
-                    authenticationService.authenticate(endpointUrl, urn, username, password, this);
-                } else {
-                    if (!error) {
-                        view.hide();
-                    }
-                    view.getUsernameEnabled().setEnabled(true);
-                    view.getPasswordEnabled().setEnabled(true);
-                    eventBus.fireEventFromSource(new LoggedInEvent(result), LoginDialogPresenter.this);
+        authenticationHelper.authenticate(dataProvider.getList().iterator(), endpointUrl, username, password, new Callback() {
+            
+            private boolean hideAfterComplete = true;
+            
+            public void onStateChanged(final UrnPrefixInfo info, final AuthenticationState state) {
+                dataProvider.refresh();
+                if (state.equals(AuthenticationState.FAILED) || state.equals(AuthenticationState.SKIPPED)) {
+                    hideAfterComplete = false;
                 }
             }
-
-            public void onFailure(final Throwable throwable) {
-                error = true;
-                view.addError(urn + " " + throwable.getMessage());
-                onSuccess(null);
+            
+            public void onComplete() {
+                view.getUsernameEnabled().setEnabled(true);
+                view.getPasswordEnabled().setEnabled(true);
+                view.getSubmitEnabled().setEnabled(true);
+                if (hideAfterComplete) {
+                    view.hide();
+                }
             }
-        };
-        callback.onSuccess(null);
+        });
     }
 
     public void cancel() {
+        //authenticationProvider.cancel();
         view.hide();
     }
 
     public void onTestbedConfigurationSelected(final ConfigurationSelectedEvent event) {
         configuration = event.getConfiguration();
+        dataProvider.getList().clear();
+        for (String urnPrefix : configuration.getUrnPrefixList()) {
+            dataProvider.getList().add(new UrnPrefixInfo(urnPrefix));
+        }
+        authenticationHelper = new AuthenticationHelper(eventBus, authenticationService);
+        dataProvider.refresh();
     }
 
     public void onShowLoginDialog(final ShowLoginDialogEvent event) {
         view.show("Login to " + configuration.getName());
     }
-
 }
