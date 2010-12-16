@@ -8,8 +8,8 @@ import com.google.gwt.place.shared.PlaceHistoryHandler;
 
 import de.uniluebeck.itm.wiseui.client.administration.AdministrationActivity;
 import de.uniluebeck.itm.wiseui.client.administration.view.AdministrationView;
-import de.uniluebeck.itm.wiseui.client.experiment.ExperimentationActivity;
-import de.uniluebeck.itm.wiseui.client.experiment.view.ExperimentationView;
+import de.uniluebeck.itm.wiseui.client.experimentation.ExperimentationActivity;
+import de.uniluebeck.itm.wiseui.client.experimentation.view.ExperimentationView;
 import de.uniluebeck.itm.wiseui.client.navigation.NavigationActivity;
 import de.uniluebeck.itm.wiseui.client.navigation.view.NavigationView;
 import de.uniluebeck.itm.wiseui.client.reservation.ReservationActivity;
@@ -36,7 +36,7 @@ public interface WiseUiGinjector extends Ginjector {
      */
     WiseUiView getAppWidget();
 
-    TestbedSelectionView getLoginView();
+    TestbedSelectionView getTestbedSelectionView();
 
     ReservationView getReservationView();
 
@@ -53,7 +53,7 @@ public interface WiseUiGinjector extends Ginjector {
 
     ContentActivityManager getContentActivityManager();
 
-    TestbedSelectionActivity getLoginActivity();
+    TestbedSelectionActivity getTestbedSelectionActivity();
 
     ReservationActivity getReservationActivity();
 
@@ -75,7 +75,7 @@ public interface WiseUiGinjector extends Ginjector {
     */
     ConfigurationPresenter getConfigurationPresenter();
 
-    TestbedSelectionPresenter getLoginPresenter();
+    TestbedSelectionPresenter getTestbedSelectionPresenter();
 
     DetailPresenter getDetailPresenter();
 

@@ -199,7 +199,7 @@ public class WSNServiceImpl implements WSNService {
 			/* this is a message that was received from a sensor node. we now have to check if this is a virtual link
 			 * message. in that case we will deliver it to the destination node if there's a virtual link currently.
 			 * if the message is a virtual broadcast we'll deliver it to all destinations this node's connected to.
-			 * if the message is not a virtual link we'll deliver it to the controller of the experiment as it is. */
+			 * if the message is not a virtual link we'll deliver it to the controller of the experimentation as it is. */
 
             if (!reservedNodes.contains(wsnMessage.getSourceNodeId())) {
                 log.warn("Received message from unreserved node \"{}\".", wsnMessage.getSourceNodeId());

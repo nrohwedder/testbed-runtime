@@ -15,9 +15,9 @@ import com.google.inject.Inject;
 
 public class TestbedSelectionViewImpl extends Composite implements TestbedSelectionView {
 
-    private static LoginViewImplUiBinder uiBinder = GWT.create(LoginViewImplUiBinder.class);
+    private static TestbedSelectionViewImplUiBinder uiBinder = GWT.create(TestbedSelectionViewImplUiBinder.class);
 
-    interface LoginViewImplUiBinder extends UiBinder<Widget, TestbedSelectionViewImpl> {
+    interface TestbedSelectionViewImplUiBinder extends UiBinder<Widget, TestbedSelectionViewImpl> {
     }
 
     @UiField

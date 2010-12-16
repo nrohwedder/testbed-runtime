@@ -11,9 +11,9 @@ import com.google.inject.Singleton;
 import de.uniluebeck.itm.wiseui.client.administration.AdministrationActivity;
 import de.uniluebeck.itm.wiseui.client.administration.view.AdministrationView;
 import de.uniluebeck.itm.wiseui.client.administration.view.AdministrationViewImpl;
-import de.uniluebeck.itm.wiseui.client.experiment.ExperimentationActivity;
-import de.uniluebeck.itm.wiseui.client.experiment.view.ExperimentationView;
-import de.uniluebeck.itm.wiseui.client.experiment.view.ExperimentationViewImpl;
+import de.uniluebeck.itm.wiseui.client.experimentation.ExperimentationActivity;
+import de.uniluebeck.itm.wiseui.client.experimentation.view.ExperimentationView;
+import de.uniluebeck.itm.wiseui.client.experimentation.view.ExperimentationViewImpl;
 import de.uniluebeck.itm.wiseui.client.main.view.WiseUiViewImpl;
 import de.uniluebeck.itm.wiseui.client.navigation.NavigationActivity;
 import de.uniluebeck.itm.wiseui.client.navigation.view.NavigationView;
@@ -63,8 +63,6 @@ public class WiseUiClientModule extends AbstractGinModule {
                 Singleton.class);
         bind(AdministrationView.class).to(AdministrationViewImpl.class).in(
                 Singleton.class);
-        bind(WiseMLNativeView.class).to(WiseMLNativeViewImpl.class).in(
-                Singleton.class);
 
         // Activitiy binding
         bind(TestbedSelectionActivity.class);
@@ -72,7 +70,6 @@ public class WiseUiClientModule extends AbstractGinModule {
         bind(ReservationActivity.class);
         bind(ExperimentationActivity.class);
         bind(AdministrationActivity.class);
-        bind(WiseMLNativeActivity.class);
 
         // Presenter binding
         bind(ConfigurationPresenter.class);

@@ -1,12 +1,12 @@
-package de.uniluebeck.itm.wiseui.client.experiment;
+package de.uniluebeck.itm.wiseui.client.experimentation;
 
 import com.google.gwt.activity.shared.AbstractActivity;
 import com.google.gwt.event.shared.EventBus;
 import com.google.gwt.user.client.ui.AcceptsOneWidget;
 import com.google.inject.Inject;
 import de.uniluebeck.itm.wiseui.client.WiseUiGinjector;
-import de.uniluebeck.itm.wiseui.client.experiment.view.ExperimentationView;
-import de.uniluebeck.itm.wiseui.client.experiment.view.ExperimentationView.Presenter;
+import de.uniluebeck.itm.wiseui.client.experimentation.view.ExperimentationView;
+import de.uniluebeck.itm.wiseui.client.experimentation.view.ExperimentationView.Presenter;
 
 public class ExperimentationActivity extends AbstractActivity implements
         Presenter {

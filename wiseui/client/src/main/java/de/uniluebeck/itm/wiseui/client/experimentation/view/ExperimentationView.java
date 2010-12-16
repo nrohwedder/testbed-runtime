@@ -1,4 +1,4 @@
-package de.uniluebeck.itm.wiseui.client.experiment.view;
+package de.uniluebeck.itm.wiseui.client.experimentation.view;
 
 import com.google.gwt.user.client.ui.IsWidget;
 

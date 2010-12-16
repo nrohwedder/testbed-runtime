@@ -47,7 +47,7 @@ public class TestbedSelectionActivity extends AbstractActivity implements Config
      */
     public void start(final AcceptsOneWidget containerWidget, final EventBus eventBus) {
         this.eventBus = eventBus;
-        initLoginPart(containerWidget);
+        initTestbedSelectionPart(containerWidget);
         initLoginDialogPart();
         bind();
     }
@@ -56,11 +56,11 @@ public class TestbedSelectionActivity extends AbstractActivity implements Config
         eventBus.addHandler(ConfigurationSelectedEvent.TYPE, this);
     }
 
-    private void initLoginPart(final AcceptsOneWidget container) {
-        GWT.log("Init Login Part");
-        final TestbedSelectionPresenter testbedSelectionPresenter = injector.getLoginPresenter();
+    private void initTestbedSelectionPart(final AcceptsOneWidget container) {
+        GWT.log("Init Testbed Selection Part");
+        final TestbedSelectionPresenter testbedSelectionPresenter = injector.getTestbedSelectionPresenter();
         testbedSelectionPresenter.setPlace(place);
-        final TestbedSelectionView testbedSelectionView = injector.getLoginView();
+        final TestbedSelectionView testbedSelectionView = injector.getTestbedSelectionView();
         testbedSelectionView.setPresenter(testbedSelectionPresenter);
         initConfigurationPart(testbedSelectionView);
         initDetailPart(testbedSelectionView);

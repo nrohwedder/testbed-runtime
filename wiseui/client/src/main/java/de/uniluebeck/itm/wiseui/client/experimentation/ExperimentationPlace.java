@@ -1,4 +1,4 @@
-package de.uniluebeck.itm.wiseui.client.experiment;
+package de.uniluebeck.itm.wiseui.client.experimentation;
 
 import com.google.gwt.place.shared.Place;
 import com.google.gwt.place.shared.PlaceTokenizer;
