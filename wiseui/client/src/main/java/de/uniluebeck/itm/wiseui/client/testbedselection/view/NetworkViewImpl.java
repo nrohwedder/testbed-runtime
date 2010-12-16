@@ -54,6 +54,15 @@ public class NetworkViewImpl extends Composite implements NetworkView {
             }
         };
         nodeTable.addColumn(descriptionColumn, "Description");
+
+        final TextColumn<Node> positionColumn = new TextColumn<Node>() {
+
+            @Override
+            public String getValue(final Node node) {
+                return node.getPosition().toString();
+            }
+        };
+        nodeTable.addColumn(positionColumn, "Position");
     }
 
     public void setPresenter(final Presenter presenter) {

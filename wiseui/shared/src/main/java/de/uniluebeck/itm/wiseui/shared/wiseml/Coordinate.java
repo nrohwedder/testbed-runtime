@@ -53,4 +53,15 @@ public class Coordinate implements Serializable {
     public void setTheta(final Double theta) {
         this.theta = theta;
     }
+
+    @Override
+    public String toString() {
+        String s = "x=" + x +
+                ", y=" + y +
+                ", z=" + z;
+        if (phi != null) s += ", phi=" + phi;
+        if (theta != null) s += ", theta=" + theta;
+
+        return s;
+    }
 }
