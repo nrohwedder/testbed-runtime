@@ -1,14 +1,12 @@
 package de.uniluebeck.itm.wiseui.server;
 
-import org.dozer.DozerBeanMapper;
-import org.dozer.Mapper;
-
 import com.google.inject.Singleton;
 import com.google.inject.servlet.ServletModule;
-
 import de.uniluebeck.itm.wiseui.server.rpc.SNAAServiceImpl;
 import de.uniluebeck.itm.wiseui.server.rpc.SessionManagementServiceImpl;
 import de.uniluebeck.itm.wiseui.server.rpc.TestbedConfigurationServiceImpl;
+import org.dozer.DozerBeanMapper;
+import org.dozer.Mapper;
 
 public class WiseUiGuiceServletModule extends ServletModule {
 

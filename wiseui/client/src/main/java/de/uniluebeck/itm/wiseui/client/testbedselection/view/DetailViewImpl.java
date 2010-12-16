@@ -13,7 +13,6 @@ import com.google.gwt.user.client.ui.HasText;
 import com.google.gwt.user.client.ui.Label;
 import com.google.gwt.user.client.ui.SimplePanel;
 import com.google.gwt.user.client.ui.Widget;
-
 import de.uniluebeck.itm.wiseui.shared.wiseml.Coordinate;
 
 public class DetailViewImpl extends Composite implements DetailView {

@@ -1,7 +1,5 @@
 package de.uniluebeck.itm.wiseui.client.testbedselection.view;
 
-import java.util.List;
-
 import com.google.gwt.cell.client.AbstractCell;
 import com.google.gwt.cell.client.Cell;
 import com.google.gwt.core.client.GWT;
@@ -13,8 +11,9 @@ import com.google.gwt.user.cellview.client.CellList;
 import com.google.gwt.user.client.ui.Composite;
 import com.google.gwt.user.client.ui.Widget;
 import com.google.gwt.view.client.SelectionModel;
-
 import de.uniluebeck.itm.wiseui.shared.TestbedConfiguration;
+
+import java.util.List;
 
 public class ConfigurationViewImpl extends Composite implements ConfigurationView {
 

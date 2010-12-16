@@ -1,14 +1,13 @@
 package de.uniluebeck.itm.wiseui.client.main;
 
-import java.util.Collection;
-import java.util.Map;
-import java.util.TreeMap;
-
 import com.google.gwt.core.client.GWT;
 import com.google.gwt.place.shared.Place;
 import com.google.gwt.place.shared.PlaceTokenizer;
-
 import de.uniluebeck.itm.wiseui.client.activity.WiseUiPlaceHistoryMapper;
+
+import java.util.Collection;
+import java.util.Map;
+import java.util.TreeMap;
 
 public class WiseUiPlace extends Place {
 

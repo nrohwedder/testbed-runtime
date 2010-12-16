@@ -1,11 +1,10 @@
 package de.uniluebeck.itm.wiseui.client.testbedselection.view;
 
-import java.util.List;
-
 import com.google.gwt.user.client.ui.IsWidget;
-
 import de.uniluebeck.itm.wiseui.client.testbedselection.TestbedSelectionPlace;
 import de.uniluebeck.itm.wiseui.shared.wiseml.Node;
+
+import java.util.List;
 
 public interface NetworkView extends IsWidget {
 

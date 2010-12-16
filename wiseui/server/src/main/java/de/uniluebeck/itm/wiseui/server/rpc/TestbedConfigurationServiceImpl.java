@@ -1,5 +1,12 @@
 package de.uniluebeck.itm.wiseui.server.rpc;
 
+import com.google.gwt.user.server.rpc.RemoteServiceServlet;
+import com.google.inject.Singleton;
+import com.thoughtworks.xstream.XStream;
+import de.uniluebeck.itm.wiseui.api.TestbedConfigurationService;
+import de.uniluebeck.itm.wiseui.shared.TestbedConfiguration;
+import de.uniluebeck.itm.wiseui.shared.exception.ConfigurationException;
+
 import java.io.EOFException;
 import java.io.FileNotFoundException;
 import java.io.IOException;
@@ -7,14 +14,6 @@ import java.io.InputStream;
 import java.io.ObjectInputStream;
 import java.util.ArrayList;
 import java.util.List;
-
-import com.google.gwt.user.server.rpc.RemoteServiceServlet;
-import com.google.inject.Singleton;
-import com.thoughtworks.xstream.XStream;
-
-import de.uniluebeck.itm.wiseui.api.TestbedConfigurationService;
-import de.uniluebeck.itm.wiseui.shared.TestbedConfiguration;
-import de.uniluebeck.itm.wiseui.shared.exception.ConfigurationException;
 
 @Singleton
 public class TestbedConfigurationServiceImpl extends RemoteServiceServlet implements TestbedConfigurationService {

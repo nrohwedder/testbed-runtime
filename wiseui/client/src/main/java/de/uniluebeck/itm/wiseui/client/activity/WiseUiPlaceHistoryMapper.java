@@ -4,8 +4,8 @@ import com.google.gwt.place.shared.PlaceHistoryMapper;
 import com.google.gwt.place.shared.WithTokenizers;
 import de.uniluebeck.itm.wiseui.client.administration.AdministrationPlace;
 import de.uniluebeck.itm.wiseui.client.experimentation.ExperimentationPlace;
-import de.uniluebeck.itm.wiseui.client.testbedselection.TestbedSelectionPlace;
 import de.uniluebeck.itm.wiseui.client.reservation.ReservationPlace;
+import de.uniluebeck.itm.wiseui.client.testbedselection.TestbedSelectionPlace;
 
 /**
  * PlaceHistoryMapper interface is used to attach all places which the

@@ -17,7 +17,6 @@ import com.google.gwt.user.client.ui.TextBox;
 import com.google.gwt.user.client.ui.VerticalPanel;
 import com.google.gwt.user.client.ui.Widget;
 import com.google.inject.Inject;
-
 import de.uniluebeck.itm.wiseui.client.util.HasWidgetsDialogBox;
 
 public class LoginDialogViewImpl extends HasWidgetsDialogBox implements LoginDialogView {

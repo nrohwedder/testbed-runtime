@@ -1,12 +1,11 @@
 package de.uniluebeck.itm.wiseui.client.testbedselection.view;
 
-import java.util.List;
-
 import com.google.gwt.user.client.ui.IsWidget;
 import com.google.gwt.view.client.SelectionModel;
-
 import de.uniluebeck.itm.wiseui.client.testbedselection.TestbedSelectionPlace;
 import de.uniluebeck.itm.wiseui.shared.TestbedConfiguration;
+
+import java.util.List;
 
 public interface ConfigurationView extends IsWidget {
 

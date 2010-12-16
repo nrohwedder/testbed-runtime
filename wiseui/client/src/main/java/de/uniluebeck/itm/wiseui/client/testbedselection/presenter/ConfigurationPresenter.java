@@ -1,7 +1,5 @@
 package de.uniluebeck.itm.wiseui.client.testbedselection.presenter;
 
-import java.util.List;
-
 import com.google.gwt.core.client.GWT;
 import com.google.gwt.core.client.Scheduler;
 import com.google.gwt.core.client.Scheduler.ScheduledCommand;
@@ -12,13 +10,14 @@ import com.google.gwt.view.client.SelectionChangeEvent;
 import com.google.gwt.view.client.SelectionChangeEvent.Handler;
 import com.google.gwt.view.client.SingleSelectionModel;
 import com.google.inject.Inject;
-
 import de.uniluebeck.itm.wiseui.api.TestbedConfigurationServiceAsync;
-import de.uniluebeck.itm.wiseui.client.testbedselection.event.ConfigurationSelectedEvent;
 import de.uniluebeck.itm.wiseui.client.testbedselection.TestbedSelectionPlace;
+import de.uniluebeck.itm.wiseui.client.testbedselection.event.ConfigurationSelectedEvent;
 import de.uniluebeck.itm.wiseui.client.testbedselection.view.ConfigurationView;
 import de.uniluebeck.itm.wiseui.client.testbedselection.view.ConfigurationView.Presenter;
 import de.uniluebeck.itm.wiseui.shared.TestbedConfiguration;
+
+import java.util.List;
 
 public class ConfigurationPresenter implements Presenter {
 

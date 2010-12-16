@@ -1,22 +1,21 @@
 package de.uniluebeck.itm.wiseui.client.testbedselection.presenter;
 
-import java.util.Iterator;
-
 import com.google.gwt.event.shared.EventBus;
 import com.google.gwt.user.client.rpc.AsyncCallback;
 import com.google.inject.Inject;
-
 import de.uniluebeck.itm.wiseui.api.SNAAServiceAsync;
+import de.uniluebeck.itm.wiseui.client.testbedselection.TestbedSelectionPlace;
 import de.uniluebeck.itm.wiseui.client.testbedselection.event.ConfigurationSelectedEvent;
 import de.uniluebeck.itm.wiseui.client.testbedselection.event.ConfigurationSelectedHandler;
 import de.uniluebeck.itm.wiseui.client.testbedselection.event.LoggedInEvent;
 import de.uniluebeck.itm.wiseui.client.testbedselection.event.ShowLoginDialogEvent;
 import de.uniluebeck.itm.wiseui.client.testbedselection.event.ShowLoginDialogHandler;
-import de.uniluebeck.itm.wiseui.client.testbedselection.TestbedSelectionPlace;
 import de.uniluebeck.itm.wiseui.client.testbedselection.view.LoginDialogView;
 import de.uniluebeck.itm.wiseui.client.testbedselection.view.LoginDialogView.Presenter;
 import de.uniluebeck.itm.wiseui.shared.TestbedConfiguration;
 import de.uniluebeck.itm.wiseui.shared.wiseml.SecretAuthenticationKey;
+
+import java.util.Iterator;
 
 public class LoginDialogPresenter implements Presenter, ConfigurationSelectedHandler, ShowLoginDialogHandler {
 

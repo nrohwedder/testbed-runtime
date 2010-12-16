@@ -1,7 +1,5 @@
 package de.uniluebeck.itm.wiseui.client.testbedselection.view;
 
-import java.util.List;
-
 import com.google.gwt.core.client.GWT;
 import com.google.gwt.uibinder.client.UiBinder;
 import com.google.gwt.uibinder.client.UiField;
@@ -9,8 +7,9 @@ import com.google.gwt.user.cellview.client.CellTable;
 import com.google.gwt.user.cellview.client.TextColumn;
 import com.google.gwt.user.client.ui.Composite;
 import com.google.gwt.user.client.ui.Widget;
-
 import de.uniluebeck.itm.wiseui.shared.wiseml.Node;
+
+import java.util.List;
 
 public class NetworkViewImpl extends Composite implements NetworkView {
 

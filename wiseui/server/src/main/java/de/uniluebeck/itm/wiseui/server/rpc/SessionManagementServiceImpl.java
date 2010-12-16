@@ -1,16 +1,14 @@
 package de.uniluebeck.itm.wiseui.server.rpc;
 
-import org.dozer.Mapper;
-
 import com.google.gwt.user.server.rpc.RemoteServiceServlet;
 import com.google.inject.Inject;
 import com.google.inject.Singleton;
-
 import de.itm.uniluebeck.tr.wiseml.WiseMLHelper;
 import de.uniluebeck.itm.wiseui.api.SessionManagementService;
 import de.uniluebeck.itm.wiseui.shared.wiseml.Wiseml;
 import eu.wisebed.testbed.api.wsn.WSNServiceHelper;
 import eu.wisebed.testbed.api.wsn.v211.SessionManagement;
+import org.dozer.Mapper;
 
 @Singleton
 public class SessionManagementServiceImpl extends RemoteServiceServlet implements SessionManagementService {

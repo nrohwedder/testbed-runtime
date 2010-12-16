@@ -9,9 +9,9 @@ import com.google.inject.Inject;
 import de.uniluebeck.itm.wiseui.client.WiseUiGinjector;
 import de.uniluebeck.itm.wiseui.client.administration.AdministrationPlace;
 import de.uniluebeck.itm.wiseui.client.experimentation.ExperimentationPlace;
-import de.uniluebeck.itm.wiseui.client.testbedselection.TestbedSelectionPlace;
-import de.uniluebeck.itm.wiseui.client.reservation.ReservationPlace;
 import de.uniluebeck.itm.wiseui.client.navigation.view.NavigationView;
+import de.uniluebeck.itm.wiseui.client.reservation.ReservationPlace;
+import de.uniluebeck.itm.wiseui.client.testbedselection.TestbedSelectionPlace;
 
 import java.util.ArrayList;
 import java.util.List;

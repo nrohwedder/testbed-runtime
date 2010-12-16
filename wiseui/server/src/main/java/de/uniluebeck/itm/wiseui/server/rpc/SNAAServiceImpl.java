@@ -1,13 +1,8 @@
 package de.uniluebeck.itm.wiseui.server.rpc;
 
-import java.util.Arrays;
-
-import org.dozer.DozerBeanMapper;
-
 import com.google.gwt.user.server.rpc.RemoteServiceServlet;
 import com.google.inject.Inject;
 import com.google.inject.Singleton;
-
 import de.uniluebeck.itm.wiseui.api.SNAAService;
 import de.uniluebeck.itm.wiseui.shared.exception.AuthenticationException;
 import de.uniluebeck.itm.wiseui.shared.wiseml.SecretAuthenticationKey;
@@ -16,6 +11,9 @@ import eu.wisebed.testbed.api.snaa.v1.AuthenticationExceptionException;
 import eu.wisebed.testbed.api.snaa.v1.AuthenticationTriple;
 import eu.wisebed.testbed.api.snaa.v1.SNAA;
 import eu.wisebed.testbed.api.snaa.v1.SNAAExceptionException;
+import org.dozer.DozerBeanMapper;
+
+import java.util.Arrays;
 
 @Singleton
 public class SNAAServiceImpl extends RemoteServiceServlet implements SNAAService {

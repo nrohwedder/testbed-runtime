@@ -1,7 +1,6 @@
 package de.uniluebeck.itm.wiseui.client.testbedselection.event;
 
 import com.google.gwt.event.shared.GwtEvent;
-
 import de.uniluebeck.itm.wiseui.shared.wiseml.Wiseml;
 
 public class WisemlLoadedEvent extends GwtEvent<WisemlLoadedHandler> {

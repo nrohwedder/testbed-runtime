@@ -2,7 +2,6 @@ package de.uniluebeck.itm.wiseui.client.testbedselection.view;
 
 import com.google.gwt.user.client.ui.HasEnabled;
 import com.google.gwt.user.client.ui.HasText;
-
 import de.uniluebeck.itm.wiseui.client.testbedselection.TestbedSelectionPlace;
 
 public interface LoginDialogView {
