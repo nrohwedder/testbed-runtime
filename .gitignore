@@ -16,3 +16,6 @@ nb-configuration.xml
 .project
 *.gwt.rpc
 *.class
+**/*.svn
+.svn
+*.svn
