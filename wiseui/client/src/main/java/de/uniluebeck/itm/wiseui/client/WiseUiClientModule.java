@@ -8,33 +8,37 @@ import com.google.gwt.place.shared.PlaceHistoryHandler;
 import com.google.inject.Provides;
 import com.google.inject.Singleton;
 
-import de.uniluebeck.itm.wiseui.client.activity.AdministrationActivity;
-import de.uniluebeck.itm.wiseui.client.activity.ExperimentationActivity;
-import de.uniluebeck.itm.wiseui.client.activity.LoginActivity;
-import de.uniluebeck.itm.wiseui.client.activity.NavigationActivity;
-import de.uniluebeck.itm.wiseui.client.activity.ReservationActivity;
-import de.uniluebeck.itm.wiseui.client.activity.WiseMLNativeActivity;
-import de.uniluebeck.itm.wiseui.client.mvp.ContentActivityManager;
-import de.uniluebeck.itm.wiseui.client.mvp.ContentActivityMapper;
-import de.uniluebeck.itm.wiseui.client.mvp.NavigationActivityManager;
-import de.uniluebeck.itm.wiseui.client.mvp.WiseUiPlaceHistoryMapper;
-import de.uniluebeck.itm.wiseui.client.place.LoginPlace;
-import de.uniluebeck.itm.wiseui.client.presenter.login.ConfigurationPresenter;
-import de.uniluebeck.itm.wiseui.client.presenter.login.DetailPresenter;
-import de.uniluebeck.itm.wiseui.client.presenter.login.LoginDialogPresenter;
-import de.uniluebeck.itm.wiseui.client.presenter.login.NetworkPresenter;
-import de.uniluebeck.itm.wiseui.client.ui.*;
-import de.uniluebeck.itm.wiseui.client.ui.WiseUiView;
-import de.uniluebeck.itm.wiseui.client.ui.login.ConfigurationView;
-import de.uniluebeck.itm.wiseui.client.ui.login.ConfigurationViewImpl;
-import de.uniluebeck.itm.wiseui.client.ui.login.DetailView;
-import de.uniluebeck.itm.wiseui.client.ui.login.DetailViewImpl;
-import de.uniluebeck.itm.wiseui.client.ui.login.LoginDialogView;
-import de.uniluebeck.itm.wiseui.client.ui.login.LoginDialogViewImpl;
-import de.uniluebeck.itm.wiseui.client.ui.login.LoginView;
-import de.uniluebeck.itm.wiseui.client.ui.login.LoginViewImpl;
-import de.uniluebeck.itm.wiseui.client.ui.login.NetworkView;
-import de.uniluebeck.itm.wiseui.client.ui.login.NetworkViewImpl;
+import de.uniluebeck.itm.wiseui.client.administration.AdministrationActivity;
+import de.uniluebeck.itm.wiseui.client.administration.view.AdministrationView;
+import de.uniluebeck.itm.wiseui.client.administration.view.AdministrationViewImpl;
+import de.uniluebeck.itm.wiseui.client.experiment.ExperimentationActivity;
+import de.uniluebeck.itm.wiseui.client.experiment.view.ExperimentationView;
+import de.uniluebeck.itm.wiseui.client.experiment.view.ExperimentationViewImpl;
+import de.uniluebeck.itm.wiseui.client.main.view.WiseUiViewImpl;
+import de.uniluebeck.itm.wiseui.client.navigation.NavigationActivity;
+import de.uniluebeck.itm.wiseui.client.navigation.view.NavigationView;
+import de.uniluebeck.itm.wiseui.client.navigation.view.NavigationViewImpl;
+import de.uniluebeck.itm.wiseui.client.reservation.ReservationActivity;
+import de.uniluebeck.itm.wiseui.client.reservation.view.ReservationView;
+import de.uniluebeck.itm.wiseui.client.reservation.view.ReservationViewImpl;
+import de.uniluebeck.itm.wiseui.client.testbedselection.TestbedSelectionActivity;
+import de.uniluebeck.itm.wiseui.client.activity.ContentActivityManager;
+import de.uniluebeck.itm.wiseui.client.activity.ContentActivityMapper;
+import de.uniluebeck.itm.wiseui.client.activity.NavigationActivityManager;
+import de.uniluebeck.itm.wiseui.client.activity.WiseUiPlaceHistoryMapper;
+import de.uniluebeck.itm.wiseui.client.testbedselection.TestbedSelectionPlace;
+import de.uniluebeck.itm.wiseui.client.testbedselection.presenter.ConfigurationPresenter;
+import de.uniluebeck.itm.wiseui.client.testbedselection.presenter.DetailPresenter;
+import de.uniluebeck.itm.wiseui.client.testbedselection.presenter.LoginDialogPresenter;
+import de.uniluebeck.itm.wiseui.client.testbedselection.presenter.NetworkPresenter;
+import de.uniluebeck.itm.wiseui.client.testbedselection.view.*;
+import de.uniluebeck.itm.wiseui.client.main.view.WiseUiView;
+import de.uniluebeck.itm.wiseui.client.testbedselection.view.ConfigurationView;
+import de.uniluebeck.itm.wiseui.client.testbedselection.view.ConfigurationViewImpl;
+import de.uniluebeck.itm.wiseui.client.testbedselection.view.LoginDialogView;
+import de.uniluebeck.itm.wiseui.client.testbedselection.view.TestbedSelectionViewImpl;
+import de.uniluebeck.itm.wiseui.client.testbedselection.view.NetworkView;
+import de.uniluebeck.itm.wiseui.client.testbedselection.view.NetworkViewImpl;
 
 public class WiseUiClientModule extends AbstractGinModule {
 
@@ -48,7 +52,7 @@ public class WiseUiClientModule extends AbstractGinModule {
         bind(WiseUiView.class).to(WiseUiViewImpl.class).in(Singleton.class);
         bind(NavigationView.class).to(NavigationViewImpl.class).in(
                 Singleton.class);
-        bind(LoginView.class).to(LoginViewImpl.class).in(Singleton.class);
+        bind(TestbedSelectionView.class).to(TestbedSelectionViewImpl.class).in(Singleton.class);
         bind(ConfigurationView.class).to(ConfigurationViewImpl.class).in(Singleton.class);
         bind(DetailView.class).to(DetailViewImpl.class).in(Singleton.class);
         bind(NetworkView.class).to(NetworkViewImpl.class).in(Singleton.class);
@@ -63,7 +67,7 @@ public class WiseUiClientModule extends AbstractGinModule {
                 Singleton.class);
 
         // Activitiy binding
-        bind(LoginActivity.class);
+        bind(TestbedSelectionActivity.class);
         bind(NavigationActivity.class);
         bind(ReservationActivity.class);
         bind(ExperimentationActivity.class);
@@ -90,7 +94,7 @@ public class WiseUiClientModule extends AbstractGinModule {
             final PlaceController placeController, final EventBus eventBus) {
         final PlaceHistoryHandler historyHandler = new PlaceHistoryHandler(
                 mapper);
-        historyHandler.register(placeController, eventBus, new LoginPlace());
+        historyHandler.register(placeController, eventBus, new TestbedSelectionPlace());
         return historyHandler;
     }
 

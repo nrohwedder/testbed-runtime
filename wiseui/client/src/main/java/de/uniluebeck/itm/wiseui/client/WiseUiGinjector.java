@@ -6,26 +6,25 @@ import com.google.gwt.inject.client.Ginjector;
 import com.google.gwt.place.shared.PlaceController;
 import com.google.gwt.place.shared.PlaceHistoryHandler;
 
-import de.uniluebeck.itm.wiseui.client.activity.AdministrationActivity;
-import de.uniluebeck.itm.wiseui.client.activity.ExperimentationActivity;
-import de.uniluebeck.itm.wiseui.client.activity.LoginActivity;
-import de.uniluebeck.itm.wiseui.client.activity.NavigationActivity;
-import de.uniluebeck.itm.wiseui.client.activity.ReservationActivity;
-import de.uniluebeck.itm.wiseui.client.activity.WiseMLNativeActivity;
-import de.uniluebeck.itm.wiseui.client.mvp.ContentActivityManager;
-import de.uniluebeck.itm.wiseui.client.mvp.NavigationActivityManager;
-import de.uniluebeck.itm.wiseui.client.presenter.login.ConfigurationPresenter;
-import de.uniluebeck.itm.wiseui.client.presenter.login.DetailPresenter;
-import de.uniluebeck.itm.wiseui.client.presenter.login.LoginDialogPresenter;
-import de.uniluebeck.itm.wiseui.client.presenter.login.LoginPresenter;
-import de.uniluebeck.itm.wiseui.client.presenter.login.NetworkPresenter;
-import de.uniluebeck.itm.wiseui.client.ui.*;
-import de.uniluebeck.itm.wiseui.client.ui.WiseUiView;
-import de.uniluebeck.itm.wiseui.client.ui.login.ConfigurationView;
-import de.uniluebeck.itm.wiseui.client.ui.login.DetailView;
-import de.uniluebeck.itm.wiseui.client.ui.login.LoginDialogView;
-import de.uniluebeck.itm.wiseui.client.ui.login.LoginView;
-import de.uniluebeck.itm.wiseui.client.ui.login.NetworkView;
+import de.uniluebeck.itm.wiseui.client.administration.AdministrationActivity;
+import de.uniluebeck.itm.wiseui.client.administration.view.AdministrationView;
+import de.uniluebeck.itm.wiseui.client.experiment.ExperimentationActivity;
+import de.uniluebeck.itm.wiseui.client.experiment.view.ExperimentationView;
+import de.uniluebeck.itm.wiseui.client.navigation.NavigationActivity;
+import de.uniluebeck.itm.wiseui.client.navigation.view.NavigationView;
+import de.uniluebeck.itm.wiseui.client.reservation.ReservationActivity;
+import de.uniluebeck.itm.wiseui.client.reservation.view.ReservationView;
+import de.uniluebeck.itm.wiseui.client.testbedselection.TestbedSelectionActivity;
+import de.uniluebeck.itm.wiseui.client.activity.ContentActivityManager;
+import de.uniluebeck.itm.wiseui.client.activity.NavigationActivityManager;
+import de.uniluebeck.itm.wiseui.client.testbedselection.presenter.ConfigurationPresenter;
+import de.uniluebeck.itm.wiseui.client.testbedselection.presenter.DetailPresenter;
+import de.uniluebeck.itm.wiseui.client.testbedselection.presenter.LoginDialogPresenter;
+import de.uniluebeck.itm.wiseui.client.testbedselection.presenter.TestbedSelectionPresenter;
+import de.uniluebeck.itm.wiseui.client.testbedselection.presenter.NetworkPresenter;
+import de.uniluebeck.itm.wiseui.client.testbedselection.view.*;
+import de.uniluebeck.itm.wiseui.client.main.view.WiseUiView;
+import de.uniluebeck.itm.wiseui.client.testbedselection.view.ConfigurationView;
 
 @GinModules(WiseUiClientModule.class)
 public interface WiseUiGinjector extends Ginjector {
@@ -37,7 +36,7 @@ public interface WiseUiGinjector extends Ginjector {
      */
     WiseUiView getAppWidget();
 
-    LoginView getLoginView();
+    TestbedSelectionView getLoginView();
 
     ReservationView getReservationView();
 
@@ -47,8 +46,6 @@ public interface WiseUiGinjector extends Ginjector {
 
     AdministrationView getAdministrationView();
 
-    WiseMLNativeView getWiseMLNativeView();
-
     /* 
      * Activities 
      */
@@ -56,7 +53,7 @@ public interface WiseUiGinjector extends Ginjector {
 
     ContentActivityManager getContentActivityManager();
 
-    LoginActivity getLoginActivity();
+    TestbedSelectionActivity getLoginActivity();
 
     ReservationActivity getReservationActivity();
 
@@ -65,8 +62,6 @@ public interface WiseUiGinjector extends Ginjector {
     ExperimentationActivity getExperimentationActivity();
 
     AdministrationActivity getAdministrationActivity();
-
-    WiseMLNativeActivity getWiseMLNativeActivity();
 
     /*
      * Places
@@ -80,7 +75,7 @@ public interface WiseUiGinjector extends Ginjector {
     */
     ConfigurationPresenter getConfigurationPresenter();
 
-    LoginPresenter getLoginPresenter();
+    TestbedSelectionPresenter getLoginPresenter();
 
     DetailPresenter getDetailPresenter();
 
