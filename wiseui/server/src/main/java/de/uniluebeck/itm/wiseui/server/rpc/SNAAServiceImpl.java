@@ -22,6 +22,8 @@ public class SNAAServiceImpl extends RemoteServiceServlet implements SNAAService
 
     private static final long serialVersionUID = -478318843648335352L;
 
+    private static final String AUTHENTICATION_FAILED = "Authentication failed!";
+
     private final DozerBeanMapper mapper;
 
     @Inject
@@ -40,9 +42,9 @@ public class SNAAServiceImpl extends RemoteServiceServlet implements SNAAService
         try {
             key = snaaService.authenticate(Arrays.asList(authenticationTriple)).get(0);
         } catch (final AuthenticationExceptionException e) {
-            throw new AuthenticationException("Authentication failed", e);
+            throw new AuthenticationException(AUTHENTICATION_FAILED, e);
         } catch (final SNAAExceptionException e) {
-            throw new AuthenticationException("Authentication failed due to an error", e);
+            throw new AuthenticationException(AUTHENTICATION_FAILED, e);
         }
 
         return mapper.map(key, SecretAuthenticationKey.class);

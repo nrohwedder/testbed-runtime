@@ -78,12 +78,13 @@ public class LoginDialogPresenter implements Presenter, ConfigurationSelectedHan
             }
 
             public void onFailure(final Throwable throwable) {
+                view.clearErrors();
                 error = true;
                 view.addError(urn + " " + throwable.getMessage());
-                onSuccess(null);
+                onSuccess(null); // ??
             }
         };
-        callback.onSuccess(null);
+        callback.onSuccess(null); // ??
     }
 
     public void cancel() {

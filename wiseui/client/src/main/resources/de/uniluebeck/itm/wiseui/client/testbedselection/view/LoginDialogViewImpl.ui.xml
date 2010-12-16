@@ -10,6 +10,10 @@
         .textBox {
             width: 200px;
         }
+
+        .errorPanel {
+            color: #ff4500;
+        }
     </ui:style>
     <my:LoginDialogViewImpl>
         <g:VerticalPanel ui:field="layoutPanel">
@@ -30,10 +34,10 @@
                 </table>
             </g:HTMLPanel>
             <g:SimplePanel>
-                <g:VerticalPanel ui:field="errorPanel"/>
+                <g:VerticalPanel ui:field="errorPanel" styleName="{style.errorPanel}"/>
             </g:SimplePanel>
             <g:HorizontalPanel ui:field="buttonPanel">
-                <g:Button ui:field="submit" addStyleNames="{style.button}">Submit</g:Button>
+                <g:Button ui:field="submit" addStyleNames="{style.button}">Login</g:Button>
                 <g:Button ui:field="cancel" addStyleNames="{style.button}">Cancel</g:Button>
             </g:HorizontalPanel>
         </g:VerticalPanel>
