@@ -2,35 +2,39 @@ package de.uniluebeck.itm.wiseui.client.testbedselection.view;
 
 import com.google.gwt.user.client.ui.HasEnabled;
 import com.google.gwt.user.client.ui.HasText;
+import com.google.gwt.view.client.HasData;
 
 import de.uniluebeck.itm.wiseui.client.testbedselection.TestbedSelectionPlace;
+import de.uniluebeck.itm.wiseui.client.testbedselection.presenter.LoginDialogPresenter.UrnPrefixInfo;
 
 public interface LoginDialogView {
-
+    
     HasText getUsernameText();
-
+    
     HasText getPasswordText();
-
+    
     HasEnabled getUsernameEnabled();
-
+    
     HasEnabled getPasswordEnabled();
-
+    
+    HasEnabled getSubmitEnabled();
+    
+    HasEnabled getCancelEnabled();
+    
+    HasData<UrnPrefixInfo> getUrnPrefixList();
+    
     void setPresenter(Presenter presenter);
-
+    
     void show(String title);
-
+    
     void hide();
-
-    void addError(String error);
-
-    void clearErrors();
-
+    
     public interface Presenter {
 
         void setPlace(TestbedSelectionPlace place);
-
+        
         void submit();
-
+        
         void cancel();
     }
 }
