@@ -1,15 +1,14 @@
 package de.uniluebeck.itm.wiseui.client.testbedselection.util;
 
 import java.util.Iterator;
+import java.util.List;
 
-import com.google.gwt.event.shared.EventBus;
 import com.google.gwt.user.client.rpc.AsyncCallback;
 import com.google.inject.Inject;
 
 import de.uniluebeck.itm.wiseui.api.SNAAServiceAsync;
 import de.uniluebeck.itm.wiseui.client.testbedselection.common.UrnPrefixInfo;
 import de.uniluebeck.itm.wiseui.client.testbedselection.common.UrnPrefixInfo.State;
-import de.uniluebeck.itm.wiseui.client.testbedselection.event.LoggedInEvent;
 import de.uniluebeck.itm.wiseui.shared.wiseml.SecretAuthenticationKey;
 
 public class AuthenticationHelper implements AsyncCallback<SecretAuthenticationKey> {
@@ -18,12 +17,12 @@ public class AuthenticationHelper implements AsyncCallback<SecretAuthenticationK
     	
         void onStateChanged(UrnPrefixInfo info, State state);
         
-        void onComplete();
+        void onSuccess(SecretAuthenticationKey result);
+        
+        void onFinish();
     }
     
     private final SNAAServiceAsync authenticationService;
-    
-    private final EventBus eventBus;
     
     private String endpointUrl;
     
@@ -40,19 +39,19 @@ public class AuthenticationHelper implements AsyncCallback<SecretAuthenticationK
     private boolean canceled = false;
     
     @Inject
-    public AuthenticationHelper(final EventBus eventBus, final SNAAServiceAsync authenticationService) {
-        this.eventBus = eventBus;
+    public AuthenticationHelper(final SNAAServiceAsync authenticationService) {
         this.authenticationService = authenticationService;
     }
     
     public void onSuccess(final SecretAuthenticationKey result) {
+    	callback.onSuccess(result);
         current.setState(State.SUCCESS);
         callback.onStateChanged(current, State.SUCCESS);
-        eventBus.fireEventFromSource(new LoggedInEvent(result), this);
         proceedNext();
     }
     
     public void onFailure(final Throwable caught) {
+    	caught.printStackTrace();
         current.setState(State.FAILED);
         callback.onStateChanged(current, State.FAILED);
         proceedNext();
@@ -75,7 +74,7 @@ public class AuthenticationHelper implements AsyncCallback<SecretAuthenticationK
                 current.setState(State.CANCELED);
                 callback.onStateChanged(current, State.CANCELED);
             }
-            callback.onComplete();
+            callback.onFinish();
         }
     }
     
@@ -83,8 +82,8 @@ public class AuthenticationHelper implements AsyncCallback<SecretAuthenticationK
         canceled = true;
     }
     
-    public void authenticate(final Iterator<UrnPrefixInfo> iterator, final String endpointUrl, final String username, final String password, final Callback callback) {
-        this.iterator = iterator;
+    public void authenticate(final List<UrnPrefixInfo> list, final String endpointUrl, final String username, final String password, final Callback callback) {
+        this.iterator = list.iterator();
         this.endpointUrl = endpointUrl;
         this.username = username;
         this.password = password;

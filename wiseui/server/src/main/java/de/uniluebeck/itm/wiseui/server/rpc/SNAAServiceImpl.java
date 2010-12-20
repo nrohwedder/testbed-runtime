@@ -30,17 +30,22 @@ public class SNAAServiceImpl extends RemoteServiceServlet implements SNAAService
     public SNAAServiceImpl(final DozerBeanMapper mapper) {
         this.mapper = mapper;
     }
+    
+    private AuthenticationTriple createTriple(final String urn, final String username, final String password) {
+    	final AuthenticationTriple triple = new AuthenticationTriple();
+        triple.setUsername(username);
+        triple.setUrnPrefix(urn);
+        triple.setPassword(password);
+        return triple;
+    }
 
     @Override
     public SecretAuthenticationKey authenticate(final String endpointUrl, final String urn, final String username, final String password) throws AuthenticationException {
         final SNAA snaaService = SNAAServiceHelper.getSNAAService(endpointUrl);
-        final AuthenticationTriple authenticationTriple = new AuthenticationTriple();
-        authenticationTriple.setUsername(username);
-        authenticationTriple.setUrnPrefix(urn);
-        authenticationTriple.setPassword(password);
+        final AuthenticationTriple triple = createTriple(urn, username, password);
         eu.wisebed.testbed.api.snaa.v1.SecretAuthenticationKey key = null;
         try {
-            key = snaaService.authenticate(Arrays.asList(authenticationTriple)).get(0);
+            key = snaaService.authenticate(Arrays.asList(triple)).get(0);
         } catch (final AuthenticationExceptionException e) {
             throw new AuthenticationException(AUTHENTICATION_FAILED, e);
         } catch (final SNAAExceptionException e) {

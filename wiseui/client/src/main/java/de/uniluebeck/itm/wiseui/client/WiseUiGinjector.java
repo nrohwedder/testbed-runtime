@@ -19,6 +19,7 @@ import de.uniluebeck.itm.wiseui.client.reservation.gin.ReservationGinjector;
 import de.uniluebeck.itm.wiseui.client.reservation.gin.ReservationModule;
 import de.uniluebeck.itm.wiseui.client.testbedselection.gin.TestbedSelectionGinjector;
 import de.uniluebeck.itm.wiseui.client.testbedselection.gin.TestbedSelectionModule;
+import de.uniluebeck.itm.wiseui.client.util.AuthenticationManager;
 
 @GinModules({
 	WiseUiModule.class, 
@@ -30,6 +31,8 @@ import de.uniluebeck.itm.wiseui.client.testbedselection.gin.TestbedSelectionModu
 })
 public interface WiseUiGinjector extends Ginjector, NavigationGinjector, TestbedSelectionGinjector, ReservationGinjector, ExperimentationGinjector, AdministrationGinjector {
 
+	AuthenticationManager getAuthenticationManager();
+	
     EventBus getEventBus();
     
     WiseUiView getAppWidget();

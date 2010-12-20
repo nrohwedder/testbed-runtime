@@ -16,6 +16,7 @@ import de.uniluebeck.itm.wiseui.client.activity.WiseUiPlaceHistoryMapper;
 import de.uniluebeck.itm.wiseui.client.main.view.WiseUiView;
 import de.uniluebeck.itm.wiseui.client.main.view.WiseUiViewImpl;
 import de.uniluebeck.itm.wiseui.client.testbedselection.TestbedSelectionPlace;
+import de.uniluebeck.itm.wiseui.client.util.AuthenticationManager;
 
 public class WiseUiModule extends AbstractGinModule {
 
@@ -28,6 +29,8 @@ public class WiseUiModule extends AbstractGinModule {
 
         // View binding
         bind(WiseUiView.class).to(WiseUiViewImpl.class).in(Singleton.class);
+        
+        bind(AuthenticationManager.class);
     }
 
     @Singleton
