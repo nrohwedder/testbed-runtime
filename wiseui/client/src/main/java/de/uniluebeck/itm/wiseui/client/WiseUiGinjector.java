@@ -6,88 +6,39 @@ import com.google.gwt.inject.client.Ginjector;
 import com.google.gwt.place.shared.PlaceController;
 import com.google.gwt.place.shared.PlaceHistoryHandler;
 
-import de.uniluebeck.itm.wiseui.client.administration.AdministrationActivity;
-import de.uniluebeck.itm.wiseui.client.administration.view.AdministrationView;
-import de.uniluebeck.itm.wiseui.client.experimentation.ExperimentationActivity;
-import de.uniluebeck.itm.wiseui.client.experimentation.view.ExperimentationView;
-import de.uniluebeck.itm.wiseui.client.navigation.NavigationActivity;
-import de.uniluebeck.itm.wiseui.client.navigation.view.NavigationView;
-import de.uniluebeck.itm.wiseui.client.reservation.ReservationActivity;
-import de.uniluebeck.itm.wiseui.client.reservation.view.ReservationView;
-import de.uniluebeck.itm.wiseui.client.testbedselection.TestbedSelectionActivity;
 import de.uniluebeck.itm.wiseui.client.activity.ContentActivityManager;
 import de.uniluebeck.itm.wiseui.client.activity.NavigationActivityManager;
-import de.uniluebeck.itm.wiseui.client.testbedselection.presenter.ConfigurationPresenter;
-import de.uniluebeck.itm.wiseui.client.testbedselection.presenter.DetailPresenter;
-import de.uniluebeck.itm.wiseui.client.testbedselection.presenter.LoginDialogPresenter;
-import de.uniluebeck.itm.wiseui.client.testbedselection.presenter.TestbedSelectionPresenter;
-import de.uniluebeck.itm.wiseui.client.testbedselection.presenter.NetworkPresenter;
-import de.uniluebeck.itm.wiseui.client.testbedselection.view.*;
+import de.uniluebeck.itm.wiseui.client.administration.gin.AdministrationGinjector;
+import de.uniluebeck.itm.wiseui.client.administration.gin.AdministrationModule;
+import de.uniluebeck.itm.wiseui.client.experimentation.gin.ExperimentationGinjector;
+import de.uniluebeck.itm.wiseui.client.experimentation.gin.ExperimentationModule;
 import de.uniluebeck.itm.wiseui.client.main.view.WiseUiView;
-import de.uniluebeck.itm.wiseui.client.testbedselection.view.ConfigurationView;
+import de.uniluebeck.itm.wiseui.client.navigation.gin.NavigationGinjector;
+import de.uniluebeck.itm.wiseui.client.navigation.gin.NavigationModule;
+import de.uniluebeck.itm.wiseui.client.reservation.gin.ReservationGinjector;
+import de.uniluebeck.itm.wiseui.client.reservation.gin.ReservationModule;
+import de.uniluebeck.itm.wiseui.client.testbedselection.gin.TestbedSelectionGinjector;
+import de.uniluebeck.itm.wiseui.client.testbedselection.gin.TestbedSelectionModule;
 
-@GinModules(WiseUiClientModule.class)
-public interface WiseUiGinjector extends Ginjector {
+@GinModules({
+	WiseUiModule.class, 
+	NavigationModule.class,
+	TestbedSelectionModule.class,
+	ReservationModule.class,
+	ExperimentationModule.class,
+	AdministrationModule.class,
+})
+public interface WiseUiGinjector extends Ginjector, NavigationGinjector, TestbedSelectionGinjector, ReservationGinjector, ExperimentationGinjector, AdministrationGinjector {
 
     EventBus getEventBus();
-
-    /* 
-     * Views 
-     */
+    
     WiseUiView getAppWidget();
 
-    TestbedSelectionView getTestbedSelectionView();
-
-    ReservationView getReservationView();
-
-    NavigationView getNavigationView();
-
-    ExperimentationView getExperimentationView();
-
-    AdministrationView getAdministrationView();
-
-    /* 
-     * Activities 
-     */
     NavigationActivityManager getNavigationActivityManager();
 
     ContentActivityManager getContentActivityManager();
 
-    TestbedSelectionActivity getTestbedSelectionActivity();
-
-    ReservationActivity getReservationActivity();
-
-    NavigationActivity getNavigationActivity();
-
-    ExperimentationActivity getExperimentationActivity();
-
-    AdministrationActivity getAdministrationActivity();
-
-    /*
-     * Places
-     */
     PlaceHistoryHandler getPlaceHistoryHandler();
 
     PlaceController getPlaceController();
-
-    /*
-    * Login
-    */
-    ConfigurationPresenter getConfigurationPresenter();
-
-    TestbedSelectionPresenter getTestbedSelectionPresenter();
-
-    DetailPresenter getDetailPresenter();
-
-    NetworkPresenter getNetworkPresenter();
-
-    LoginDialogPresenter getLoginDialogPresenter();
-
-    ConfigurationView getConfigurationView();
-
-    DetailView getDetailView();
-
-    NetworkView getNetworkView();
-
-    LoginDialogView getLoginDialogView();
 }
