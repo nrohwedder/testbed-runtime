@@ -5,7 +5,7 @@ import com.google.gwt.user.client.ui.HasText;
 import com.google.gwt.view.client.HasData;
 
 import de.uniluebeck.itm.wiseui.client.testbedselection.TestbedSelectionPlace;
-import de.uniluebeck.itm.wiseui.client.testbedselection.presenter.LoginDialogPresenter.UrnPrefixInfo;
+import de.uniluebeck.itm.wiseui.client.testbedselection.common.UrnPrefixInfo;
 
 public interface LoginDialogView {
     

@@ -6,6 +6,8 @@ import com.google.inject.Inject;
 
 import de.uniluebeck.itm.wiseui.api.SNAAServiceAsync;
 import de.uniluebeck.itm.wiseui.client.testbedselection.TestbedSelectionPlace;
+import de.uniluebeck.itm.wiseui.client.testbedselection.common.UrnPrefixInfo;
+import de.uniluebeck.itm.wiseui.client.testbedselection.common.UrnPrefixInfo.State;
 import de.uniluebeck.itm.wiseui.client.testbedselection.event.ConfigurationSelectedEvent;
 import de.uniluebeck.itm.wiseui.client.testbedselection.event.ConfigurationSelectedHandler;
 import de.uniluebeck.itm.wiseui.client.testbedselection.event.ShowLoginDialogEvent;
@@ -16,62 +18,7 @@ import de.uniluebeck.itm.wiseui.client.testbedselection.view.LoginDialogView;
 import de.uniluebeck.itm.wiseui.client.testbedselection.view.LoginDialogView.Presenter;
 import de.uniluebeck.itm.wiseui.shared.TestbedConfiguration;
 
-public class LoginDialogPresenter implements Presenter, ConfigurationSelectedHandler, ShowLoginDialogHandler {
-
-    public enum AuthenticationState {
-        NOT_AUTHENTICATED("Not authenticated"),
-        AUTHENTICATE("Authenticate..."),
-        SUCCESS("Successful"), 
-        FAILED("Failed due an error"),
-        CANCELED("Canceled"), 
-        SKIPPED("Skipped");
-        
-        private final String value;
-        
-        private AuthenticationState(final String value) {
-            this.value = value;
-        }
-        
-        @Override
-        public String toString() {
-            return value;
-        }
-    }
-    
-    public class UrnPrefixInfo {
-        
-        private final String urnPrefix;
-        
-        private AuthenticationState state;
-        
-        private boolean checked;
-        
-        public UrnPrefixInfo(final String urnPrefix) {
-            this.urnPrefix = urnPrefix;
-            state = AuthenticationState.NOT_AUTHENTICATED;
-            checked = true;
-        }
-        
-        public String getUrnPrefix() {
-            return urnPrefix;
-        }
-        
-        public AuthenticationState getState() {
-            return state;
-        }
-        
-        public void setState(final AuthenticationState state) {
-            this.state = state;
-        }
-        
-        public boolean isChecked() {
-            return checked;
-        }
-        
-        public void setChecked(final boolean checked) {
-            this.checked = checked;
-        }
-    }
+public class LoginDialogPresenter implements Presenter, ConfigurationSelectedHandler, ShowLoginDialogHandler {    
     
     private final EventBus eventBus;
     
@@ -79,7 +26,7 @@ public class LoginDialogPresenter implements Presenter, ConfigurationSelectedHan
     
     private final SNAAServiceAsync authenticationService;
     
-    private final ListDataProvider<UrnPrefixInfo> dataProvider = new ListDataProvider<LoginDialogPresenter.UrnPrefixInfo>();
+    private final ListDataProvider<UrnPrefixInfo> dataProvider = new ListDataProvider<UrnPrefixInfo>();
     
     private TestbedConfiguration configuration;
     
@@ -120,9 +67,9 @@ public class LoginDialogPresenter implements Presenter, ConfigurationSelectedHan
             
             private boolean hideAfterComplete = true;
             
-            public void onStateChanged(final UrnPrefixInfo info, final AuthenticationState state) {
+            public void onStateChanged(final UrnPrefixInfo info, final State state) {
                 dataProvider.refresh();
-                if (state.equals(AuthenticationState.FAILED) || state.equals(AuthenticationState.SKIPPED)) {
+                if (state.equals(State.FAILED) || state.equals(State.SKIPPED)) {
                     hideAfterComplete = false;
                 }
             }

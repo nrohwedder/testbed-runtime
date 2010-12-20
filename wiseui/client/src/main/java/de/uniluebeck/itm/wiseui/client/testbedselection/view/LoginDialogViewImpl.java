@@ -22,8 +22,8 @@ import com.google.gwt.user.client.ui.Widget;
 import com.google.gwt.view.client.HasData;
 import com.google.inject.Inject;
 
-import de.uniluebeck.itm.wiseui.client.testbedselection.presenter.LoginDialogPresenter.AuthenticationState;
-import de.uniluebeck.itm.wiseui.client.testbedselection.presenter.LoginDialogPresenter.UrnPrefixInfo;
+import de.uniluebeck.itm.wiseui.client.testbedselection.common.UrnPrefixInfo;
+import de.uniluebeck.itm.wiseui.client.testbedselection.common.UrnPrefixInfo.State;
 import de.uniluebeck.itm.wiseui.client.util.HasWidgetsDialogBox;
 
 public class LoginDialogViewImpl extends HasWidgetsDialogBox implements LoginDialogView {
@@ -68,9 +68,9 @@ public class LoginDialogViewImpl extends HasWidgetsDialogBox implements LoginDia
             }
 
             String color = DEFAULT_COLOR;
-            if (info.getState().equals(AuthenticationState.FAILED)) {
+            if (info.getState().equals(State.FAILED)) {
                 color = FAILURE_COLOR;
-            } else if (info.getState().equals(AuthenticationState.SUCCESS)) {
+            } else if (info.getState().equals(State.SUCCESS)) {
                 color = SUCCESS_COLOR;
             }
             

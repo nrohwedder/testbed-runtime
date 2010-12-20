@@ -7,15 +7,16 @@ import com.google.gwt.user.client.rpc.AsyncCallback;
 import com.google.inject.Inject;
 
 import de.uniluebeck.itm.wiseui.api.SNAAServiceAsync;
+import de.uniluebeck.itm.wiseui.client.testbedselection.common.UrnPrefixInfo;
+import de.uniluebeck.itm.wiseui.client.testbedselection.common.UrnPrefixInfo.State;
 import de.uniluebeck.itm.wiseui.client.testbedselection.event.LoggedInEvent;
-import de.uniluebeck.itm.wiseui.client.testbedselection.presenter.LoginDialogPresenter.AuthenticationState;
-import de.uniluebeck.itm.wiseui.client.testbedselection.presenter.LoginDialogPresenter.UrnPrefixInfo;
 import de.uniluebeck.itm.wiseui.shared.wiseml.SecretAuthenticationKey;
 
 public class AuthenticationHelper implements AsyncCallback<SecretAuthenticationKey> {
     
     public interface Callback {
-        void onStateChanged(UrnPrefixInfo info, AuthenticationState state);
+    	
+        void onStateChanged(UrnPrefixInfo info, State state);
         
         void onComplete();
     }
@@ -45,15 +46,15 @@ public class AuthenticationHelper implements AsyncCallback<SecretAuthenticationK
     }
     
     public void onSuccess(final SecretAuthenticationKey result) {
-        current.setState(AuthenticationState.SUCCESS);
-        callback.onStateChanged(current, AuthenticationState.SUCCESS);
+        current.setState(State.SUCCESS);
+        callback.onStateChanged(current, State.SUCCESS);
         eventBus.fireEventFromSource(new LoggedInEvent(result), this);
         proceedNext();
     }
     
     public void onFailure(final Throwable caught) {
-        current.setState(AuthenticationState.FAILED);
-        callback.onStateChanged(current, AuthenticationState.FAILED);
+        current.setState(State.FAILED);
+        callback.onStateChanged(current, State.FAILED);
         proceedNext();
     }
     
@@ -61,18 +62,18 @@ public class AuthenticationHelper implements AsyncCallback<SecretAuthenticationK
         if (iterator.hasNext() && !canceled) {
             current = iterator.next();
             if (current.isChecked()) {
-                current.setState(AuthenticationState.AUTHENTICATE);
-                callback.onStateChanged(current, AuthenticationState.AUTHENTICATE);
+                current.setState(State.AUTHENTICATE);
+                callback.onStateChanged(current, State.AUTHENTICATE);
                 authenticationService.authenticate(endpointUrl, current.getUrnPrefix(), username, password, this);
             } else {
-                current.setState(AuthenticationState.SKIPPED);
-                callback.onStateChanged(current, AuthenticationState.SKIPPED);
+                current.setState(State.SKIPPED);
+                callback.onStateChanged(current, State.SKIPPED);
                 proceedNext();
             }
         } else {
             if (canceled) {
-                current.setState(AuthenticationState.CANCELED);
-                callback.onStateChanged(current, AuthenticationState.CANCELED);
+                current.setState(State.CANCELED);
+                callback.onStateChanged(current, State.CANCELED);
             }
             callback.onComplete();
         }
