@@ -61,6 +61,7 @@ public class ConfigurationPresenter implements Presenter {
 
     private void onConfigurationSelectionChange(final SelectionChangeEvent event) {
         final TestbedConfiguration configuration = configurationSelectionModel.getSelectedObject();
+        if (null == configuration) return;
         final Integer index = configurations.indexOf(configuration);
         if (!index.equals(place.getSelection())) {
             placeController.goTo(new TestbedSelectionPlace(index));

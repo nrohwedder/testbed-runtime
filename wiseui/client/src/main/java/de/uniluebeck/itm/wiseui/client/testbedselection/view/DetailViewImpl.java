@@ -59,6 +59,8 @@ public class DetailViewImpl extends Composite implements DetailView {
     }
 
     public void setDescriptionCoordinate(Coordinate coordinate) {
+        if (null == coordinate) return;
+
         final double x = coordinate.getX();
         final double y = coordinate.getY();
         final LatLng center = LatLng.newInstance(x, y);
@@ -75,4 +77,7 @@ public class DetailViewImpl extends Composite implements DetailView {
         return description;
     }
 
+    public void setDescriptionText(final String descriptionText) {
+        this.description.setText(descriptionText);
+    }
 }

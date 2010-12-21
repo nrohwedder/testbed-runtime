@@ -9,7 +9,7 @@
     <inherits name="com.google.gwt.user.theme.standard.Standard"/>
 
     <!-- Define custom user agent to speedup the compile process    -->
-    <set-property name="user.agent" value="safari,gecko1_8"/>
+    <set-property name="user.agent" value="gecko1_8"/>
 
     <!-- <inherits name='com.google.gwt.user.theme.chrome.Chrome'/> -->
     <!-- <inherits name='com.google.gwt.user.theme.dark.Dark'/>     -->
@@ -20,8 +20,8 @@
     <inherits name="com.google.gwt.maps.GoogleMaps"/>
 
     <!-- Other WiseUi Projects -->
-    <inherits name="de.uniluebeck.itm.wiseui.WiseUiShared"/>
     <inherits name="de.uniluebeck.itm.wiseui.WiseUiApi"/>
+    <inherits name="de.uniluebeck.itm.wiseui.WiseUiShared"/>
 
     <!-- Specify the app entry point class.                         -->
     <entry-point class="de.uniluebeck.itm.wiseui.client.WiseUi"/>

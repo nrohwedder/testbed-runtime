@@ -13,6 +13,8 @@ public interface DetailView extends IsWidget {
 
     HasText getDescription();
 
+    void setDescriptionText(final String descriptionText);
+
     public interface Presenter {
 
         void setPlace(TestbedSelectionPlace place);

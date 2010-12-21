@@ -10,6 +10,9 @@ import com.google.gwt.user.client.ui.AcceptsOneWidget;
 import com.google.inject.Inject;
 import de.uniluebeck.itm.wiseui.api.SessionManagementServiceAsync;
 import de.uniluebeck.itm.wiseui.client.WiseUiGinjector;
+import de.uniluebeck.itm.wiseui.client.failure.event.FailureEvent;
+import de.uniluebeck.itm.wiseui.client.failure.presenter.FailureBoxPresenter;
+import de.uniluebeck.itm.wiseui.client.failure.view.FailureBoxView;
 import de.uniluebeck.itm.wiseui.client.testbedselection.event.ConfigurationSelectedEvent;
 import de.uniluebeck.itm.wiseui.client.testbedselection.event.ConfigurationSelectedHandler;
 import de.uniluebeck.itm.wiseui.client.testbedselection.event.WisemlLoadedEvent;
@@ -51,6 +54,7 @@ public class TestbedSelectionActivity extends AbstractActivity implements Config
         this.eventBus = eventBus;
         initTestbedSelectionPart(containerWidget);
         initLoginDialogPart();
+        initFailurePart();
         bind();
     }
 
@@ -105,6 +109,13 @@ public class TestbedSelectionActivity extends AbstractActivity implements Config
         loginDialogView.setPresenter(loginDialogPresenter);
     }
 
+    private void initFailurePart() {
+        GWT.log("Init Failure Dialog Part");
+        final FailureBoxPresenter failureBoxPresenter = injector.getFailureBoxPresenter();
+        final FailureBoxView failureBoxView = injector.getFailureBoxView();
+        failureBoxView.setPresenter(failureBoxPresenter);
+    }
+
     public void onTestbedConfigurationSelected(final ConfigurationSelectedEvent event) {
         final TestbedConfiguration configuration = event.getConfiguration();
         final AsyncCallback<Wiseml> callback = new AsyncCallback<Wiseml>() {
@@ -114,10 +125,10 @@ public class TestbedSelectionActivity extends AbstractActivity implements Config
             }
 
             public void onFailure(final Throwable caught) {
-
+                eventBus.fireEvent(new FailureEvent(caught.getMessage(), caught.toString(), caught.getCause()));
             }
         };
-        final String url = configuration.getSessionmanagementEndointUrl();
+        final String url = configuration.getSessionmanagementEndointUrl().trim();
         Scheduler.get().scheduleDeferred(new ScheduledCommand() {
 
             public void execute() {

@@ -11,6 +11,8 @@ import de.uniluebeck.itm.wiseui.client.administration.AdministrationActivity;
 import de.uniluebeck.itm.wiseui.client.administration.view.AdministrationView;
 import de.uniluebeck.itm.wiseui.client.experimentation.ExperimentationActivity;
 import de.uniluebeck.itm.wiseui.client.experimentation.view.ExperimentationView;
+import de.uniluebeck.itm.wiseui.client.failure.presenter.FailureBoxPresenter;
+import de.uniluebeck.itm.wiseui.client.failure.view.FailureBoxView;
 import de.uniluebeck.itm.wiseui.client.main.view.WiseUiView;
 import de.uniluebeck.itm.wiseui.client.navigation.NavigationActivity;
 import de.uniluebeck.itm.wiseui.client.navigation.view.NavigationView;
@@ -73,8 +75,8 @@ public interface WiseUiGinjector extends Ginjector {
     PlaceController getPlaceController();
 
     /*
-    * Login
-    */
+     * Login
+     */
     ConfigurationPresenter getConfigurationPresenter();
 
     TestbedSelectionPresenter getTestbedSelectionPresenter();
@@ -92,4 +94,11 @@ public interface WiseUiGinjector extends Ginjector {
     NetworkView getNetworkView();
 
     LoginDialogView getLoginDialogView();
+
+    /*
+     * Failure
+     */
+    FailureBoxPresenter getFailureBoxPresenter();
+
+    FailureBoxView getFailureBoxView();
 }

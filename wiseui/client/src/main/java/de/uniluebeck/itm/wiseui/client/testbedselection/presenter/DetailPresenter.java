@@ -41,6 +41,7 @@ public class DetailPresenter implements Presenter, ConfigurationSelectedHandler,
     public void onWisemlLoaded(final WisemlLoadedEvent event) {
         final Wiseml wiseml = event.getWiseml();
         final Setup setup = wiseml.getSetup();
+        if (null == setup) return;
         view.getDescription().setText(setup.getDescription());
         view.setDescriptionCoordinate(setup.getOrigin());
     }

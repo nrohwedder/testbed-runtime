@@ -14,6 +14,8 @@ import de.uniluebeck.itm.wiseui.client.administration.view.AdministrationView;
 import de.uniluebeck.itm.wiseui.client.administration.view.AdministrationViewImpl;
 import de.uniluebeck.itm.wiseui.client.experimentation.view.ExperimentationView;
 import de.uniluebeck.itm.wiseui.client.experimentation.view.ExperimentationViewImpl;
+import de.uniluebeck.itm.wiseui.client.failure.view.FailureBoxView;
+import de.uniluebeck.itm.wiseui.client.failure.view.FailureBoxViewImpl;
 import de.uniluebeck.itm.wiseui.client.main.view.WiseUiView;
 import de.uniluebeck.itm.wiseui.client.main.view.WiseUiViewImpl;
 import de.uniluebeck.itm.wiseui.client.navigation.view.NavigationView;
@@ -41,19 +43,16 @@ public class WiseUiClientModule extends AbstractGinModule {
 
         // View binding
         bind(WiseUiView.class).to(WiseUiViewImpl.class).in(Singleton.class);
-        bind(NavigationView.class).to(NavigationViewImpl.class).in(
-                Singleton.class);
+        bind(NavigationView.class).to(NavigationViewImpl.class).in(Singleton.class);
         bind(TestbedSelectionView.class).to(TestbedSelectionViewImpl.class).in(Singleton.class);
         bind(ConfigurationView.class).to(ConfigurationViewImpl.class).in(Singleton.class);
         bind(DetailView.class).to(DetailViewImpl.class).in(Singleton.class);
         bind(NetworkView.class).to(NetworkViewImpl.class).in(Singleton.class);
         bind(LoginDialogView.class).to(LoginDialogViewImpl.class).in(Singleton.class);
-        bind(ReservationView.class).to(ReservationViewImpl.class).in(
-                Singleton.class);
-        bind(ExperimentationView.class).to(ExperimentationViewImpl.class).in(
-                Singleton.class);
-        bind(AdministrationView.class).to(AdministrationViewImpl.class).in(
-                Singleton.class);
+        bind(ReservationView.class).to(ReservationViewImpl.class).in(Singleton.class);
+        bind(ExperimentationView.class).to(ExperimentationViewImpl.class).in(Singleton.class);
+        bind(AdministrationView.class).to(AdministrationViewImpl.class).in(Singleton.class);
+        bind(FailureBoxView.class).to(FailureBoxViewImpl.class).in(Singleton.class);
     }
 
     @Singleton

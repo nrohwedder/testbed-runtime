@@ -1,0 +1,16 @@
+<!DOCTYPE ui:UiBinder SYSTEM "http://dl.google.com/gwt/DTD/xhtml.ent">
+<ui:UiBinder xmlns:ui='urn:ui:com.google.gwt.uibinder'
+             xmlns:g='urn:import:com.google.gwt.user.client.ui'>
+
+    <g:DialogBox ui:field="dialogBox" text="Failure Notification" animationEnabled="true" modal="true"
+                 glassEnabled="true">
+        <g:VerticalPanel>
+            <g:HTMLPanel>
+                <h2>Ooops, an error occured!</h2>
+                <g:Label ui:field="messageLabel">...</g:Label>
+                <g:Label ui:field="stacktraceLabel" height="50" wordWrap="true">...</g:Label>
+                <g:Button ui:field="okButton">OK</g:Button>
+            </g:HTMLPanel>
+        </g:VerticalPanel>
+    </g:DialogBox>
+</ui:UiBinder>
