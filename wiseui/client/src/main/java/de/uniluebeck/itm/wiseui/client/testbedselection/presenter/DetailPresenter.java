@@ -3,14 +3,14 @@ package de.uniluebeck.itm.wiseui.client.testbedselection.presenter;
 import com.google.gwt.event.shared.EventBus;
 import com.google.inject.Inject;
 
-import de.uniluebeck.itm.wiseui.client.testbedselection.event.*;
-import de.uniluebeck.itm.wiseui.client.testbedselection.event.WisemlLoadedHandler;
 import de.uniluebeck.itm.wiseui.client.testbedselection.TestbedSelectionPlace;
+import de.uniluebeck.itm.wiseui.client.testbedselection.event.ConfigurationSelectedEvent;
+import de.uniluebeck.itm.wiseui.client.testbedselection.event.ConfigurationSelectedHandler;
 import de.uniluebeck.itm.wiseui.client.testbedselection.event.WisemlLoadedEvent;
+import de.uniluebeck.itm.wiseui.client.testbedselection.event.WisemlLoadedHandler;
 import de.uniluebeck.itm.wiseui.client.testbedselection.view.DetailView;
 import de.uniluebeck.itm.wiseui.client.testbedselection.view.DetailView.Presenter;
 import de.uniluebeck.itm.wiseui.shared.wiseml.Setup;
-import de.uniluebeck.itm.wiseui.shared.wiseml.Wiseml;
 
 public class DetailPresenter implements Presenter, ConfigurationSelectedHandler, WisemlLoadedHandler {
 
@@ -39,9 +39,12 @@ public class DetailPresenter implements Presenter, ConfigurationSelectedHandler,
     }
 
     public void onWisemlLoaded(final WisemlLoadedEvent event) {
-        final Wiseml wiseml = event.getWiseml();
-        final Setup setup = wiseml.getSetup();
-        view.getDescription().setText(setup.getDescription());
+        final Setup setup = event.getWiseml().getSetup();
+        String description = setup.getDescription();
+        if (description == null || description.isEmpty()) {
+        	description = "No description found for this testbed.";
+		}
+        view.getDescription().setText(description);
         view.setDescriptionCoordinate(setup.getOrigin());
     }
 }
