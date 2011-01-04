@@ -1,5 +1,6 @@
 package de.uniluebeck.itm.wiseui.client.testbedselection.view;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import com.google.gwt.core.client.GWT;
@@ -63,6 +64,8 @@ public class NetworkViewImpl extends Composite implements NetworkView {
             }
         };
         nodeTable.addColumn(descriptionColumn, "Description");
+        
+        setNodes(new ArrayList<Node>(0));
     }
 
     public void setPresenter(final Presenter presenter) {
