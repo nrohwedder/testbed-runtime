@@ -6,7 +6,3 @@
 .gwt-DialogBox .dialogMiddleCenter {
 	padding: 0px !important; 
 }
-
-.gwt-PopupPanel {
-	z-index: 999999 !important;
-}

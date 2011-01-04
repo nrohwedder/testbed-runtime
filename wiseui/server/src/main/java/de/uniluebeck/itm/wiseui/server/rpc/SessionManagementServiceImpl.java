@@ -8,6 +8,7 @@ import com.google.inject.Singleton;
 
 import de.itm.uniluebeck.tr.wiseml.WiseMLHelper;
 import de.uniluebeck.itm.wiseui.api.SessionManagementService;
+import de.uniluebeck.itm.wiseui.shared.exception.WisemlException;
 import de.uniluebeck.itm.wiseui.shared.wiseml.Wiseml;
 import eu.wisebed.testbed.api.wsn.WSNServiceHelper;
 import eu.wisebed.testbed.api.wsn.v211.SessionManagement;
@@ -24,9 +25,13 @@ public class SessionManagementServiceImpl extends RemoteServiceServlet implement
     }
 
     @Override
-    public Wiseml getWiseml(final String url) {
-        final SessionManagement sessionManagement = WSNServiceHelper.getSessionManagementService(url);
-        final eu.wisebed.ns.wiseml._1.Wiseml wiseml = WiseMLHelper.deserialize(sessionManagement.getNetwork());
-        return mapper.map(wiseml, Wiseml.class);
+    public Wiseml getWiseml(final String url) throws WisemlException {
+        try {
+	    	final SessionManagement sessionManagement = WSNServiceHelper.getSessionManagementService(url);
+	        final eu.wisebed.ns.wiseml._1.Wiseml wiseml = WiseMLHelper.deserialize(sessionManagement.getNetwork());
+	        return mapper.map(wiseml, Wiseml.class);
+        } catch(Exception e) {
+        	throw new WisemlException("Unable to load Wiseml from " + url, e);
+        }
     }
 }

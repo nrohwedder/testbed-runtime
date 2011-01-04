@@ -1,11 +1,17 @@
 package de.uniluebeck.itm.wiseui.client.testbedselection.event;
 
+import com.google.gwt.event.shared.EventHandler;
 import com.google.gwt.event.shared.GwtEvent;
 
+import de.uniluebeck.itm.wiseui.client.testbedselection.event.LoggedInEvent.LoggedInHandler;
 import de.uniluebeck.itm.wiseui.shared.wiseml.SecretAuthenticationKey;
 
 public class LoggedInEvent extends GwtEvent<LoggedInHandler> {
 
+	public interface LoggedInHandler extends EventHandler {
+	    void onLoggedIn(LoggedInEvent event);
+	}
+	
     public static final Type<LoggedInHandler> TYPE = new Type<LoggedInHandler>();
 
     private final SecretAuthenticationKey secretAuthenticationKey;

@@ -3,12 +3,12 @@ package de.uniluebeck.itm.wiseui.client.testbedselection.presenter;
 import com.google.gwt.event.shared.EventBus;
 import com.google.inject.Inject;
 
+import de.uniluebeck.itm.wiseui.client.testbedselection.TestbedSelectionPlace;
 import de.uniluebeck.itm.wiseui.client.testbedselection.event.ConfigurationSelectedEvent;
-import de.uniluebeck.itm.wiseui.client.testbedselection.event.ConfigurationSelectedHandler;
+import de.uniluebeck.itm.wiseui.client.testbedselection.event.ConfigurationSelectedEvent.ConfigurationSelectedHandler;
 import de.uniluebeck.itm.wiseui.client.testbedselection.event.ShowLoginDialogEvent;
 import de.uniluebeck.itm.wiseui.client.testbedselection.event.WisemlLoadedEvent;
-import de.uniluebeck.itm.wiseui.client.testbedselection.event.WisemlLoadedHandler;
-import de.uniluebeck.itm.wiseui.client.testbedselection.TestbedSelectionPlace;
+import de.uniluebeck.itm.wiseui.client.testbedselection.event.WisemlLoadedEvent.WisemlLoadedHandler;
 import de.uniluebeck.itm.wiseui.client.testbedselection.view.TestbedSelectionView;
 import de.uniluebeck.itm.wiseui.client.testbedselection.view.TestbedSelectionView.Presenter;
 import de.uniluebeck.itm.wiseui.shared.TestbedConfiguration;
