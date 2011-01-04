@@ -27,7 +27,7 @@ import de.uniluebeck.itm.wiseui.client.util.AuthenticationManager;
 	TestbedSelectionModule.class,
 	ReservationModule.class,
 	ExperimentationModule.class,
-	AdministrationModule.class,
+	AdministrationModule.class
 })
 public interface WiseUiGinjector extends Ginjector, NavigationGinjector, TestbedSelectionGinjector, ReservationGinjector, ExperimentationGinjector, AdministrationGinjector {
 
