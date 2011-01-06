@@ -37,6 +37,7 @@ public class TestbedSelectionPresenter implements Presenter, ConfigurationSelect
     private void bind() {
         eventBus.addHandler(WisemlLoadedEvent.TYPE, this);
         eventBus.addHandler(ConfigurationSelectedEvent.TYPE, this);
+        eventBus.addHandler(ThrowableEvent.TYPE, this);
     }
 
     public void reload() {
@@ -63,7 +64,9 @@ public class TestbedSelectionPresenter implements Presenter, ConfigurationSelect
 
 	public void onThrowable(ThrowableEvent event) {
 		if (event.getThrowable() instanceof WisemlException) {
-			MessageBox.error("Unable to load Testbed", "Testbed information is now available", null);
+			final String title = "Unavailable Testbed " + configuration.getName();
+			final String message = "The Testbed " + configuration.getName() + " is not available.";
+			MessageBox.error(title, message, null);
 		}
 	}
 
