@@ -7,13 +7,17 @@ import de.uniluebeck.itm.wiseui.client.testbedselection.TestbedSelectionPlace;
 import de.uniluebeck.itm.wiseui.client.testbedselection.event.ConfigurationSelectedEvent;
 import de.uniluebeck.itm.wiseui.client.testbedselection.event.ConfigurationSelectedEvent.ConfigurationSelectedHandler;
 import de.uniluebeck.itm.wiseui.client.testbedselection.event.ShowLoginDialogEvent;
+import de.uniluebeck.itm.wiseui.client.testbedselection.event.ThrowableEvent;
 import de.uniluebeck.itm.wiseui.client.testbedselection.event.WisemlLoadedEvent;
+import de.uniluebeck.itm.wiseui.client.testbedselection.event.ThrowableEvent.ThrowableHandler;
 import de.uniluebeck.itm.wiseui.client.testbedselection.event.WisemlLoadedEvent.WisemlLoadedHandler;
 import de.uniluebeck.itm.wiseui.client.testbedselection.view.TestbedSelectionView;
 import de.uniluebeck.itm.wiseui.client.testbedselection.view.TestbedSelectionView.Presenter;
+import de.uniluebeck.itm.wiseui.client.util.MessageBox;
 import de.uniluebeck.itm.wiseui.shared.TestbedConfiguration;
+import de.uniluebeck.itm.wiseui.shared.exception.WisemlException;
 
-public class TestbedSelectionPresenter implements Presenter, ConfigurationSelectedHandler, WisemlLoadedHandler {
+public class TestbedSelectionPresenter implements Presenter, ConfigurationSelectedHandler, WisemlLoadedHandler, ThrowableHandler {
 
     private final EventBus eventBus;
 
@@ -56,5 +60,11 @@ public class TestbedSelectionPresenter implements Presenter, ConfigurationSelect
         configuration = event.getConfiguration();
         view.getLoginEnabled().setEnabled(true);
     }
+
+	public void onThrowable(ThrowableEvent event) {
+		if (event.getThrowable() instanceof WisemlException) {
+			MessageBox.error("Unable to load Testbed", "Testbed information is now available", null);
+		}
+	}
 
 }
