@@ -12,7 +12,7 @@ public class FailureBoxPresenter implements FailureBoxView.Presenter, FailureEve
     private final EventBus eventBus;
 
     @Inject
-    public FailureBoxPresenter(final EventBus eventBus, FailureBoxView view) {
+    public FailureBoxPresenter(final EventBus eventBus, final FailureBoxView view) {
         this.eventBus = eventBus;
         this.view = view;
         bind();

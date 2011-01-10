@@ -16,7 +16,7 @@ public class FailureEvent extends GwtEvent<FailureEvent.FailureHandler> {
 
     private String stacktrace;
 
-    Throwable cause;
+    private Throwable cause;
 
     public FailureEvent(String message, String stacktrace) {
         this.message = message;

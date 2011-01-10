@@ -15,7 +15,6 @@ import de.uniluebeck.itm.wiseui.client.failure.presenter.FailureBoxPresenter;
 import de.uniluebeck.itm.wiseui.client.failure.view.FailureBoxView;
 import de.uniluebeck.itm.wiseui.client.testbedselection.event.ConfigurationSelectedEvent;
 import de.uniluebeck.itm.wiseui.client.testbedselection.event.ConfigurationSelectedEvent.ConfigurationSelectedHandler;
-import de.uniluebeck.itm.wiseui.client.testbedselection.event.ThrowableEvent;
 import de.uniluebeck.itm.wiseui.client.testbedselection.event.WisemlLoadedEvent;
 import de.uniluebeck.itm.wiseui.client.testbedselection.presenter.ConfigurationPresenter;
 import de.uniluebeck.itm.wiseui.client.testbedselection.presenter.DetailPresenter;
@@ -28,13 +27,17 @@ import de.uniluebeck.itm.wiseui.client.testbedselection.view.LoginDialogView;
 import de.uniluebeck.itm.wiseui.client.testbedselection.view.NetworkView;
 import de.uniluebeck.itm.wiseui.client.testbedselection.view.TestbedSelectionView;
 import de.uniluebeck.itm.wiseui.shared.TestbedConfiguration;
+import de.uniluebeck.itm.wiseui.shared.exception.WisemlException;
 import de.uniluebeck.itm.wiseui.shared.wiseml.Wiseml;
 
 public class TestbedSelectionActivity extends AbstractActivity implements ConfigurationSelectedHandler {
-	
+
     private final SessionManagementServiceAsync sessionManagementService;
+
     private TestbedSelectionPlace place;
+
     private WiseUiGinjector injector;
+
     private EventBus eventBus;
 
     @Inject
@@ -126,7 +129,11 @@ public class TestbedSelectionActivity extends AbstractActivity implements Config
             }
 
             public void onFailure(final Throwable caught) {
-                eventBus.fireEvent(new FailureEvent(caught.getMessage(), caught.toString(), caught.getCause()));
+                if (caught instanceof WisemlException) {
+                    eventBus.fireEvent(new FailureEvent(caught.getMessage(), ((WisemlException) caught).getStacktraceString(), caught.getCause()));
+                } else {
+                    eventBus.fireEvent(new FailureEvent(caught.getMessage(), "No stacktrace available.", caught.getCause()));
+                }
             }
         };
         final String url = configuration.getSessionmanagementEndointUrl().trim();

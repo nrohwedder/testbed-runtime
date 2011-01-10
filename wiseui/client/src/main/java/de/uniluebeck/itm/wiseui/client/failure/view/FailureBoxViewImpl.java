@@ -26,8 +26,6 @@ public class FailureBoxViewImpl implements FailureBoxView {
     Label messageLabel;
     @UiField
     Label stacktraceLabel;
-    @UiField
-    DisclosurePanel stacktracePanel;
 
     private Presenter presenter;
 

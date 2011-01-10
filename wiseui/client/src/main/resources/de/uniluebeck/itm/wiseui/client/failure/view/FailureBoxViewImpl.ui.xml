@@ -8,6 +8,7 @@
 
         .box {
             padding: 15px;
+            width: 500px;
         }
 
         .buttonPanel {
@@ -32,8 +33,11 @@
                 <h3 class="{style.error}">Ooops, something went wrong!</h3>
                 <g:Label ui:field="messageLabel">...</g:Label>
             </g:HTMLPanel>
-            <g:DisclosurePanel ui:field="stacktracePanel" title="Show Stacktrace" animationEnabled="true" visible="true">
-                <g:Label ui:field="stacktraceLabel" height="50" wordWrap="true">...</g:Label>
+            <g:DisclosurePanel title="Stacktrace" animationEnabled="true" open="false">
+                <g:header>Show Stacktrace</g:header>
+                <g:ScrollPanel width="500">
+                    <g:Label ui:field="stacktraceLabel" width="500" wordWrap="true" height="300">...</g:Label>
+                </g:ScrollPanel>
             </g:DisclosurePanel>
             <g:HTMLPanel styleName="{style.buttonPanel}">
                 <table class="{style.buttonTable}">
