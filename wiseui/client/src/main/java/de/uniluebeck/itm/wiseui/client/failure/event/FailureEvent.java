@@ -1,12 +1,21 @@
 package de.uniluebeck.itm.wiseui.client.failure.event;
 
+import com.google.gwt.event.shared.EventHandler;
 import com.google.gwt.event.shared.GwtEvent;
 
-public class FailureEvent extends GwtEvent<FailureHandler> {
+public class FailureEvent extends GwtEvent<FailureEvent.FailureHandler> {
+
+    public interface FailureHandler extends EventHandler {
+
+        void handleFailure(FailureEvent event);
+    }
 
     public static final Type<FailureHandler> TYPE = new Type<FailureHandler>();
+
     private String message;
+
     private String stacktrace;
+
     Throwable cause;
 
     public FailureEvent(String message, String stacktrace) {

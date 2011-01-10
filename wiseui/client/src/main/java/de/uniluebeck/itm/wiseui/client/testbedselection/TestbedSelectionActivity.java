@@ -14,7 +14,8 @@ import de.uniluebeck.itm.wiseui.client.failure.event.FailureEvent;
 import de.uniluebeck.itm.wiseui.client.failure.presenter.FailureBoxPresenter;
 import de.uniluebeck.itm.wiseui.client.failure.view.FailureBoxView;
 import de.uniluebeck.itm.wiseui.client.testbedselection.event.ConfigurationSelectedEvent;
-import de.uniluebeck.itm.wiseui.client.testbedselection.event.ConfigurationSelectedHandler;
+import de.uniluebeck.itm.wiseui.client.testbedselection.event.ConfigurationSelectedEvent.ConfigurationSelectedHandler;
+import de.uniluebeck.itm.wiseui.client.testbedselection.event.ThrowableEvent;
 import de.uniluebeck.itm.wiseui.client.testbedselection.event.WisemlLoadedEvent;
 import de.uniluebeck.itm.wiseui.client.testbedselection.presenter.ConfigurationPresenter;
 import de.uniluebeck.itm.wiseui.client.testbedselection.presenter.DetailPresenter;
@@ -30,7 +31,7 @@ import de.uniluebeck.itm.wiseui.shared.TestbedConfiguration;
 import de.uniluebeck.itm.wiseui.shared.wiseml.Wiseml;
 
 public class TestbedSelectionActivity extends AbstractActivity implements ConfigurationSelectedHandler {
-
+	
     private final SessionManagementServiceAsync sessionManagementService;
     private TestbedSelectionPlace place;
     private WiseUiGinjector injector;

@@ -9,14 +9,17 @@ import de.uniluebeck.itm.wiseui.client.testbedselection.TestbedSelectionPlace;
 import de.uniluebeck.itm.wiseui.client.testbedselection.common.UrnPrefixInfo;
 import de.uniluebeck.itm.wiseui.client.testbedselection.common.UrnPrefixInfo.State;
 import de.uniluebeck.itm.wiseui.client.testbedselection.event.ConfigurationSelectedEvent;
-import de.uniluebeck.itm.wiseui.client.testbedselection.event.ConfigurationSelectedHandler;
+import de.uniluebeck.itm.wiseui.client.testbedselection.event.ConfigurationSelectedEvent.ConfigurationSelectedHandler;
+import de.uniluebeck.itm.wiseui.client.testbedselection.event.LoggedInEvent;
 import de.uniluebeck.itm.wiseui.client.testbedselection.event.ShowLoginDialogEvent;
-import de.uniluebeck.itm.wiseui.client.testbedselection.event.ShowLoginDialogHandler;
+import de.uniluebeck.itm.wiseui.client.testbedselection.event.ShowLoginDialogEvent.ShowLoginDialogHandler;
 import de.uniluebeck.itm.wiseui.client.testbedselection.util.AuthenticationHelper;
 import de.uniluebeck.itm.wiseui.client.testbedselection.util.AuthenticationHelper.Callback;
 import de.uniluebeck.itm.wiseui.client.testbedselection.view.LoginDialogView;
 import de.uniluebeck.itm.wiseui.client.testbedselection.view.LoginDialogView.Presenter;
+import de.uniluebeck.itm.wiseui.client.util.AuthenticationManager;
 import de.uniluebeck.itm.wiseui.shared.TestbedConfiguration;
+import de.uniluebeck.itm.wiseui.shared.wiseml.SecretAuthenticationKey;
 
 public class LoginDialogPresenter implements Presenter, ConfigurationSelectedHandler, ShowLoginDialogHandler {    
     
@@ -25,6 +28,8 @@ public class LoginDialogPresenter implements Presenter, ConfigurationSelectedHan
     private final LoginDialogView view;
     
     private final SNAAServiceAsync authenticationService;
+    
+    private final AuthenticationManager authenticationManager;
     
     private final ListDataProvider<UrnPrefixInfo> dataProvider = new ListDataProvider<UrnPrefixInfo>();
     
@@ -35,10 +40,12 @@ public class LoginDialogPresenter implements Presenter, ConfigurationSelectedHan
     @Inject
     public LoginDialogPresenter(final EventBus eventBus, 
             final LoginDialogView view, 
-            final SNAAServiceAsync authenticationService) {
+            final SNAAServiceAsync authenticationService,
+            final AuthenticationManager authenticationManager) {
         this.eventBus = eventBus;
         this.view = view;
         this.authenticationService = authenticationService;
+        this.authenticationManager = authenticationManager;
         
         dataProvider.addDataDisplay(view.getUrnPrefixList());
         
@@ -63,7 +70,7 @@ public class LoginDialogPresenter implements Presenter, ConfigurationSelectedHan
         final String username = view.getUsernameText().getText();
         final String password = view.getPasswordText().getText();
 
-        authenticationHelper.authenticate(dataProvider.getList().iterator(), endpointUrl, username, password, new Callback() {
+        authenticationHelper.authenticate(dataProvider.getList(), endpointUrl, username, password, new Callback() {
             
             private boolean hideAfterComplete = true;
             
@@ -74,7 +81,12 @@ public class LoginDialogPresenter implements Presenter, ConfigurationSelectedHan
                 }
             }
             
-            public void onComplete() {
+            public void onSuccess(SecretAuthenticationKey result) {
+            	authenticationManager.addSecretAuthenticationKey(result);
+                eventBus.fireEventFromSource(new LoggedInEvent(result), this);
+            }
+            
+            public void onFinish() {
                 view.getUsernameEnabled().setEnabled(true);
                 view.getPasswordEnabled().setEnabled(true);
                 view.getSubmitEnabled().setEnabled(true);
@@ -96,7 +108,7 @@ public class LoginDialogPresenter implements Presenter, ConfigurationSelectedHan
         for (String urnPrefix : configuration.getUrnPrefixList()) {
             dataProvider.getList().add(new UrnPrefixInfo(urnPrefix));
         }
-        authenticationHelper = new AuthenticationHelper(eventBus, authenticationService);
+        authenticationHelper = new AuthenticationHelper(authenticationService);
         dataProvider.refresh();
     }
 

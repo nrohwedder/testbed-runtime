@@ -1,5 +1,8 @@
 package de.uniluebeck.itm.wiseui.client.testbedselection.view;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import com.google.gwt.core.client.GWT;
 import com.google.gwt.uibinder.client.UiBinder;
 import com.google.gwt.uibinder.client.UiField;
@@ -7,9 +10,8 @@ import com.google.gwt.user.cellview.client.CellTable;
 import com.google.gwt.user.cellview.client.TextColumn;
 import com.google.gwt.user.client.ui.Composite;
 import com.google.gwt.user.client.ui.Widget;
-import de.uniluebeck.itm.wiseui.shared.wiseml.Node;
 
-import java.util.List;
+import de.uniluebeck.itm.wiseui.shared.wiseml.Node;
 
 public class NetworkViewImpl extends Composite implements NetworkView {
 
@@ -44,6 +46,15 @@ public class NetworkViewImpl extends Composite implements NetworkView {
             }
         };
         nodeTable.addColumn(nodeTypeColumn, "Node-Type");
+        
+        final TextColumn<Node> positionColumn = new TextColumn<Node>() {
+
+            @Override
+            public String getValue(final Node node) {
+                return node.getPosition().toString();
+            }
+        };
+        nodeTable.addColumn(positionColumn, "Position");
 
         final TextColumn<Node> descriptionColumn = new TextColumn<Node>() {
 
@@ -53,15 +64,8 @@ public class NetworkViewImpl extends Composite implements NetworkView {
             }
         };
         nodeTable.addColumn(descriptionColumn, "Description");
-
-        final TextColumn<Node> positionColumn = new TextColumn<Node>() {
-
-            @Override
-            public String getValue(final Node node) {
-                return node.getPosition().toString();
-            }
-        };
-        nodeTable.addColumn(positionColumn, "Position");
+        
+        setNodes(new ArrayList<Node>(0));
     }
 
     public void setPresenter(final Presenter presenter) {

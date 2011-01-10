@@ -13,6 +13,7 @@ import com.google.gwt.user.client.ui.HasText;
 import com.google.gwt.user.client.ui.Label;
 import com.google.gwt.user.client.ui.SimplePanel;
 import com.google.gwt.user.client.ui.Widget;
+
 import de.uniluebeck.itm.wiseui.shared.wiseml.Coordinate;
 
 public class DetailViewImpl extends Composite implements DetailView {
@@ -22,6 +23,8 @@ public class DetailViewImpl extends Composite implements DetailView {
 
     interface DetailViewImplUiBinder extends UiBinder<Widget, DetailViewImpl> {
     }
+
+    private static final int DEFAULT_ZOOM_LEVEL = 0;
 
     private static final int ZOOM_LEVEL = 8;
 
@@ -59,25 +62,28 @@ public class DetailViewImpl extends Composite implements DetailView {
     }
 
     public void setDescriptionCoordinate(Coordinate coordinate) {
-        if (null == coordinate) return;
-
-        final double x = coordinate.getX();
-        final double y = coordinate.getY();
-        final LatLng center = LatLng.newInstance(x, y);
-        if (descriptionmMarker != null) {
+    	if (descriptionmMarker != null) {
             mapWidget.removeOverlay(descriptionmMarker);
         }
-        descriptionmMarker = new Marker(center);
-        mapWidget.addOverlay(descriptionmMarker);
+
+    	LatLng center = LatLng.newInstance(0.0, 0.0);
+    	if (coordinate != null) {
+	        final double x = coordinate.getX();
+	        final double y = coordinate.getY();
+	        center = LatLng.newInstance(x, y);
+	        descriptionmMarker = new Marker(center);
+	        mapWidget.addOverlay(descriptionmMarker);
+	        mapWidget.setZoomLevel(ZOOM_LEVEL);
+    	} else {
+    		mapWidget.setZoomLevel(DEFAULT_ZOOM_LEVEL);
+    	}
         mapWidget.setCenter(center);
-        mapWidget.setZoomLevel(ZOOM_LEVEL);
     }
 
+    /**
+     * Returns a HasText Wrapper that allows to set a null description and set another text instead.
+     */
     public HasText getDescription() {
         return description;
-    }
-
-    public void setDescriptionText(final String descriptionText) {
-        this.description.setText(descriptionText);
     }
 }

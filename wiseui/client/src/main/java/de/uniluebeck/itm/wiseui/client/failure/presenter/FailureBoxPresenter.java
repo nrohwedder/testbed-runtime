@@ -3,10 +3,9 @@ package de.uniluebeck.itm.wiseui.client.failure.presenter;
 import com.google.gwt.event.shared.EventBus;
 import com.google.inject.Inject;
 import de.uniluebeck.itm.wiseui.client.failure.event.FailureEvent;
-import de.uniluebeck.itm.wiseui.client.failure.event.FailureHandler;
 import de.uniluebeck.itm.wiseui.client.failure.view.FailureBoxView;
 
-public class FailureBoxPresenter implements FailureBoxView.Presenter, FailureHandler {
+public class FailureBoxPresenter implements FailureBoxView.Presenter, FailureEvent.FailureHandler {
 
     private FailureBoxView view;
 

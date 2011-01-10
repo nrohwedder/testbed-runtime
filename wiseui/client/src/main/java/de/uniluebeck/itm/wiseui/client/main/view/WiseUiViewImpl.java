@@ -14,6 +14,7 @@ public class WiseUiViewImpl extends Composite implements WiseUiView {
     }
 
     private static WiseUiViewImplUiBinder uiBinder = GWT.create(WiseUiViewImplUiBinder.class);
+    
     @UiField
     SimplePanel navigationPanel;
     @UiField
@@ -24,8 +25,6 @@ public class WiseUiViewImpl extends Composite implements WiseUiView {
 
         setWidth("100%");
         setHeight("100%");
-
-        contentPanel.setStyleName("default-border");
     }
 
     public AcceptsOneWidget getNavigationPanel() {
