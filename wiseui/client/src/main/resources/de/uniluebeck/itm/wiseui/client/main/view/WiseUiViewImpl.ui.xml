@@ -6,10 +6,10 @@
     </ui:style>
 
     <g:DockLayoutPanel>
-        <g:north size="95">
+        <g:north size="115">
             <g:VerticalPanel>
                 <g:HTMLPanel>
-                    <h1 style="padding: 10px;">WiseUI</h1>
+                    <h1 style="padding:10px;">WiseUI</h1>
                 </g:HTMLPanel>
                 <g:SimplePanel ui:field="navigationPanel"/>
             </g:VerticalPanel>

@@ -7,6 +7,7 @@ import com.google.gwt.uibinder.client.UiField;
 import com.google.gwt.uibinder.client.UiHandler;
 import com.google.gwt.user.client.ui.Button;
 import com.google.gwt.user.client.ui.DialogBox;
+import com.google.gwt.user.client.ui.DisclosurePanel;
 import com.google.gwt.user.client.ui.Label;
 import com.google.gwt.user.client.ui.Widget;
 
@@ -20,11 +21,13 @@ public class FailureBoxViewImpl implements FailureBoxView {
     @UiField
     DialogBox dialogBox;
     @UiField
-    Button okButton;
+    Button closeButton;
     @UiField
     Label messageLabel;
     @UiField
     Label stacktraceLabel;
+    @UiField
+    DisclosurePanel stacktracePanel;
 
     private Presenter presenter;
 
@@ -53,8 +56,8 @@ public class FailureBoxViewImpl implements FailureBoxView {
         this.presenter = presenter;
     }
 
-    @UiHandler("okButton")
-    void onOkClick(final ClickEvent event) {
+    @UiHandler("closeButton")
+    void handleCloseClick(final ClickEvent event) {
         dialogBox.hide();
     }
 }
