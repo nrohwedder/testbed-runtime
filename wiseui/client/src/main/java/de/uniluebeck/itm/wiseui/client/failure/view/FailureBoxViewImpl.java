@@ -26,6 +26,8 @@ public class FailureBoxViewImpl implements FailureBoxView {
     Label messageLabel;
     @UiField
     Label stacktraceLabel;
+    @UiField
+    DisclosurePanel disclosurePanel;
 
     private Presenter presenter;
 
@@ -48,6 +50,7 @@ public class FailureBoxViewImpl implements FailureBoxView {
 
     public void hideBox() {
         dialogBox.hide();
+        disclosurePanel.setOpen(false);
     }
 
     public void setPresenter(final Presenter presenter) {
@@ -56,6 +59,6 @@ public class FailureBoxViewImpl implements FailureBoxView {
 
     @UiHandler("closeButton")
     void handleCloseClick(final ClickEvent event) {
-        dialogBox.hide();
+        hideBox();
     }
 }

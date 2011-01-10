@@ -33,7 +33,7 @@
                 <h3 class="{style.error}">Ooops, something went wrong!</h3>
                 <g:Label ui:field="messageLabel">...</g:Label>
             </g:HTMLPanel>
-            <g:DisclosurePanel title="Stacktrace" animationEnabled="true" open="false">
+            <g:DisclosurePanel ui:field="disclosurePanel" title="Stacktrace" animationEnabled="true" open="false">
                 <g:header>Show Stacktrace</g:header>
                 <g:ScrollPanel width="500">
                     <g:Label ui:field="stacktraceLabel" width="500" wordWrap="true" height="300">...</g:Label>
