@@ -20,9 +20,7 @@ import de.uniluebeck.itm.wiseui.shared.exception.WisemlException;
 public class TestbedSelectionPresenter implements Presenter, ConfigurationSelectedHandler, WisemlLoadedHandler, ThrowableHandler {
 
     private final EventBus eventBus;
-
     private final TestbedSelectionView view;
-
     private TestbedConfiguration configuration;
 
     @Inject
@@ -50,7 +48,6 @@ public class TestbedSelectionPresenter implements Presenter, ConfigurationSelect
     }
 
     public void setPlace(final TestbedSelectionPlace place) {
-
     }
 
     public void onWisemlLoaded(final WisemlLoadedEvent event) {
@@ -62,12 +59,11 @@ public class TestbedSelectionPresenter implements Presenter, ConfigurationSelect
         view.getLoginEnabled().setEnabled(true);
     }
 
-	public void onThrowable(ThrowableEvent event) {
-		if (event.getThrowable() instanceof WisemlException) {
-			final String title = "Unavailable Testbed " + configuration.getName();
-			final String message = "The Testbed " + configuration.getName() + " is not available.";
-			MessageBox.error(title, message, null);
-		}
-	}
-
+    public void onThrowable(final ThrowableEvent event) {
+        if (event.getThrowable() instanceof WisemlException) {
+            final String title = "Unavailable Testbed " + configuration.getName();
+            final String message = "The Testbed " + configuration.getName() + " is not available.";
+            MessageBox.error(title, message, null);
+        }
+    }
 }

@@ -19,3 +19,4 @@ nb-configuration.xml
 **/*.svn
 .svn
 *.svn
+nbactions.xml

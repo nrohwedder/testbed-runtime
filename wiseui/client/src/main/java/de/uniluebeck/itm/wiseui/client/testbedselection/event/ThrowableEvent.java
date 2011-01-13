@@ -7,28 +7,27 @@ import de.uniluebeck.itm.wiseui.client.testbedselection.event.ThrowableEvent.Thr
 
 public class ThrowableEvent extends GwtEvent<ThrowableHandler> {
 
-	public interface ThrowableHandler extends EventHandler {
-		void onThrowable(ThrowableEvent event);
-	}
-	
-	public static final Type<ThrowableHandler> TYPE = new Type<ThrowableHandler>();
-	
-	private final Throwable throwable;
-	
-	public ThrowableEvent(Throwable throwable) {
-		this.throwable = throwable;
-	}
-	
-	protected void dispatch(ThrowableHandler handler) {
-		handler.onThrowable(this);
-	}
-	
-	@Override
-	public Type<ThrowableHandler> getAssociatedType() {
-		return TYPE;
-	}
-	
-	public Throwable getThrowable() {
-		return throwable;
-	}
+    public interface ThrowableHandler extends EventHandler {
+
+        void onThrowable(ThrowableEvent event);
+    }
+    public static final Type<ThrowableHandler> TYPE = new Type<ThrowableHandler>();
+    private final Throwable throwable;
+
+    public ThrowableEvent(final Throwable throwable) {
+        this.throwable = throwable;
+    }
+
+    protected void dispatch(final ThrowableHandler handler) {
+        handler.onThrowable(this);
+    }
+
+    @Override
+    public Type<ThrowableHandler> getAssociatedType() {
+        return TYPE;
+    }
+
+    public Throwable getThrowable() {
+        return throwable;
+    }
 }

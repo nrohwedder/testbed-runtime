@@ -23,20 +23,20 @@ import de.uniluebeck.itm.wiseui.client.testbedselection.gin.TestbedSelectionModu
 import de.uniluebeck.itm.wiseui.client.util.AuthenticationManager;
 
 @GinModules({
-	WiseUiModule.class, 
-	NavigationModule.class,
-	TestbedSelectionModule.class,
-	ReservationModule.class,
-	ExperimentationModule.class,
-	AdministrationModule.class,
+    WiseUiModule.class,
+    NavigationModule.class,
+    TestbedSelectionModule.class,
+    ReservationModule.class,
+    ExperimentationModule.class,
+    AdministrationModule.class,
     FailureModule.class
 })
 public interface WiseUiGinjector extends Ginjector, NavigationGinjector, TestbedSelectionGinjector, ReservationGinjector, ExperimentationGinjector, AdministrationGinjector {
 
-	AuthenticationManager getAuthenticationManager();
-	
+    AuthenticationManager getAuthenticationManager();
+
     EventBus getEventBus();
-    
+
     WiseUiView getAppWidget();
 
     NavigationActivityManager getNavigationActivityManager();
@@ -46,5 +46,4 @@ public interface WiseUiGinjector extends Ginjector, NavigationGinjector, Testbed
     PlaceHistoryHandler getPlaceHistoryHandler();
 
     PlaceController getPlaceController();
-
 }

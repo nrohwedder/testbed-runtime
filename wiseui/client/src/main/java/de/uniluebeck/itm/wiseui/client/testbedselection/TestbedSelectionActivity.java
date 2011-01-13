@@ -15,6 +15,7 @@ import de.uniluebeck.itm.wiseui.client.failure.presenter.FailureBoxPresenter;
 import de.uniluebeck.itm.wiseui.client.failure.view.FailureBoxView;
 import de.uniluebeck.itm.wiseui.client.testbedselection.event.ConfigurationSelectedEvent;
 import de.uniluebeck.itm.wiseui.client.testbedselection.event.ConfigurationSelectedEvent.ConfigurationSelectedHandler;
+import de.uniluebeck.itm.wiseui.client.testbedselection.event.ThrowableEvent;
 import de.uniluebeck.itm.wiseui.client.testbedselection.event.WisemlLoadedEvent;
 import de.uniluebeck.itm.wiseui.client.testbedselection.presenter.ConfigurationPresenter;
 import de.uniluebeck.itm.wiseui.client.testbedselection.presenter.DetailPresenter;
@@ -130,7 +131,7 @@ public class TestbedSelectionActivity extends AbstractActivity implements Config
 
             public void onFailure(final Throwable caught) {
                 if (caught instanceof WisemlException) {
-                    eventBus.fireEvent(new FailureEvent(caught.getMessage(), ((WisemlException) caught).getStacktraceString(), caught.getCause()));
+                    eventBus.fireEvent(new ThrowableEvent(caught));
                 } else {
                     eventBus.fireEvent(new FailureEvent(caught.getMessage(), "No stacktrace available.", caught.getCause()));
                 }

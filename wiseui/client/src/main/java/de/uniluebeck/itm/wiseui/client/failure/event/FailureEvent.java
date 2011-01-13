@@ -9,21 +9,17 @@ public class FailureEvent extends GwtEvent<FailureEvent.FailureHandler> {
 
         void handleFailure(FailureEvent event);
     }
-
     public static final Type<FailureHandler> TYPE = new Type<FailureHandler>();
-
     private String message;
-
     private String stacktrace;
-
     private Throwable cause;
 
-    public FailureEvent(String message, String stacktrace) {
+    public FailureEvent(final String message, final String stacktrace) {
         this.message = message;
         this.stacktrace = stacktrace;
     }
 
-    public FailureEvent(String message, String stacktrace, Throwable cause) {
+    public FailureEvent(final String message, final String stacktrace, final Throwable cause) {
         this.message = message;
         this.stacktrace = stacktrace;
         this.cause = cause;
@@ -43,7 +39,7 @@ public class FailureEvent extends GwtEvent<FailureEvent.FailureHandler> {
         return message;
     }
 
-    public void setMessage(String message) {
+    public void setMessage(final String message) {
         this.message = message;
     }
 
@@ -51,7 +47,7 @@ public class FailureEvent extends GwtEvent<FailureEvent.FailureHandler> {
         return stacktrace;
     }
 
-    public void setStacktrace(String stacktrace) {
+    public void setStacktrace(final String stacktrace) {
         this.stacktrace = stacktrace;
     }
 
@@ -59,7 +55,7 @@ public class FailureEvent extends GwtEvent<FailureEvent.FailureHandler> {
         return cause;
     }
 
-    public void setCause(Throwable cause) {
+    public void setCause(final Throwable cause) {
         this.cause = cause;
     }
 }
