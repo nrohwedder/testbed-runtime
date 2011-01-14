@@ -44,6 +44,7 @@ public class DetailPresenter implements Presenter, ConfigurationSelectedHandler,
     public void onTestbedConfigurationSelected(final ConfigurationSelectedEvent event) {
     	configuration = event.getConfiguration();
         view.getDescription().setText("Loading details...");
+        view.setDescriptionCoordinate(null);
     }
 
     public void onWisemlLoaded(final WisemlLoadedEvent event) {
