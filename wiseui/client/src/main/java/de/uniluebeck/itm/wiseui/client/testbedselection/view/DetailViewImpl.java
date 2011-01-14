@@ -37,6 +37,8 @@ public class DetailViewImpl extends Composite implements DetailView {
     private MapWidget mapWidget;
 
     private Marker descriptionmMarker;
+    
+    private Coordinate coordinate;
 
     public DetailViewImpl() {
         initWidget(uiBinder.createAndBindUi(this));
@@ -57,15 +59,24 @@ public class DetailViewImpl extends Composite implements DetailView {
                 mapWidget.setContinuousZoom(true);
                 mapWidget.addControl(new SmallMapControl());
                 mapContainer.add(mapWidget);
+                
+                updateMapCoordinate();
             }
         });
     }
 
     public void setDescriptionCoordinate(Coordinate coordinate) {
+    	this.coordinate = coordinate;
+    	if (mapWidget != null) {
+    		updateMapCoordinate();
+    	}
+    }
+    
+    private void updateMapCoordinate() {
     	if (descriptionmMarker != null) {
             mapWidget.removeOverlay(descriptionmMarker);
         }
-
+    	
     	LatLng center = LatLng.newInstance(0.0, 0.0);
     	if (coordinate != null) {
 	        final double x = coordinate.getX();
