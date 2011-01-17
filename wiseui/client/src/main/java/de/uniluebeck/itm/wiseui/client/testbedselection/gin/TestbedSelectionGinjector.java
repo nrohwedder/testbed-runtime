@@ -2,8 +2,6 @@ package de.uniluebeck.itm.wiseui.client.testbedselection.gin;
 
 import com.google.gwt.inject.client.Ginjector;
 
-import de.uniluebeck.itm.wiseui.client.failure.presenter.FailureBoxPresenter;
-import de.uniluebeck.itm.wiseui.client.failure.view.FailureBoxView;
 import de.uniluebeck.itm.wiseui.client.testbedselection.TestbedSelectionActivity;
 import de.uniluebeck.itm.wiseui.client.testbedselection.presenter.ConfigurationPresenter;
 import de.uniluebeck.itm.wiseui.client.testbedselection.presenter.DetailPresenter;
@@ -30,8 +28,6 @@ public interface TestbedSelectionGinjector extends Ginjector {
 
     LoginDialogPresenter getLoginDialogPresenter();
 
-    FailureBoxPresenter getFailureBoxPresenter();
-
     TestbedSelectionView getTestbedSelectionView();
     
     ConfigurationView getConfigurationView();
@@ -41,6 +37,4 @@ public interface TestbedSelectionGinjector extends Ginjector {
     NetworkView getNetworkView();
 
     LoginDialogView getLoginDialogView();
-
-    FailureBoxView getFailureBoxView();
 }

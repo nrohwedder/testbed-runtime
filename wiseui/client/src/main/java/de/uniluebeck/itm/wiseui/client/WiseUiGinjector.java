@@ -12,7 +12,6 @@ import de.uniluebeck.itm.wiseui.client.administration.gin.AdministrationGinjecto
 import de.uniluebeck.itm.wiseui.client.administration.gin.AdministrationModule;
 import de.uniluebeck.itm.wiseui.client.experimentation.gin.ExperimentationGinjector;
 import de.uniluebeck.itm.wiseui.client.experimentation.gin.ExperimentationModule;
-import de.uniluebeck.itm.wiseui.client.failure.gin.FailureModule;
 import de.uniluebeck.itm.wiseui.client.main.view.WiseUiView;
 import de.uniluebeck.itm.wiseui.client.navigation.gin.NavigationGinjector;
 import de.uniluebeck.itm.wiseui.client.navigation.gin.NavigationModule;
@@ -28,8 +27,7 @@ import de.uniluebeck.itm.wiseui.client.util.AuthenticationManager;
     TestbedSelectionModule.class,
     ReservationModule.class,
     ExperimentationModule.class,
-    AdministrationModule.class,
-    FailureModule.class
+    AdministrationModule.class
 })
 public interface WiseUiGinjector extends Ginjector, NavigationGinjector, TestbedSelectionGinjector, ReservationGinjector, ExperimentationGinjector, AdministrationGinjector {
 

@@ -75,14 +75,17 @@ public class MessageBox implements Presenter {
         messageBox.show();
     }
 
-    public static void error(final String title, final String message, final Callback callback) {
+    public static void error(final String title, final String message, final Throwable throwable, final Callback callback) {
         final MessageBox messageBox = INJECTOR.getMessageBox();
         messageBox.setTitle(title);
         messageBox.setMessage(message);
         messageBox.setMessageType(Type.ERROR);
         messageBox.setButtons(Button.OK);
         messageBox.setCallback(callback);
-        messageBox.setStacktracePanelVisible(true);
+        if (throwable != null) {
+            messageBox.setStacktrace(StacktraceUtil.stacktraceToString(throwable));
+            messageBox.setStacktracePanelVisible(true);
+        }
         messageBox.show();
     }
 
@@ -136,9 +139,13 @@ public class MessageBox implements Presenter {
 
     public void show() {
         view.show();
-    }    
+    }
+
+    public void setStacktrace(final String stacktrace) {
+        view.setStacktrace(stacktrace);
+    }
 
     public void setStacktracePanelVisible(final boolean isVisible) {
         view.setStacktracePanelVisible(isVisible);
-    }    
+    }
 }

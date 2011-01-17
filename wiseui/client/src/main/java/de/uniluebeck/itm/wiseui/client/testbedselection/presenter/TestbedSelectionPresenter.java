@@ -62,8 +62,11 @@ public class TestbedSelectionPresenter implements Presenter, ConfigurationSelect
     public void onThrowable(final ThrowableEvent event) {
         if (event.getThrowable() instanceof WisemlException) {
             final String title = "Unavailable Testbed " + configuration.getName();
-            final String message = "The Testbed " + configuration.getName() + " is not available.";
-            MessageBox.error(title, message, null);
+            final String message = "The Testbed " 
+                    + configuration.getName() 
+                    + " is not available.\n" 
+                    + event.getThrowable().getMessage();
+            MessageBox.error(title, message, event.getThrowable(), null);
         }
     }
 }

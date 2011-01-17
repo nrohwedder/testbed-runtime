@@ -10,9 +10,6 @@ import com.google.gwt.user.client.ui.AcceptsOneWidget;
 import com.google.inject.Inject;
 import de.uniluebeck.itm.wiseui.api.SessionManagementServiceAsync;
 import de.uniluebeck.itm.wiseui.client.WiseUiGinjector;
-import de.uniluebeck.itm.wiseui.client.failure.event.FailureEvent;
-import de.uniluebeck.itm.wiseui.client.failure.presenter.FailureBoxPresenter;
-import de.uniluebeck.itm.wiseui.client.failure.view.FailureBoxView;
 import de.uniluebeck.itm.wiseui.client.testbedselection.event.ConfigurationSelectedEvent;
 import de.uniluebeck.itm.wiseui.client.testbedselection.event.ConfigurationSelectedEvent.ConfigurationSelectedHandler;
 import de.uniluebeck.itm.wiseui.client.testbedselection.event.ThrowableEvent;
@@ -28,7 +25,6 @@ import de.uniluebeck.itm.wiseui.client.testbedselection.view.LoginDialogView;
 import de.uniluebeck.itm.wiseui.client.testbedselection.view.NetworkView;
 import de.uniluebeck.itm.wiseui.client.testbedselection.view.TestbedSelectionView;
 import de.uniluebeck.itm.wiseui.shared.TestbedConfiguration;
-import de.uniluebeck.itm.wiseui.shared.exception.WisemlException;
 import de.uniluebeck.itm.wiseui.shared.wiseml.Wiseml;
 
 public class TestbedSelectionActivity extends AbstractActivity implements ConfigurationSelectedHandler {
@@ -59,7 +55,6 @@ public class TestbedSelectionActivity extends AbstractActivity implements Config
         this.eventBus = eventBus;
         initTestbedSelectionPart(containerWidget);
         initLoginDialogPart();
-        initFailurePart();
         bind();
     }
 
@@ -114,13 +109,6 @@ public class TestbedSelectionActivity extends AbstractActivity implements Config
         loginDialogView.setPresenter(loginDialogPresenter);
     }
 
-    private void initFailurePart() {
-        GWT.log("Init Failure Dialog Part");
-        final FailureBoxPresenter failureBoxPresenter = injector.getFailureBoxPresenter();
-        final FailureBoxView failureBoxView = injector.getFailureBoxView();
-        failureBoxView.setPresenter(failureBoxPresenter);
-    }
-
     public void onTestbedConfigurationSelected(final ConfigurationSelectedEvent event) {
         final TestbedConfiguration configuration = event.getConfiguration();
         final AsyncCallback<Wiseml> callback = new AsyncCallback<Wiseml>() {
@@ -130,11 +118,7 @@ public class TestbedSelectionActivity extends AbstractActivity implements Config
             }
 
             public void onFailure(final Throwable caught) {
-                if (caught instanceof WisemlException) {
-                    eventBus.fireEvent(new ThrowableEvent(caught));
-                } else {
-                    eventBus.fireEvent(new FailureEvent(caught.getMessage(), "No stacktrace available.", caught.getCause()));
-                }
+                eventBus.fireEvent(new ThrowableEvent(caught));
             }
         };
         final String url = configuration.getSessionmanagementEndointUrl().trim();

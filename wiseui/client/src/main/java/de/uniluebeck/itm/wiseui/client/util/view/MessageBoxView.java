@@ -22,12 +22,16 @@ public interface MessageBoxView extends IsWidget {
 
     void show();
 
+    void setStacktrace(String stacktrace);
+    
     void setStacktracePanelVisible(boolean isVisible);
 
     public interface Presenter {
 
         void buttonClicked(String button);
 
+        void setStacktrace(String stacktrace);
+        
         void setStacktracePanelVisible(boolean isVisible);
     }
 }

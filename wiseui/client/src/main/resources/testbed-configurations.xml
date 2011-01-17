@@ -1,3 +1,4 @@
+<?xml version="1.0"?>
 <configurations>
     <configuration isFederated="false">
         <name>WISEBED UZL Tested</name>
@@ -33,5 +34,19 @@
         <snaaEndpointUrl>http://wbportal.ibr.cs.tu-bs.de:8080/snaa</snaaEndpointUrl>
         <sessionmanagementEndointUrl>http://wbportal.ibr.cs.tu-bs.de:8080/sessions</sessionmanagementEndointUrl>
         <urnPrefix>urn:wisebed:tubs:</urnPrefix>
+    </configuration>
+    <configuration isFederated="false">
+        <name>WISEBED UBERN Tested</name>
+        <testbedUrl>http://www.wisebed.eu</testbedUrl>
+        <snaaEndpointUrl>http://gridlab23.unibe.ch:3000/</snaaEndpointUrl>
+        <sessionmanagementEndointUrl>http://gridlab23.unibe.ch:3000/</sessionmanagementEndointUrl>
+        <urnPrefix>urn:wisebed:ubern:</urnPrefix>
+    </configuration>
+    <configuration isFederated="false">
+        <name>WISEBED TUD Tested</name>
+        <testbedUrl>http://www.wisebed.eu</testbedUrl>
+        <snaaEndpointUrl>http://dutigw.st.ewi.tudelft.nl:3000</snaaEndpointUrl>
+        <sessionmanagementEndointUrl>http://dutigw.st.ewi.tudelft.nl:3000</sessionmanagementEndointUrl>
+        <urnPrefix>urn:wisebed:tud:</urnPrefix>
     </configuration>
 </configurations>

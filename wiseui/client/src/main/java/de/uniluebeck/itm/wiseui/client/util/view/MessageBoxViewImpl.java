@@ -30,6 +30,8 @@ public class MessageBoxViewImpl extends HasWidgetsDialogBox implements MessageBo
     FlexTable buttonTable;
     @UiField
     DisclosurePanel stacktracePanel;
+    @UiField
+    Label stacktraceLabel;
 
     public MessageBoxViewImpl() {
         uiBinder.createAndBindUi(this);
@@ -45,7 +47,7 @@ public class MessageBoxViewImpl extends HasWidgetsDialogBox implements MessageBo
         return this;
     }
 
-    public void setPresenter(Presenter presenter) {
+    public void setPresenter(final Presenter presenter) {
         this.presenter = presenter;
     }
 
@@ -53,15 +55,15 @@ public class MessageBoxViewImpl extends HasWidgetsDialogBox implements MessageBo
         return message.getText();
     }
 
-    public void setMessage(String text) {
+    public void setMessage(final String text) {
         message.setText(text);
     }
 
-    public void setMessageImageUrl(String url) {
+    public void setMessageImageUrl(final String url) {
         image.setUrl(url);
     }
 
-    public void setButtons(String... buttons) {
+    public void setButtons(final String... buttons) {
         buttonTable.clear();
         int i = 0;
         for (String label : buttons) {
@@ -71,12 +73,12 @@ public class MessageBoxViewImpl extends HasWidgetsDialogBox implements MessageBo
         }
     }
 
-    public void onClick(ClickEvent event) {
+    public void onClick(final ClickEvent event) {
         final Button button = (Button) event.getSource();
         presenter.buttonClicked(button.getText());
     }
 
-    public void setCaption(String title) {
+    public void setCaption(final String title) {
         setText(title);
     }
 
@@ -85,8 +87,12 @@ public class MessageBoxViewImpl extends HasWidgetsDialogBox implements MessageBo
         super.show();
         center();
     }
-    
-    public void setStacktracePanelVisible(boolean isVisible) {
+
+    public void setStacktrace(final String stacktrace) {
+        stacktraceLabel.setText(stacktrace);
+    }
+
+    public void setStacktracePanelVisible(final boolean isVisible) {
         stacktracePanel.setVisible(isVisible);
-    }    
+    }
 }
