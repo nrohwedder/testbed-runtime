@@ -38,8 +38,8 @@
     <configuration isFederated="false">
         <name>WISEBED UBERN Tested</name>
         <testbedUrl>http://www.wisebed.eu</testbedUrl>
-        <snaaEndpointUrl>http://gridlab23.unibe.ch:3000/</snaaEndpointUrl>
-        <sessionmanagementEndointUrl>http://gridlab23.unibe.ch:3000/</sessionmanagementEndointUrl>
+        <snaaEndpointUrl>http://gridlab23.unibe.ch:3001/</snaaEndpointUrl>
+        <sessionmanagementEndointUrl>http://gridlab23.unibe.ch:3001/</sessionmanagementEndointUrl>
         <urnPrefix>urn:wisebed:ubern:</urnPrefix>
     </configuration>
     <configuration isFederated="false">
@@ -48,5 +48,5 @@
         <snaaEndpointUrl>http://dutigw.st.ewi.tudelft.nl:3000</snaaEndpointUrl>
         <sessionmanagementEndointUrl>http://dutigw.st.ewi.tudelft.nl:3000</sessionmanagementEndointUrl>
         <urnPrefix>urn:wisebed:tud:</urnPrefix>
-    </configuration>
+    </configuration>    
 </configurations>
