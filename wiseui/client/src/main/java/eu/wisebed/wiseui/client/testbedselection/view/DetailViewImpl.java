@@ -18,6 +18,9 @@ import eu.wisebed.wiseui.shared.wiseml.Coordinate;
 
 public class DetailViewImpl extends Composite implements DetailView {
 
+    /** Google Maps API Key for http://uni-luebeck.de */
+    private final static String GOOGLE_MAPS_API_KEY = "ABQIAAAAJF12r4xVlog3DZkEwDC09BRisPSeHzj7Yhj17FYCkK1ytSRbxBQV16SxQgD_zuTEDGaTRK9sHFtMDQ";
+
     private static DetailViewImplUiBinder uiBinder = GWT
             .create(DetailViewImplUiBinder.class);
 
@@ -51,7 +54,7 @@ public class DetailViewImpl extends Composite implements DetailView {
 
     private void initMap() {
         mapContainer.setSize("300px", "250px");
-        Maps.loadMapsApi("", "2", false, new Runnable() {
+        Maps.loadMapsApi(GOOGLE_MAPS_API_KEY, "2", false, new Runnable() {
             public void run() {
                 mapWidget = new MapWidget();
                 mapWidget.setSize("300px", "250px");
