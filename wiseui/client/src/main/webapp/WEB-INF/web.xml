@@ -15,7 +15,7 @@
     </filter-mapping>
 
     <listener>
-        <listener-class>de.uniluebeck.itm.wiseui.server.WiseUiGuiceServletConfig</listener-class>
+        <listener-class>eu.wisebed.wiseui.server.WiseUiGuiceServletConfig</listener-class>
     </listener>
 
     <!-- Default page to serve -->

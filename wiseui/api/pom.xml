@@ -2,15 +2,15 @@
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
     <parent>
-        <groupId>de.uniluebeck.itm</groupId>
-        <artifactId>tr.wiseui</artifactId>
-        <version>0.5.4-SNAPSHOT</version>
+        <groupId>eu.wisebed</groupId>
+        <artifactId>wiseui</artifactId>
+        <version>0.3</version>
     </parent>
     <modelVersion>4.0.0</modelVersion>
-    <groupId>de.uniluebeck.itm.tr.wiseui</groupId>
+    <groupId>eu.wisebed.wiseui</groupId>
     <artifactId>api</artifactId>
-    <version>0.5.4-SNAPSHOT</version>
-    <name>TR :: WiseUI API</name>
+    <version>0.3</version>
+    <name>WiseUI - API</name>
     <packaging>jar</packaging>
     <properties>
         <!-- tell the compiler we can use 1.5 -->
@@ -19,7 +19,7 @@
     </properties>
     <dependencies>
         <dependency>
-            <groupId>de.uniluebeck.itm.tr.wiseui</groupId>
+            <groupId>eu.wisebed.wiseui</groupId>
             <artifactId>shared</artifactId>
         </dependency>
         <dependency>

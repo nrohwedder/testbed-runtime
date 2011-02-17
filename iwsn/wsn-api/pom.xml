@@ -49,6 +49,7 @@
 		<dependency>
 			<groupId>de.uniluebeck.itm</groupId>
 			<artifactId>tr.util</artifactId>
+			<version>0.5.6-SNAPSHOT</version>
 		</dependency>
 	</dependencies>
 
