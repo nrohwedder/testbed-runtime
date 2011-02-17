@@ -1,4 +1,4 @@
-<?xml version="1.0"?>
+<?xml version="1.0" ?>
 <configurations>
     <configuration isFederated="false">
         <name>WISEBED UZL Tested</name>
@@ -11,7 +11,8 @@
         <name>WISEBED UZL Tested Staging</name>
         <testbedUrl>http://www.wisebed.eu</testbedUrl>
         <snaaEndpointUrl>http://wisebed-staging.itm.uni-luebeck.de:8890/snaa?wsdl</snaaEndpointUrl>
-        <sessionmanagementEndointUrl>http://wisebed-staging.itm.uni-luebeck.de:8888/sessions?wsdl</sessionmanagementEndointUrl>
+        <sessionmanagementEndointUrl>http://wisebed-staging.itm.uni-luebeck.de:8888/sessions?wsdl
+        </sessionmanagementEndointUrl>
         <urnPrefix>urn:wisebed:uzl-staging:</urnPrefix>
     </configuration>
     <configuration isFederated="false">
@@ -48,5 +49,19 @@
         <snaaEndpointUrl>http://dutigw.st.ewi.tudelft.nl:3000</snaaEndpointUrl>
         <sessionmanagementEndointUrl>http://dutigw.st.ewi.tudelft.nl:3000</sessionmanagementEndointUrl>
         <urnPrefix>urn:wisebed:tud:</urnPrefix>
-    </configuration>    
+    </configuration>
+    <configuration isFederated="false">
+        <name>WISEBED UPC Tested</name>
+        <testbedUrl>http://www.wisebed.eu</testbedUrl>
+        <snaaEndpointUrl>http://wisebed2.lsi.upc.edu:8888/sessions</snaaEndpointUrl>
+        <sessionmanagementEndointUrl>http://wisebed2.lsi.upc.edu:8888/sessions</sessionmanagementEndointUrl>
+        <urnPrefix>urn:wisebed:tud:</urnPrefix>
+    </configuration>
+    <configuration isFederated="false">
+        <name>WISEBED FUB Tested</name>
+        <testbedUrl>http://www.wisebed.eu</testbedUrl>
+        <snaaEndpointUrl>http://wiseportal.mi.fu-berlin.de:3000</snaaEndpointUrl>
+        <sessionmanagementEndointUrl>http://wiseportal.mi.fu-berlin.de:3000</sessionmanagementEndointUrl>
+        <urnPrefix>urn:wisebed:fub:</urnPrefix>
+    </configuration>
 </configurations>
