@@ -9,18 +9,18 @@ Quick Install
 Just follow the instructions provided in [our Wiki][quick].
 
 
-Deployment on a Remote Tomact
------------------------------
+Deploy to a Remote Tomact
+-------------------------
 To use this profile, make sure you settings.xml (~.m2/settings.xml) looks like the example below. Replace the property values with your specific credentials, hostname, etc.
 
-Also, it is highly recommended, that you SSH client is configured to log in on you remote server (deployment target) without password. This requires a special SSH setup. You have to create a private key with ssh-keygen and copy it into the file ~.ssh/authorized_keys on your remote system.
+Also, it is highly recommended that you SSH client is configured to log in on you remote server (deployment target) without password. This requires a special SSH setup. You have to create a private key with ssh-keygen and copy it into the file ~.ssh/authorized_keys on your remote system.
 
 This is how your settings.xml should look like:
 
-        <settings>
-            <profiles>
-                <profile>
-                    <id>inject-deployment-details</id>
+    <settings>
+        <profiles>
+            <profile>
+                <id>inject-deployment-details</id>
                     <properties>
                         <deployment.artifact.name>wiseui</deployment.artifact.name>
                         <deployment.user>root</deployment.user>
@@ -29,10 +29,10 @@ This is how your settings.xml should look like:
                     </properties>
                 </profile>
             </profiles>
-            <activeProfiles>
-                <activeProfile>inject-deployment-details</activeProfile>
-            </activeProfiles>
-        </settings>
+        <activeProfiles>
+            <activeProfile>inject-deployment-details</activeProfile>
+        </activeProfiles>
+    </settings>
 
 You can deploy the resulting war-file with:
 
@@ -41,12 +41,12 @@ You can deploy the resulting war-file with:
     $ cd client
     $ mvn install -Ddeploy=remote
     
-This Maven command activates the profile in client/pom.xml. The profile contains the maven-exec plugin which uploads the *.war file to the designated server's Tomcat webapps directory. If the Tomcat server is configured to auto-deploy applications, the new web application will be deployed and started.
+This Maven command activates the profile in client/pom.xml. The profile contains a maven-exec plugin  configuration, which uploads the *.war file to the designated server's Tomcat webapps directory. If the Tomcat server is configured to auto-deploy applications, the new web application will be deployed and started immediately.
 
 
 More Documentation
 ==================
-The [wiki][] is your friend.
+Take a look at our [wiki][].
 
 
 [gwt]:http://code.google.com/webtoolkit/doc/2.1/DevGuide.html
