@@ -7,10 +7,7 @@ import com.google.gwt.place.shared.Place;
 import com.google.gwt.user.client.ui.AcceptsOneWidget;
 import com.google.inject.Inject;
 import de.uniluebeck.itm.wiseui.client.WiseUiGinjector;
-import de.uniluebeck.itm.wiseui.client.administration.AdministrationPlace;
-import de.uniluebeck.itm.wiseui.client.experimentation.ExperimentationPlace;
 import de.uniluebeck.itm.wiseui.client.navigation.view.NavigationView;
-import de.uniluebeck.itm.wiseui.client.reservation.ReservationPlace;
 import de.uniluebeck.itm.wiseui.client.testbedselection.TestbedSelectionPlace;
 
 import java.util.ArrayList;
@@ -51,10 +48,10 @@ public class NavigationActivity extends AbstractActivity implements
         this.injector = injector;
 
         navigation.add(new Entry("Testbed Selection", new TestbedSelectionPlace(null)));
-        navigation.add(new Entry("Reservation", new ReservationPlace()));
-        navigation
-                .add(new Entry("Experimentation", new ExperimentationPlace()));
-        navigation.add(new Entry("Administration", new AdministrationPlace()));
+//        navigation.add(new Entry("Reservation", new ReservationPlace()));
+//        navigation
+//                .add(new Entry("Experimentation", new ExperimentationPlace()));
+//        navigation.add(new Entry("Administration", new AdministrationPlace()));
     }
 
     public void start(final AcceptsOneWidget container, final EventBus eventBus) {

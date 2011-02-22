@@ -9,13 +9,8 @@
     </ui:style>
 
     <g:DockLayoutPanel>
-        <g:north size="95">
-            <g:VerticalPanel>
-                <g:HTMLPanel>
-                    <h1 style="padding:10px;">WiseUI</h1>
-                </g:HTMLPanel>
-                <g:SimplePanel ui:field="navigationPanel"/>
-            </g:VerticalPanel>
+        <g:north size="24">
+            <g:SimplePanel ui:field="navigationPanel"/>
         </g:north>
         <g:center>
             <g:SimplePanel ui:field="contentPanel" styleName="{style.border}"/>
