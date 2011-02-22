@@ -123,8 +123,14 @@
         </profile>
 
         <!--
-        To use this profile, make sure you settings.xml (~.m2/settings.xml) looks like the example below.
+        To use this profile, make sure you settings.xml (~.m2/settings.xml) looks
+        like the example below.
         Replace the property values with your specific credentials, hostname, etc.
+
+        Also, it is highly recommended, that you SSH client is configured to log in
+        on you remote server (deployment target) without password. This requires
+        you to create a private key with ssh-keygen and copy it into the file
+        ~.ssh/authorized_keys on your remote system.
 
         <settings>
             <profiles>
@@ -144,11 +150,11 @@
         </settings>
         -->
         <profile>
-            <id>deploy-local</id>
+            <id>deploy-remote</id>
             <activation>
                 <property>
                     <name>deploy</name>
-                    <value>local</value>
+                    <value>remote</value>
                 </property>
             </activation>
             <build>
