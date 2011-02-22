@@ -36,10 +36,10 @@ This is how your settings.xml should look like:
 
 You can deploy the resulting war-file with:
 
-$ pwd
-$ [...]/testbed-runtime/wiseui
-$ cd client
-$ mvn install -Ddeploy=remote
+    $ pwd
+    $ [...]/testbed-runtime/wiseui
+    $ cd client
+    $ mvn install -Ddeploy=remote
 
 
 More Documentation
