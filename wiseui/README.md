@@ -1,12 +1,12 @@
 WiseUI
-========
+======
 
 The WiseUI is a [GWT][gwt] based web client for the [Testbed Runtime][testbedruntime].
 
 
 Quick Install
----------------------------
-Just follow the instruction provided in [our Wiki][quick].
+-------------
+Just follow the instructions provided in [our Wiki][quick].
 
 
 Deployment on a Remote Tomact
@@ -24,7 +24,7 @@ This is how your settings.xml should look like:
                     <properties>
                         <deployment.artifact.name>wiseui</deployment.artifact.name>
                         <deployment.user>root</deployment.user>
-                        <deployment.host>141.83.0.100</deployment.host>
+                        <deployment.host>141.83.0.111</deployment.host>
                         <deployment.directory>/usr/local/tomcat/webapps/</deployment.directory>
                     </properties>
                 </profile>
