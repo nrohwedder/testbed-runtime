@@ -24,7 +24,7 @@ This is how your settings.xml should look like:
                     <properties>
                         <deployment.artifact.name>wiseui</deployment.artifact.name>
                         <deployment.user>root</deployment.user>
-                        <deployment.host>141.83.0.111</deployment.host>
+                        <deployment.host>10.0.0.1</deployment.host>
                         <deployment.directory>/usr/local/tomcat/webapps/</deployment.directory>
                     </properties>
                 </profile>
