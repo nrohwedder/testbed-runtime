@@ -13,7 +13,8 @@ Deploy to a Remote Tomact
 -------------------------
 To use this profile, make sure you settings.xml (~.m2/settings.xml) looks like the example below. Replace the property values with your specific credentials, hostname, etc.
 
-Also, it is highly recommended that you SSH client is configured to log in on you remote server (deployment target) without password. This requires a special SSH setup. You have to create a private key with ssh-keygen and copy it into the file ~.ssh/authorized_keys on your remote system.
+> Also, it is highly recommended that you SSH client is configured to log in on you remote server (deployment target) without password. This requires a special SSH setup. 
+> You have to create a private key with ssh-keygen and copy it into the file ~.ssh/authorized_keys on your remote server.
 
 This is how your settings.xml should look like:
 
