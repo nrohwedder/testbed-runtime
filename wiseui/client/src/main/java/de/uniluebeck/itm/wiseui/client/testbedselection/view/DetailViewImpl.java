@@ -28,6 +28,8 @@ public class DetailViewImpl extends Composite implements DetailView {
 
     private static final int ZOOM_LEVEL = 8;
 
+    private static final String GOOGLE_API_KEY = "ABQIAAAAJF12r4xVlog3DZkEwDC09BRisPSeHzj7Yhj17FYCkK1ytSRbxBQV16SxQgD_zuTEDGaTRK9sHFtMDQ";
+
     @UiField
     SimplePanel mapContainer;
 
@@ -51,7 +53,7 @@ public class DetailViewImpl extends Composite implements DetailView {
 
     private void initMap() {
         mapContainer.setSize("300px", "250px");
-        Maps.loadMapsApi("", "2", false, new Runnable() {
+        Maps.loadMapsApi(GOOGLE_API_KEY, "2", false, new Runnable() {
             public void run() {
                 mapWidget = new MapWidget();
                 mapWidget.setSize("300px", "250px");
