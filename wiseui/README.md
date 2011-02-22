@@ -40,6 +40,8 @@ You can deploy the resulting war-file with:
     $ [...]/testbed-runtime/wiseui
     $ cd client
     $ mvn install -Ddeploy=remote
+    
+This Maven command activates the profile in client/pom.xml. The profile contains the maven-exec plugin which uploads the *.war file to the designated server's Tomcat webapps directory. If the Tomcat server is configured to auto-deploy applications, the new web application will be deployed and started.
 
 
 More Documentation
