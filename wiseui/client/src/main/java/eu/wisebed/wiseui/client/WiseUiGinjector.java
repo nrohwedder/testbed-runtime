@@ -5,7 +5,6 @@ import com.google.gwt.inject.client.GinModules;
 import com.google.gwt.inject.client.Ginjector;
 import com.google.gwt.place.shared.PlaceController;
 import com.google.gwt.place.shared.PlaceHistoryHandler;
-
 import eu.wisebed.wiseui.client.activity.ContentActivityManager;
 import eu.wisebed.wiseui.client.activity.NavigationActivityManager;
 import eu.wisebed.wiseui.client.administration.gin.AdministrationGinjector;
@@ -22,12 +21,12 @@ import eu.wisebed.wiseui.client.testbedselection.gin.TestbedSelectionModule;
 import eu.wisebed.wiseui.client.util.AuthenticationManager;
 
 @GinModules({
-    WiseUiModule.class,
-    NavigationModule.class,
-    TestbedSelectionModule.class,
-    ReservationModule.class,
-    ExperimentationModule.class,
-    AdministrationModule.class
+        WiseUiModule.class,
+        NavigationModule.class,
+        TestbedSelectionModule.class,
+        ReservationModule.class,
+        ExperimentationModule.class,
+        AdministrationModule.class
 })
 public interface WiseUiGinjector extends Ginjector, NavigationGinjector, TestbedSelectionGinjector, ReservationGinjector, ExperimentationGinjector, AdministrationGinjector {
 
