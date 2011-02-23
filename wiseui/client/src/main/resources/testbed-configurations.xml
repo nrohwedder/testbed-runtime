@@ -12,14 +12,14 @@
         <testbedUrl>http://www.wisebed.eu</testbedUrl>
         <snaaEndpointUrl>http://wisebed.itm.uni-luebeck.de:8890/snaa?wsdl</snaaEndpointUrl>
         <sessionmanagementEndointUrl>http://wisebed.itm.uni-luebeck.de:8888/sessions?wsdl</sessionmanagementEndointUrl>
-        <urnPrefix>urn:wisebed:uzl:</urnPrefix>
+        <urnPrefix>urn:wisebed:uzl1:</urnPrefix>
     </configuration>
     <configuration isFederated="false">
         <name>WISEBED ULANC Testbed</name>
         <testbedUrl>http://www.wisebed.eu</testbedUrl>
         <snaaEndpointUrl>http://wisebed-portal.lancs.ac.uk:3000</snaaEndpointUrl>
         <sessionmanagementEndointUrl>http://wisebed-portal.lancs.ac.uk:3000</sessionmanagementEndointUrl>
-        <urnPrefix>urn:wisebed:ulanc:</urnPrefix>
+        <urnPrefix>urn:wisebed:node:ulanc:</urnPrefix>
     </configuration>
     <configuration isFederated="false">
         <name>WISEBED CTI Testbed</name>
