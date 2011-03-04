@@ -2,7 +2,6 @@ package eu.wisebed.wiseui.client.testbedselection.presenter;
 
 import com.google.gwt.event.shared.EventBus;
 import com.google.inject.Inject;
-
 import eu.wisebed.wiseui.client.testbedselection.TestbedSelectionPlace;
 import eu.wisebed.wiseui.client.testbedselection.event.ConfigurationSelectedEvent;
 import eu.wisebed.wiseui.client.testbedselection.event.ConfigurationSelectedEvent.ConfigurationSelectedHandler;
@@ -21,7 +20,7 @@ public class DetailPresenter implements Presenter, ConfigurationSelectedHandler,
     private final DetailView view;
 
     private final EventBus eventBus;
-    
+
     private TestbedConfiguration configuration;
 
     @Inject
@@ -42,7 +41,7 @@ public class DetailPresenter implements Presenter, ConfigurationSelectedHandler,
     }
 
     public void onTestbedConfigurationSelected(final ConfigurationSelectedEvent event) {
-    	configuration = event.getConfiguration();
+        configuration = event.getConfiguration();
         view.getDescription().setText("Loading details...");
         view.setDescriptionCoordinate(null);
     }
@@ -52,17 +51,17 @@ public class DetailPresenter implements Presenter, ConfigurationSelectedHandler,
         if (null == setup) return;
         String description = setup.getDescription();
         if (description == null || description.isEmpty()) {
-        	description = "No description found for this testbed.";
-		}
+            description = "No description found for this testbed.";
+        }
         view.getDescription().setText(description);
         view.setDescriptionCoordinate(setup.getOrigin());
     }
 
-	public void onThrowable(ThrowableEvent event) {
-		if (event.getThrowable() instanceof WisemlException) {
-			final String message = "Unable to load WiseML information from " + configuration.getName() + ".";
-			view.getDescription().setText(message);
-			view.setDescriptionCoordinate(null);
-		}
-	}
+    public void onThrowable(ThrowableEvent event) {
+        if (event.getThrowable() instanceof WisemlException) {
+            final String message = "Unable to load WiseML information from " + configuration.getName() + ".";
+            view.getDescription().setText(message);
+            view.setDescriptionCoordinate(null);
+        }
+    }
 }

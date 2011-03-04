@@ -12,7 +12,6 @@ import com.google.gwt.user.client.ui.FlexTable;
 import com.google.gwt.user.client.ui.Image;
 import com.google.gwt.user.client.ui.Label;
 import com.google.gwt.user.client.ui.Widget;
-
 import eu.wisebed.wiseui.client.util.HasWidgetsDialogBox;
 
 public class MessageBoxViewImpl extends HasWidgetsDialogBox implements MessageBoxView, ClickHandler {
@@ -21,6 +20,7 @@ public class MessageBoxViewImpl extends HasWidgetsDialogBox implements MessageBo
 
     interface MessageBoxViewImplUiBinder extends UiBinder<Widget, MessageBoxViewImpl> {
     }
+
     private Presenter presenter;
     @UiField
     Label message;

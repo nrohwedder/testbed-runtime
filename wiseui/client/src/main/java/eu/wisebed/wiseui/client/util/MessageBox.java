@@ -2,7 +2,6 @@ package eu.wisebed.wiseui.client.util;
 
 import com.google.gwt.core.client.GWT;
 import com.google.inject.Inject;
-
 import eu.wisebed.wiseui.client.util.gin.UtilGinjector;
 import eu.wisebed.wiseui.client.util.view.MessageBoxView;
 import eu.wisebed.wiseui.client.util.view.MessageBoxView.Presenter;
@@ -44,6 +43,7 @@ public class MessageBox implements Presenter {
 
         void onButtonClicked(final Button button);
     }
+
     private static final UtilGinjector INJECTOR = GWT.create(UtilGinjector.class);
     private static final UtilClientBundle BUNDLE = GWT.create(UtilClientBundle.class);
     private final MessageBoxView view;

@@ -9,6 +9,7 @@ public class ThrowableEvent extends GwtEvent<ThrowableEvent.ThrowableHandler> {
 
         void onThrowable(ThrowableEvent event);
     }
+
     public static final Type<ThrowableHandler> TYPE = new Type<ThrowableHandler>();
     private final Throwable throwable;
 

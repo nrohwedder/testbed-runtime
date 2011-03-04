@@ -7,7 +7,6 @@ import com.google.gwt.place.shared.PlaceController;
 import com.google.gwt.place.shared.PlaceHistoryHandler;
 import com.google.inject.Provides;
 import com.google.inject.Singleton;
-
 import eu.wisebed.wiseui.client.activity.ContentActivityManager;
 import eu.wisebed.wiseui.client.activity.ContentActivityMapper;
 import eu.wisebed.wiseui.client.activity.NavigationActivityManager;
@@ -29,7 +28,7 @@ public class WiseUiModule extends AbstractGinModule {
 
         // View binding
         bind(WiseUiView.class).to(WiseUiViewImpl.class).in(Singleton.class);
-        
+
         bind(AuthenticationManager.class);
     }
 

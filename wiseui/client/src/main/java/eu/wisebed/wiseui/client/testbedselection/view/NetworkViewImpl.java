@@ -1,8 +1,5 @@
 package eu.wisebed.wiseui.client.testbedselection.view;
 
-import java.util.ArrayList;
-import java.util.List;
-
 import com.google.gwt.core.client.GWT;
 import com.google.gwt.uibinder.client.UiBinder;
 import com.google.gwt.uibinder.client.UiField;
@@ -10,8 +7,10 @@ import com.google.gwt.user.cellview.client.CellTable;
 import com.google.gwt.user.cellview.client.TextColumn;
 import com.google.gwt.user.client.ui.Composite;
 import com.google.gwt.user.client.ui.Widget;
-
 import eu.wisebed.wiseui.shared.wiseml.Node;
+
+import java.util.ArrayList;
+import java.util.List;
 
 public class NetworkViewImpl extends Composite implements NetworkView {
 
@@ -46,7 +45,7 @@ public class NetworkViewImpl extends Composite implements NetworkView {
             }
         };
         nodeTable.addColumn(nodeTypeColumn, "Node-Type");
-        
+
         final TextColumn<Node> positionColumn = new TextColumn<Node>() {
 
             @Override
@@ -64,7 +63,7 @@ public class NetworkViewImpl extends Composite implements NetworkView {
             }
         };
         nodeTable.addColumn(descriptionColumn, "Description");
-        
+
         setNodes(new ArrayList<Node>(0));
     }
 

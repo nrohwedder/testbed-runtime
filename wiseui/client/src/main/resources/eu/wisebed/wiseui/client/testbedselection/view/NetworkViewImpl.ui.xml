@@ -5,15 +5,15 @@
     <ui:style>
 
         .caption {
-            background: #e3e8f3 url(images/hborder.png) repeat-x 0px -2003px;
-            padding: 4px 4px 4px 8px;
-            cursor: default;
-            border-bottom: 1px solid #bbbbbb;
+        background: #e3e8f3 url(images/hborder.png) repeat-x 0px -2003px;
+        padding: 4px 4px 4px 8px;
+        cursor: default;
+        border-bottom: 1px solid #bbbbbb;
         }
 
         .fullLayout {
-            width: 100%;
-            height: 100%;
+        width: 100%;
+        height: 100%;
         }
     </ui:style>
     <g:DockLayoutPanel styleName="{style.fullLayout}">

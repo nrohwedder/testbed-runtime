@@ -16,8 +16,7 @@
     <name>WiseUI - Experimentation Web Client</name>
 
     <properties>
-        <gwt.version>2.1.0</gwt.version>
-        <gwt.user.agent>safari,gecko1_8</gwt.user.agent>
+        <gwt.version>2.2.0</gwt.version>
     </properties>
 
     <dependencyManagement>

@@ -2,14 +2,13 @@ package eu.wisebed.wiseui.client.testbedselection.presenter;
 
 import com.google.gwt.event.shared.EventBus;
 import com.google.inject.Inject;
-
 import eu.wisebed.wiseui.client.testbedselection.TestbedSelectionPlace;
 import eu.wisebed.wiseui.client.testbedselection.event.ConfigurationSelectedEvent;
 import eu.wisebed.wiseui.client.testbedselection.event.ConfigurationSelectedEvent.ConfigurationSelectedHandler;
 import eu.wisebed.wiseui.client.testbedselection.event.ShowLoginDialogEvent;
 import eu.wisebed.wiseui.client.testbedselection.event.ThrowableEvent;
-import eu.wisebed.wiseui.client.testbedselection.event.WisemlLoadedEvent;
 import eu.wisebed.wiseui.client.testbedselection.event.ThrowableEvent.ThrowableHandler;
+import eu.wisebed.wiseui.client.testbedselection.event.WisemlLoadedEvent;
 import eu.wisebed.wiseui.client.testbedselection.event.WisemlLoadedEvent.WisemlLoadedHandler;
 import eu.wisebed.wiseui.client.testbedselection.view.TestbedSelectionView;
 import eu.wisebed.wiseui.client.testbedselection.view.TestbedSelectionView.Presenter;
@@ -62,9 +61,9 @@ public class TestbedSelectionPresenter implements Presenter, ConfigurationSelect
     public void onThrowable(final ThrowableEvent event) {
         if (event.getThrowable() instanceof WisemlException) {
             final String title = "Unavailable Testbed " + configuration.getName();
-            final String message = "The Testbed " 
-                    + configuration.getName() 
-                    + " is not available.\n" 
+            final String message = "The Testbed "
+                    + configuration.getName()
+                    + " is not available.\n"
                     + event.getThrowable().getMessage();
             MessageBox.error(title, message, event.getThrowable(), null);
         }

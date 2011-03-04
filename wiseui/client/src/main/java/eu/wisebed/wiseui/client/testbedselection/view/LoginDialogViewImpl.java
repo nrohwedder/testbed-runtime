@@ -21,7 +21,6 @@ import com.google.gwt.user.client.ui.TextBox;
 import com.google.gwt.user.client.ui.Widget;
 import com.google.gwt.view.client.HasData;
 import com.google.inject.Inject;
-
 import eu.wisebed.wiseui.client.testbedselection.common.UrnPrefixInfo;
 import eu.wisebed.wiseui.client.testbedselection.common.UrnPrefixInfo.State;
 import eu.wisebed.wiseui.client.util.HasWidgetsDialogBox;
@@ -34,23 +33,23 @@ public class LoginDialogViewImpl extends HasWidgetsDialogBox implements LoginDia
     }
 
     private class UrnPrefixInfoCell extends AbstractEditableCell<UrnPrefixInfo, Boolean> {
-        
+
         public static final String FAILURE_COLOR = "#FFBBBB";
-        
+
         public static final String SUCCESS_COLOR = "#BBFFBB";
-        
+
         public static final String DEFAULT_COLOR = "#FFFFFF";
-        
+
         private CheckboxCell cell = new CheckboxCell();
-        
+
         public UrnPrefixInfoCell() {
             super("change", "keydown");
         }
-        
+
         @Override
         public void onBrowserEvent(final Element parent, final UrnPrefixInfo info, final Object key, final NativeEvent event,
-                final ValueUpdater<UrnPrefixInfo> valueUpdater) {
-            
+                                   final ValueUpdater<UrnPrefixInfo> valueUpdater) {
+
             final Element checkboxParent = parent.getFirstChildElement().getFirstChildElement().getFirstChildElement().getFirstChildElement();
             cell.onBrowserEvent(checkboxParent, info.isChecked(), key, event, new ValueUpdater<Boolean>() {
                 public void update(final Boolean value) {
@@ -59,7 +58,7 @@ public class LoginDialogViewImpl extends HasWidgetsDialogBox implements LoginDia
             });
             super.onBrowserEvent(parent, info, key, event, valueUpdater);
         }
-        
+
         @Override
         public void render(final UrnPrefixInfo info, final Object key, final SafeHtmlBuilder sb) {
             // Value can be null, so do a null check..
@@ -73,7 +72,7 @@ public class LoginDialogViewImpl extends HasWidgetsDialogBox implements LoginDia
             } else if (info.getState().equals(State.SUCCESS)) {
                 color = SUCCESS_COLOR;
             }
-            
+
             sb.appendHtmlConstant("<table style='background-color:" + color + "'>");
             sb.appendHtmlConstant("<tr><td rowspan='2'>");
             cell.render(info.isChecked(), key, sb);

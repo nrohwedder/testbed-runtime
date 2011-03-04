@@ -3,19 +3,23 @@
              xmlns:g="urn:import:com.google.gwt.user.client.ui">
 
     <ui:style>
-    .border {
-    	border: 5px solid #92C1F0;
-    }
+        .border {
+        border: 5px solid #92C1F0;
+        }
     </ui:style>
 
     <g:DockLayoutPanel>
-        <g:north size="95">
+        <g:north size="24">
+            <!--
             <g:VerticalPanel>
                 <g:HTMLPanel>
                     <h1 style="padding:10px;">WiseUI</h1>
                 </g:HTMLPanel>
-                <g:SimplePanel ui:field="navigationPanel"/>
+            -->
+            <g:SimplePanel ui:field="navigationPanel"/>
+            <!--
             </g:VerticalPanel>
+            -->
         </g:north>
         <g:center>
             <g:SimplePanel ui:field="contentPanel" styleName="{style.border}"/>

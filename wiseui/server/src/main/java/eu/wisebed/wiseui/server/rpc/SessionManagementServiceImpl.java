@@ -32,13 +32,7 @@ public class SessionManagementServiceImpl extends RemoteServiceServlet implement
             final eu.wisebed.ns.wiseml._1.Wiseml wiseml = WiseMLHelper.deserialize(sessionManagement.getNetwork());
             return mapper.map(wiseml, Wiseml.class);
         } catch (Exception e) {
-            throw new WisemlException("Unable to load Wiseml from " + url, e, getExceptionStacktraceString(e));
+            throw new WisemlException("Unable to load Wiseml from " + url, e);
         }
-    }
-
-    private String getExceptionStacktraceString(final Throwable throwable) {
-        StringWriter sw = new StringWriter();
-        throwable.printStackTrace(new PrintWriter(sw));
-        return sw.toString();
     }
 }

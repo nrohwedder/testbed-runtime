@@ -14,7 +14,7 @@ public class WiseUiViewImpl extends Composite implements WiseUiView {
     }
 
     private static WiseUiViewImplUiBinder uiBinder = GWT.create(WiseUiViewImplUiBinder.class);
-    
+
     @UiField
     SimplePanel navigationPanel;
     @UiField

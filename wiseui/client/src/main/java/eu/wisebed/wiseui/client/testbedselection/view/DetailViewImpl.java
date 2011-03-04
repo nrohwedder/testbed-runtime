@@ -13,12 +13,13 @@ import com.google.gwt.user.client.ui.HasText;
 import com.google.gwt.user.client.ui.Label;
 import com.google.gwt.user.client.ui.SimplePanel;
 import com.google.gwt.user.client.ui.Widget;
-
 import eu.wisebed.wiseui.shared.wiseml.Coordinate;
 
 public class DetailViewImpl extends Composite implements DetailView {
 
-    /** Google Maps API Key for http://uni-luebeck.de */
+    /**
+     * Google Maps API Key for http://uni-luebeck.de
+     */
     private final static String GOOGLE_MAPS_API_KEY = "ABQIAAAAJF12r4xVlog3DZkEwDC09BRisPSeHzj7Yhj17FYCkK1ytSRbxBQV16SxQgD_zuTEDGaTRK9sHFtMDQ";
 
     private static DetailViewImplUiBinder uiBinder = GWT
@@ -40,7 +41,7 @@ public class DetailViewImpl extends Composite implements DetailView {
     private MapWidget mapWidget;
 
     private Marker descriptionmMarker;
-    
+
     private Coordinate coordinate;
 
     public DetailViewImpl() {
@@ -62,35 +63,35 @@ public class DetailViewImpl extends Composite implements DetailView {
                 mapWidget.setContinuousZoom(true);
                 mapWidget.addControl(new SmallMapControl());
                 mapContainer.add(mapWidget);
-                
+
                 updateMapCoordinate();
             }
         });
     }
 
     public void setDescriptionCoordinate(Coordinate coordinate) {
-    	this.coordinate = coordinate;
-    	if (mapWidget != null) {
-    		updateMapCoordinate();
-    	}
+        this.coordinate = coordinate;
+        if (mapWidget != null) {
+            updateMapCoordinate();
+        }
     }
-    
+
     private void updateMapCoordinate() {
-    	if (descriptionmMarker != null) {
+        if (descriptionmMarker != null) {
             mapWidget.removeOverlay(descriptionmMarker);
         }
-    	
-    	LatLng center = LatLng.newInstance(0.0, 0.0);
-    	if (coordinate != null) {
-	        final double x = coordinate.getX();
-	        final double y = coordinate.getY();
-	        center = LatLng.newInstance(x, y);
-	        descriptionmMarker = new Marker(center);
-	        mapWidget.addOverlay(descriptionmMarker);
-	        mapWidget.setZoomLevel(ZOOM_LEVEL);
-    	} else {
-    		mapWidget.setZoomLevel(DEFAULT_ZOOM_LEVEL);
-    	}
+
+        LatLng center = LatLng.newInstance(0.0, 0.0);
+        if (coordinate != null) {
+            final double x = coordinate.getX();
+            final double y = coordinate.getY();
+            center = LatLng.newInstance(x, y);
+            descriptionmMarker = new Marker(center);
+            mapWidget.addOverlay(descriptionmMarker);
+            mapWidget.setZoomLevel(ZOOM_LEVEL);
+        } else {
+            mapWidget.setZoomLevel(DEFAULT_ZOOM_LEVEL);
+        }
         mapWidget.setCenter(center);
     }
 

@@ -9,7 +9,7 @@ Quick Install
 Just follow the instructions provided in [our Wiki][quick].
 
 
-Deploy to a Remote Tomact
+Deploy to a Remote Tomcat
 -------------------------
 To use this profile, make sure you settings.xml (~.m2/settings.xml) looks like the example below. Replace the property values with your specific credentials, hostname, etc.
 
